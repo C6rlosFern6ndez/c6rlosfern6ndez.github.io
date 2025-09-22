@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de Angular</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../CSS/cajasCodigo.css">
+</head>
+
+<body>
+    <header>
+        <h1>Tutorial de Angular</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li id="ejercicios"><a href="#">Ejercicios</a>
+                    <ul>
+                        <li><a href="../ejercicios/condicionales.html">Condicionales</a></li>
+                        <li><a href="enlace">pagina 2</a></li>
+                        <li><a href="enlace">pagina 3</a></li>
+                    </ul>
+                </li>
+                <li id="desplegableApuntes"><a href="angular.html">Angular</a>
+                    <ul>
+                        <li><a href="#introduccion">Introducción</a></li>
+                        <li><a href="#instalacion">Instalación</a></li>
+                        <li><a href="#creacion-proyecto">Creación de Proyecto</a></li>
+                        <li><a href="#componentes">Componentes</a></li>
+                        <li><a href="#routing">Routing</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#estructura-proyecto-angular">Estructura de Proyecto</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript.html">Apuntes JavaScript</a></li>
+                <li><a href="css.html">Apuntes CSS</a></li>
+            </ul>
+        </nav>
+        <script>
+            const ejerciciosLi = document.getElementById('ejercicios');
+            const menuDesplegable = ejerciciosLi.querySelector('ul');
+            ejerciciosLi.addEventListener('click', function () {
+                if (menuDesplegable.style.display === 'none' || menuDesplegable.style.display === '') {
+                    menuDesplegable.style.display = 'block';
+                } else {
+                    menuDesplegable.style.display = 'none';
+                }
+            });
+        </script>
+    </header>
+    <main>
+        <div class="container">
+            <section id="introduccion">
+                <h2>Introducción a Angular</h2>
+                <p>Angular es un framework de desarrollo frontend desarrollado por Google que te permite crear
+                    aplicaciones web de una manera más estructurada y eficiente.</p>
+                <p>Angular es una herramienta poderosa para el desarrollo web frontend. Este tutorial cubre los
+                    conceptos básicos para comenzar con Angular, pero hay mucho más por aprender y explorar. ¡Diviértete
+                    desarrollando aplicaciones web con Angular!</p>
+            </section>
+
+            <section id="instalacion">
+                <h2>Instalación de Angular</h2>
+                <p>Antes de comenzar a desarrollar con Angular, es necesario instalar varias herramientas en tu sistema.
+                    Sigue estos pasos detallados:</p>
+
+                <h3>Paso 1: Instalar Node.js y npm</h3>
+                <p>Angular requiere Node.js y npm (Node Package Manager) para funcionar correctamente. Si aún no los
+                    tienes instalados, sigue estos pasos:</p>
+                <ol>
+                    <li>Visita el sitio web oficial de Node.js en <a href="https://nodejs.org/"
+                            target="_blank">https://nodejs.org/</a>.</li>
+                    <li>Descarga la versión LTS (Long Term Support) de Node.js para tu sistema operativo (Windows, macOS
+                        o Linux).</li>
+                    <li>Instala Node.js siguiendo el asistente de instalación y asegúrate de que npm también se instale.
+                    </li>
+                    <li>Verifica que Node.js y npm se hayan instalado correctamente ejecutando los siguientes comandos
+                        en tu terminal:</li>
+                    <pre><code>node -v</code></pre>
+                    <pre><code>npm -v</code></pre>
+                    <li>Deberías ver las versiones de Node.js y npm que has instalado.</li>
+                </ol>
+
+                <h3>Paso 2: Instalar Angular CLI</h3>
+                <p>Angular CLI (Command Line Interface) es una herramienta que simplifica la creación y administración
+                    de proyectos de Angular. Para instalar Angular CLI, abre tu terminal y ejecuta el siguiente comando:
+                </p>
+                <pre><code>npm install -g @angular/cli</code></pre>
+                <p>El flag <code>-g</code> indica que Angular CLI se instalará globalmente en tu sistema. Esto te
+                    permitirá utilizarlo desde cualquier ubicación.</p>
+
+                <h3>Paso 3: Verificar la Instalación</h3>
+                <p>Una vez que hayas instalado Angular CLI, verifica que se haya instalado correctamente ejecutando el
+                    siguiente comando:</p>
+                <pre><code>ng --version</code></pre>
+                <p>Deberías ver información sobre la versión de Angular CLI, Angular Core y otros paquetes relacionados.
+                    Esto confirma que Angular CLI se ha instalado correctamente en tu sistema.</p>
+
+                <h3>Paso 4: ¡Listo para Comenzar!</h3>
+                <p>Con Node.js, npm y Angular CLI instalados, estás listo para comenzar a trabajar con Angular. Ahora
+                    puedes crear proyectos, generar componentes y desarrollar aplicaciones web de manera eficiente.</p>
+            </section>
+
+
+            <section id="creacion-proyecto">
+                <h2>Creación de un Proyecto Angular</h2>
+                <p>Una vez que hayas instalado Angular CLI, puedes proceder a crear tu primer proyecto Angular. Sigue
+                    estos pasos detallados:</p>
+
+                <h3>Paso 1: Crear un Nuevo Proyecto</h3>
+                <p>Abre tu terminal y navega a la ubicación donde deseas crear tu proyecto Angular. Luego, ejecuta el
+                    siguiente comando para crear un nuevo proyecto:</p>
+                <pre><code>ng new nombre-de-tu-proyecto</code></pre>
+                <p>Angular CLI te guiará a través de la configuración inicial de tu proyecto. Durante este proceso, se
+                    te harán varias preguntas, como si deseas agregar Angular routing, qué hojas de estilo deseas
+                    utilizar (CSS, SCSS, etc.) y más. Responde a estas preguntas según tus preferencias.</p>
+
+                <h3>Paso 2: Navegar al Directorio del Proyecto</h3>
+                <p>Una vez que se haya creado el proyecto, navega al directorio del proyecto con el siguiente comando:
+                </p>
+                <pre><code>cd nombre-de-tu-proyecto</code></pre>
+
+                <h3>Paso 3: Ejecutar la Aplicación</h3>
+                <p>Para ejecutar tu aplicación Angular en un servidor de desarrollo local, utiliza el siguiente comando:
+                </p>
+                <pre><code>ng serve</code></pre>
+                <p>Esto compilará tu aplicación y la servirá en un servidor local. Deberías ver un mensaje que indica en
+                    qué puerto está ejecutándose la aplicación, generalmente en <code>http://localhost:4200/</code>.
+                    Abre tu navegador web y visita esta dirección para ver tu aplicación en funcionamiento.</p>
+
+                <h3>Paso 4: Desarrollar y Editar</h3>
+                <p>Ahora estás listo para comenzar a desarrollar tu aplicación Angular. Puedes editar los archivos en el
+                    directorio de tu proyecto utilizando tu editor de código preferido. A medida que hagas cambios en
+                    los archivos de la aplicación, el servidor de desarrollo los detectará automáticamente y actualizará
+                    la aplicación en el navegador en tiempo real.</p>
+
+                <h3>Paso 5: Detener el Servidor</h3>
+                <p>Para detener el servidor de desarrollo, ve a tu terminal y presiona <code>Ctrl + C</code>. Se te
+                    preguntará si deseas detener el proceso; confirma escribiendo <code>y</code> y presionando Enter.
+                </p>
+
+                <h3>Paso 6: Producción</h3>
+                <p>Cuando tu aplicación esté lista para producción, puedes construirla utilizando el siguiente comando:
+                </p>
+                <pre><code>ng build --prod</code></pre>
+                <p>Esto creará una versión optimizada y lista para producción de tu aplicación en la carpeta
+                    <code>dist/</code> de tu proyecto.
+                </p>
+
+                <p>¡Ahora estás listo para crear y desarrollar aplicaciones web emocionantes con Angular!</p>
+            </section>
+
+
+            <section id="componentes">
+                <h2>Componentes en Angular</h2>
+                <p>Los componentes son bloques fundamentales en Angular que permiten organizar y dividir una aplicación
+                    en partes más pequeñas y reutilizables. Aquí se describen los diferentes tipos de componentes y cómo
+                    crearlos.</p>
+
+                <h3>Componentes de Módulo</h3>
+                <p>Los componentes de módulo son la base de cualquier aplicación Angular. Cada aplicación Angular tiene
+                    al menos un componente de módulo, que se conoce como el componente raíz. Los componentes de módulo
+                    definen cómo se ensamblarán y organizarán los demás componentes en la aplicación. Aquí está la
+                    estructura básica de un componente de módulo:</p>
+                <pre><code>
+                    @NgModule({
+                        declarations: [
+                            AppComponent, // El componente raíz
+                            OtroComponente, // Otros componentes en el módulo
+                        ],
+                        imports: [
+                            BrowserModule,
+                            OtroModulo, // Importa otros módulos si es necesario
+                        ],
+                        providers: [], // Servicios y otros proveedores
+                        bootstrap: [AppComponent] // Componente raíz para iniciar la aplicación
+                    })
+                    export class AppModule { }
+                </code></pre>
+
+                <h3>Componentes de Vista</h3>
+                <p>Los componentes de vista son los componentes que definen la estructura y la lógica de una parte
+                    específica de la interfaz de usuario de la aplicación. Cada componente de vista tiene su propio
+                    archivo HTML, CSS y TypeScript. Para crear un componente de vista, puedes usar Angular CLI con el
+                    siguiente comando:</p>
+                <pre><code>ng generate component nombre-del-componente</code></pre>
+                <p>Esto generará los archivos necesarios para un nuevo componente de vista en la carpeta de tu proyecto.
+                </p>
+
+                <h3>Componentes de Servicio</h3>
+                <p>Los componentes de servicio son clases que se utilizan para realizar operaciones o lógica de negocio
+                    en la aplicación. No tienen una interfaz de usuario y se pueden inyectar en otros componentes que
+                    los necesiten. Para crear un componente de servicio, puedes usar Angular CLI con el siguiente
+                    comando:</p>
+                <pre><code>ng generate service nombre-del-servicio</code></pre>
+                <p>Esto generará la clase de servicio en la carpeta de servicios de tu proyecto.</p>
+
+                <h3>Componentes de Directiva</h3>
+                <p>Las directivas son una forma de extender el comportamiento de los elementos del DOM. Los componentes
+                    de directiva son similares a los componentes de vista, pero se utilizan para crear directivas
+                    personalizadas. Estos componentes también tienen archivos HTML, CSS y TypeScript. Para crear un
+                    componente de directiva, puedes usar Angular CLI con el siguiente comando:</p>
+                <pre><code>ng generate directive nombre-de-la-directiva</code></pre>
+                <p>Esto generará los archivos necesarios para un nuevo componente de directiva en la carpeta de tu
+                    proyecto.</p>
+
+                <h3>Componentes de Pipa</h3>
+                <p>Las tuberías (pipes) son utilizadas para transformar datos en las plantillas de Angular. Los
+                    componentes de pipa se utilizan para crear tuberías personalizadas que pueden ser reutilizadas en
+                    toda la aplicación. Para crear un componente de pipa, puedes usar Angular CLI con el siguiente
+                    comando:</p>
+                <pre><code>ng generate pipe nombre-de-la-pipa</code></pre>
+                <p>Esto generará los archivos necesarios para un nuevo componente de pipa en la carpeta de tu proyecto.
+                </p>
+
+                <h3>Estructura Básica de un Proyecto Angular</h3>
+                <p>Un proyecto Angular típico tiene una estructura de carpetas que se organiza de la siguiente manera:
+                </p>
+                <pre><code>
+                    proyecto-angular/
+                    ├── src/
+                    │   ├── app/
+                    │   │   ├── app.component.ts
+                    │   │   ├── app.component.html
+                    │   │   ├── app.component.css
+                    │   │   ├── ... (otros componentes de vista)
+                    │   │   └── app.module.ts
+                    │   ├── assets/
+                    │   ├── environments/
+                    │   ├── ...
+                    │   └── index.html
+                    ├── angular.json
+                    ├── package.json
+                    ├── tsconfig.json
+                    ├── ...
+                </code></pre>
+                <p>Esta estructura básica contiene la carpeta <code>src/</code> que contiene la mayoría de los archivos
+                    de tu proyecto, incluyendo componentes, plantillas y archivos de configuración.</p>
+            </section>
+
+
+            <section id="routing">
+                <h2>Enrutamiento en Angular</h2>
+                <p>El enrutamiento es una parte fundamental de muchas aplicaciones web, ya que permite la navegación
+                    entre diferentes vistas o componentes de una aplicación. Angular proporciona un poderoso sistema de
+                    enrutamiento que te permite gestionar la navegación de forma eficiente. Aquí se describe cómo
+                    configurar y utilizar el enrutamiento en Angular.</p>
+
+                <h3>Configuración del Enrutamiento</h3>
+                <p>Para habilitar el enrutamiento en tu aplicación Angular, sigue estos pasos:</p>
+
+                <h4>Paso 1: Importar el Módulo de Enrutamiento</h4>
+                <p>Abre el archivo <code>app.module.ts</code> y asegúrate de que el módulo <code>RouterModule</code>
+                    esté importado desde <code>@angular/router</code>. También, agrega <code>RouterModule</code> al
+                    arreglo <code>imports</code> de <code>AppModule</code>.</p>
+                <pre><code>
+                    import { RouterModule } from '@angular/router';
+            
+                    @NgModule({
+                        imports: [
+                            // ...otros módulos
+                            RouterModule.forRoot([]) // Agrega las rutas aquí
+                        ],
+                        // ...otros metadatos del módulo
+                    })
+                    export class AppModule { }
+                </code></pre>
+
+                <h4>Paso 2: Definir las Rutas</h4>
+                <p>Define las rutas de tu aplicación en un archivo separado, por ejemplo,
+                    <code>app-routing.module.ts</code>. En este archivo, importa <code>RouterModule</code> y
+                    <code>Routes</code> desde <code>@angular/router</code> y configura las rutas utilizando el arreglo
+                    <code>Routes</code>. Cada ruta debe incluir un <code>path</code> (ruta URL) y el componente que se
+                    debe cargar cuando se accede a esa ruta.
+                </p>
+                <pre><code>
+                    import { RouterModule, Routes } from '@angular/router';
+            
+                    const routes: Routes = [
+                        { path: '', component: HomeComponent }, // Ruta raíz
+                        { path: 'about', component: AboutComponent },
+                        { path: 'contact', component: ContactComponent },
+                        { path: 'products', component: ProductsComponent },
+                        { path: '**', component: PageNotFoundComponent } // Ruta por defecto para errores
+                    ];
+            
+                    @NgModule({
+                        imports: [
+                            RouterModule.forRoot(routes)
+                        ],
+                        exports: [RouterModule]
+                    })
+                    export class AppRoutingModule { }
+                </code></pre>
+
+                <h4>Paso 3: Agregar el Enrutador a la Plantilla</h4>
+                <p>En la plantilla del componente raíz (generalmente <code>app.component.html</code>), agrega el
+                    elemento <code>&lt;router-outlet&gt;</code> para indicar dónde se cargarán los componentes
+                    correspondientes a las rutas.</p>
+                <pre><code>
+                    <!-- app.component.html -->
+                    <h1>Mi Aplicación Angular</h1>
+                    <nav>
+                        <a routerLink="/" routerLinkActive="active">Inicio</a>
+                        <a routerLink="/about" routerLinkActive="active">Acerca de</a>
+                        <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+                        <a routerLink="/products" routerLinkActive="active">Productos</a>
+                    </nav>
+                    <router-outlet></router-outlet>
+                </code></pre>
+
+                <h3>Navegación</h3>
+                <p>Para navegar entre las rutas definidas, puedes utilizar el atributo <code>routerLink</code> en los
+                    enlaces HTML. Angular gestionará la navegación y cargará el componente correspondiente en
+                    <code>&lt;router-outlet&gt;</code>. También puedes realizar la navegación programáticamente
+                    utilizando el servicio <code>Router</code>. Por ejemplo:
+                </p>
+                <pre><code>
+                    // Navegación programática
+                    import { Router } from '@angular/router';
+            
+                    constructor(private router: Router) { }
+            
+                    navigateToAbout() {
+                        this.router.navigate(['/about']);
+                    }
+                </code></pre>
+
+                <h3>Rutas Anidadas</h3>
+                <p>Angular permite crear rutas anidadas, lo que significa que puedes tener rutas dentro de rutas. Esto
+                    es útil para crear estructuras de navegación más complejas. Para configurar rutas anidadas,
+                    simplemente define las rutas dentro de las rutas existentes en tu archivo de configuración de rutas.
+                </p>
+
+                <h3>Rutas con Parámetros</h3>
+                <p>Puedes pasar parámetros a las rutas para hacerlas más dinámicas. Por ejemplo, puedes tener una ruta
+                    como <code>/products/:id</code> y acceder al valor de <code>:id</code> en el componente
+                    correspondiente utilizando <code>ActivatedRoute</code>.</p>
+                <pre><code>
+                    // Obtener el valor de :id en el componente
+                    import { ActivatedRoute } from '@angular/router';
+            
+                    constructor(private route: ActivatedRoute) {
+                        this.route.params.subscribe(params => {
+                            const productId = params['id'];
+                        });
+                    }
+                </code></pre>
+
+                <p>Con estos conceptos básicos de enrutamiento en Angular, puedes crear una navegación dinámica y
+                    estructurada en tu aplicación.</p>
+            </section>
+
+
+            <section id="servicios">
+                <h2>Servicios en Angular</h2>
+                <p>Los servicios son una parte esencial de una aplicación Angular. Proporcionan una forma de organizar y
+                    compartir lógica de negocio, datos o funcionalidades comunes entre diferentes componentes. A
+                    continuación, se explica cómo crear y utilizar servicios en Angular.</p>
+
+                <h3>Creación de un Servicio</h3>
+                <p>Para crear un servicio en Angular, sigue estos pasos:</p>
+
+                <h4>Paso 1: Generar un Servicio</h4>
+                <p>Utiliza Angular CLI para generar un servicio con el siguiente comando:</p>
+                <pre><code>ng generate service nombre-del-servicio</code></pre>
+                <p>Esto generará un archivo TypeScript para tu servicio en la carpeta de servicios de tu proyecto.</p>
+
+                <h4>Paso 2: Implementar el Servicio</h4>
+                <p>Abre el archivo generado para tu servicio y comienza a implementar la lógica que deseas proporcionar.
+                    Por ejemplo:</p>
+                <pre><code>
+                    import { Injectable } from '@angular/core';
+            
+                    @Injectable({
+                        providedIn: 'root' // Indica que este servicio se proporcionará en el nivel raíz de la aplicación
+                    })
+                    export class MiServicio {
+                        datos: any[] = [];
+            
+                        agregarDato(dato: any) {
+                            this.datos.push(dato);
+                        }
+            
+                        obtenerDatos() {
+                            return this.datos;
+                        }
+                    }
+                </code></pre>
+
+                <h3>Inyección de Dependencias</h3>
+                <p>Una vez que hayas creado tu servicio, puedes inyectarlo en componentes u otros servicios que lo
+                    necesiten. Angular se encarga de la inyección de dependencias automáticamente. Por ejemplo:</p>
+                <pre><code>
+                    import { Component } from '@angular/core';
+                    import { MiServicio } from './mi-servicio';
+            
+                    @Component({
+                        selector: 'app-mi-componente',
+                        template: `
+                            <button (click)="agregarDato()">Agregar Dato</button>
+                            <ul>
+                                <li *ngFor="let dato of datos">{{ dato }}</li>
+                            </ul>
+                        `
+                    })
+                    export class MiComponente {
+                        datos: any[] = [];
+            
+                        constructor(private miServicio: MiServicio) {}
+            
+                        agregarDato() {
+                            const nuevoDato = 'Nuevo Dato';
+                            this.miServicio.agregarDato(nuevoDato);
+                            this.datos = this.miServicio.obtenerDatos();
+                        }
+                    }
+                </code></pre>
+
+                <h3>Proveedor de Servicio</h3>
+                <p>Para que un servicio esté disponible en toda la aplicación, puedes agregarlo al arreglo
+                    <code>providers</code> del módulo principal (<code>AppModule</code>) o especificar
+                    <code>providedIn: 'root'</code> en la anotación <code>@Injectable()</code> del servicio. Usar
+                    <code>providedIn: 'root'</code> es la forma recomendada para la mayoría de los servicios, ya que
+                    permite que Angular los optimice y proporcione una única instancia en toda la aplicación.
+                </p>
+
+                <h3>Interceptar Solicitudes HTTP</h3>
+                <p>Los servicios también son útiles para realizar solicitudes HTTP a través de Angular's HttpClient.
+                    Puedes crear un servicio que encapsule la lógica de las solicitudes HTTP y luego inyectarlo en
+                    componentes para consumir datos de API.</p>
+
+                <h3>Uso de Observables</h3>
+                <p>En Angular, es común usar Observables para manejar datos asincrónicos. Los servicios pueden devolver
+                    Observables que los componentes pueden suscribirse para recibir actualizaciones en tiempo real de
+                    datos.</p>
+
+                <p>Con estos conceptos básicos de servicios en Angular, puedes crear servicios para compartir lógica y
+                    datos de manera eficiente en toda tu aplicación.</p>
+            </section>
+
+            <section id="estructura-proyecto-angular">
+                <h2>Estructura de Proyecto Angular Complejo</h2>
+                <p>En un proyecto Angular complejo, es esencial organizar tus archivos y directorios de manera eficiente para mantener un código limpio y mantenible. A continuación, se presenta una estructura típica de directorios y los tipos de archivos que se encuentran en cada uno de ellos:</p>
+            
+                <h3>src/</h3>
+                <p>Este es el directorio principal donde se encuentra la mayor parte del código fuente de tu aplicación Angular.</p>
+            
+                <ul>
+                    <li><strong>app/:</strong> Contiene los componentes, módulos y servicios de tu aplicación.</li>
+                    <li><strong>assets/:</strong> Almacena recursos estáticos como imágenes, archivos JSON o archivos de configuración.</li>
+                    <li><strong>environments/:</strong> Contiene configuraciones específicas para entornos (por ejemplo, desarrollo y producción).</li>
+                </ul>
+            
+                <h3>app/</h3>
+                <p>Este directorio es fundamental y suele tener su propia estructura interna.</p>
+            
+                <ul>
+                    <li><strong>components/:</strong> Aquí se colocan los componentes de la aplicación, cada uno en su propio subdirectorio.</li>
+                    <li><strong>services/:</strong> Contiene servicios utilizados para lógica de negocio o comunicación con el servidor.</li>
+                    <li><strong>models/:</strong> Almacena modelos de datos utilizados en la aplicación.</li>
+                    <li><strong>modules/:</strong> Puede haber módulos personalizados que agrupen componentes y servicios relacionados.</li>
+                    <li><strong>guards/:</strong> Los guards son utilizados para proteger rutas y autorizar el acceso a ciertas partes de la aplicación.</li>
+                    <li><strong>interceptors/:</strong> Aquí se pueden ubicar interceptores HTTP personalizados.</li>
+                </ul>
+            
+                <h3>assets/</h3>
+                <p>Este directorio suele contener archivos estáticos como imágenes, iconos, fuentes o archivos de configuración JSON que se utilizarán en la aplicación.</p>
+            
+                <h3>environments/</h3>
+                <p>Se utilizan para almacenar configuraciones específicas de entorno, como URLs de API o variables de entorno.</p>
+            
+                <h3>angular.json</h3>
+                <p>Archivo de configuración de Angular que define la estructura del proyecto, dependencias y otras configuraciones globales.</p>
+            
+                <h3>package.json</h3>
+                <p>Archivo de configuración de Node.js que lista las dependencias del proyecto y scripts de construcción y ejecución.</p>
+            
+                <h3>tsconfig.json</h3>
+                <p>Archivo de configuración de TypeScript que especifica las opciones de compilación para el proyecto Angular.</p>
+            
+                <h3>.gitignore</h3>
+                <p>Archivo que lista los archivos y directorios que deben ser ignorados por Git (por ejemplo, archivos generados o dependencias).</p>
+            
+                <h3>README.md</h3>
+                <p>Documento de texto que proporciona información sobre el proyecto, cómo configurarlo y ejecutarlo, y cualquier otra información relevante.</p>
+            
+                <p>Esta estructura es solo una guía general y puede variar según las necesidades de tu proyecto. La organización adecuada de archivos y directorios contribuye en gran medida a la mantenibilidad y escalabilidad de una aplicación Angular.</p>
+            </section>
+            
+
+    </main>
+    <div class="flecha">
+        <a href="#"><img src="../img/flecha.png" alt=""></a>
+    </div>
+    </div>
+</body>
+
+</html>

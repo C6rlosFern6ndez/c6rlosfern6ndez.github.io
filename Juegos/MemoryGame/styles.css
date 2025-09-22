@@ -1,0 +1,106 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#message {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+/* Estilos para las cartas */
+.card {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    perspective: 1000px; /* Para dar profundidad a la animación */
+}
+
+.card > div {
+    position: absolute;
+    backface-visibility: hidden; /* Oculta la cara trasera cuando está volteada */
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card > div.front {
+    background-color: #e0e0e0; /* Cara frontal (oculta) */
+}
+
+.card > div.back {
+    background-color: #fff; /* Cara posterior (visible inicialmente) */
+    color: #333;
+    transform: rotateY(180deg); /* La cara posterior comienza volteada */
+}
+
+.card.flipped > div {
+    transition: transform 0.6s ease; /* Animación de volteo */
+}
+
+.card.flipped > div.front {
+    transform: rotateY(180deg); /* Voltea la cara frontal */
+}
+
+.card.flipped > div.back {
+    transform: rotateY(360deg); /* Voltea la cara posterior */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}

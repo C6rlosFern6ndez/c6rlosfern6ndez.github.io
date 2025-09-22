@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Juego del Ahorcado</h1>
+        <p id="message">Adivina la palabra antes de que se complete el ahorcado.</p>
+        <div class="game">
+            <div class="word-container">
+                <span id="word-display"></span>
+            </div>
+            <div class="letters">
+                <span>Letras usadas: <span id="used-letters"></span></span>
+            </div>
+            <input type="text" id="letter-input" maxlength="1" placeholder="Ingresa una letra">
+            <button id="guess-button">Adivinar</button>
+            <div class="hangman-container">
+                <svg id="hangman" width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base -->
+                    <line x1="50" y1="250" x2="150" y2="250" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Poste vertical -->
+                    <line x1="100" y1="250" x2="100" y2="50" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Poste horizontal -->
+                    <line x1="100" y1="50" x2="170" y2="50" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Cuerda -->
+                    <line x1="170" y1="50" x2="170" y2="80" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Cabeza -->
+                    <circle cx="170" cy="110" r="20" fill="none" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Cuerpo -->
+                    <line x1="170" y1="130" x2="170" y2="180" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Brazo izquierdo -->
+                    <line x1="170" y1="140" x2="140" y2="160" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Brazo derecho -->
+                    <line x1="170" y1="140" x2="200" y2="160" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Pierna izquierda -->
+                    <line x1="170" y1="180" x2="140" y2="220" stroke="#000" stroke-width="10" class="hangman-part" />
+                    <!-- Pierna derecha -->
+                    <line x1="170" y1="180" x2="200" y2="220" stroke="#000" stroke-width="10" class="hangman-part" />
+                </svg>
+            </div>
+        </div>
+        <button id="restart-button">Reiniciar Juego</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

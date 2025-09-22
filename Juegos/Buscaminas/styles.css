@@ -1,0 +1,83 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#message {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+    background-color: #333;
+    width: 315px; /* 10 celdas * 30px + 2px de margen */
+    height: 315px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cell.revealed {
+    background-color: #d0d0d0;
+    cursor: default;
+}
+
+.cell.mine {
+    background-color: #ff4d4d; /* Rojo para las minas */
+}
+
+.cell.flagged {
+    background-color: #4dff4d; /* Verde para las banderas */
+    color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}

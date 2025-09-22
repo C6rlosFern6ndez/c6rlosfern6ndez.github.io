@@ -1,0 +1,22 @@
+// Colores
+$primary-dark: #333;
+$primary-dark-alt: #444;
+$accent-red: #ff6347;
+$white: white;
+$black: black;
+$transparent-white: rgba(255, 255, 255, 0.8);
+
+// Degradados
+$gradient-inicio: linear-gradient(135deg, #ff7f50, #ff6347);
+$gradient-acerca-de: linear-gradient(135deg, #87ceeb, #6495ed);
+$gradient-proyectos: linear-gradient(135deg, #2b6b2b, #2bca73);
+$gradient-experiencia: linear-gradient(135deg, #dda0dd, #ba55d3);
+$gradient-contacto: linear-gradient(135deg, #ffa07a, #ff4500);
+
+// Tipografía
+$font-main: 'Courier New', Courier, monospace;
+$font-secondary: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+// Espaciado
+$spacing-unit: 1rem;
+$section-padding: 7rem 2rem;

@@ -1,0 +1,19 @@
+mi-proyecto-sass/
+├── index.html
+├── js/
+│   └── main.js
+├── scss/
+    ├── _variables.scss
+    ├── _mixins.scss
+    ├── _reset.scss
+    ├── _navbar.scss
+    ├── _sections.scss
+    ├── _buttons.scss
+    ├── _projects_jobs.scss
+    ├── _forms.scss
+    ├── _back_to_top.scss
+    ├── _carousel.scss
+    └── main.scss
+├── css/
+│   └── main.css       # CSS generado (no lo editas manualmente)
+└── package.json       # Configuración de npm (opcional)

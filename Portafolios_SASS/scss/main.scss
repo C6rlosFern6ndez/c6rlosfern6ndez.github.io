@@ -1,0 +1,24 @@
+@use 'reset';
+@use 'variables' as v;
+@use 'mixins' as m;
+@use 'navbar';
+@use 'sections';
+@use 'buttons';
+@use 'projects_jobs';
+@use 'forms';
+@use 'back_to_top';
+@use 'carousel';
+
+/* Estilos globales */
+body {
+    font-family: v.$font-main;
+    font-size: large;
+    line-height: 1.6;
+    color: v.$primary-dark;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+    text-decoration: underline;
+    font-weight: bold;
+}

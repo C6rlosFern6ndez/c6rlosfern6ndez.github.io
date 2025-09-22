@@ -1,0 +1,36 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.navbar {
+    @include m.flex-center;
+    justify-content: space-between;
+    @include m.gradient-bg(135deg, v.$primary-dark, v.$primary-dark-alt);
+    color: v.$white;
+    padding: v.$spacing-unit;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 10vh;
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        display: flex;
+        
+        li {
+            margin-left: v.$spacing-unit;
+            
+            a {
+                color: v.$white;
+                @include m.smooth-transition(color);
+                
+                &:hover {
+                    color: v.$accent-red;
+                }
+            }
+        }
+    }
+}

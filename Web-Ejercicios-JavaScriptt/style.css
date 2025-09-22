@@ -1,0 +1,239 @@
+/* Estilos generales */
+html{
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #d2d0d0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #655025;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    width: 75%;
+    margin: 100px auto;
+    text-align: left;
+    padding: 20px;
+    background-color: #b5b2b2;
+    border: 1px solid #242424;
+    box-shadow: #242424 8px 8px 15px;
+    min-height: 400px;
+}
+
+.container h2{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.container p{
+    text-align: justify;
+    font-size: large;
+}
+
+.mensajeInicio {
+    width: 75%;
+    margin: 100px auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #ece4e4;
+    border: 1px solid #242424;
+    box-shadow: #242424 8px 8px 15px;
+}
+
+.mensajeInicio h2 {
+    font-size: 28px;
+    color: #333;
+}
+
+.mensajeInicio p {
+    font-size: 18px;
+    color: #242424;
+    padding-top: 15px;
+}
+
+/* Estilos generales para el menú de navegación */
+nav {
+    background-color: #655025; 
+    padding: 10px;
+}
+.ejercicios{
+    position: relative;
+}
+/* Estilos para la lista de enlaces */
+#desplegable{
+    position: absolute;
+    display:block;
+    margin-top: 25px;
+    text-align: left;
+    background-color: #655025;
+    padding: 15px;
+    visibility: hidden;
+}
+#desplegable:hover{
+    visibility:visible;
+    transition-duration: 10ms;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline; /* Los elementos de la lista se muestran en línea */
+    margin-right: 20px;
+}
+
+/* Estilos para los enlaces */
+nav a {
+    text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
+    color: #fff;
+    font-weight: bold; /* Estilo de fuente en negrita */
+    font-size: 20px;
+}
+
+/* Estilos para los enlaces al pasar el cursor por encima */
+nav a:hover {
+    text-decoration: underline; /* Subrayado al pasar el cursor por encima */
+}
+/*Desplegable*/
+nav ul ul{
+    display: none;
+    position: absolute;
+    background-color: #655025;
+    z-index: 1;
+    right: 54%;
+    margin-top: 15px;
+}
+
+nav ul ul li{
+    display: block;
+    width: 100%;
+}
+
+nav ul ul li a{
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+}
+
+nav ul ul li a:hover{
+    background-color: #b5b2b2;
+}
+
+nav ul li #ejercicios ul{
+    position: relative;
+    top: 100%;
+}
+
+/*Opciones DesplegableApuntes*/
+#desplegableApuntes{
+    position: relative;
+}
+
+#desplegableApuntes ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #655025;
+    padding: 0;
+    display: none;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    min-width:fit-content;
+    max-width: 200px;
+}
+
+
+#desplegableApuntes ul li{
+    display: block;
+    text-align: left;
+}
+
+#desplegableApuntes:hover ul,
+#desplegableApuntes ul:hover {
+    display: block;
+    visibility: visible;
+}
+
+#desplegableApuntes ul li a {
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    width: 100%;
+}
+
+#desplegableApuntes ul li a:hover{
+    background-color: #b5b2b2;
+}
+
+.cajaEjercicio{
+    min-height: 150px;
+    min-width: 350px;
+}
+
+/*--------------------------------------------------------*/
+
+/* Estilo para la etiqueta <pre> inicialmente oculta */
+
+.flecha{
+    float: left;
+    position: sticky;
+    bottom: 20px;
+    margin-left: 20px;
+}
+
+.flecha:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+/*videos y tutoriales*/
+.container-videos{
+    width: 75%;
+    margin: 100px auto;
+    text-align: left;
+    padding: 20px;
+    background-color: #b5b2b2;
+    border: 1px solid #242424;
+    box-shadow: #242424 8px 8px 15px;
+}
+
+.container-videos h2{
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.flex{
+    /*display: flex;*/
+    overflow: hidden;
+    
+}
+
+iframe{
+    top: 10px;
+    float: right;
+    height: 250px;
+    margin: 20px;
+    border: 1px solid #242424;
+    box-shadow: #242424 8px 8px 15px;
+}
+
+/*fin de videos y tutoriales*/

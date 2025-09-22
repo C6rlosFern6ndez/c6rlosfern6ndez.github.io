@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a9699bcfd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="icon" href="Imagenes/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comforter+Brush&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contenedor-principal">
+        <header>
+            <img src="Imagenes/icono-java.png" class="icono-java" alt="">
+            <h1 class="titulo-contactos">Le responderemos lo antes posible</h1>
+            <nav id="menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Ejercicios.html">Ejercicios</a></li>
+                    <li><a href="Contactos.html">Contacto</a></li>
+                    <li class="movizq2"><a href="Inicio-sesion.html">Iniciar sesión</a></li>
+                    <li class="movizq"><a href="Registro.html">Registrate</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="contactos">
+            <form action="https://jkorpela.fi/cgi-bin/echo.cgi" method="post">
+                <div class="margen">
+                    <label for="Nombre">Nombre</label><br>
+                    <input type="text" size="45" id="Nombre" name="Nombre" placeholder="Nombre y apellidos"
+                        required><br>
+                </div>
+                <div class="margen">
+                    <label for="email">email</label><br>
+                    <input type="email" size="45" id="email" placeholder="https://dominio.es" required><br>
+                </div>
+                <div class="margen">
+                    <label for="incidencia">Escoja el motivo de su mensaje</label><br>
+                    <select name="" id="">
+                        <option value="1">Dudas sobre Ejercicios</option>
+                        <option value="2">Quiero colaborar con la página</option>
+                        <option value="3">Mi tiempo no vale nada, ¡Me Aburro!</option>
+                        <option value="4">Reportar error</option>
+                        <option value="5">Otro motivo</option>
+                    </select><br>
+                </div>
+                <div class="margen">
+                    <label for="Descripcion">Descripción del problema:</label><br>
+                    <textarea name="comentario" id="" cols="60" rows="10"></textarea><br>
+                </div>
+                <div class="boton">
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+        <div class="espacio"></div>
+        <div class="centro-trio">
+            <div class="trio">
+                <p><cite>“Measuring programming progress by lines of code is like measuring aircraft building progress
+                        by
+                        weight.” Bill Gates</cite></p>
+                <p class="espacio"></p>
+            </div>
+            <div class="trio">
+                <p><cite>“Any fool can write code that a computer can understand. Good programmers write code that
+                        humans
+                        can understand.” Martin Fowler</cite></p>
+                <p class="espacio"></p>
+            </div>
+            <div class="trio">
+                <p><cite>“Good code is its own best documentation. As you’re about to add a comment, ask yourself, ‘How
+                        can
+                        I improve the code so that this comment isn’t needed?” Steve McConnell</cite></p>
+            </div>
+        </div>
+        <footer>
+            <address>
+                <p>email: carlosfernandezgonzalez@iessoterohernandez.es</p>
+                <p>tlf: 659 346 893</p>
+            </address>
+            <div class="iconos">
+                <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube">Youtube</i></a>
+                <a href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter">twitter</i></a>
+                <a href="https://es-es.facebook.com/" target="_blank"><i class="fab fa-facebook">Facebook</i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

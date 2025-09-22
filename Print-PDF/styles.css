@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef; 
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.presentacion {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f1f3f5;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    color: #343a40;
+    width: 80%;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius:  5px;
+  }
+  
+
+#page1 {
+    height: 1122px;
+    width: 794px;
+    outline: 3px solid #1a1a2e; 
+    background-color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header {
+    background: #1a1a2e; 
+    color: #fefefe;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 10px 0;
+    font-weight: bolder;
+    letter-spacing: 2px; /* Ajusta el espaciado entre letras */
+    word-spacing: 5px; /* Ajusta el espaciado entre palabras */
+    white-space: normal; /* Asegura que los espacios se rendericen correctamente */
+    word-break: break-word; /* Asegura que las palabras se rompan correctamente */
+}
+
+.contacto p {
+    padding-top: 5px;
+    text-align: left;
+}
+
+.contacto p {
+    margin: 0;
+}
+
+section {
+    margin-top: 5px;
+    padding-bottom: 2px;
+    page-break-inside: avoid;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+section h2 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: #162447; 
+    color: #fefefe;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+section ul {
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 15px;
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+p, li {
+    line-height: 1.6;
+    color: #202020;
+    letter-spacing: 2px; /* Ajusta el espaciado entre letras */
+    /* word-spacing: 3px; Ajusta el espaciado entre palabras */
+    white-space: normal; /* Asegura que los espacios se rendericen correctamente */
+    word-break: break-word; /* Asegura que las palabras se rompan correctamente */
+}
+
+ul {
+    padding-left: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    display: block;
+    width: auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #e94560;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    align-self: center;
+} 
+
+button:hover {
+    background: #d9234a;
+}
+
+/* Estilos para la impresión */
+@media print {
+    body {
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .presentacion {
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    #page1 {
+        outline: none;
+        width: 100%;
+        height: auto;
+    }
+
+    button {
+        display: none;
+    }
+}

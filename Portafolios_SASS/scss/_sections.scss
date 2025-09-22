@@ -1,0 +1,30 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.section {
+    padding: v.$section-padding;
+    min-height: 100vh;
+    @include m.flex-center;
+    flex-direction: column;
+    text-align: center;
+    @include m.smooth-transition(background);
+
+    &#inicio { @include m.gradient-bg(135deg, #ff7f50, #ff6347); }
+    &#acerca-de { @include m.gradient-bg(135deg, #87ceeb, #6495ed); }
+    &#proyectos { @include m.gradient-bg(135deg, #2b6b2b, #2bca73); }
+    &#experiencia { @include m.gradient-bg(135deg, #dda0dd, #ba55d3); }
+    &#contacto { @include m.gradient-bg(135deg, #ffa07a, #ff4500); }
+
+    h1, h2 {
+        font-size: 2.5rem;
+        margin-bottom: v.$spacing-unit;
+    }
+}
+
+
+.about-container {
+    background-color: rgba(v.$primary-dark, 0.7); // Usa rgba para transparencia solo en el fondo
+    padding: 2rem;
+    border-radius: 8px;
+    color: v.$white; // Asegurar color del texto explícitamente
+}

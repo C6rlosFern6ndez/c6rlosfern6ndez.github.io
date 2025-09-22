@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  list-style: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #333, #444);
+  color: white;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 10vh;
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.navbar .nav-links {
+  display: flex;
+}
+.navbar .nav-links li {
+  margin-left: 1rem;
+}
+.navbar .nav-links li a {
+  color: white;
+  transition: color 0.3s ease;
+}
+.navbar .nav-links li a:hover {
+  color: #ff6347;
+}
+
+.section {
+  padding: 7rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.section#inicio {
+  background: linear-gradient(135deg, #ff7f50, #ff6347);
+}
+.section#acerca-de {
+  background: linear-gradient(135deg, #87ceeb, #6495ed);
+}
+.section#proyectos {
+  background: linear-gradient(135deg, #2b6b2b, #2bca73);
+}
+.section#experiencia {
+  background: linear-gradient(135deg, #dda0dd, #ba55d3);
+}
+.section#contacto {
+  background: linear-gradient(135deg, #ffa07a, #ff4500);
+}
+.section h1, .section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-container {
+  background-color: rgba(51, 51, 51, 0.7);
+  padding: 2rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.section button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  border: none;
+  width: 30em;
+  margin: 2em auto;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.section button:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.btn-about {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.5rem;
+  width: 15em !important;
+}
+
+.project, .job {
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  color: black;
+}
+.project:not(:last-child), .job:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 600px;
+}
+#contact-form input, #contact-form textarea {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+#contact-form input:focus, #contact-form textarea:focus {
+  outline: 2px solid #ff6347;
+}
+#contact-form button {
+  align-self: center;
+  width: 50%;
+}
+
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #333, #444);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  display: none;
+  transition: background 0.3s ease;
+}
+#back-to-top:hover {
+  background: linear-gradient(135deg, rgb(63.75, 63.75, 63.75), rgb(80.75, 80.75, 80.75));
+}
+
+.carousel-container {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: fit-content;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
+/* Estilos globales */
+body {
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden;
+}
+
+h1, h2 {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=main.css.map */

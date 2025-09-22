@@ -1,0 +1,26 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 600px;
+
+    input, textarea {
+        margin-bottom: v.$spacing-unit;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        @include m.smooth-transition(all);
+        
+        &:focus {
+            outline: 2px solid v.$accent-red;
+        }
+    }
+
+    button {
+        align-self: center;
+        width: 50%;
+    }
+}

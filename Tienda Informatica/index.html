@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="Imagenes/icono-InforPC.png" sizes="36x36">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //Aqui tu codigo;
+             $("section").hide().fadeIn(5000);
+            $("aside").hide().fadeIn(5000);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div id="Favicon">
+        <img src="Imagenes/icono-InforPC.png" height="110em" alt=""> 
+        </div>  
+        <nav>
+            <ul>
+               <div><h1><span>I</span>n<span>f</span>o<span>r</span>P<span>C</span></h1></div>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Tienda.html">Tienda</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div id="montaje">
+          <h2 id="texto_montaje">Ordenadores a medida<br>"Paga solo por lo que Buscas"</h2>
+          <img src="Imagenes/montaje.png" width="600" alt="">
+        </div>
+        <div id="escritorio">
+        <h2 id="texto_escritorio">Presupuestos<br>sin compromiso</h2>
+        <img src="Imagenes/escritorio.png" width="400" alt="">   
+        </div>
+        <div id="map">
+        <h2>Ven a visitarnos</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25375.167078069873!2d-6.072166628760235!3d37.344973509743646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126d32edb44261%3A0xb4c265adde85f789!2s41927%20Mairena%20del%20Aljarafe%2C%20Sevilla!5e0!3m2!1ses!2ses!4v1614105687012!5m2!1ses!2ses" width="600" height="450" style="border:;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div id="intercambio">
+            <h2 id="texto_intercambio">Consigue descuentos <br>por tu viejo ordenador</h2>
+            <img src="Imagenes/intercambio.png" width="250" alt="">
+        </div>
+    </section>
+    <footer>
+       <address>C/Golosina 3 CP.41927 (Pais de la Piruleta)
+       <br>Tlf:635307804<br>Email:InforPC@gmail.com
+       </address>
+       <div id="iconos_pie">
+           <img src="Imagenes/icono-InforPC.png" width="70px" alt="">
+           <img src="Imagenes/icono-facebook.png" width="70px" alt="">
+           <img src="Imagenes/icono-whassapp.png" width="70px" alt="">
+       </div>
+        
+    </footer>
+</body>
+</html>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../CSS/cajasCodigo.css">
+    <title>Apuntes-JavaScript</title>
+</head>
+
+<body>
+    <header>
+        <h1>JavaScript</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li id="ejercicios"><a href="#">Ejercicios</a>
+                    <ul>
+                        <li><a href="../ejercicios/condicionales.html">Condicionales</a></li>
+                        <li><a href="enlace">pagina 2</a></li>
+                        <li><a href="enlace">pagina 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="angular.html">Angular</a></li>
+                <li id="desplegableApuntes"><a href="#">Apuntes JavaScript</a>
+                    <ul>
+                        <li><a href="#variables">Variables</a></li>
+                        <li><a href="#funciones">Funciones</a></li>
+                        <li><a href="#operadores-basicos">Operadores basicos</a></li>
+                        <li><a href="#condicionales">Condicionales</a></li>
+                        <li><a href="#bucles">Bucles</a></li>
+                        <li><a href="#objetos">Objetos</a></li>
+                        <li><a href="#expresiones">Expresiones Regulares</a></li>
+                        <li><a href="#arrays">Arrays</a></li>
+                    </ul>
+                </li>
+                <li><a href="css.html">Apuntes CSS</a></li>
+            </ul>
+        </nav>
+        <script>
+            const ejerciciosLi = document.getElementById('ejercicios');
+            const menuDesplegable = ejerciciosLi.querySelector('ul');
+            ejerciciosLi.addEventListener('click', function () {
+                if (menuDesplegable.style.display === 'none' || menuDesplegable.style.display === '') {
+                    menuDesplegable.style.display = 'block';
+                } else {
+                    menuDesplegable.style.display = 'none';
+                }
+            });
+        </script>
+    </header>
+    <main>
+        <div class="barraLateral">
+            <ul>
+                <li><a href="#">enlace</a></li>
+                <li><a href="#">enlace</a></li>
+                <li><a href="#">enlace</a></li>
+                <li><a href="#">enlace</a></li>
+                <li><a href="#">enlace</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <h2 id="variables">Variables en JavaScript</h2>
+            <p>Una variable es un "almacén con un nombre" para guardar datos.</p>
+            <p>Para declarar una variable en JavaScript, se usa la palabra clave <code>let</code>:</p>
+            <pre><code>
+        let mensaje;
+            </code></pre>
+            <p>Podemos declarar y asignar una variable en una sola línea:</p>
+            <pre><code>
+        let mensaje = "Hola, mundo!";
+            </code></pre>
+            <p>También es posible declarar varias variables en una sola línea:</p>
+            <pre><code>
+        let usuario = "Juan", password = "secreto", email = "juan@example.com";
+            </code></pre>
+            <p>La versión de líneas múltiples es más legible:</p>
+            <pre><code>
+        let usuario = "Juan",
+            password = "secreto",
+            email = "juan@example.com";
+            </code></pre>
+            <h3>Nombramiento de Variables</h3>
+            <p>Existen dos limitaciones en los nombres de variables en JavaScript:</p>
+            <ol>
+                <li>El nombre puede incluir letras, dígitos y los símbolos <code>$</code> y <code>_</code>.</li>
+                <li>El primer carácter no puede ser un dígito.</li>
+            </ol>
+            <pre><code>
+        let abc; // Válido
+        let $ = 1; // Válido
+        let _ = 2; // Válido
+            </code></pre>
+            <p>La capitalización es importante; <code>manzana</code> y <code>Manzana</code> son diferentes.</p>
+            <p>Aunque se permiten letras que no son del alfabeto inglés, no se recomienda su uso.</p>
+            <p>También es posible definir una variable sin <code>var</code> ni <code>let</code>.</p>
+        </div>
+
+        <div class="container">
+            <h2>Tipos de Datos en JavaScript</h2>
+            <p>En JavaScript, los valores pertenecen a tipos de datos específicos.</p>
+            <p>Existen ocho tipos de datos básicos en JavaScript:</p>
+            <ul>
+                <li><strong>Number:</strong> Representa números enteros y de punto flotante, incluyendo valores
+                    especiales como <code>Infinity</code>, <code>-Infinity</code> y <code>NaN</code>.</li>
+                <li><strong>BigInt:</strong> Se utiliza para representar enteros de longitud arbitraria.</li>
+                <li><strong>String:</strong> Representa cadenas de caracteres y puede definirse con comillas dobles,
+                    comillas simples o comillas invertidas (backticks).</li>
+                <li><strong>Boolean:</strong> Tiene solo dos valores posibles: <code>true</code> y <code>false</code>.
+                </li>
+                <li><strong>null:</strong> Es un valor especial que no pertenece a ningún otro tipo de dato.</li>
+                <li><strong>undefined:</strong> Indica que una variable no tiene un valor asignado.</li>
+                <li><strong>Object:</strong> Se utiliza para estructuras de datos complejas.</li>
+                <li><strong>Symbol:</strong> Se utiliza para crear identificadores únicos para los objetos.</li>
+            </ul>
+            <h3>El Operador <code>typeof</code></h3>
+            <p>El operador <code>typeof</code> se utiliza para determinar el tipo de un valor:</p>
+            <ul>
+                <li>Como operador: <code>typeof x</code>.</li>
+                <li>Como una función: <code>typeof(x)</code>.</li>
+            </ul>
+            <p>Devuelve una cadena con el nombre del tipo, pero es importante notar que para <code>null</code> devuelve
+                <code>"object"</code>, lo cual es un error conocido en JavaScript.</p>
+        </div>
+
+
+        <!------------------------------------------------------------------------------------------------------------->
+
+        <div class="container">
+            <h2 id="funciones">Funciones en JavaScript</h2>
+            <p>Una función en JavaScript es un bloque de código reutilizable que realiza una tarea específica.</p>
+            <p>Para definir una función, utilizamos la palabra clave <code>function</code>:</p>
+            <pre><code>
+        function miFuncion() {
+            <span>// Código de la función</span>
+        }
+                </code></pre>
+            <p>Las funciones pueden recibir parámetros que actúan como variables dentro de la función:</p>
+            <pre><code>
+        function saludar(nombre) {
+            console.log(`Hola, ${nombre}!`);
+        }
+        saludar("Juan"); <span>// Salida: "Hola, Juan!"</span>
+                </code></pre>
+            <p>Las funciones pueden devolver un valor usando la palabra clave <code>return</code>:</p>
+            <pre><code>
+        function suma(a, b) {
+            return a + b;
+        }
+        const resultado = suma(2, 3); <span>// resultado contendrá 5</span>
+                </code></pre>
+            <h3>Ámbito de las Variables</h3>
+            <p>Las variables declaradas dentro de una función solo son visibles dentro de esa función, esto se llama
+                ámbito local:</p>
+            <pre><code>
+        function miFuncion() {
+            let x = 10; <span>// variable local</span>
+        }
+        console.log(x); // Error: x no está definida aquí
+                </code></pre>
+            <p>Las variables declaradas fuera de cualquier función son globales y se pueden acceder desde cualquier
+                parte del código:</p>
+            <pre><code>
+        let y = 20; // variable global
+        function otraFuncion() {
+            console.log(y); <span>// Se puede acceder a y desde aquí</span>
+        }
+                </code></pre>
+            <h3>Funciones Flecha</h3>
+            <p>Las funciones flecha son una forma más corta de definir funciones:</p>
+            <pre><code>
+        const suma = (a, b) => a + b;
+        const resultado = suma(2, 3); <span>// resultado contendrá 5</span>
+                </code></pre>
+        </div>
+
+        <div class="container">
+            <h2>Invocación de Funciones</h2>
+            <p>Para llamar a una función, simplemente escribimos su nombre seguido de paréntesis:</p>
+            <pre><code>
+        miFuncion(); <span>// Llamada a la función miFuncion</span>
+                </code></pre>
+            <p>Podemos pasar argumentos a la función dentro de los paréntesis:</p>
+            <pre><code>
+        saludar("Ana"); <span>// Llamada a la función saludar con el argumento "Ana"</span>
+                </code></pre>
+            <h3>Funciones como Expresiones</h3>
+            <p>En JavaScript, las funciones también pueden ser tratadas como valores y asignadas a variables:</p>
+            <pre><code>
+        const miFuncion = function() {
+            <span>// Código de la función</span>
+        };
+        miFuncion(); <span>// Llamada a la función a través de la variable</span>
+                </code></pre>
+        </div>
+
+        <!----------------------------------------------------------------------------------------------------------->
+
+        <div class="container">
+            <h2 id="operadores-basicos">Operadores Básicos en JavaScript</h2>
+            <p>Los operadores son símbolos que se utilizan para realizar operaciones en JavaScript.</p>
+            <p>Algunos de los operadores básicos incluyen:</p>
+            <ul>
+                <li><strong>Operadores Aritméticos:</strong> Se utilizan para realizar cálculos matemáticos.</li>
+                <pre><code>
+        let suma = 5 + 3; <span>// suma contiene 8</span>
+        let resta = 10 - 4; <span>// resta contiene 6</span>
+        let multiplicacion = 6 * 2; // multiplicacion contiene 12
+        let division = 8 / 4; // division contiene 2
+                </code></pre>
+                <li><strong>Operadores de Asignación:</strong> Se utilizan para asignar valores a variables.</li>
+                <pre><code>
+        let x = 10; // Asignación
+        x += 5; // Incremento (x contiene 15)
+        x -= 3; // Decremento (x contiene 12)
+                </code></pre>
+                <li><strong>Operadores de Comparación:</strong> Se utilizan para comparar valores y devuelven un valor
+                    booleano (<code>true</code> o <code>false</code>).</li>
+                <pre><code>
+        let a = 5;
+        let b = 7;
+        let igual = a === b; // false (igualdad)
+        let noIgual = a !== b; // true (desigualdad)
+        let mayorQue = a > b; // false (mayor que)
+        let menorQue = a < b; // true (menor que)
+        let mayorIgual = a >= b; // false (mayor o igual que)
+        let menorIgual = a <= b; // true (menor o igual que)
+                </code></pre>
+                <li><strong>Operadores Lógicos:</strong> Se utilizan para realizar operaciones lógicas y combinan
+                    valores booleanos.</li>
+                <pre><code>
+        let p = true;
+        let q = false;
+        let and = p && q; // false (AND lógico)
+        let or = p || q; // true (OR lógico)
+        let not = !p; // false (NOT lógico)
+                </code></pre>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2>Operadores de Comparación en JavaScript</h2>
+            <p>Los operadores de comparación se utilizan para comparar valores en JavaScript.</p>
+            <p>Algunos ejemplos de operadores de comparación incluyen:</p>
+            <ul>
+                <li><strong>Operador de Igualdad (==):</strong> Compara si dos valores son iguales, sin tener en cuenta
+                    el tipo de dato.</li>
+                <li><strong>Operador de Desigualdad (!=):</strong> Compara si dos valores no son iguales, sin tener en
+                    cuenta el tipo de dato.</li>
+                <li><strong>Operador de Igualdad Estricta (===):</strong> Compara si dos valores son iguales y tienen el
+                    mismo tipo de dato.</li>
+                <li><strong>Operador de Desigualdad Estricta (!==):</strong> Compara si dos valores no son iguales o
+                    tienen diferentes tipos de datos.</li>
+                <li><strong>Operador Mayor que (>):</strong> Compara si un valor es mayor que otro.</li>
+                <li><strong>Operador Menor que (<):< /strong> Compara si un valor es menor que otro.</li>
+                <li><strong>Operador Mayor o Igual que (>=):</strong> Compara si un valor es mayor o igual que otro.
+                </li>
+                <li><strong>Operador Menor o Igual que (<=):< /strong> Compara si un valor es menor o igual que otro.
+                </li>
+            </ul>
+            <p>Estos operadores devuelven un valor booleano (<code>true</code> o <code>false</code>) según el resultado
+                de la comparación.</p>
+        </div>
+        <!----------------------------------------------------------------------------------------------------------->
+        <div class="container">
+            <h2 id="condicionales">Condicionales en JavaScript</h2>
+            <p>Los condicionales son estructuras de control que permiten tomar decisiones en un programa JavaScript.</p>
+            <p>JavaScript admite varios tipos de condicionales:</p>
+            <ul>
+                <li><strong>if:</strong> Se utiliza para ejecutar un bloque de código si una condición es verdadera.
+                </li>
+                <pre><code>
+        if (condicion) {
+            // Código a ejecutar si la condición es verdadera
+        }
+                </code></pre>
+                <li><strong>else:</strong> Se utiliza junto con un bloque if para ejecutar un bloque de código si la
+                    condición es falsa.</li>
+                <pre><code>
+        if (condicion) {
+            // Código a ejecutar si la condición es verdadera
+        } else {
+            // Código a ejecutar si la condición es falsa
+        }
+                </code></pre>
+                <li><strong>else if:</strong> Permite evaluar múltiples condiciones en secuencia.</li>
+                <pre><code>
+        if (condicion1) {
+            // Código a ejecutar si la condición1 es verdadera
+        } else if (condicion2) {
+            // Código a ejecutar si la condición2 es verdadera
+        } else {
+            // Código a ejecutar si ninguna condición es verdadera
+        }
+                </code></pre>
+                <li><strong>switch:</strong> Se utiliza para evaluar una expresión y ejecutar diferentes bloques de
+                    código según el valor de la expresión.</li>
+                <pre><code>
+        switch (expresion) {
+            case valor1:
+                // Código a ejecutar si expresion === valor1
+                break;
+            case valor2:
+                // Código a ejecutar si expresion === valor2
+                break;
+            default:
+                // Código a ejecutar si ninguna coincidencia
+        }
+                </code></pre>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2>Operadores de Comparación en Condicionales</h2>
+            <p>En los condicionales, se utilizan operadores de comparación para evaluar condiciones:</p>
+            <ul>
+                <li><strong>==:</strong> Compara si dos valores son iguales, convirtiendo tipos si es necesario.</li>
+                <li><strong>===:</strong> Compara si dos valores son iguales y tienen el mismo tipo.</li>
+                <li><strong>!=:</strong> Compara si dos valores no son iguales, convirtiendo tipos si es necesario.</li>
+                <li><strong>!==:</strong> Compara si dos valores no son iguales o tienen tipos diferentes.</li>
+                <li><strong>&gt;:</strong> Compara si un valor es mayor que otro.</li>
+                <li><strong>&lt;:</strong> Compara si un valor es menor que otro.</li>
+                <li><strong>&gt;=:</strong> Compara si un valor es mayor o igual que otro.</li>
+                <li><strong>&lt;=:</strong> Compara si un valor es menor o igual que otro.</li>
+            </ul>
+        </div>
+        <div class="container">
+            <h2>Condicionales Avanzados en JavaScript</h2>
+            <p>Además de los condicionales básicos, JavaScript ofrece características avanzadas para controlar el flujo
+                de un programa de manera más sofisticada:</p>
+            <ul>
+                <li><strong>Operador Ternario:</strong> El operador ternario (también conocido como operador
+                    condicional) permite realizar una evaluación condicional en una sola línea.</li>
+                <pre><code>
+        const resultado = (condicion) ? "Verdadero" : "Falso";
+                </code></pre>
+                <li><strong>Condiciones Anidadas:</strong> Puedes anidar múltiples estructuras condicionales dentro de
+                    otras para manejar situaciones más complejas.</li>
+                <pre><code>
+        if (condicion1) {
+            if (condicion2) {
+                // Código si ambas condiciones son verdaderas
+            } else {
+                // Código si la primera condición es verdadera pero la segunda es falsa
+            }
+        } else {
+            // Código si la primera condición es falsa
+        }
+                </code></pre>
+                <li><strong>Operadores Lógicos:</strong> JavaScript proporciona operadores lógicos como `&&` (AND), `||`
+                    (OR) y `!` (NOT) para combinar y negar condiciones.</li>
+                <pre><code>
+        if (condicion1 && condicion2) {
+            // Código si ambas condiciones son verdaderas
+        }
+        
+        if (condicion1 || condicion2) {
+            // Código si al menos una condición es verdadera
+        }
+        
+        if (!condicion) {
+            // Código si la condición es falsa
+        }
+                </code></pre>
+                <li><strong>Switch con Múltiples Casos:</strong> Puedes agrupar casos en un bloque `switch` para
+                    ejecutar el mismo código para múltiples valores.</li>
+                <pre><code>
+        switch (valor) {
+            case 1:
+            case 2:
+                // Código a ejecutar si valor es 1 o 2
+                break;
+            case 3:
+                // Código a ejecutar si valor es 3
+                break;
+            default:
+                // Código a ejecutar si no coincide ningún caso
+        }
+                </code></pre>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2>Condicionales Difíciles de Entender</h2>
+            <p>A medida que los programas crecen, los condicionales complejos pueden volverse difíciles de entender y
+                mantener. Es importante escribir código legible y modular para facilitar el mantenimiento:</p>
+            <ul>
+                <li><strong>Refactorización:</strong> Divide condicionales largos en funciones más pequeñas y nombradas
+                    para mejorar la legibilidad.</li>
+                <li><strong>Comentarios:</strong> Agrega comentarios descriptivos para explicar la lógica detrás de las
+                    condiciones complejas.</li>
+                <li><strong>Tablas de Decisión:</strong> En lugar de condicionales anidadas, considera el uso de tablas
+                    de decisión para mapear entradas a resultados.</li>
+            </ul>
+        </div>
+
+        <!----------------------------------------------------------------------------------------------------------->
+        <div class="container">
+            <h2 id="bucles">Bucles en JavaScript</h2>
+            <p>Los bucles son estructuras de control que permiten ejecutar un bloque de código repetidamente. En
+                JavaScript, existen tres tipos principales de bucles:</p>
+            <ul>
+                <li><strong>1. Bucle For:</strong> El bucle for se utiliza para ejecutar un bloque de código un número
+                    específico de veces.</li>
+                <pre><code>
+        for (let i = 0; i < 5; i++) {
+            // Código a repetir
+        }
+                </code></pre>
+                <li><strong>2. Bucle While:</strong> El bucle while se utiliza cuando no sabes cuántas veces se repetirá
+                    el código, pero la repetición depende de una condición.</li>
+                <pre><code>
+        let contador = 0;
+        while (contador < 5) {
+            // Código a repetir
+            contador++;
+        }
+                </code></pre>
+                <li><strong>3. Bucle Do-While:</strong> El bucle do-while es similar al while, pero garantiza que el
+                    código se ejecute al menos una vez antes de verificar la condición.</li>
+                <pre><code>
+        let numero = 0;
+        do {
+            // Código a repetir al menos una vez
+            numero++;
+        } while (numero < 5);
+                </code></pre>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2>Control de Bucles</h2>
+            <p>En bucles, es importante tener control sobre cuándo y cómo se detiene la repetición. Aquí hay algunas
+                declaraciones clave:</p>
+            <ul>
+                <li><strong>1. Break:</strong> La declaración `break` se utiliza para salir inmediatamente de un bucle.
+                </li>
+                <pre><code>
+        for (let i = 0; i < 10; i++) {
+            if (i === 5) {
+                break; // Sale del bucle cuando i es igual a 5
+            }
+        }
+                </code></pre>
+                <li><strong>2. Continue:</strong> La declaración `continue` se utiliza para saltar una iteración del
+                    bucle y continuar con la siguiente.</li>
+                <pre><code>
+        for (let i = 0; i < 5; i++) {
+            if (i === 2) {
+                continue; // Salta la iteración cuando i es igual a 2
+            }
+            // Código que se ejecuta en todas las iteraciones excepto cuando i es igual a 2
+        }
+                </code></pre>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2>Bucles Avanzados</h2>
+            <p>Además de los bucles básicos, JavaScript ofrece funcionalidades avanzadas para tratar con estructuras de
+                datos y tareas más complejas:</p>
+            <ul>
+                <li><strong>1. Bucles For-In:</strong> Los bucles for-in se utilizan para iterar sobre propiedades de
+                    objetos.</li>
+                <pre><code>
+        const persona = {
+            nombre: 'Juan',
+            edad: 30,
+            ocupacion: 'Desarrollador'
+        };
+        
+        for (let propiedad in persona) {
+            console.log(propiedad + ': ' + persona[propiedad]);
+        }
+                </code></pre>
+                <li><strong>2. Bucles For-Of:</strong> Los bucles for-of se utilizan para iterar sobre elementos de
+                    estructuras de datos iterables como arrays.</li>
+                <pre><code>
+        const colores = ['Rojo', 'Verde', 'Azul'];
+        
+        for (let color of colores) {
+            console.log(color);
+        }
+                </code></pre>
+                <li><strong>3. Bucles Recursivos:</strong> Los bucles recursivos son funciones que se llaman a sí mismas
+                    para repetir una tarea de manera iterativa.</li>
+                <pre><code>
+        function contarHasta(numero) {
+            if (numero <= 0) {
+                return;
+            }
+            console.log(numero);
+            contarHasta(numero - 1);
+        }
+        
+        contarHasta(5);
+                </code></pre>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h2>Mejoras en ES6+</h2>
+            <p>Con la introducción de ECMAScript 6 (ES6) y versiones posteriores, JavaScript ha introducido
+                características adicionales para simplificar y mejorar el uso de bucles, como el bucle `for...of`,
+                `forEach`, `map`, `filter`, y `reduce` en arrays.</p>
+        </div>
+
+        <!-- ----------------------------------------------------------------------------------------------------------->
+        <div class="container">
+            <h2 id="objetos">Objetos en JavaScript</h2>
+            <p>Los objetos son una parte fundamental de JavaScript y se utilizan para almacenar y organizar datos de
+                manera estructurada. Un objeto es una colección de propiedades, donde cada propiedad tiene un nombre
+                (clave) y un valor asociado.</p>
+            <pre><code>
+        const persona = {
+            nombre: 'Juan',
+            edad: 30,
+            ocupacion: 'Desarrollador'
+        };
+            </code></pre>
+            <p>En el ejemplo anterior, `persona` es un objeto con tres propiedades: `nombre`, `edad` y `ocupación`. Cada
+                propiedad tiene un valor correspondiente.</p>
+        </div>
+
+        <div class="container">
+            <h2>Acceder a Propiedades de Objetos</h2>
+            <p>Puedes acceder a las propiedades de un objeto utilizando la notación de punto o la notación de corchetes:
+            </p>
+            <pre><code>
+        const nombre = persona.nombre; // Notación de punto
+        const edad = persona['edad'];  // Notación de corchetes
+            </code></pre>
+            <p>Ambos enfoques son equivalentes y te permiten obtener el valor de una propiedad específica.</p>
+        </div>
+
+        <div class="container">
+            <h2>Añadir y Modificar Propiedades</h2>
+            <p>Puedes añadir nuevas propiedades a un objeto o modificar las existentes en cualquier momento:</p>
+            <pre><code>
+        persona.correo = 'juan@example.com'; // Añadir nueva propiedad
+        persona.edad = 31;                  // Modificar propiedad existente
+            </code></pre>
+        </div>
+
+        <div class="container">
+            <h2>Eliminar Propiedades</h2>
+            <p>Para eliminar una propiedad de un objeto, puedes utilizar el operador `delete`:</p>
+            <pre><code>
+        delete persona.ocupacion; // Eliminar la propiedad 'ocupacion'
+            </code></pre>
+        </div>
+
+        <div class="container">
+            <h2>Iterar a través de Propiedades</h2>
+            <p>Puedes iterar a través de las propiedades de un objeto utilizando bucles `for...in`:</p>
+            <pre><code>
+        for (let propiedad in persona) {
+            console.log(propiedad + ': ' + persona[propiedad]);
+        }
+            </code></pre>
+            <p>Esto te permite acceder a todas las propiedades del objeto y sus valores.</p>
+        </div>
+
+        <div class="container">
+            <h2>Objetos Anidados</h2>
+            <p>Los objetos pueden contener otros objetos como propiedades. Esto se conoce como objetos anidados:</p>
+            <pre><code>
+        const libro = {
+            titulo: 'JavaScript Avanzado',
+            autor: {
+                nombre: 'Ana',
+                apellido: 'Gómez'
+            }
+        };
+            </code></pre>
+            <p>En este ejemplo, el objeto `libro` tiene una propiedad `autor` que es otro objeto con sus propias
+                propiedades.</p>
+        </div>
+
+        <div class="container">
+            <h2>Métodos del Objeto Number en JavaScript</h2>
+            <p>El objeto `Number` en JavaScript proporciona una variedad de métodos para realizar operaciones y
+                manipulaciones con números. Estos métodos facilitan tareas comunes relacionadas con números.</p>
+                <br>
+                <br>
+            <h2>1. Método toFixed()</h2>
+            <p>El método `toFixed()` se utiliza para formatear un número con un número específico de decimales y
+                devuelve una cadena de caracteres.</p>
+            <pre><code>
+        const numero = 5.12345;
+        const numeroFormateado = numero.toFixed(2); // Devuelve "5.12"
+            </code></pre>
+            <h2>2. Método parseInt() y parseFloat()</h2>
+            <p>Los métodos `parseInt()` y `parseFloat()` se utilizan para analizar una cadena y convertirla en un número
+                entero o de punto flotante, respectivamente.</p>
+            <pre><code>
+        const cadenaEntera = '42';
+        const cadenaDecimal = '3.14';
+        
+        const numeroEntero = parseInt(cadenaEntera);     // Devuelve 42
+        const numeroDecimal = parseFloat(cadenaDecimal); // Devuelve 3.14
+            </code></pre>
+            <h2>3. Método isNaN()</h2>
+            <p>El método `isNaN()` verifica si un valor es NaN (No es un número).</p>
+            <pre><code>
+        const valor = 10;
+        const esNaN = isNaN(valor); // Devuelve false
+            </code></pre>
+            <h2>4. Método isFinite()</h2>
+            <p>El método `isFinite()` verifica si un valor es un número finito.</p>
+            <pre><code>
+        const valor = 10;
+        const esFinito = isFinite(valor); // Devuelve true
+            </code></pre>
+            <h2>5. Método toPrecision()</h2>
+            <p>El método `toPrecision()` formatea un número con una precisión específica y devuelve una cadena de
+                caracteres.</p>
+            <pre><code>
+        const numero = 123.45678;
+        const numeroFormateado = numero.toPrecision(4); // Devuelve "123.5"
+            </code></pre>
+            <h2>6. Método toLocaleString()</h2>
+            <p>El método `toLocaleString()` convierte un número en una representación de cadena de caracteres formateada
+                según la configuración regional actual del usuario.</p>
+            <pre><code>
+        const numero = 1234567.89;
+        const numeroFormateado = numero.toLocaleString(); // Dependiendo de la configuración regional, podría devolver "1,234,567.89"
+            </code></pre>
+            <h2>7. Método toString()</h2>
+            <p>El método `toString()` convierte un número en una cadena de caracteres.</p>
+            <pre><code>
+        const numero = 42;
+        const cadena = numero.toString(); // Devuelve "42"
+            </code></pre>
+            <h2>8. Método valueOf()</h2>
+            <p>El método `valueOf()` devuelve el valor numérico de un objeto `Number`.</p>
+            <pre><code>
+        const numero = new Number(42);
+        const valorNumerico = numero.valueOf(); // Devuelve 42
+            </code></pre>
+            <h2>9. Propiedad Number.MAX_VALUE y Number.MIN_VALUE</h2>
+            <p>Estas propiedades del objeto `Number` representan el valor máximo y mínimo que se pueden representar en
+                JavaScript.</p>
+            <pre><code>
+        const maximoValor = Number.MAX_VALUE; // Valor máximo en JavaScript
+        const minimoValor = Number.MIN_VALUE; // Valor mínimo en JavaScript
+            </code></pre>
+            <h2>10. Propiedad Number.POSITIVE_INFINITY y Number.NEGATIVE_INFINITY</h2>
+            <p>Estas propiedades del objeto `Number` representan los valores infinito positivo e infinito negativo.</p>
+            <pre><code>
+        const infinitoPositivo = Number.POSITIVE_INFINITY; // Infinito positivo
+        const infinitoNegativo = Number.NEGATIVE_INFINITY; // Infinito negativo
+            </code></pre>
+            <h2>11. Propiedad Number.NaN</h2>
+            <p>La propiedad `Number.NaN` representa el valor NaN (No es un número).</p>
+            <pre><code>
+        const noEsUnNumero = Number.NaN; // NaN
+            </code></pre>
+        </div>
+
+
+        <div class="container">
+            <h2>Métodos del Objeto String en JavaScript</h2>
+            <p>El objeto `String` en JavaScript proporciona una variedad de métodos para trabajar con cadenas de caracteres. Estos métodos permiten realizar manipulaciones, búsquedas y transformaciones en las cadenas.</p>
+            <h2>1. Método length</h2>
+            <p>La propiedad `length` devuelve la longitud de una cadena, es decir, la cantidad de caracteres que contiene.</p>
+            <pre><code>
+        const cadena = 'Hola, mundo!';
+        const longitud = cadena.length; // Devuelve 12
+            </code></pre>
+            <h2>2. Método toUpperCase() y toLowerCase()</h2>
+            <p>Los métodos `toUpperCase()` y `toLowerCase()` se utilizan para convertir una cadena a letras mayúsculas o minúsculas, respectivamente.</p>
+            <pre><code>
+        const cadena = 'Hola, Mundo!';
+        const mayusculas = cadena.toUpperCase(); // Devuelve "HOLA, MUNDO!"
+        const minusculas = cadena.toLowerCase(); // Devuelve "hola, mundo!"
+            </code></pre>
+
+            <h2>3. Método trim()</h2>
+            <p>El método `trim()` elimina los espacios en blanco al principio y al final de una cadena.</p>
+            <pre><code>
+        const cadena = '  Hola, mundo!  ';
+        const cadenaLimpia = cadena.trim(); // Devuelve "Hola, mundo!"
+            </code></pre>
+            <h2>4. Método concat()</h2>
+            <p>El método `concat()` se utiliza para concatenar dos o más cadenas y crear una nueva cadena.</p>
+            <pre><code>
+        const cadena1 = 'Hola, ';
+        const cadena2 = 'mundo!';
+        const resultado = cadena1.concat(cadena2); // Devuelve "Hola, mundo!"
+            </code></pre>
+            <h2>5. Método indexOf() y lastIndexOf()</h2>
+            <p>Los métodos `indexOf()` y `lastIndexOf()` se utilizan para buscar la posición de una subcadena dentro de una cadena. `indexOf()` devuelve la primera coincidencia y `lastIndexOf()` la última.</p>
+            <pre><code>
+        const cadena = 'Hola, mundo!';
+        const posicion1 = cadena.indexOf('mundo'); // Devuelve 6
+        const posicion2 = cadena.lastIndexOf('o');   // Devuelve 10
+            </code></pre>
+            <h2>6. Método slice()</h2>
+            <p>El método `slice()` extrae una porción de una cadena y devuelve una nueva cadena con los caracteres seleccionados.</p>
+            <pre><code>
+        const cadena = 'JavaScript';
+        const subcadena = cadena.slice(0, 4); // Devuelve "Java"
+            </code></pre>
+        
+            <h2>7. Método replace()</h2>
+            <p>El método `replace()` busca una subcadena y la reemplaza por otra en una cadena. Solo reemplaza la primera coincidencia a menos que se utilice una expresión regular con la bandera global (`/g`).</p>
+            <pre><code>
+        const cadena = 'Hola, mundo!';
+        const nuevaCadena = cadena.replace('mundo', 'amigos'); // Devuelve "Hola, amigos!"
+            </code></pre>
+        
+            <h2>8. Método split()</h2>
+            <p>El método `split()` divide una cadena en un array de subcadenas basado en un delimitador especificado.</p>
+            <pre><code>
+        const cadena = 'Manzana,Plátano,Uva';
+        const frutas = cadena.split(','); // Devuelve ["Manzana", "Plátano", "Uva"]
+            </code></pre>
+            <h2>9. Método substring() y substr()</h2>
+            <p>Los métodos `substring()` y `substr()` extraen una porción de una cadena. `substring()` se basa en índices y `substr()` en posición inicial y longitud.</p>
+            <pre><code>
+        const cadena = 'JavaScript';
+        const subcadena1 = cadena.substring(0, 4); // Devuelve "Java"
+        const subcadena2 = cadena.substr(4, 4);    // Devuelve "Scri"
+            </code></pre>
+            <h2>10. Método includes(), startsWith() y endsWith()</h2>
+            <p>Estos métodos se utilizan para verificar si una cadena contiene otra subcadena. `includes()` verifica si la cadena contiene la subcadena en cualquier posición, mientras que `startsWith()` y `endsWith()` verifican si la cadena comienza o termina con la subcadena, respectivamente.</p>
+            <pre><code>
+        const cadena = 'Hola, mundo!';
+        const incluyeMundo = cadena.includes('mundo');         // Devuelve true
+        const empiezaConHola = cadena.startsWith('Hola');       // Devuelve true
+        const terminaConExclamacion = cadena.endsWith('!');     // Devuelve true
+            </code></pre>
+            <h2>11. Método charAt() y charCodeAt()</h2>
+            <p>Los métodos `charAt()` y `charCodeAt()` se utilizan para acceder a caracteres individuales en una cadena. `charAt()` devuelve el carácter en una posición dada, y `charCodeAt()` devuelve el valor Unicode del carácter en esa posición.</p>
+            <pre><code>
+        const cadena = 'JavaScript';
+        const caracter = cadena.charAt(0);         // Devuelve "J"
+        const codigoUnicode = cadena.charCodeAt(0); // Devuelve 74 (valor Unicode de "J")
+            </code></pre>
+        
+            <h2>12. Método repeat()</h2>
+            <p>El método `repeat()` crea y devuelve una nueva cadena que contiene la cadena original repetida un número especificado de veces.</p>
+            <pre><code>
+        const cadena = 'Hola';
+        const repetida = cadena.repeat(3); // Devuelve "HolaHolaHola"
+            </code></pre>
+        </div>
+        
+        <!-- ----------------------------------------------------------------------------------------------------------->
+
+        <div class="container">
+            <h2 id="expresiones">Expresiones Regulares en JavaScript</h2>
+            <p>Las expresiones regulares, también conocidas como regex o regexp, son patrones que se utilizan para buscar y manipular texto basado en ciertas reglas. En JavaScript, puedes utilizar el objeto `RegExp` o escribir patrones directamente utilizando literales de expresiones regulares.</p>
+            <h2>Creación de Expresiones Regulares</h2>
+            <p>Hay dos formas de crear expresiones regulares en JavaScript:</p>
+            <pre><code>
+        // Utilizando el objeto RegExp
+        const regex1 = new RegExp('patrón');
+        // Utilizando el literal de expresión regular
+        const regex2 = /patrón/;
+            </code></pre>
+            <p>El segundo método es más común y se usa para patrones fijos.</p>
+            <h2>Metacaracteres</h2>
+            <p>Los metacaracteres son símbolos especiales que tienen un significado especial en una expresión regular. Aquí hay algunos de los metacaracteres más comunes:</p>
+            <ul>
+                <li><strong>.</strong>: Coincide con cualquier carácter excepto una nueva línea.</li>
+                <li><strong>^</strong>: Coincide con el inicio de una línea.</li>
+                <li><strong>$</strong>: Coincide con el final de una línea.</li>
+                <li><strong>*</strong>: Coincide con 0 o más repeticiones del elemento anterior.</li>
+                <li><strong>+</strong>: Coincide con 1 o más repeticiones del elemento anterior.</li>
+                <li><strong>?</strong>: Coincide con 0 o 1 repetición del elemento anterior.</li>
+                <li><strong>{n}</strong>: Coincide exactamente con n repeticiones del elemento anterior.</li>
+                <li><strong>{n,}</strong>: Coincide con al menos n repeticiones del elemento anterior.</li>
+                <li><strong>{n,m}</strong>: Coincide con entre n y m repeticiones del elemento anterior.</li>
+                <li><strong>[abc]</strong>: Coincide con uno de los caracteres dentro de los corchetes.</li>
+                <li><strong>[^abc]</strong>: Coincide con cualquier carácter que no esté dentro de los corchetes.</li>
+            </ul>
+            <h2>Expresiones Regulares con Literales</h2>
+            <p>Los literales de expresiones regulares se crean encerrando el patrón entre barras diagonales. Por ejemplo:</p>
+            <pre><code>
+        const regex = /patrón/;
+            </code></pre>
+            <p>Puedes usar los metacaracteres y cuantificadores dentro de los literales de expresiones regulares.<p>
+            <h2>Métodos de Expresiones Regulares</h2>
+            <p>En JavaScript, puedes utilizar métodos como `test()` y `exec()` con expresiones regulares para buscar coincidencias en cadenas de texto.</p>
+            <pre><code>
+        const texto = 'Ejemplo de texto con una palabra clave.';
+        const regex = /palabra/;
+        const resultado = regex.test(texto); // Devuelve true si encuentra una coincidencia
+            </code></pre>
+            <h3>Expresiones Regulares con Flags</h3>
+            <p>Puedes agregar banderas a una expresión regular para controlar su comportamiento. Algunas banderas comunes incluyen:</p>
+            <ul>
+                <li><strong>i</strong>: Hace que la expresión regular sea insensible a mayúsculas y minúsculas.</li>
+                <li><strong>g</strong>: Busca todas las coincidencias en lugar de detenerse en la primera.</li>
+                <li><strong>m</strong>: Permite que ^ y $ coincidan con el inicio y el final de cada línea, en lugar de solo el inicio y el final del texto completo.</li>
+            </ul>
+            <pre><code>
+        const texto = 'Ejemplo de texto con una Palabra clave.';
+        const regex = /palabra/i; // La 'i' hace que sea insensible a mayúsculas/minúsculas
+        const resultado = regex.test(texto); // Devuelve true
+            </code></pre>
+            <h3>Grupos y Capturas</h3>
+            <p>Puedes usar paréntesis para crear grupos en una expresión regular. Esto permite realizar capturas y operaciones más avanzadas. Por ejemplo:</p>
+            <pre><code>
+        const texto = 'Fecha de nacimiento: 01-02-1990';
+        const regex = /(\d{2})-(\d{2})-(\d{4})/;
+        const resultado = regex.exec(texto); // Devuelve un array con las coincidencias
+            </code></pre>
+            <h3>Expresiones Regulares Predefinidas</h3>
+            <p>JavaScript también proporciona expresiones regulares predefinidas para buscar patrones comunes, como direcciones de correo electrónico, números de teléfono, etc. Puedes encontrar estas expresiones regulares en la documentación de JavaScript.</p>
+            <h3>Expresiones Regulares son Poderosas</h3>
+            <p>Las expresiones regulares son una herramienta poderosa para trabajar con texto en JavaScript. Pueden ser útiles en la validación de formularios, búsqueda y manipulación de cadenas, análisis de texto y mucho más.</p>
+        </div>
+        
+
+        <!-- ----------------------------------------------------------------------------------------------------------->
+        <div class="container">
+            <h2 id="arrays">Arrays en JavaScript</h2>
+            <p>Un array es una estructura de datos que permite almacenar múltiples valores en una sola variable. En JavaScript, los arrays pueden contener elementos de diferentes tipos de datos.</p>
+            <h3>Creación de Arrays</h3>
+            <p>Para crear un array en JavaScript, puedes utilizar la siguiente sintaxis:</p>
+            <pre><code>
+        const miArray = []; // Array vacío
+        const numeros = [1, 2, 3, 4, 5]; // Array con elementos
+            </code></pre>
+
+            <h3>Acceso a Elementos</h3>
+            <p>Los elementos de un array se acceden mediante un índice, comenzando desde 0 para el primer elemento:</p>
+            <pre><code>
+        const numeros = [1, 2, 3, 4, 5];
+        const primerElemento = numeros[0]; // Accede al primer elemento (1)
+            </code></pre>
+            <h3>Propiedad <code>length</code></h3>
+            <p>La propiedad <code>length</code> te permite conocer la cantidad de elementos en un array:</p>
+            <pre><code>
+        const numeros = [1, 2, 3, 4, 5];
+        const cantidadElementos = numeros.length; // Devuelve 5
+            </code></pre>
+            <h3>Operaciones con Arrays</h3>
+            <p>JavaScript proporciona numerosos métodos para operar y modificar arrays:</p>
+            <ul>
+                <li><strong>push()</strong>: Agrega un elemento al final del array.</li>
+                <li><strong>pop()</strong>: Elimina el último elemento del array.</li>
+                <li><strong>unshift()</strong>: Agrega un elemento al principio del array.</li>
+                <li><strong>shift()</strong>: Elimina el primer elemento del array.</li>
+                <li><strong>splice()</strong>: Permite realizar operaciones avanzadas de inserción, eliminación y reemplazo de elementos.</li>
+                <li><strong>concat()</strong>: Combina dos o más arrays para crear uno nuevo.</li>
+                <li><strong>slice()</strong>: Crea una copia superficial (shallow copy) de un subconjunto de un array.</li>
+            </ul>
+            <h3>Recorriendo un Array</h3>
+            <p>Puedes recorrer los elementos de un array utilizando bucles como <code>for</code> o <code>for...of</code>:</p>
+            <pre><code>
+        const numeros = [1, 2, 3, 4, 5];
+        for (let i = 0; i < numeros.length; i++) {
+            console.log(numeros[i]);
+        }
+        // O usando for...of
+        for (const numero of numeros) {
+            console.log(numero);
+        }
+            </code></pre>
+            <h3>Arrays Multidimensionales</h3>
+            <p>Un array multidimensional es un array que contiene otros arrays. Puedes crear matrices (matrices bidimensionales) para representar datos tabulares:</p>
+            <pre><code>
+        const matriz = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ];
+        const elemento = matriz[1][2]; // Accede al valor 6
+            </code></pre>
+            <h3>Métodos Funcionales</h3>
+            <p>JavaScript también proporciona métodos funcionales como <code>map()</code>, <code>filter()</code> y <code>reduce()</code> para realizar operaciones más complejas en arrays y transformar los datos.</p>
+            <h3>Arrays en JavaScript son Dinámicos</h3>
+            <p>Los arrays en JavaScript son dinámicos, lo que significa que puedes cambiar su tamaño y contenido en tiempo de ejecución:</p>
+            <pre><code>
+        const frutas = ['manzana', 'plátano', 'uva'];
+        frutas.push('naranja'); // Agrega 'naranja' al final
+        frutas.pop(); // Elimina el último elemento ('naranja')
+            </code></pre>
+        </div>
+        
+
+        <!-- ----------------------------------------------------------------------------------------------------------->
+        <div class="flecha">
+            <a href="#"><img src="../img/flecha.png" alt=""></a>
+        </div>
+    </main>
+</body>
+
+</html>

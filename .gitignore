@@ -1,0 +1,32 @@
+# Archivos y carpetas generados por el sistema operativo
+.DS_Store
+Thumbs.db
+*.log
+
+# Dependencias de Node.js
+node_modules/
+package-lock.json
+yarn.lock
+
+# Archivos de entorno y sensibles
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Archivos generados por Sass
+.sass-cache/
+*.css.map
+
+# Carpeta de CSS compilado (si lo generas automáticamente)
+css/main.css      # Excluye esto si quieres que se genere en el deploy
+
+# Entornos de desarrollo/IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Carpetas de compilación automática
+dist/
+build/

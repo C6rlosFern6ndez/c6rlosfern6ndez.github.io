@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a9699bcfd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="icon" href="Imagenes/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comforter+Brush&display=swap"
+        rel="stylesheet">
+    <title>Tutorial Java</title>
+</head>
+
+<body>
+    <div class="contenedor-principal">
+        <!--header>(h1+nav>ul>li*4)+(aside>ul>li*6)+section>h2+article>h3-->
+        <header id="inicio">
+            <!--img src="Imagenes/Portada-java2.jpg" alt=""-->
+            <img src="Imagenes/icono-java.png" class="icono-java" alt="">
+            <!--h1 id="inicio">Titulo</h1-->
+            <div class="tituloPrincipal">
+                <img src="Imagenes/Titulo.png" alt="">
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li id="submenu"><a href="">Temas</a>
+                        <ul>
+                            <li><a href="#Tema1">Tema 1</a></li>
+                            <li><a href="#Tema2">Tema 2</a></li>
+                            <li><a href="#Tema3">Tema 3</a></li>
+                            <li><a href="#Tema4">Tema 4</a></li>
+                            <li><a href="#Tema5">Tema 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Ejercicios.html">Ejercicios</a></li>
+                    <li><a href="Contactos.html">Contacto</a></li>
+                    <li class="movizq2"><a href="Inicio-sesion.html">Iniciar sesión</a></li>
+                    <li class="movizq"><a href="Registro.html">Registrate</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="flecha">
+            <a href="#inicio"><img src="Imagenes/flecha.png" alt=""></a>
+        </div>
+        <section>
+            <h2 id="Tema1">Tema 1 (Variables y Constantes)</h2>
+            <article>
+                <h3>Variables de Java</h3>
+                <a href="Imagenes/variable01.png" target="_blank" class="zoom"><img src="Imagenes/variable01.png" alt=""
+                        class="imagen-derecha"></a>
+                <p><em> Las variables son contenedores para almacenar valores de datos.</em></p>
+                <p>En Java, existen diferentes tipos de variables, por ejemplo: </p>
+                <p><mark><strong>STRING</strong></mark> - almacena texto, como "Hola". Los valores de cadena son rodeado
+                    de comillas
+                    dobles </p>
+                <p><mark><strong>INT</strong></mark> - almacena enteros (números enteros), sin decimales, como 123 o
+                    -123 </p>
+                <p><mark><strong>FLOAT</strong></mark> - almacena números de punto flotante, con decimales, como 19,99 o
+                    -19,99 </p>
+                <p><mark><strong>CHAR</strong></mark> - almacena caracteres individuales, como 'a o B'. Los valores de
+                    caracteres
+                    están rodeados
+                    por comillas simples </p>
+                <p><mark><strong>BOOLEAN</strong></mark> - almacena valores con dos estados: true o false</p>
+                <h3>Declaración de variables </h3>
+                <p>Para crear una variable, debe especificar el tipo y asignarle un valor: </p>
+                <p>Donde tipo es uno de los tipos de Java (como into String), y variableName es el nombre de la variable
+                    (como x o nombre ). El signo igual se utiliza para asignar valores a la variable. </p>
+                <p>Para crear una variable que debería almacenar texto, observe el siguiente ejemplo:</p>
+                <p class="resaltarrojo">String name = "Jose";<br>
+                    System.out.println(name);
+                </p>
+                <p>Para crear una variable que debería almacenar un número, observe el siguiente ejemplo:</p>
+                <p class="resaltarrojo">int myNum = 15;<br>
+                    System.out.println(myNum);
+                </p>
+                <h3>Nombres de las variables </h3>
+                <p>Cuando vayamos a dar un nombre a una variable deberemos de tener en cuenta una serie de normas. Es
+                    decir,
+                    no podemos poner el nombre que nos dé la gana a una variable.</p>
+                <p>Los identificadores son secuencias de texto unicode, sensibles a mayúsculas cuya primer carácter solo
+                    puede ser una letra, número, símbolo dolar $ o subrayado _ . Si bien es verdad que el símbolo dolar
+                    no
+                    es utilizado por convención.</p>
+                <p>Es recomendable que los nombres de los identificadores sean legibles y no acrónimos que no podamos
+                    leer.
+                    De tal manera que a la hora de verlos se auto-documenten por sí mismos. Además estos identificadores
+                    nunca podrán coincidir con las palabras reservadas.</p>
+                <p>Algunas reglas no escritas, pero que se han asumido por convención son:</p>
+                <ul>
+                    <li>Los identificadores siempre se escriben en minúsculas. (pe. nombre). Y si son dos o más
+                        palabras, el
+                        inicio de cada siguiente palabra se escriba en mayúsculas (pe. nombrePersona)</li>
+                    <li>Si el identificador implica que sea una constante. Es decir que hayamos utilizado los
+                        modificadores
+                        final static, dicho nombre se suele escribir en mayúsculas (pe. LETRA). Y si la constante está
+                        compuesta de dos palabras, estas se separan con un subrayado (pe. LETRA_PI).</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Declaración y uso de constantes en Java</h3>
+                <a href="Imagenes/Constante01.png" target="_blank" class="zoom"><img src="Imagenes/Constante01.png"
+                        alt="" class="imagen-izquierda"></a>
+                <p>En la sección anterior hablamos sobre variables y tipos en java y aprendimos cómo se declara una
+                    variable, cómo se le asigna un tipo de dato específico (primitivo o complejo). En esta sección
+                    hablaremos ya no tanto de "variables" sino más bien de constantes. Una constante desde el punto de
+                    vista
+                    de la programación es un dato cuyo valor no cambia durante la ejecución del programa, en otras
+                    palabras,
+                    una vez que a una constante se le asigna un valor, este no podrá ser modificado y permanecerá así
+                    durante toda la ejecución del programa.</p>
+                <p>Las constantes son útiles para datos o atributos para los cuales el valor no tiene por qué cambiar,
+                    por
+                    ejemplo, el número del documento de identidad de una persona, lo más normal es que dicho número no
+                    cambie o la fecha de nacimiento, una persona tiene una fecha de nacimiento única e invariable, por
+                    lo
+                    tanto por ejemplo un atributo "nacimiento" debería ser constante. Con esto podremos evitar
+                    modificaciones en nuestro sistema que puedan causar problemas durante la ejecución del mismo.</p>
+                <p>En esta sección no hablaremos únicamente sobre cómo hacer que un dato cualquiera no permanezca
+                    constante,
+                    sino también, veremos qué implicaciones tiene que una clase, un método y un atributo sean constantes
+                    (final). Comencemos:</p>
+                <h3>Constantes en Java</h3>
+                <p>La palabra clave que java ha reservado para definir constantes es la palabra "final". En java es muy
+                    simple definir constantes, solo basta con ponerles el modificador final antes de la declaración del
+                    tipo. Al definir un dato como constante le podremos asignar un valor por primera vez y luego de eso
+                    no
+                    será posible cambiarle ese valor. Una vez inicializado el dato, este no podrá cambiar su valor de
+                    ninguna forma.</p>
+                <h3>Modificador final en Java</h3>
+                <p>Tal como mencioné hace un momento el modificador final es la palabra reservada que Java definió para
+                    crear constantes. Veamos entonces la sintaxis general para definir un dato como constante en Java:
+                </p>
+                <p class="resaltarrojo">final tipo nombreVble = valor;</p>
+                <p>Como se puede apreciar la sintaxis es bastante sencilla, sin embargo hay que tener en cuenta algunas
+                    cosas: cuando vamos a declarar un dato cualquiera como final, debemos asignarle inmediatamente un
+                    valor,
+                    es decir debemos inicializarlo de inmediato, de lo contrario no podremos compilar nuestro código. En
+                    este punto debo hacer una aclaración, un dato cualquiera que se encuentre por ejemplo al interior
+                    del
+                    método main, debe ser inicializado de inmediato, sin embargo un atributo propio de una clase no
+                    necesariamente debe ser inicializado en el mismo momento que se declara dicho atributo, sino que
+                    puede
+                    ser inicializado también por un constructor, dando así la posibilidad de que cada objeto especifico
+                    tenga su propio valor constante, ingresa a continuacón para saber más sobre atributos y
+                    constructores.
+                    Vemos el ejemplo:</p>
+            </article>
+        </section>
+
+        <section>
+            <h2 id="Tema2">Tema 2:</h2>
+            <article>
+                <h3>Importar Paquetes</h3>
+                <a href="Imagenes/Scanner.png" target="_blank" class="zoom"><img src="Imagenes/Scanner.png" alt=""
+                        class="imagen-derecha"></a>
+                <p>Las convenciones del lenguaje Java recomiendan el uso de paquetes (packages) para la agrupación y
+                    organización de las clases, interfaces y anotaciones. Estas divisiones se conocen como espacios de
+                    nombres (namespaces). </p>
+                <h4>Palabra clave “Import”</h4>
+                <p>Una opción muy conveniente cuando usamos una clase o interfaz de otro paquete, es el uso de la
+                    palabra
+                    clave import. Si usamos import, no es necesario escribir el nombre completo de la clase con el
+                    paquete
+                    incluido. Es suficiente con el nombre de la clase.</p>
+                <p>El uso de la clase Scanner es una de las mejores maneras de ingresar datos por teclado en Java.</p>
+                <p>Scanner es una clase en el paquete java.util utilizada para obtener la entrada de los tipos
+                    primitivos
+                    como int, double etc. y también String. Es la forma más fácil de leer datos en un programa Java,
+                    aunque
+                    no es muy eficiente si se quiere un método de entrada para escenarios donde el tiempo es una
+                    restricción, como en la programación competitiva.</p>
+                <p>En resumen:</p>
+                <ul>
+                    <li>Para crear un objeto de clase Scanner, normalmente pasamos el objeto predefinido
+                        <strong>System.in</strong>, que
+                        representa el flujo de entrada estándar. Podemos pasar un objeto de clase File si queremos leer
+                        la
+                        entrada de un archivo.
+                    </li>
+                    <li>Para leer valores numéricos de un determinado tipo de datos XYZ, la función que se utilizará es
+                        <strong>nextXYZ()</strong>. Por ejemplo, para leer un valor de tipo short, podemos usar
+                        <strong>nextShort().</strong>
+                    </li>
+                    <li>Para leer cadenas (strings), usamos <strong>nextLine().</strong></li>
+                    <li>Para leer un solo carácter, se usa <strong>next().charAt(0).</strong> La función
+                        <strong>next()</strong>devuelve el siguiente
+                        token/palabra en la entrada como cadena y la función charAt (0) devuelve el primer carácter de
+                        esa
+                        cadena.
+                    </li>
+                </ul>
+            </article>
+        </section>
+        <section>
+            <h2 id="Tema3">Condicionales</h2>
+            <article>
+                <h3>Switch & Case</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur inventore tenetur harum
+                    similique
+                    maiores, quia voluptate quasi sed esse! Eos quidem rerum ipsam distinctio eum illum? Dolores quos
+                    repellendus quia.</p>
+                <a href="Imagenes/Switch.png" target="_blank" class="zoom"><img src="Imagenes/Switch.png" alt=""
+                        class="imagen-derecha"></a>
+                <p class="resaltarrojo">switch(){ <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 1: <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break; <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 2: <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break; <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;case 3: <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break; <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;default: <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Escoge una opción valida");<br>
+                    }
+                </p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi, dolore est repudiandae ratione illo
+                    sit
+                    numquam. Suscipit voluptates harum facere totam voluptate maxime quas earum, excepturi, voluptatibus
+                    itaque repudiandae culpa?
+                    Unde labore fugit excepturi autem dolorum corporis sit atque quas ducimus eveniet non
+                    exercitationem,
+                    repellendus obcaecati dolores ex deleniti reiciendis omnis aliquid ut necessitatibus ipsam sed.
+                    Quaerat
+                    animi vel dolorem?
+                    Nesciunt voluptatem delectus ipsum tenetur mollitia illo impedit cupiditate similique, blanditiis
+                    architecto eos odio labore eius, sunt ipsa. Dolor eaque at expedita repellat omnis consectetur
+                    possimus
+                    deleniti eos a velit.
+                    Mollitia provident, sequi vero quidem cupiditate aperiam ipsam voluptatum quibusdam est nesciunt
+                    reiciendis exercitationem voluptates eius commodi ipsa fuga, deserunt, inventore adipisci. Nesciunt
+                    qui
+                    molestiae ratione. Earum cumque vel consequuntur!
+                    Incidunt porro, laudantium vel dolores nam nesciunt odio iste provident voluptas beatae dignissimos
+                    expedita nobis, doloribus, tenetur repellat aperiam sed. Nemo vel, quis sequi ullam quia quod
+                    delectus
+                    impedit provident.
+                    Nemo maxime voluptatibus quidem obcaecati neque aspernatur, eligendi ex? Possimus quidem ducimus
+                    reprehenderit error. Pariatur blanditiis ipsa necessitatibus provident quaerat! Doloremque
+                    reiciendis
+                    velit eum omnis at qui vero doloribus impedit.
+                    Vel ad quod et fugiat. Temporibus debitis nihil ex quis doloribus adipisci inventore, possimus
+                    dolorem
+                    consequuntur illum numquam veritatis, eveniet facere voluptatem sit, sint deleniti accusamus
+                    voluptate
+                    perferendis aut esse.
+                    Architecto dolor ab nisi quibusdam reiciendis, fuga rerum ea, amet, sunt libero explicabo!
+                    Voluptatem,
+                    libero consectetur. Dolorum voluptates corporis natus, porro eligendi et nisi nesciunt cumque ipsam
+                    eveniet eum vel?
+                    Sit fuga vel harum voluptate et consequuntur illum temporibus, voluptatibus repudiandae rerum!
+                    Temporibus, fuga nostrum! Labore provident quod alias, officia aspernatur itaque ducimus nesciunt,
+                    delectus ipsam, similique illum dignissimos neque.
+                    Ratione illum qui molestias repudiandae dolorum enim nam quaerat et maiores, a dignissimos, fugiat
+                    aliquid maxime facere dicta ex, inventore necessitatibus! Enim, harum dolor dolores repellendus
+                    mollitia
+                    quos totam accusamus.</p>
+            </article>
+        </section>
+        <section>
+            <h2 id="Tema4">Tema4</h2>
+            <article>
+                <h3>Titulo</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur inventore tenetur harum
+                    similique
+                    maiores, quia voluptate quasi sed esse! Eos quidem rerum ipsam distinctio eum illum? Dolores quos
+                    repellendus quia.</p>
+                <a href="Imagenes/bucleFor.png" target="_blank" class="zoom"><img src="Imagenes/bucleFor.png" alt=""
+                        class="imagen-izquierda"></a>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum saepe natus tempora laborum aliquid
+                    consequuntur mollitia assumenda? Possimus, quisquam modi? Beatae, laudantium dolorum. Expedita
+                    architecto hic officia quasi impedit voluptates.
+                    Cum repellat aut voluptatibus eius quisquam a exercitationem, fuga architecto at ab beatae vel
+                    inventore, deserunt sint quibusdam, sequi asperiores esse debitis eveniet assumenda quas nobis
+                    laudantium? Minima, quas omnis.
+                    Voluptatibus repellendus harum suscipit voluptatem voluptas culpa tempora veritatis quo quidem?
+                    Consequuntur, odit doloribus esse autem harum voluptate officia dolore, quia tenetur voluptates
+                    perferendis illo magni voluptatum? Velit, ipsam molestias!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus velit debitis, numquam libero
+                    iure
+                    molestias. Voluptate quia ad fugiat! Sit dolorum architecto odit ut deserunt dignissimos dolor iusto
+                    fugit asperiores.
+                    Est nostrum dolorum harum labore esse. Officia neque doloribus debitis sed adipisci, porro rerum
+                    ducimus
+                    consequuntur voluptatibus placeat voluptatum dignissimos ut accusamus enim nesciunt dolores
+                    reiciendis
+                    ipsam, accusantium voluptas temporibus?
+                    Dolores tempora eaque sunt cumque! Eum, quam. Voluptate asperiores debitis totam ut quas. Omnis
+                    optio
+                    deserunt quisquam tempore commodi, modi sit sunt unde iusto harum expedita inventore reiciendis
+                    similique neque!
+                    Eveniet recusandae ipsa excepturi. Quae asperiores similique, nemo sint ducimus tempora molestiae
+                    rem
+                    laborum, labore deserunt amet nihil, eveniet aspernatur illum placeat consectetur laboriosam!
+                    Officia,
+                    aut. Voluptas, reprehenderit dolorem. Quam.
+                    Beatae qui non adipisci architecto perferendis amet, fuga distinctio ipsam unde voluptatibus, nisi
+                    nihil
+                    sit veritatis consequuntur voluptatum quos optio harum ipsum quas repellat nesciunt, nam reiciendis
+                    ea.
+                    Nostrum, facere?
+                    Est explicabo ducimus, ut blanditiis quibusdam molestiae nemo numquam nesciunt aliquam nobis eaque,
+                    a
+                    beatae nisi repudiandae doloremque! Facere voluptate molestias voluptatem beatae unde sint quisquam
+                    perferendis doloribus repellat natus!
+                    Atque vero voluptatibus veritatis, quaerat blanditiis facilis iusto aperiam mollitia totam ex sequi
+                    nihil. Iusto ducimus soluta natus molestiae voluptate. Non alias tempora expedita totam at minus
+                    atque
+                    inventore temporibus.
+                    Delectus qui provident error cumque, omnis neque ipsam, at doloribus necessitatibus aliquid
+                    cupiditate
+                    ad odit iste repellendus sint unde esse nisi. Deserunt necessitatibus, consequatur deleniti omnis
+                    fugiat
+                    iste quo distinctio.
+                    In illo maxime ea, quidem veritatis id. Repudiandae fuga iste quaerat, temporibus, ad quos sint
+                    reiciendis, recusandae blanditiis officia pariatur voluptatibus. Aliquid labore quas numquam,
+                    sapiente
+                    eaque minima dolorem fugiat.
+                    Eum mollitia quis accusamus voluptas omnis provident doloribus minima quod itaque, dolore deserunt
+                    non
+                    eveniet eos aliquid hic incidunt saepe eius nesciunt? Architecto fugit consequuntur nihil quod.
+                    Consectetur, veniam nisi.</p>
+            </article>
+        </section>
+        <section>
+            <h2 id="Tema5">Tema 5</h2>
+            <article>
+                <h3></h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores labore itaque molestiae rem
+                    sapiente
+                    sed ut suscipit impedit. Voluptas cupiditate explicabo quas commodi officiis ab tempore veritatis
+                    tempora obcaecati autem.</p>
+                <p>Dolores, maxime exercitationem deleniti rem cumque assumenda, laboriosam tempore molestias minus
+                    corrupti, sequi quae vero eos sunt labore eveniet. Non repellat eum asperiores perferendis quam,
+                    itaque
+                    hic enim sapiente excepturi!</p>
+                <p>Consequuntur quo accusamus, quidem illum nulla deleniti at aut, illo sint, iusto velit. Cum qui error
+                    dolor quas exercitationem cupiditate! Quia amet accusantium dolore laborum natus quis expedita
+                    aperiam
+                    a.</p>
+            </article>
+        </section>
+        <div class="espacio"></div>
+        <div class="centro-trio">
+            <div class="trio">
+                <p><cite>“Measuring programming progress by lines of code is like measuring aircraft building progress
+                        by
+                        weight.” Bill Gates</cite></p>
+                <p class="espacio"></p>
+            </div>
+            <div class="trio">
+                <p><cite>“Any fool can write code that a computer can understand. Good programmers write code that
+                        humans
+                        can understand.” Martin Fowler</cite></p>
+                <p class="espacio"></p>
+            </div>
+            <div class="trio">
+                <p><cite>“Good code is its own best documentation. As you’re about to add a comment, ask yourself, ‘How
+                        can
+                        I improve the code so that this comment isn’t needed?” Steve McConnell</cite></p>
+            </div>
+        </div>
+        <footer>
+            <address>
+                <p>email: carlosfernandezgonzalez@iessoterohernandez.es</p>
+                <p>tlf: 659 346 893</p>
+            </address>
+            <div class="iconos">
+                <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube">Youtube</i></a>
+                <a href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter">twitter</i></a>
+                <a href="https://es-es.facebook.com/" target="_blank"><i class="fab fa-facebook">Facebook</i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios Con JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<style>
+    #ejercicioDesplegable {
+        display: none;
+    }
+
+    #mostrarEjercicio:checked+#ejercicioDesplegable {
+        display: block;
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Ejercicios condicionales</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="ejercicios.html" id="desplegable">Ejercicios</a>
+                    <div>
+                        <ul>
+                            <l1><a href="#">Condicionales</a></l1><br>
+                            <l1><a href="">Arrays</a></l1><br>
+                            <l1><a href="">Funciones</a></l1><br>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="../videosYtutoriales.html">Videos y Tutoriales</a></li>
+                <li><a href="../apuntes/javascript.html">Apuntes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="exercise">
+            <h2>Ejercicio 1 (condicional If)</h2>
+            <p>Crea un programa que determine si un número es positivo o negativo.</p>
+            <textarea id="code1"></textarea>
+            <button onclick="executeCode(1)">Ejecutar</button>
+            <div id="output1"></div>
+        </div>
+        <label for="mostrarEjercicio">Mostrar Ejercicio</label>
+        <input type="checkbox" id="mostrarEjercicio">
+        <div id="ejercicioDesplegable">
+            <pre><code>
+            // Aquí va tu código de ejercicio resuelto
+            function sumar(a, b) {
+                return a + b;
+            }
+
+            console.log(sumar(3, 5)); // Muestra 8 en la consola
+        </code></pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

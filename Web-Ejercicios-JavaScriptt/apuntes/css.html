@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de CSS</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../CSS/imagenesFlotantes.css">
+    <link rel="stylesheet" href="../CSS/cajasCodigo.css">
+    <style>
+        /* Estilos para la imagen flotante */
+        .floating-image {
+            float: right;
+            /* Hace que la imagen flote a la derecha del contenido */
+            margin: 0 0 20px 20px;
+            /* Espaciado alrededor de la imagen */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Tutorial de CSS</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li id="ejercicios"><a href="#">Ejercicios</a>
+                    <ul>
+                        <li><a href="../ejercicios/condicionales.html">Condicionales</a></li>
+                        <li><a href="enlace">pagina 2</a></li>
+                        <li><a href="enlace">pagina 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="angular.html">Angular</a></li>
+                <li><a href="javascript.html">Apuntes JavaScript</a></li>
+                <li id="desplegableApuntes"><a href="#">Apuntes CSS</a>
+                    <ul>
+                        <li><a href="#introduccion">Introducción</a></li>
+                        <li><a href="#selectores">Selectores CSS</a></li>
+                        <li><a href="#propiedades">Propiedades CSS</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <script>
+            const ejerciciosLi = document.getElementById('ejercicios');
+            const menuDesplegable = ejerciciosLi.querySelector('ul');
+            ejerciciosLi.addEventListener('click', function () {
+                if (menuDesplegable.style.display === 'none' || menuDesplegable.style.display === '') {
+                    menuDesplegable.style.display = 'block';
+                } else {
+                    menuDesplegable.style.display = 'none';
+                }
+            });
+        </script>
+    </header>
+
+    <main>
+        <div class="container">
+            <section id="introduccion">
+                <h2>Introducción a CSS</h2>
+                <div>
+                    <img src="../img/css.png" alt="CSS Logo" width="300" class="imagenFlotanteDerecha">
+                    <p>CSS (Cascading Style Sheets) es un lenguaje de hojas de estilo utilizado para controlar la
+                        presentación y el diseño de documentos HTML. Con CSS, puedes definir cómo se ven los elementos
+                        HTML
+                        en una página web.</p>
+                    <p>En el mundo del desarrollo web, CSS es una herramienta esencial para crear sitios web atractivos
+                        y
+                        con estilo. Permite separar la estructura (HTML) del diseño y la apariencia (CSS) de una página,
+                        lo
+                        que facilita la administración y el mantenimiento del código.</p>
+                    <p>En este tutorial, aprenderás los conceptos básicos de CSS, cómo aplicar estilos a elementos HTML
+                        y
+                        cómo crear reglas de estilo. Antes de comenzar, es importante que tengas un conocimiento básico
+                        de
+                        HTML, ya que CSS se utiliza para dar estilo a elementos HTML.</p>
+                </div>
+            </section>
+
+            <section id="selectores">
+                <h2>Selectores CSS</h2>
+                <p>Los selectores CSS son patrones que se utilizan para seleccionar elementos HTML a los que se
+                    aplicarán estilos. Los selectores son fundamentales para determinar qué elementos se verán afectados
+                    por tus reglas de estilo. Aquí tienes ejemplos de diferentes tipos de selectores:</p>
+
+                <ul>
+                    <li>
+                        <strong>Selector de tipo:</strong>
+                        <code>p</code> selecciona todos los elementos `<p>`.
+                        <pre><code>
+            p {
+                color: blue;
+            }
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Selector de clase:</strong>
+                        <code>.boton</code> selecciona elementos con la clase "boton".
+                        <pre><code>
+            .boton {
+                background-color: #ff9900;
+            }
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Selector de ID:</strong>
+                        <code>#encabezado</code> selecciona el elemento con el ID "encabezado".
+                        <pre><code>
+            #encabezado {
+                font-size: 24px;
+            }
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Selector universal:</strong>
+                        <code>*</code> selecciona todos los elementos.
+                        <pre><code>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Selector de atributo:</strong>
+                        <code>[type="text"]</code> selecciona elementos con el atributo "type" igual a "text".
+                        <pre><code>
+            input[type="text"] {
+                border: 1px solid #ccc;
+            }
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Selector de descendencia:</strong>
+                        <code>ul li</code> selecciona todos los elementos que están dentro de una lista desordenada <ul>
+                            <pre><code>
+            ul li {
+                list-style: circle;
+            }
+                        </code></pre>
+                    </li>
+                    <li>
+                        <strong>Selector de grupo:</strong>
+                        Puedes agrupar varios selectores en una regla.
+                        <pre><code>
+            h1, h2, h3 {
+                font-family: Arial, sans-serif;
+            }
+                        </code></pre>
+                    </li>
+                </ul>
+
+                <p>Estos son algunos ejemplos de los tipos de selectores CSS disponibles. CSS ofrece una variedad de
+                    selectores avanzados que te permiten dirigirte a elementos de manera más específica, lo que es útil
+                    para aplicar estilos de manera precisa en tu sitio web.</p>
+                <li>
+                    <strong>Selector de Pseudo-clase `:active`:</strong>
+                    Selecciona elementos cuando están activos, como cuando un enlace es clicado.
+                    <pre><code>
+            a:active {
+                color: purple;
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Pseudo-clase `:focus`:</strong>
+                    Selecciona elementos que tienen el foco, como un campo de entrada de texto que se selecciona con el
+                    cursor.
+                    <pre><code>
+            input:focus {
+                border: 2px solid blue;
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Pseudo-clase `:visited`:</strong>
+                    Selecciona enlaces que ya han sido visitados por el usuario.
+                    <pre><code>
+            a:visited {
+                color: gray;
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Pseudo-clase `:not()`:</strong>
+                    Permite seleccionar elementos que no cumplen con un cierto criterio.
+                    <pre><code>
+            p:not(.special) {
+                font-size: 14px;
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Pseudo-elemento `::before` y `::after`:</strong>
+                    Permite agregar contenido antes o después de un elemento.
+                    <pre><code>
+            p::before {
+                content: "Antes de: ";
+            }
+            
+            p::after {
+                content: "Después de.";
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Atributo de Subcadena `*`:</strong>
+                    Selecciona elementos cuyos atributos contienen una subcadena específica en cualquier parte del
+                    valor.
+                    <pre><code>
+            a[href*="example"] {
+                color: orange;
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Atributo de Prefijo `^`:</strong>
+                    Selecciona elementos cuyos atributos comienzan con un valor específico.
+                    <pre><code>
+            input[type^="t"] {
+                border: 1px solid green;
+            }
+                        </code></pre>
+                </li>
+                <li>
+                    <strong>Selector de Atributo de Sufijo `$`:</strong>
+                    Selecciona elementos cuyos atributos terminan con un valor específico.
+                    <pre><code>
+            a[href$=".pdf"] {
+                font-weight: bold;
+            }
+                        </code></pre>
+                </li>
+                </ul>
+
+                <p>Estos son algunos ejemplos de los selectores CSS más comunes y avanzados que puedes utilizar para
+                    aplicar estilos precisos a tus elementos HTML. La elección del selector adecuado depende de tus
+                    necesidades de diseño y estructura de la página web.</p>
+            </section>
+
+            <section id="propiedades">
+                <h2>Propiedades CSS</h2>
+                <p>Las propiedades CSS se utilizan para controlar el aspecto y el diseño de los elementos HTML. Aquí
+                    tienes una lista completa de propiedades organizadas por tipos:</p>
+
+                <h3>Propiedades de Texto y Fuente:</h3>
+                <div class="imagenFlotanteDerecha">
+                    <img src="../img/TextoYFuentes.png" alt="Propiedades de Texto y Fuente">
+                </div>
+                <ul>
+                    <li><strong>font-family:</strong> Define la familia de fuentes para el texto.</li>
+                    <li><strong>font-size:</strong> Establece el tamaño de la fuente.</li>
+                    <li><strong>font-weight:</strong> Controla el grosor de la fuente (normal, negrita, etc.).</li>
+                    <li><strong>font-style:</strong> Especifica el estilo de la fuente (normal, cursiva, oblicua).</li>
+                    <li><strong>line-height:</strong> Define la altura de línea.</li>
+                    <li><strong>text-align:</strong> Alinea el texto (izquierda, derecha, centrado).</li>
+                    <li><strong>text-decoration:</strong> Agrega decoración de texto (subrayado, tachado, etc.).</li>
+                    <li><strong>text-transform:</strong> Cambia el capitalizado del texto (mayúsculas, minúsculas).</li>
+                    <li><strong>letter-spacing:</strong> Controla el espaciado entre caracteres.</li>
+                    <li><strong>word-spacing:</strong> Ajusta el espaciado entre palabras.</li>
+                </ul>
+
+                <h3>Propiedades de Color y Fondo:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>color:</strong> Define el color del texto.</li>
+                    <li><strong>background-color:</strong> Establece el color de fondo.</li>
+                    <li><strong>opacity:</strong> Controla la opacidad del elemento.</li>
+                    <li><strong>background-image:</strong> Agrega una imagen de fondo.</li>
+                    <li><strong>background-size:</strong> Define el tamaño de la imagen de fondo.</li>
+                    <li><strong>background-repeat:</strong> Controla la repetición de la imagen de fondo.</li>
+                    <li><strong>background-position:</strong> Establece la posición de la imagen de fondo.</li>
+                </ul>
+
+                <h3>Propiedades de Borde:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>border:</strong> Define el borde (ancho, estilo y color).</li>
+                    <li><strong>border-width:</strong> Establece el ancho del borde.</li>
+                    <li><strong>border-style:</strong> Especifica el estilo del borde (sólido, punteado, etc.).</li>
+                    <li><strong>border-color:</strong> Define el color del borde.</li>
+                    <li><strong>border-radius:</strong> Controla la curvatura de las esquinas del borde.</li>
+                </ul>
+
+                <h3>Propiedades de Espaciado y Dimensiones:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>margin:</strong> Establece los márgenes del elemento.</li>
+                    <li><strong>padding:</strong> Define el espacio interno del elemento.</li>
+                    <li><strong>width:</strong> Establece el ancho del elemento.</li>
+                    <li><strong>height:</strong> Define la altura del elemento.</li>
+                    <li><strong>max-width:</strong> Establece el ancho máximo del elemento.</li>
+                    <li><strong>max-height:</strong> Define la altura máxima del elemento.</li>
+                    <li><strong>min-width:</strong> Establece el ancho mínimo del elemento.</li>
+                    <li><strong>min-height:</strong> Define la altura mínima del elemento.</li>
+                </ul>
+
+                <h3>Posicionamiento y Diseño:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>position:</strong> Controla el posicionamiento de un elemento.</li>
+                    <li><strong>top:</strong> Establece la distancia desde la parte superior.</li>
+                    <li><strong>right:</strong> Establece la distancia desde la derecha.</li>
+                    <li><strong>bottom:</strong> Establece la distancia desde la parte inferior.</li>
+                    <li><strong>left:</strong> Establece la distancia desde la izquierda.</li>
+                    <li><strong>display:</strong> Controla cómo se muestra un elemento.</li>
+                    <li><strong>float:</strong> Establece el flotamiento de un elemento.</li>
+                    <li><strong>clear:</strong> Controla cómo los elementos deben comportarse en relación con los
+                        elementos flotantes.</li>
+                </ul>
+
+                <h3>Texto y Tipografía:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>letter-spacing:</strong> Controla el espaciado entre caracteres.</li>
+                    <li><strong>word-spacing:</strong> Ajusta el espaciado entre palabras.</li>
+                    <li><strong>text-transform:</strong> Cambia el capitalizado del texto.</li>
+                    <li><strong>white-space:</strong> Define cómo se maneja el espacio en blanco dentro de un elemento.
+                    </li>
+                    <li><strong>line-height:</strong> Establece la altura de línea.</li>
+                    <li><strong>text-shadow:</strong> Agrega sombra al texto.</li>
+                </ul>
+
+                <h3>Transformaciones y Animaciones:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>transform:</strong> Aplica transformaciones a un elemento, como rotación, escala y
+                        traslación.</li>
+                    <li><strong>animation:</strong> Define animaciones personalizadas.</li>
+                    <li><strong>transition:</strong> Controla transiciones suaves entre estados de un elemento.</li>
+                </ul>
+
+                <h3>Interacción y Comportamiento:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>cursor:</strong> Cambia el cursor del mouse al pasar sobre un elemento.</li>
+                    <li><strong>pointer-events:</strong> Controla la interacción del puntero del mouse con un elemento.
+                    </li>
+                    <li><strong>user-select:</strong> Controla si se puede seleccionar texto en un elemento.</li>
+                </ul>
+
+                <h3>Listas y Marcadores:</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>list-style:</strong> Define el estilo de marcador de lista.</li>
+                    <li><strong>list-style-type:</strong> Establece el tipo de marcador de lista.</li>
+                </ul>
+
+                <h3>Fuentes Web (Web Fonts):</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <ul>
+                    <li><strong>@font-face:</strong> Permite la incorporación de fuentes personalizadas en un sitio web.
+                    </li>
+                </ul>
+                <h3>Dimensionamiento Flexible (Flexbox y Grid):</h3>
+                <div>
+                    <img src="" alt="">
+                </div>
+<ul>
+    <li><strong>display:</strong> Define cómo se muestra un elemento. En el caso de Flexbox, se usa para crear un contenedor flexible.</li>
+    <li><strong>flex:</strong> Controla cómo se distribuye el espacio entre los elementos dentro de un contenedor flexible.</li>
+    <li><strong>grid-template:</strong> Establece la estructura de filas y columnas en un contenedor de rejilla (Grid).</li>
+    <li><strong>align-items:</strong> Alinea los elementos en el eje vertical en un contenedor flexible o de rejilla.</li>
+    <li><strong>justify-content:</strong> Alinea los elementos en el eje horizontal en un contenedor flexible o de rejilla.</li>
+</ul>
+
+<h3>Fondos Avanzados:</h3>
+<div>
+    <img src="" alt="">
+</div>
+<ul>
+    <li><strong>background-image:</strong> Establece una imagen de fondo para un elemento.</li>
+    <li><strong>background-size:</strong> Controla el tamaño de una imagen de fondo.</li>
+    <li><strong>background-repeat:</strong> Define cómo se repite una imagen de fondo.</li>
+    <li><strong>background-position:</strong> Establece la posición de una imagen de fondo.</li>
+    <li><strong>background-attachment:</strong> Controla si una imagen de fondo se desplaza con el contenido o permanece fija.</li>
+</ul>
+
+<h3>Efectos Visuales:</h3>
+<div>
+    <img src="" alt="">
+</div>
+<ul>
+    <li><strong>box-shadow:</strong> Agrega sombra a un elemento.</li>
+    <li><strong>text-overflow:</strong> Controla cómo se maneja el desbordamiento de texto en un elemento.</li>
+    <li><strong>overflow:</strong> Controla cómo se muestra el contenido que desborda un elemento.</li>
+    <li><strong>opacity:</strong> Establece la opacidad de un elemento.</li>
+</ul>
+
+<h3>Transformación de Box Model:</h3>
+<div>
+    <img src="" alt="">
+</div>
+<ul>
+    <li><strong>margin:</strong> Establece los márgenes externos de un elemento.</li>
+    <li><strong>padding:</strong> Define los rellenos internos de un elemento.</li>
+    <li><strong>border:</strong> Controla el tamaño y estilo de los bordes de un elemento.</li>
+    <li><strong>box-sizing:</strong> Controla cómo se calcula el tamaño total de un elemento (incluyendo o excluyendo los márgenes y rellenos).</li>
+    <li><strong>outline:</strong> Establece una línea de contorno alrededor de un elemento sin afectar al diseño.</li>
+</ul>
+
+            </section>
+
+        </div>
+
+
+        <div class="flecha">
+            <a href="#"><img src="../img/flecha.png" alt=""></a>
+        </div>
+    </main>
+</body>
+
+</html>

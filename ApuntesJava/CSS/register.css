@@ -1,0 +1,47 @@
+h3{
+    margin-top: 3em;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: monospace;
+    text-decoration: underline;
+    color: #670f0f;
+    text-shadow: 2px 2px 15px rgb(14, 1, 1);
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    font-family: monospace;
+    font-size: 15px;
+    color: #670f0f;
+}
+
+.form-container{
+    border: 2px solid #670f0f;
+    padding: 2em;
+    width: fit-content;
+    box-shadow: 5px 10px 15px rgb(44, 3, 3);
+}
+
+.mensaje-registro{
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #670f0f;
+    text-align: center;
+    padding: 0px;
+}
+.boton-registrado{
+    border: 1px solid #670f0f;
+    font-size: 20px;
+    color: #670f0f;
+}
+.boton-registrado a:visited{
+    color: #670f0f;
+}

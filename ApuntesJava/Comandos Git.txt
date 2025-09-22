@@ -1,0 +1,13 @@
+git add . //agrega los archivos a una zona intermedia
+
+git status -s //nos muestra el estado de los ficheros que no estan añadidos
+
+git log --oneline  //nos muestra los commits que tengamos
+
+git commit-am //comando commit y a juntos
+
+git commit  "" -m "Añadimos comentario" //comentario
+
+git remote add origin https://github.com/CFGWhejhe/JavaApuntes.git //subir archivos al repositorio
+
+git clone https://github.com/username/username.github.io

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a9699bcfd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/register.css">
+    <link rel="icon" href="Imagenes/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comforter+Brush&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Formulario de Registro</h3>
+    <div class="container">
+        <form class="form-container" action="https://jkorpela.fi/cgi-bin/echo.cgi" method="post">
+            <div class="formulario">
+                <label for="Nick">Nombre de Usuario:</label><br>
+                <input type="text" id="Nick" name="Nick" value="" size="45" required><br>
+            </div>
+            <div class="formulario">
+                <label for="Nombre">Nombre:</label><br>
+                <input type="text" id="Nombre" name="Nombre" required size="45"><br>
+            </div>
+            <div class="formulario">
+                <label for="Apellidos">Apellidos:</label><br>
+                <input type="text" id="Apellidos" name="Apellidos" required size="45"><br>
+            </div>
+            <div class="formulario">
+                <label for="email">Correo electrónico:</label><br>
+                <input type="email" placeholder="ejemplo@gmail.com" required size="45"><br>
+            </div>
+            <div class="formulario">
+                <label for="fnacim">Fecha de nacimiento:</label><br>
+                <input type="date" required><br>
+            </div>
+            <label for="incidencia">¿Tienes conocimientos previos de programación?</label><br>
+            <select name="incidencia" id="incidencia">
+                <option value="1">No, pero tengo mucho interes en aprender</option>
+                <option value="2">Si, un poco</option>
+                <option value="3">Si, manejo otros lenguajes</option>
+                <option value="4">No tengo ni idea</option>
+                <option value="5">Otras situaciones</option>
+            </select><br>
+            <div class="formulario">
+                <label for="url">Si tienes página web, ponla aqui:</label><br>
+                <input type="text" placeholder="https://www.paginaweb.es" size="45"><br>
+            </div>
+            <div class="formulario">
+                <label for="pass">Contraseña:</label><br>
+                <input type="password" size="45" required value placeholder="combina letras y numeros"><br>
+            </div>
+            <div class="formulario">
+                <label for="pass">Vuelve a escribir la contraseña:</label><br>
+                <input type="password" required size="45"><br>
+            </div>
+            <div class="boton">
+                <input type="submit" value="Enviar">
+                <button type="reset">Borrar Todo</button>
+        </form>
+    </div>
+</body>
+
+</html>

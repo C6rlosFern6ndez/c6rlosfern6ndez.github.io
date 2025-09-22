@@ -1,0 +1,153 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+/*Cabecera*/
+header h1{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 4em;
+    color: white;
+    margin-bottom: -60px;
+}
+h1 span{
+    color: #cb4e00;
+}
+nav{
+    background-color: black;
+    text-align: right;
+    padding: 50px 50px 50px 0;
+}
+nav li{
+    color: white;
+    display: inline;
+    width: 100%; 
+    font-size: 2em;
+    margin-left: 8px;
+    font-family: monospace;
+    padding: 0 15px 0 0;
+}
+#Favicon{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+/*Fin de Cabecera*/
+
+/*Cuerpo*/
+body{
+    background-color: #c04b00;
+    position: relative;
+}
+div{
+    margin-top: 25px;
+}
+section{
+    background-color: #c04b00;
+    height: auto;
+    background-image: url(Imagenes/Escaparate-transparencia.png); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+section h2{
+    font-family: monospace;
+    font-size: 2.4em;
+    color: white;
+    text-shadow: 5px 5px 5px black;
+}
+#montaje{
+    text-align: right;
+    margin: 30px 30px -30px 0;
+}
+#montaje img{
+    margin-right: 50px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+#texto_montaje{
+    position: absolute;
+    margin: 0 0px 0px 100px;
+    padding-top: 130px;
+    text-align: center;
+    text-shadow: -8px 8px 3px black;
+    font-family: fantasy;
+    font-size: 3em;
+}
+#intercambio{
+    text-align: left;
+    margin: -110px 0 10px 80px;
+}
+#texto_intercambio{
+    width: auto;
+    
+}
+#texto_escritorio{
+    color: white;
+    margin: 80px 0 0 470px;
+    text-shadow: 5px 5px 5px black;
+    position: absolute;
+}
+#escritorio{
+    margin: auto;
+    text-align: left;
+    background-color: black;
+    width: 100%;
+    
+}
+#escritorio img{
+    margin-left: 80px;
+}
+#map{
+    width: 100%;
+    text-align: right;
+}
+#map h2{
+    margin-right: 12em;
+}
+
+#map iframe{
+    border: 5px solid black;
+    border-radius: 8px;
+    margin-top: 20px;
+    
+}
+/*Fin del cuerpo*/
+/*Pie de pagina*/
+footer{
+    background-color: black;
+    height: auto;
+}
+/*Fin del Pie*/
+a:link{
+    text-decoration: none;
+    color: white;
+}
+a:visited{
+    color: white;
+}
+a:hover{
+    color: #cb4e00;
+    text-decoration: underline;
+}
+a:active{
+    color: #cb4e00;
+}
+address{
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+footer #iconos_pie{
+    text-align: center;
+}
+footer img{
+    padding: 0 0 0 0;
+    margin: -10px 10px 10px 0;
+}

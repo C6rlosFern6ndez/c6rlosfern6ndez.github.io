@@ -1,0 +1,33 @@
+@use 'sass:color'; // importar el módulo de colores
+@use 'variables' as v;
+@use 'mixins' as m;
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    @include m.gradient-bg(135deg, v.$primary-dark, v.$primary-dark-alt);
+    color: v.$white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+    @include m.smooth-transition(background);
+
+    &:hover {
+        // Versión con color.adjust()
+        @include m.gradient-bg(
+            135deg, 
+            color.adjust(v.$primary-dark, $lightness: 5%), 
+            color.adjust(v.$primary-dark-alt, $lightness: 5%)
+        );
+
+        // O con color.scale() (elige una opción)
+        // @include m.gradient-bg(
+        //     135deg, 
+        //     color.scale(v.$primary-dark, $lightness: 5%), 
+        //     color.scale(v.$primary-dark-alt, $lightness: 5%)
+        // );
+    }
+}

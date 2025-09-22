@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Ejercicios condicionales</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li id="ejercicios"><a href="#">Ejercicios</a>
+                    <ul>
+                        <li><a href="ejercicios/condicionales.html">Condicionales</a></li>
+                        <li><a href="enlace">pagina 2</a></li>
+                        <li><a href="enlace">pagina 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="videosYtutoriales.html">Videos y Tutoriales</a></li>
+                <li><a href="apuntes/javascript.html">Apuntes</a></li>
+            </ul>
+        </nav>
+        <script>
+            const ejerciciosLi = document.getElementById('ejercicios');
+            const menuDesplegable = ejerciciosLi.querySelector('ul');
+            ejerciciosLi.addEventListener('click', function () {
+                if (menuDesplegable.style.display === 'none' || menuDesplegable.style.display === '') {
+                    menuDesplegable.style.display = 'block';
+                } else {
+                    menuDesplegable.style.display = 'none';
+                }
+            });
+        </script>
+    </header>
+    <main>
+        <div class="container-videos">
+            <h2>Píldoras Informáticas</h2>
+            <div class="flex">
+                <iframe width="433" height="252"
+                    src="https://www.youtube.com/embed/m2nscBtQEIs?list=PLU8oAlHdN5BmpobVmj1IlneKlVLJ84TID"
+                    title="Curso JavaScript desde 0. Presentación. Vídeo 1" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <p>Si eres un entusiasta de la informática y la tecnología, no puedes perderte el canal de YouTube de
+                    Píldoras Informáticas.</p>
+
+                <p>Este canal es una verdadera joya para todos los amantes de la tecnología. Ofrece una amplia gama de
+                    contenido educativo y entretenido relacionado con la informática, desde tutoriales prácticos hasta
+                    análisis de las últimas tendencias tecnológicas.</p>
+
+                <p>Con Píldoras Informáticas, puedes:</p>
+
+                <ul>
+                    <li>Aprender trucos y consejos útiles para optimizar tu experiencia con la tecnología.</li>
+                    <li>Explorar análisis detallados de productos y dispositivos electrónicos.</li>
+                    <li>Seguir tutoriales paso a paso sobre programación, software y hardware.</li>
+                    <li>Mantente al día con las noticias y novedades más emocionantes en el mundo de la informática.
+                    </li>
+                </ul>
+
+                <p>No importa si eres un principiante curioso o un experto en tecnología, Píldoras Informáticas tiene
+                    algo que ofrecer para todos. Además, su presentador es conocido por su estilo claro y amigable, lo
+                    que hace que aprender sea fácil y divertido.</p>
+
+                <p>¡No esperes más! Suscríbete a su canal de YouTube y únete a la comunidad de Píldoras Informáticas
+                    para mejorar tus habilidades tecnológicas y mantenerte al tanto de las últimas novedades.</p>
+
+                <p>Enlace al canal de YouTube de Píldoras Informáticas: <a
+                        href="https://www.youtube.com/watch?v=m2nscBtQEIs&list=PLU8oAlHdN5BmpobVmj1IlneKlVLJ84TID">Píldoras Informáticas en YouTube</a></p>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

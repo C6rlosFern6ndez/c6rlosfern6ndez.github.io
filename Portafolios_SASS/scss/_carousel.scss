@@ -1,0 +1,17 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.carousel-container {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: fit-content;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    
+    @media (max-width: 768px) {
+        width: 90%;
+        padding: 1rem;
+    }
+}
