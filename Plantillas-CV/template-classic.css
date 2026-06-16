@@ -1,0 +1,167 @@
+/* HOJA DE ESTILOS: "CLASSIC-EXEC-A4" (Estructura tradicional limpia) */
+
+:root {
+    --cv-primary: #0f172a;       /* Negro pizarra para un tono muy corporativo */
+    --cv-secondary: #334155;     /* Gris oscuro */
+    --cv-text: #1e293b;          /* Cuerpo de texto elegante */
+    --cv-border: #94a3b8;        /* Líneas divisorias finas */
+}
+
+/* Contenedor base A4 */
+.a4-sheet {
+    background-color: white;
+    color: var(--cv-text);
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Times New Roman', Times, Georgia, serif; /* Tipografía clásica de alta legibilidad */
+    box-sizing: border-box;
+}
+
+/* Encabezado clásico centrado sin foto (estilo académico/ejecutivo riguroso) */
+.cv-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid var(--cv-primary);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+/* Ocultamos el contenedor de la foto en la plantilla clásica corporativa */
+.cv-photo-frame {
+    display: none !important;
+}
+
+.cv-title-area h1 {
+    font-size: 28px;
+    color: var(--cv-primary);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.cv-subtitle {
+    font-size: 14px;
+    color: var(--cv-secondary);
+    font-weight: normal;
+    font-style: italic;
+    text-transform: uppercase;
+    margin: 5px 0 0 0;
+    letter-spacing: 1px;
+}
+
+/* Transformación estructural: De 2 columnas a Flujo Lineal Unificado */
+.cv-columns {
+    display: flex;
+    flex-direction: column; /* Cambia a una sola columna de ancho completo */
+    gap: 0px;
+}
+
+.cv-left-column, .cv-right-column {
+    width: 100% !important;
+    border-right: none !important;
+    padding-right: 0 !important;
+}
+
+/* Distribución inline compacta para los datos de contacto en formato lineal */
+.contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    list-style: none;
+    font-size: 11px;
+    padding: 0;
+    margin: -10px 0 20px 0;
+    border-bottom: 1px dashed var(--cv-border);
+    padding-bottom: 10px;
+}
+
+/* Títulos de sección sobrios y tradicionales */
+.section-title {
+    font-size: 14px;
+    color: var(--cv-primary);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--cv-primary);
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Bloques modulares internos */
+.cv-block {
+    margin-bottom: 12px;
+}
+
+.cv-block h4 {
+    font-size: 12.5px;
+    margin-top: 5px;
+    margin-bottom: 2px;
+    color: var(--cv-primary);
+    font-weight: bold;
+}
+
+/* Texto justificado con sangrado limpio */
+.justify-text {
+    text-align: justify;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Nodos estructurados de experiencia y formación */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    font-weight: bold;
+}
+
+.date-badge {
+    font-size: 12px;
+    color: var(--cv-primary);
+    font-weight: bold;
+}
+
+.company-name, .school-name {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--cv-secondary);
+    margin-bottom: 4px;
+}
+
+.bullets-list {
+    padding-left: 20px;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 3px;
+}
+
+/*CONTROL ULTRA-PRECISO DE IMPRESIÓN (SIN MARGENES NATIVOS)*/
+
+@page {
+    margin: 0; 
+}
+
+@media print {
+    body {
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact;         
+    }
+
+    .a4-sheet {
+        box-shadow: none !important; 
+        width: 210mm !important;    
+        height: 297mm !important;   
+        margin: 0 !important;       
+        padding: 18mm !important;   
+        background-color: white !important;
+        page-break-inside: avoid;   
+    }
+}

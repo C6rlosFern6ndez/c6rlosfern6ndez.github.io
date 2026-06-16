@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Profesional de CV Dinámico Online</title>
+    <link rel="stylesheet" href="form-style.css">
+    <link rel="stylesheet" id="cv-template-link" href="template-modern.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <aside class="form-panel no-print">
+            <div class="form-header">
+                <h2>Editor de Currículum</h2>
+                <p>Añada, edite o elimine secciones. Los cambios se reflejan en tiempo real.</p>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="form-template-select" style="display:block; font-size:12px; color:var(--form-text-muted); margin-bottom:5px; font-weight:600;">Estilo de Plantilla</label>
+                    <select id="form-template-select" style="width:100%; background:var(--form-bg-main); color:var(--form-text); border:1px solid var(--form-border); padding:8px; border-radius:6px; font-size:13.5px;">
+                        <option value="template-modern.css">Diseño Moderno (2 Columnas)</option>
+                        <option value="template-classic.css">Diseño Clásico (Ejecutivo / Lineal)</option>
+                    </select>
+                </div>
+
+                <button type="button" id="btn-download" class="btn-submit">Descargar PDF Profesional</button>
+            </div>
+            
+            <form id="cv-form" class="scrollable-form">
+                
+                <fieldset class="form-group">
+                    <legend>Información Personal</legend>
+                    <div class="grid-2-col">
+                        <div>
+                            <label for="form-name">Nombre Completo</label>
+                            <input type="text" id="form-name" value="Carlos Fernández González">
+                        </div>
+                        <div>
+                            <label for="form-role">Título Profesional</label>
+                            <input type="text" id="form-role" value="Desarrollador Web Full Stack">
+                        </div>
+                    </div>
+                    <div class="grid-2-col">
+                        <div>
+                            <label for="form-photo">URL de Foto de Perfil</label>
+                            <input type="text" id="form-photo" value="https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png">
+                        </div>
+                        <div>
+                            <label for="form-phone">Teléfono</label>
+                            <input type="text" id="form-phone" value="635 30 78 94">
+                        </div>
+                    </div>
+                    <div class="grid-2-col">
+                        <div>
+                            <label for="form-email">Correo Electrónico</label>
+                            <input type="email" id="form-email" value="c6rlosfern6ndez@gmail.com">
+                        </div>
+                        <div>
+                            <label for="form-portfolio">Portafolio Web</label>
+                            <input type="text" id="form-portfolio" value="https://portafolios-blond.vercel.app/">
+                        </div>
+                    </div>
+                    <div class="grid-2-col">
+                        <div>
+                            <label for="form-github">GitHub (URL)</label>
+                            <input type="text" id="form-github" value="https://github.com/C6rlosFern6ndez">
+                        </div>
+                        <div>
+                            <label for="form-linkedin">LinkedIn (URL)</label>
+                            <input type="text" id="form-linkedin" value="linkedin.com/in/carlos-fernandez">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend>Presentación / Perfil Profesional</legend>
+                    <label for="form-summary">Resumen Ejecutivo</label>
+                    <textarea id="form-summary" rows="4">Desarrollador Web Full Stack con experiencia real en el ciclo completo de desarrollo, tanto en entornos Frontend (Angular, Vue) como Backend (Node.js, Java/Spring Boot). Capacitado para trabajar bajo metodologías ágiles (SCRUM).</textarea>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend>Habilidades y Categorías</legend>
+                    <div id="skills-form-container"></div>
+                    <button type="button" id="btn-add-skill" class="btn-add">+ Añadir Categoría de Habilidad</button>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend>Experiencia Laboral</legend>
+                    <div id="experience-form-container"></div>
+                    <button type="button" id="btn-add-experience" class="btn-add">+ Añadir Experiencia</button>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend>Formación Académica</legend>
+                    <div id="education-form-container"></div>
+                    <button type="button" id="btn-add-education" class="btn-add">+ Añadir Formación</button>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend>Proyectos Destacados</legend>
+                    <div id="projects-form-container"></div>
+                    <button type="button" id="btn-add-project" class="btn-add">+ Añadir Proyecto</button>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <legend>Datos de Interés</legend>
+                    <label for="form-interests">Información adicional / Disponibilidad</label>
+                    <input type="text" id="form-interests" value="Disponibilidad inmediata para incorporación. Pasión por el código limpio.">
+                </fieldset>
+
+            </form>
+        </aside>
+
+        <main class="preview-panel">
+            <div id="cv-document" class="a4-sheet">
+                
+                <header class="cv-header">
+                    <div class="cv-photo-frame">
+                        <img id="cv-photo" src="" alt="Foto de Perfil">
+                    </div>
+                    <div class="cv-title-area">
+                        <h1 id="cv-name"></h1>
+                        <p id="cv-role" class="cv-subtitle"></p>
+                    </div>
+                </header>
+
+                <div class="cv-columns">
+                    <aside class="cv-left-column">
+                        <section class="cv-block contact-block">
+                            <h3 class="section-title">Contacto</h3>
+                            <ul class="contact-list">
+                                <li id="cv-phone"></li>
+                                <li id="cv-email"></li>
+                                <li id="cv-portfolio"></li>
+                                <li id="cv-github"></li>
+                                <li id="cv-linkedin"></li>
+                            </ul>
+                        </section>
+
+                        <section class="cv-block skills-block">
+                            <h3 class="section-title">Habilidades</h3>
+                            <div id="cv-skills-container"></div>
+                        </section>
+                    </aside>
+
+                    <section class="cv-right-column">
+                        <section class="cv-block profile-block">
+                            <h3 class="section-title">Perfil Profesional</h3>
+                            <p id="cv-summary" class="justify-text"></p>
+                        </section>
+
+                        <section class="cv-block experience-block">
+                            <h3 class="section-title">Experiencia Laboral</h3>
+                            <div id="cv-experience-container"></div>
+                        </section>
+
+                        <section class="cv-block education-block">
+                            <h3 class="section-title">Formación Académica</h3>
+                            <div id="cv-education-container"></div>
+                        </section>
+
+                        <section class="cv-block projects-block">
+                            <h3 class="section-title">Proyectos Destacados</h3>
+                            <div id="cv-projects-container"></div>
+                        </section>
+
+                        <section class="cv-block interests-block">
+                            <h3 class="section-title">Datos de Interés</h3>
+                            <p id="cv-interests"></p>
+                        </section>
+                    </section>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

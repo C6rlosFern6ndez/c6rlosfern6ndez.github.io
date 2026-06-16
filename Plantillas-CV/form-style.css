@@ -1,0 +1,197 @@
+
+:root {
+    --form-bg-main: #0f172a;
+    --form-bg-card: #1e293b;
+    --form-border: #334155;
+    --form-text: #f8fafc;
+    --form-text-muted: #94a3b8;
+    --form-accent: #38bdf8;
+    --form-accent-hover: #0ea5e9;
+    --form-danger: #f43f5e;
+    --form-danger-hover: #e11d48;
+    --form-success: #10b981;
+    --form-success-hover: #059669;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #475569;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.form-panel {
+    width: 45%;
+    background-color: var(--form-bg-main);
+    color: var(--form-text);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.form-header {
+    padding: 20px;
+    background-color: var(--form-bg-card);
+    border-bottom: 1px solid var(--form-border);
+}
+
+.form-header h2 {
+    font-size: 21px;
+    color: var(--form-accent);
+    margin-bottom: 4px;
+}
+
+.form-header p {
+    font-size: 13px;
+    color: var(--form-text-muted);
+    margin-bottom: 12px;
+}
+
+.scrollable-form {
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.form-group {
+    background-color: var(--form-bg-card);
+    border: 1px solid var(--form-border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+.form-group legend {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--form-accent);
+    text-transform: uppercase;
+    padding: 0 8px;
+    letter-spacing: 0.5px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--form-text-muted);
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    background-color: var(--form-bg-main);
+    border: 1px solid var(--form-border);
+    border-radius: 6px;
+    padding: 9px 12px;
+    color: var(--form-text);
+    font-size: 13.5px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--form-accent);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* --- CONTROLES Y BOTONES DINÁMICOS --- */
+
+.dynamic-block {
+    border-left: 3px solid var(--form-accent);
+    padding-left: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--form-border);
+}
+
+.btn-submit {
+    background-color: var(--form-accent);
+    color: #0f172a;
+    font-weight: 700;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14.5px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover { background-color: var(--form-accent-hover); }
+
+.btn-add {
+    background-color: var(--form-success);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 8px;
+    transition: background 0.2s ease;
+}
+
+.btn-add:hover { background-color: var(--form-success-hover); }
+
+.btn-delete {
+    background-color: var(--form-danger);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    margin-top: 8px;
+    transition: background 0.2s ease;
+}
+
+.btn-delete:hover { background-color: var(--form-danger-hover); }
+
+/* Ventana de Visualización */
+.preview-panel {
+    width: 55%;
+    overflow-y: auto;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+@media print {
+    .no-print, .form-panel { display: none !important; }
+    body, .app-container, .preview-panel {
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        display: block !important;
+        width: auto !important;
+        height: auto !important;
+    }
+}

@@ -1,0 +1,177 @@
+/* HOJA DE ESTILOS DE LA PLANTILLA: "MODERN-A4"
+   Modificar únicamente este archivo para generar un nuevo diseño visual de CV. */
+
+:root {
+    --cv-primary: #1e3a8a;       /* Azul corporativo */
+    --cv-secondary: #0f172a;     /* Gris oscuro para títulos */
+    --cv-text: #334155;          /* Gris intermedio para cuerpo de texto */
+    --cv-light-bg: #f8fafc;
+    --cv-border: #cbd5e1;
+}
+
+/* Caja física contenedora del formato estándar A4 */
+.a4-sheet {
+    background-color: white;
+    color: var(--cv-text);
+    width: 210mm;
+    min-height: 297mm;
+    padding: 16mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    box-sizing: border-box; /* Garantiza que el padding no altere las dimensiones límites del A4 */
+}
+
+/* Encabezado del Currículum */
+.cv-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid var(--cv-primary);
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+}
+
+.cv-photo-frame img {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 25px;
+    border: 3px solid var(--cv-primary);
+}
+
+.cv-title-area h1 {
+    font-size: 26px;
+    color: var(--cv-secondary);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.cv-subtitle {
+    font-size: 15px;
+    color: var(--cv-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 4px 0 0 0;
+    letter-spacing: 0.5px;
+}
+
+/* Maquetación del cuerpo en dos columnas */
+.cv-columns {
+    display: flex;
+    gap: 25px;
+    flex-grow: 1;
+}
+
+/* Barra lateral izquierda */
+.cv-left-column {
+    width: 35%;
+    border-right: 1px solid var(--cv-border);
+    padding-right: 15px;
+}
+
+/* Sección principal derecha */
+.cv-right-column {
+    width: 65%;
+}
+
+/* Bloques modulares repetitivos */
+.cv-block {
+    margin-bottom: 22px;
+}
+
+.cv-block h3 {
+    font-size: 13.5px;
+    color: var(--cv-primary);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--cv-primary);
+    padding-bottom: 3px;
+    margin-bottom: 12px;
+    margin-top: 0;
+    letter-spacing: 0.5px;
+}
+
+.cv-block h4 {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    color: var(--cv-secondary);
+}
+
+/* Lista de información de contacto */
+.contact-list {
+    list-style: none;
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 0;
+}
+
+/* Estilos de párrafos y justificaciones */
+.justify-text {
+    text-align: justify;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+/* Estructuración interna de nodos de Experiencia/Estudios */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.date-badge {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.company-name, .school-name {
+    font-size: 12px;
+    font-style: italic;
+    color: #475569;
+    margin-bottom: 4px;
+}
+
+.bullets-list {
+    padding-left: 15px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+/* Modificadores estéticos de proyectos */
+.project-item strong {
+    font-size: 13px;
+    color: var(--cv-secondary);
+}
+
+/* 4. CONTROL ULTRA-PRECISO DE IMPRESIÓN (ELIMINA TRASH DEL NAVEGADOR Y FIJA LÍNEAS) */
+
+@page {
+    margin: 0; /* ELIMINA por completo el título de la pestaña, URL, fecha y número de página nativos */
+}
+
+@media print {
+    body {
+        /* Fuerza a navegadores basados en WebKit (Chrome, Edge, Opera, Safari) a renderizar los bordes y fondos */
+        -webkit-print-color-adjust: exact; 
+        /* Estándar oficial de CSS para mantener la fidelidad de colores/líneas al imprimir */
+        print-color-adjust: exact;         
+    }
+
+    .a4-sheet {
+        box-shadow: none !important; /* Desactiva la sombra de simulación de pantalla */
+        width: 210mm !important;    /* Forzado estricto de ancho A4 real */
+        height: 297mm !important;   /* Forzado estricto de alto A4 real */
+        margin: 0 !important;       /* Remueve desalineaciones marginales */
+        
+        /* Dado que `@page` eliminó los márgenes físicos externos, compensamos reinyectando 
+           el padding aquí para que el texto no toque el borde exacto del folio impreso */
+        padding: 16mm !important;   
+        
+        background-color: white !important;
+        page-break-inside: avoid;   /* Previene cortes arbitrarios de bloques a mitad de página */
+    }
+}
