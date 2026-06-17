@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Portfolio App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-weather="clear" data-temp="mild" data-city="default">
+
+    <div id="weather-container" class="weather-container">
+        <header class="weather-header">
+            <h2>Clima Global</h2>
+            <select id="city-selector">
+                <option value="auto">📍 Mi ubicación actual</option>
+                <optgroup label="Europa">
+                    <option value="London,GB">Londres, Reino Unido</option>
+                    <option value="Madrid,ES">Madrid, España</option>
+                    <option value="Moscow,RU">Moscú, Rusia</option>
+                </optgroup>
+                <optgroup label="América del Norte">
+                    <option value="Washington,US">Washington D.C., USA</option>
+                </optgroup>
+                <optgroup label="América del Sur">
+                    <option value="Brasilia,BR">Brasilia, Brasil</option>
+                </optgroup>
+                <optgroup label="Asia">
+                    <option value="Beijing,CN">Pekín, China</option>
+                    <option value="New Delhi,IN">Nueva Delhi, India</option>
+                    <option value="Tokyo,JP">Tokio, Japón</option>
+                </optgroup>
+                <optgroup label="África">
+                    <option value="Cairo,EG">El Cairo, Egipto</option>
+                </optgroup>
+                <optgroup label="Oceanía">
+                    <option value="Canberra,AU">Canberra, Australia</option>
+                </optgroup>
+            </select>
+        </header>
+
+        <main class="weather-body">
+            <h1 id="location-name">Detectando...</h1>
+            <div id="clock-display" class="clock-display">--:--:--</div>
+            
+            <div class="temp-display">
+                <span id="temperature">--</span><span class="unit">°C</span>
+            </div>
+            <p id="weather-description">Cargando información del clima...</p>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
