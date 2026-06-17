@@ -200,6 +200,60 @@
               ]
             }
           ]
+        },
+        {
+          "id": "cap-funciones",
+          "titulo": "4. Reutilización de Código con Funciones",
+          "temas": [
+            {
+              "id": "tema_funciones_basicas",
+              "titulo": "Funciones básicas: declaración, parámetros y retorno",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Hasta ahora, cuando queríamos ejecutar un bloque de código, este se ejecutaba inmediatamente en cuanto la computadora llegaba a esa línea. Sin embargo, en aplicaciones reales necesitamos agrupar un conjunto de instrucciones bajo un nombre específico para poder ejecutarlas solo cuando sea necesario, y tantas veces como queramos, sin tener que volver a escribirlas todas. A estos bloques reutilizables los llamamos Funciones."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para entender cómo opera una función, imagine una licuadora de jugos automatizada. La máquina por sí sola no hace nada hasta que usted la enciende o la 'invoca'. Esta máquina consta de tres partes fundamentales:\n1. La Declaración: Es el diseño o la construcción de la máquina. Le decimos a la computadora cómo se va a llamar nuestra función y qué pasos va a seguir cuando alguien la use.\n2. Los Parámetros (Entradas): Son los ingredientes que introducimos en la máquina (por ejemplo, naranjas y hielo). Los parámetros son variables locales que la función utilizará para operar, permitiendo que la misma máquina procese ingredientes diferentes cada vez.\n3. El Retorno (Salida): Es el producto final que la máquina expulsa una vez termina su trabajo (el vaso de jugo de naranja). En programación, usamos la palabra clave 'return' para enviar este resultado de vuelta al flujo principal del programa."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ La regla estricta del 'return': Cuando una función ejecuta la instrucción 'return', detiene su ejecución inmediatamente y 'sale' de la habitación. Cualquier línea de código escrita dentro de la función que esté debajo de un 'return' será completamente ignorada por el sistema. Si una función no tiene la palabra 'return', realizará sus tareas internamente pero le devolverá al programa un valor de tipo 'undefined'."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Una vez que la función ha sido construida (declarada), podemos 'invocarla' o llamarla en cualquier parte del código escribiendo simplemente su nombre seguido de paréntesis (). Dentro de esos paréntesis le pasaremos los valores reales que sustituirán a los parámetros iniciales, a los cuales llamamos técnicamente 'argumentos'."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. DECLARACIÓN DE LA FUNCIÓN (Se construye la máquina)\n// =========================================================\n// Esta función recibe dos parámetros de entrada: 'nombre' y 'apellido'\nfunction crearSaludoFormal(nombre, apellido) {\n    console.log(\"Depuración - Entrando a la función con:\", nombre, apellido);\n    \n    // Procesamos los datos internamente creando un mensaje personalizado\n    const saludoCompleto = \"Estimado/a \" + nombre + \" \" + apellido + \", es un placer saludarle.\";\n    \n    // Devolvemos el resultado final al exterior\n    return saludoCompleto;\n}\n\n// =========================================================\n// 2. INVOCACIÓN O LLAMADA A LA FUNCIÓN (Se usa la máquina)\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando llamadas a funciones...\");\n\n// Llamada 1: Guardamos el retorno de la función en una nueva variable\nconst saludoCliente1 = crearSaludoFormal(\"Carlos\", \"Mendoza\");\nconsole.log(\"Resultado 1:\", saludoCliente1);\n\n// Llamada 2: Podemos reutilizar la misma función cambiando los argumentos\nconst saludoCliente2 = crearSaludoFormal(\"Elena\", \"Gómez\");\nconsole.log(\"Resultado 2:\", saludoCliente2);\n\n// =========================================================\n// 3. FUNCIÓN SIN RETORNO (Solo realiza una acción interna)\n// =========================================================\nfunction mostrarAlertaConsola(mensaje) {\n    console.log(\"⚠️ ALERTA DEL SISTEMA: \" + mensaje);\n    // Al no tener 'return', si intentamos guardar el resultado de esta función,\n    // obtendremos un tipo de dato 'undefined'.\n}\n\n// Invocamos la función de alerta\nmostrarAlertaConsola(\"La sesión del usuario está a punto de expirar.\");"
+                }
+              ]
+            },
+            {
+              "id": "tema_template_literals",
+              "titulo": "Template Literals (Plantillas de cadena modernas)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Cuando trabajamos con textos (Strings), es muy común necesitar mezclar palabras fijas con valores que están guardados dentro de nuestras variables. En el JavaScript antiguo, esto se hacía uniendo los fragmentos con el símbolo de la suma (+), un proceso llamado concatenación. Sin embargo, este método suele ser confuso, ya que es fácil olvidar un espacio en blanco o equivocarse al abrir y cerrar las comillas."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para solucionar esto, el JavaScript moderno introdujo los Template Literals (Plantillas de texto). En lugar de usar comillas simples o dobles, todo el texto se envuelve dentro de comillas invertidas (`` ` ``). La gran ventaja es que podemos escribir un mensaje de forma totalmente natural, con sus espacios y saltos de línea reales, e inyectar cualquier variable directamente en el texto usando el símbolo del dólar seguido de llaves: ${variable}. La computadora identificará este símbolo y lo sustituirá automáticamente por el valor real."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⌨️ Consejo de teclado: La comilla invertida (`) no es un acento normal. En teclados españoles estándar, se genera presionando la tecla que está a la derecha de la letra 'P' (o la tecla del acento) seguida de un espacio, o mediante la combinación Alt Gr + la tecla del acento."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// Variable con datos de prueba\nconst nombreProducto = \"Teclado Mecánico\";\nconst precio = 49.99;\n\n// 1. FORMA ANTIGUA (Concatenación tradicional con +)\nconst mensajeAntiguo = \"El artículo \" + nombreProducto + \" tiene un costo de $\" + precio + \" euros.\";\nconsole.log(\"Depuración (Antiguo):\", mensajeAntiguo);\n\n// 2. FORMA MODERNA (Template Literals con comillas invertidas)\n// Observe cómo el código es mucho más limpio, legible y natural de escribir\nconst mensajeModerno = `El artículo ${nombreProducto} tiene un costo de $${precio} euros.`;\nconsole.log(\"Depuración (Moderno):\", mensajeModerno);\n\n// Los Template Literals también respetan los saltos de línea sin usar '\\n'\nconst facturaMultiLinea = `\n--- DETALLE DE FACTURA ---\nProducto: ${nombreProducto}\nTotal: $${precio}\n--------------------------`;\nconsole.log(facturaMultiLinea);"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -207,30 +261,131 @@
       "nombre": "Conocimientos Medios",
       "capitulos": [
         {
-          "id": "cap-asincronia",
-          "titulo": "4. Asincronía y Closures",
+          "id": "cap-Arrays",
+          "titulo": "5: Estructuras de Datos Avanzadas: Arrays y Métodos de Iteración",
           "temas": [
             {
-              "id": "tema-promesas",
-              "titulo": "Promesas y Async/Await",
-              "resumen": "Gestión de operaciones asíncronas de una forma más limpia.",
+              "id": "tema_arrays_esenciales",
+              "titulo": "Creación y manipulación de Arrays y sus métodos esenciales (map, filter, reduce)",
               "contenido": [
                 {
                   "tipo": "parrafo",
-                  "texto": "Las promesas representan el resultado eventual de una operación asíncrona."
+                  "texto": "Hasta ahora, cada variable o 'caja' que creábamos solo podía guardar un único dato a la vez (un texto, un número o un booleano). Sin embargo, en los programas reales manejamos colecciones de elementos: listas de la compra, usuarios conectados o los temas de esta misma aplicación. Para resolver esto existen los Arrays (o arreglos), que son super-cajas capaces de almacenar múltiples datos ordenados en su interior, separados por comas y envueltos entre corchetes [ ]."
                 },
                 {
-                  "tipo": "codigo",
-                  "codigo": "async function obtenerDatos() {\n  const res = await fetch('https://api.example.com');\n  return res.json();\n}",
-                  "lenguaje": "javascript"
+                  "tipo": "parrafo",
+                  "texto": "Cada posición dentro de un array está numerada automáticamente empezando desde el número 0 (este número se conoce como 'índice'). Para saber cuántos elementos hay dentro de un array usamos la propiedad '.length', y si queremos añadir un elemento nuevo al final de la lista de forma simple, usamos el método '.push()'."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Más allá de añadir o quitar elementos, el JavaScript moderno destaca por tres métodos superpoderosos que permiten transformar y procesar colecciones de datos sin necesidad de usar bucles 'for' manuales:\n• .map(): Toma el array original, pasa cada uno de sus elementos por una función transformadora y devuelve un NUEVO array con los resultados modificados (tiene el mismo número de elementos, pero transformados).\n• .filter(): Evalúa cada elemento bajo una condición booleana y devuelve un NUEVO array que contiene únicamente los elementos que cumplieron dicha condición (el array resultante suele ser más pequeño).\n• .reduce(): Recorre todos los elementos y los va combinando o acumulando uno a uno hasta reducirlos a un único resultado final (como sumar todos los números de una lista para obtener un total)."
                 },
                 {
                   "tipo": "nota",
-                  "texto": "Siempre usa bloques try/catch al manejar async/await para capturar posibles errores de red."
+                  "texto": "💡 La regla de la Inmutabilidad: Una de las mayores ventajas de 'map', 'filter' y 'reduce' es que NUNCA modifican ni destruyen el array original. En su lugar, siempre crean y devuelven un array completamente nuevo. Esto es una buena práctica crucial en el desarrollo moderno de software porque evita que rompamos datos por accidente en otras partes de la aplicación."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. CREACIÓN Y MANIPULACIÓN BÁSICA\n// =========================================================\nconst frutas = [\"Manzana\", \"Plátano\", \"Kiwi\"];\nconsole.log(\"Depuración - Lista inicial:\", frutas);\nconsole.log(\"Depuración - Cantidad de elementos:\", frutas.length);\n\nfrutas.push(\"Naranja\"); // Añade al final\nconsole.log(\"Depuración - Lista tras el push:\", frutas);\n\n// =========================================================\n// 2. MÉTODOS ESENCIALES (El poder de la iteración moderna)\n// =========================================================\nconst preciosEuros = [10, 20, 35, 50, 80];\nconsole.log(\"\\nDepuración - Precios base (Original):\", preciosEuros);\n\n// Ej 1: .map() -> Convertir los precios a dólares (multiplicando por 1.10)\nconst preciosDolares = preciosEuros.map(precio => precio * 1.10);\nconsole.log(\"Resultado .map() - Precios en Dólares:\", preciosDolares);\n\n// Ej 2: .filter() -> Seleccionar solo los precios que sean mayores de 30 euros\nconst preciosAltos = preciosEuros.filter(precio => precio > 30);\nconsole.log(\"Resultado .filter() - Precios caros:\", preciosAltos);\n\n// Ej 3: .reduce() -> Sumar todos los precios de la lista para obtener el total\n// El '0' al final es el valor inicial en el que empieza el acumulador\nconst sumaTotal = preciosEuros.reduce((acumulador, precioActual) => {\n    console.log(`-> Procesando reduce: Acumulado=${acumulador}, ElementoActual=${precioActual}`);\n    return acumulador + precioActual;\n}, 0);\n\nconsole.log(\"Resultado .reduce() - Suma total de la factura:\", sumaTotal);\nconsole.log(\"Comprobación final: El array original sigue intacto:\", preciosEuros);"
                 }
               ]
             }
           ]
+        },
+        {
+          "id": "cap-objetos",
+          "titulo": "6. Estructuras de Datos: Objetos Literales",
+          "temas": [
+            {
+              "id": "tema_objetos_literales",
+              "titulo": "Objetos literales: propiedades, métodos y acceso",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En el tema anterior aprendimos que los Arrays son excelentes para guardar listas de datos ordenados. Sin embargo, cuando queremos describir un elemento del mundo real con múltiples características individuales, una lista numérica se queda corta. Para resolver esto, JavaScript utiliza los Objetos Literales. Un objeto es una estructura de datos que nos permite agrupar información relacionada utilizando pares de 'clave: valor', todo envuelto entre llaves { }."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Imagine un Smartphone del mundo real. No es solo un dato suelto; tiene características como su marca, modelo y color. En programación, a estas características las llamamos Propiedades. Además, ese teléfono puede realizar acciones, como tomar una foto o reproducir música. En programación, cuando una función se guarda dentro de una propiedad de un objeto para definir una acción que este puede realizar, la llamamos Método."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para consultar o modificar la información guardada dentro de un objeto, el estándar de la industria es utilizar la 'Notación de punto' (escribiendo el nombre del objeto, un punto y la clave a la que queremos acceder, por ejemplo: celular.marca). También existe la 'Notación de corchetes' (celular['marca']), la cual es muy útil cuando el nombre de la clave está guardado dentro de otra variable dinámica."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Una pequeña introducción a 'this': Cuando estás dentro del método de un objeto y necesitas usar una propiedad de ese mismo objeto (por ejemplo, para que el teléfono diga su propio modelo al encenderse), se utiliza la palabra clave 'this'. En este contexto, 'this' significa literalmente 'este objeto', permitiendo acceder a sus propias propiedades internas."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. CREACIÓN DE UN OBJECTO LITERAL\n// =========================================================\nconst smartphone = {\n    // Propiedades (Características del objeto)\n    marca: \"Apple\",\n    modelo: \"iPhone 15\",\n    color: \"Negro Titanio\",\n    bateriaPorcentaje: 85,\n    estaEncendido: true,\n\n    // Métodos (Acciones que el objeto sabe realizar)\n    tomarFoto: function() {\n        console.log(\"📸 ¡Clic! Foto guardada en la galería.\");\n    },\n\n    mostrarEstado: function() {\n        // Usamos 'this' para leer las propiedades de este mismo objeto\n        console.log(`Dispositivo: ${this.marca} ${this.modelo} | Batería: ${this.bateriaPorcentaje}%`);\n    }\n};\n\n// =========================================================\n// 2. ACCESO Y MODIFICACIÓN (Lectura y Escritura)\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando pruebas con objetos...\");\n\n// Lectura usando la notación de punto\nconsole.log(\"Marca del teléfono:\", smartphone.marca);\n\n// Modificación de una propiedad existente\nsmartphone.bateriaPorcentaje = 84;\nconsole.log(\"Depuración - Batería actualizada:\", smartphone.bateriaPorcentaje);\n\n// Añadir una propiedad completamente nueva sobre la marcha\nsmartphone.tiene5G = true;\nconsole.log(\"Depuración - Objeto modificado:\", smartphone);\n\n// =========================================================\n// 3. EJECUCIÓN DE MÉTODOS (Invocación de acciones)\n// =========================================================\nconsole.log(\"\\nDepuración - Ejecutando métodos del objeto:\");\nsmartphone.tomarFoto();\nsmartphone.mostrarEstado();"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-sintaxis-moderna",
+          "titulo": "7. Sintaxis Moderna y Atajos de Código",
+          "temas": [
+            {
+              "id": "tema_js_moderno_sintaxis",
+              "titulo": "Características de JavaScript moderno: Destructuring, Spread y Rest (...)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "A medida que JavaScript evolucionó, los desarrolladores se dieron cuenta de que pasaban demasiado tiempo escribiendo líneas de código repetitivas solo para extraer datos de un objeto o para combinar listas. Para solucionar esto, el estándar moderno incorporó una serie de atajos sintácticos que permiten realizar operaciones complejas con colecciones de datos en una sola línea. Las tres herramientas más utilizadas en el día a día son el Destructuring, el Spread y el Rest."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "1. Destructuring (Desestructuración): Imagine que recibe una caja con un kit de bienvenida de una empresa que contiene una taza y una camiseta. En lugar de sacarlos uno a uno creando instrucciones individuales ('crear variable taza', 'crear variable camiseta'), la desestructuración le permite abrir la caja y asignar sus elementos directamente a variables independientes en un solo paso. Se puede aplicar tanto a Objetos (buscando las llaves por su nombre) como a Arrays (asignando variables según la posición en el índice)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "2. Spread Operator (Operador de propagación): Se representa con tres puntos suspensivos (...). Su función es 'esparcir' o desempaquetar todos los elementos de un array u objeto fuera de su contenedor actual. Piense en ello como sacar todos los papeles de una carpeta y meterlos sueltos en una carpeta nueva. Es la herramienta por excelencia para clonar datos (hacer copias exactas sin romper el original) o para fusionar múltiples arrays u objetos en uno solo."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 El doble rol de los tres puntos (...): El símbolo '...' se llama 'Spread' cuando se usa para esparcir o clonar datos existentes. Sin embargo, se llama 'Rest' (Resto) cuando se usa en la posición inversa: para empaquetar, recoger o agrupar todos los elementos que hayan sobrado en una bolsa común. Es como el 'etcétera' del código."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "3. Rest Parameter (Parámetro de descanso): Utiliza exactamente los mismos tres puntos (...), pero actúa al revés que el Spread. Si estamos desestructurando una lista o configurando los parámetros de una función, 'Rest' recoge de forma automatizada todos los argumentos sobrantes que no hayamos capturado explícitamente y los guarda ordenados dentro de un nuevo array independiente."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. DESTRUCTURING (Desestructuración)\n// =========================================================\nconsole.log(\"Depuración - Iniciando pruebas de Destructuring...\");\n\nconst usuario = { nombre: \"Lucas\", rol: \"Admin\", pais: \"España\" };\n// Extraemos las propiedades directamente en variables independientes\nconst { nombre, rol } = usuario;\nconsole.log(`Variables extraídas -> Nombre: ${nombre}, Rol: ${rol}`);\n\nconst colores = [\"Rojo\", \"Verde\", \"Azul\"];\n// En arrays se extrae por orden de posición de índice\nconst [primerColor, segundoColor] = colores;\nconsole.log(`Colores extraídos -> Primero: ${primerColor}, Segundo: ${segundoColor}`);\n\n// =========================================================\n// 2. SPREAD OPERATOR (Esparcir / Clonar)\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando pruebas de Spread (...)\");\n\nconst listaPrecios1 = [10, 20];\nconst listaPrecios2 = [30, 40];\n\n// Fusionamos ambos arrays y añadimos un elemento extra sobre la marcha\nconst todosLosPrecios = [...listaPrecios1, ...listaPrecios2, 50];\nconsole.log(\"Array combinado con Spread:\", todosLosPrecios);\n\n// Clonación segura de un objeto (Evita modificar el original por referencia)\nconst copiaUsuario = { ...usuario, conectado: true };\nconsole.log(\"Objeto clonado y expandido:\", copiaUsuario);\n\n// =========================================================\n// 3. REST PARAMETER (Agrupar sobrantes)\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando pruebas de Rest (...)\");\n\nconst notasExamenes = [9, 8, 4, 7, 6];\n// Capturamos las dos primeras notas y agrupamos el 'resto' en un array\nconst [matricula, sobresaliente, ...otrasNotas] = notasExamenes;\n\nconsole.log(`Mejor nota: ${matricula}`);\nconsole.log(`Segunda mejor: ${sobresaliente}`);\nconsole.log(\"Array de notas restantes (capturadas por Rest):\", otrasNotas);"
+                }
+              ]
+            },
+            {
+              "id": "tema_arrow_functions",
+              "titulo": "Funciones de flecha (Arrow Functions) y su comportamiento",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En el bloque básico aprendimos a crear funciones utilizando la palabra clave tradicional 'function'. Con la llegada del JavaScript moderno, se introdujo una nueva forma de escribirlas mucho más compacta, limpia y estilizada: las Funciones de Flecha (Arrow Functions). Se llaman así porque sustituyen la palabra 'function' por una flecha combinando un signo de igual y un mayor que (=>)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Además de hacer que el código se vea más estético, las funciones de flecha tienen un superpoder llamado 'Retorno Implícito'. Si la función es muy corta y solo realiza una única tarea en una sola línea, podemos eliminar por completo las llaves { } y la palabra clave 'return'. La computadora asumirá automáticamente que el resultado de esa línea es lo que debe devolver."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ El comportamiento crítico de 'this': Las funciones de flecha no son solo un cambio visual; tienen un comportamiento técnico diferente respecto a la palabra clave 'this'. Mientras que una función tradicional crea su propio 'this' según dónde se invoque, la función de flecha NO tiene su propio 'this', sino que lo hereda del lugar donde fue creada. Por esta razón, NUNCA se deben usar funciones de flecha para crear métodos dentro de objetos literales si planeas usar 'this'."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. COMPARATIVA: TRADICIONAL VS FLECHA\n// =========================================================\n\n// Función tradicional\nfunction duplicarTradicional(numero) {\n    return numero * 2;\n}\nconsole.log(\"Depuración (Tradicional):\", duplicarTradicional(5));\n\n// Función de flecha equivalente con RETORNO IMPLÍCITO\n// Al ser una sola línea, no necesita llaves { } ni la palabra 'return'\nconst duplicarFlecha = numero => numero * 2;\nconsole.log(\"Depuración (Flecha moderna):\", duplicarFlecha(5));\n\n// =========================================================\n// 2. COMPORTAMIENTO CON MÚLTIPLES LÍNEAS\n// =========================================================\n// Si la función de flecha requiere más de una línea de lógica,\n// las llaves { } y el 'return' vuelven a ser obligatorios.\nconst calcularPrecioConIva = (precioBase, impuesto) => {\n    console.log(\"Depuración - Calculando impuestos para:\", precioBase);\n    const total = precioBase + (precioBase * impuesto);\n    return total;\n};\nconsole.log(\"Precio final:\", calcularPrecioConIva(100, 0.21));\n\n// =========================================================\n// 3. EL PELIGRO DE 'THIS' EN ARROW FUNCTIONS\n// =========================================================\nconst heroe = {\n    nombreReal: \"Bruce Wayne\",\n    // Método tradicional: funciona correctamente con 'this'\n    obtenerNombreTradicional: function() {\n        return `El héroe es ${this.nombreReal}`;\n    },\n    // Método flecha: Rompe el 'this' porque intenta buscarlo fuera del objeto\n    obtenerNombreFlecha: () => {\n        return `El héroe es ${this.nombreReal}`;\n    }\n};\n\nconsole.log(\"\\nDepuración - Probando contextos de 'this':\");\nconsole.log(\"Resultado Tradicional:\", heroe.obtenerNombreTradicional()); \nconsole.log(\"Resultado Flecha (Dará undefined):\", heroe.obtenerNombreFlecha());"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-asincronia",
+          "titulo": "8. Asincronía y Closures",
+          "temas": []
         }
       ]
     },
@@ -239,7 +394,7 @@
       "capitulos": [
         {
           "id": "cap-arquitectura",
-          "titulo": "5. Rendimiento y Motor V8",
+          "titulo": "8. Rendimiento y Motor V8",
           "temas": [
             {
               "id": "tema-eventloop",

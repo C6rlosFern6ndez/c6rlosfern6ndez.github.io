@@ -5,20 +5,9 @@ localStorage.clear();
 
 
 Bloque Básico
-
-
-
-    Bucles e iteraciones (for, while, do-while).
-
-    Funciones básicas: declaración, parámetros y retorno.
+Listo
 
 Bloque Medio
-
-    Creación y manipulación de Arrays y sus métodos esenciales (map, filter, reduce).
-
-    Objetos literales: propiedades, métodos y acceso.
-
-    Características de JavaScript moderno: Destructuring, Spread y Rest (...).
 
     Funciones de flecha (Arrow Functions) y su comportamiento.
 
@@ -31,6 +20,8 @@ Bloque Medio
     Gestión avanzada de eventos: Listeners, propagación y delegación.
 
     Persistencia de datos en el navegador: LocalStorage y SessionStorage.
+
+    Asincronía y Closures
 
 Bloque Avanzado
 
