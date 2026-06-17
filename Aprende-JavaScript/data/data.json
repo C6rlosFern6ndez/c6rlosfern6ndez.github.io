@@ -1,0 +1,269 @@
+{
+  "niveles": {
+    "basico": {
+      "nombre": "Conocimientos Básicos",
+      "capitulos": [
+        {
+          "id": "cap-entorno",
+          "titulo": "1. Entorno de Desarrollo",
+          "temas": [
+            {
+              "id": "tema_fundamentos_entorno",
+              "titulo": "Introducción al entorno de desarrollo y herramientas",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para comenzar a escribir software, un programador necesita un espacio de trabajo adecuado. En el mundo de la informática, este espacio se conoce como Entorno de Desarrollo. Imagine el entorno de desarrollo como el taller de un artesano: antes de ponerse a esculpir o construir, el artesano necesita una mesa de trabajo firme, herramientas especializadas y un lugar donde probar sus creaciones. En la programación web, nuestro taller se compone principalmente de dos herramientas indispensables: un Editor de Código y un Navegador Web."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Aclaración importante: Un editor de código no es lo mismo que un procesador de textos como Microsoft Word. Mientras que Word añade formatos ocultos (fuentes, márgenes, colores), un editor de código trabaja exclusivamente con 'texto plano', es decir, caracteres puros que las computadoras pueden interpretar directamente sin interferencias."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "La primera herramienta esencial es el Editor de Código (o IDE). Actualmente, el estándar de la industria es Visual Studio Code (VS Code). Este programa actúa como nuestro lienzo de escritura, pero con 'superpoderes': resalta las palabras clave con diferentes colores para evitar errores tipográficos, nos avisa si olvidamos cerrar un símbolo y autocompleta fragmentos de código para aumentar nuestra productividad. Es aquí donde pasaremos el 90% del tiempo estructurando las instrucciones de nuestras aplicaciones."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "La segunda herramienta es el Navegador Web (como Google Chrome, Mozilla Firefox o Microsoft Edge). Tradicionalmente vemos al navegador como un programa para consumir contenido (redes sociales, videos, noticias), pero para un programador es la herramienta de ejecución. El navegador toma los archivos de texto plano que escribimos en nuestro editor y los traduce instantáneamente en una interfaz visual interactiva. Además, los navegadores modernos incluyen un panel oculto fundamental: las Herramientas de Desarrollador (DevTools)."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "🛠️ Cómo acceder a las DevTools: En cualquier página web, puedes presionar la tecla F12 (o hacer clic derecho y seleccionar 'Inspeccionar'). Esto abrirá un panel lateral. La pestaña más importante para empezar es la 'Consola' (Console), que funciona como una línea de comunicación directa entre tu código de JavaScript y tú."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para verificar que todo nuestro entorno funciona correctamente, los programadores realizamos una prueba universal llamada 'Hola Mundo'. Consiste en escribir una instrucción simple en nuestro editor para indicarle al navegador que imprima un mensaje de bienvenida en su consola interna. Si el mensaje aparece, significa que nuestro taller de desarrollo está perfectamente configurado y listo para construir aplicaciones reales."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// Esta es la instrucción estándar para enviar mensajes a la pantalla de depuración\nconsole.log(\"¡Felicidades! Tu entorno de desarrollo funciona correctamente.\");"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-introduccion",
+          "titulo": "2. Introducción y Variables",
+          "temas": [
+            {
+              "id": "tema_variables_constantes",
+              "titulo": "Variables y constantes (var, let, const)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Imagine que la memoria de una computadora es un enorme almacén vacío. Para guardar información en él y poder reutilizarla más tarde, los programadores utilizamos 'cajas' especiales. A estas cajas las llamamos Variables y Constantes. Cada caja tiene una etiqueta con un nombre único (el nombre de la variable) que nos permite identificar qué hay dentro sin tener que revisar todo el almacén."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "En el JavaScript moderno existen dos formas principales de crear estas cajas según cómo vayamos a tratar su contenido: 'let' y 'const'. Utilizamos 'let' cuando el valor del interior de la caja puede cambiar a lo largo del tiempo (por ejemplo, los puntos de un jugador o la edad de una persona). Por el contrario, utilizamos 'const' (de constante) para crear cajas blindadas cuyo contenido es permanente y no puede ser modificado una vez cerrado (por ejemplo, el número PI o el año de nacimiento de alguien)."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ El peligro de 'var': En los inicios de JavaScript se usaba la palabra 'var' para crear variables. Hoy en día está totalmente desaconsejado porque 'var' no tiene control de ámbito (scope), lo que significa que las cajas creadas con él pueden mezclarse o alterarse por accidente en otras partes de la aplicación, provocando fallos muy difíciles de detectar."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "El proceso de guardar un dato por primera vez en una caja se conoce técnicamente como 'inicialización'. Para ello, se escribe la palabra clave (let o const), el nombre que elegimos para la etiqueta, el símbolo de asignación (=) y finalmente el valor que queremos almacenar."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// 1. Declaración e inicialización de una variable con 'let'\nlet contadorVisitas = 0;\nconsole.log(\"Estado inicial del contador:\", contadorVisitas);\n\n// Las variables creadas con 'let' permiten reasignar su valor más adelante\ncontadorVisitas = 1;\nconsole.log(\"Contador actualizado tras una visita:\", contadorVisitas);\n\n// 2. Declaración e inicialización de una constante con 'const'\nconst ANIO_NACIMIENTO = 2000;\nconsole.log(\"Año de nacimiento registrado:\", ANIO_NACIMIENTO);\n\n// NOTA DE DEPURACIÓN: Intentar cambiar una constante provocará un error en la consola:\n// ANIO_NACIMIENTO = 2005; // Descomentar esta línea rompería la ejecución de la app"
+                }
+              ]
+            },
+            {
+              "id": "tema_tipos_primitivos",
+              "titulo": "Tipos de datos primitivos (Strings, Numbers, Booleans, Null, Undefined)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Siguiendo con nuestra analogía anterior, si las variables son las 'cajas' donde guardamos la información, los Tipos de Datos definen el 'material' del que están hechos esos objetos. Para una computadora, no es lo mismo procesar una palabra que un cálculo matemático. Por ello, JavaScript clasifica la información en diferentes categorías fundamentales conocidas como Tipos Primitivos."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "1. Strings (Cadenas de texto): Representan cualquier texto, desde una sola letra hasta un libro entero. Para que la computadora entienda que es texto y no una instrucción del propio código, su contenido siempre debe ir envuelto entre comillas simples ('') o dobles (\"\")."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "2. Numbers (Números): Se utilizan para valores matemáticos. A diferencia del texto, los números se escriben sin comillas. JavaScript permite guardar tanto números enteros como decimales (utilizando siempre un punto en lugar de una coma para los decimales, siguiendo el estándar internacional)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "3. Booleans (Booleanos): Es el tipo de dato más simple y lógico, ya que solo puede tener dos valores posibles: 'true' (verdadero) o 'false' (falso). Piense en ellos como el interruptor de la luz de una habitación; solo puede estar encendido o apagado. Son la base fundamental para que los programas puedan tomar decisiones lógicas."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 La diferencia entre la 'Nada' y lo 'Desconocido': Existen dos tipos especiales para representar la ausencia de valor. 'Undefined' (indefinido) significa que hemos creado la caja, pero el sistema detecta que aún no hemos metido nada dentro. En cambio, 'Null' (nulo) es un valor que el programador asigna intencionalmente para decir: 'He vaciado esta caja a propósito y confirmo explícitamente que no hay nada en ella'."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// Declaración de distintos tipos primitivos\nconst nombreUsuario = \"María\"; // String (Cadenas de texto siempre entre comillas)\nlet edadUsuario = 28; // Number (Número entero)\nlet precioProducto = 19.99; // Number (Número decimal)\n\nlet estaConectado = true; // Boolean (Verdadero)\n\n// Demostración práctica de Undefined y Null\nlet direccion; // Al declararla pero no asignarle valor, JavaScript le aplica 'undefined'\nlet carritoCompras = null; // Lo definimos intencionalmente como vacío (nulo)\n\n// Comprobación de los datos imprimiéndolos en la consola\nconsole.log(\"Usuario:\", nombreUsuario, \"| Edad:\", edadUsuario);\nconsole.log(\"¿Está el usuario en línea?\", estaConectado);\nconsole.log(\"Dirección actual:\", direccion);\nconsole.log(\"Estado del carrito:\", carritoCompras);"
+                }
+              ]
+            },
+            {
+              "id": "tema_operadores",
+              "titulo": "Operadores aritméticos, lógicos y de comparación",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Una vez que sabemos cómo guardar datos en nuestras 'cajas' (variables), el siguiente paso es aprender a manipularlos. Los Operadores son símbolos especiales que le indican a la computadora que realice una acción específica con nuestros datos. Imagine los operadores como los verbos de nuestro lenguaje: nos permiten sumar, comparar o tomar decisiones basadas en diferentes condiciones."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "1. Operadores Aritméticos: Son los más familiares, ya que son los mismos que se utilizan en las matemáticas básicas: suma (+), resta (-), multiplicación (*) y división (/). Existe también un operador especial llamado Módulo (%), que no calcula la división, sino el 'residuo' o lo que sobra de ella (por ejemplo, 5 % 2 es 1, porque 2 cabe dos veces en 5 y sobra 1). Además, el símbolo (+) tiene un superpoder: si lo usas con textos (Strings), en lugar de sumar, los une en una sola palabra, un proceso llamado 'concatenación'."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "2. Operadores de Comparación: Se utilizan para confrontar dos valores y hacerle una pregunta a la computadora. El resultado de esta operación siempre será un valor booleano: 'true' (verdadero) o 'false' (falso). Los símbolos son: mayor que (>), menor que (<), igual estricto (===) y diferente de (!==). Por ejemplo, si preguntamos si 10 es mayor que 5, el sistema nos devolverá 'true'."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ La regla de oro del igual (=): Un error común al empezar es confundir el uso de los signos. Un solo signo igual (=) sirve para GUARDAR un valor en una variable. Tres signos iguales (===) sirven para COMPARAR si dos valores son exactamente idénticos en su contenido y en su tipo de dato."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "3. Operadores Lógicos: Nos permiten combinar múltiples comparaciones para tomar decisiones más complejas, tal como lo hacemos los humanos. Los tres principales son:\n• AND (&&): Devuelve 'true' solo si TODAS las condiciones se cumplen (Ej: Para entrar al cine necesito tener entrada Y ser mayor de edad).\n• OR (||): Devuelve 'true' si AL MENOS UNA de las condiciones se cumple (Ej: Puedo entrar si tengo pase VIP O si pago en taquilla).\n• NOT (!): Invierte el valor de cualquier booleano, transformando 'true' en 'false' y viceversa (Ej: Es como decir 'No es verdad que...')."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. EJEMPLOS DE OPERADORES ARITMÉTICOS\n// =========================================================\nconst precioCamisa = 25;\nconst precioPantalon = 40;\nconst totalCompra = precioCamisa + precioPantalon;\nconsole.log(\"Depuración - Total de la compra:\", totalCompra);\n\nconst nombre = \"Ana\";\nconst saludo = \"Hola, \" + nombre + \"!\"; // Concatenación de textos\nconsole.log(\"Depuración - Mensaje unido:\", saludo);\n\n// =========================================================\n// 2. EJEMPLOS DE OPERADORES DE COMPARACIÓN\n// =========================================================\nconst edadUsuario = 20;\nconst esMayorDeEdad = edadUsuario >= 18;\nconsole.log(\"Depuración - ¿El usuario es mayor de edad?:\", esMayorDeEdad);\n\n// Comprobación de igualdad estricta\nconst claveCorrecta = \"1234\";\nconst intentoUsuario = \"1234\";\nconst accesoConcedido = (claveCorrecta === intentoUsuario);\nconsole.log(\"Depuración - ¿La clave coincide?:\", accesoConcedido);\n\n// =========================================================\n// 3. EJEMPLOS DE OPERADORES LÓGICOS\n// =========================================================\nconst tieneEntrada = true;\nconst vieneConUnAdulto = false;\n\n// Uso de OR (||): El menor entra si tiene entrada O si viene acompañado\nconst puedeEntrarAlCine = tieneEntrada || vieneConUnAdulto;\nconsole.log(\"Depuración - ¿Puede entrar al cine?:\", puedeEntrarAlCine);\n\n// Uso de NOT (!): Invierte el estado de una variable\nconst controlLucesEncendidas = true;\nconsole.log(\"Depuración - Estado inverso de las luces:\", !controlLucesEncendidas);"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-control-flujo",
+          "titulo": "3. Control de Flujo y Toma de Decisiones",
+          "temas": [
+            {
+              "id": "tema_condicionales",
+              "titulo": "Estructuras de control condicional (if, else if, else, switch)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Hasta este punto, nuestros programas han sido completamente lineales: la computadora ejecuta una instrucción tras otra, de arriba a abajo, en una línea recta perfecta. Sin embargo, en el mundo real las cosas no funcionan así. Para que una aplicación sea inteligente, debe ser capaz de tomar decisiones basadas en las circunstancias. Las Estructuras Condicionales son bifurcaciones en el camino que le permiten al programa ejecutar un bloque de código u otro dependiendo de si se cumple o no una condición determinada."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "La estructura más famosa y utilizada es el bloque 'if' (que en español se traduce como el 'si' condicional, como cuando dices: 'si llueve, llevaré paraguas'). Su funcionamiento es simple: evalúa una comparación interna. Si el resultado es verdadero ('true'), la computadora entra a la habitación de ese código y lo ejecuta. Si es falso ('false'), ignora esa habitación por completo y continúa su camino."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para hacer decisiones más complejas, el 'if' se puede expandir utilizando 'else if' (si no se cumple lo anterior, comprueba esto otro) y finalmente 'else' (si ninguna de las condiciones anteriores fue verdadera, ejecuta esto por defecto como última opción). Imagine un semáforo: SI está en verde, pasa; SI NO, SI está en amarillo, frena; SI NO (lo que significa que está en rojo), detente."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 ¿Cómo entiende esto la computadora?: Dentro de los paréntesis de un 'if', la computadora siempre buscará reducir todo a un único valor booleano: 'true' o 'false'. Por lo tanto, aquí es donde cobra total sentido el uso de los operadores de comparación (como === o >) que aprendimos en el tema anterior."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Por otro lado, cuando tenemos que evaluar una sola variable que puede tomar muchos valores específicos diferentes (por ejemplo, los días de la semana del 1 al 7, o las opciones de un menú de usuario), escribir decenas de 'else if' puede volver el código caótico y difícil de leer. Para resolver esto existe la estructura 'switch' (interruptor). El 'switch' toma una variable y salta directamente al 'caso' (case) que coincida con su valor exacto. Es fundamental añadir la palabra clave 'break' al final de cada caso para indicarle a la computadora que ya encontró lo que buscaba y que debe salir del interruptor."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. EJEMPLO CON IF, ELSE IF, ELSE\n// =========================================================\nconst edadPersona = 16;\n\nconsole.log(\"Depuración - Iniciando evaluación de edad:\", edadPersona);\n\nif (edadPersona >= 18) {\n    // Este bloque solo se ejecuta si la comparación da 'true'\n    console.log(\"Resultado: Es mayor de edad. Acceso concedido.\");\n} else if (edadPersona >= 15) {\n    // Se evalúa solo si el primer 'if' falló y esta condición es 'true'\n    console.log(\"Resultado: Es menor de edad, pero tiene permiso juvenil.\");\n} else {\n    // Se ejecuta por defecto si absolutamente todo lo anterior dio 'false'\n    console.log(\"Resultado: Es menor de edad. Acceso denegado.\");\n}\n\n// =========================================================\n// 2. EJEMPLO CON SWITCH\n// =========================================================\nconst metodoPago = \"tarjeta\";\n\nconsole.log(\"Depuración - Evaluando método de pago seleccionado:\", metodoPago);\n\nswitch (metodoPago) {\n    case \"efectivo\":\n        console.log(\"Acción: Prepare el dinero en mano para el repartidor.\");\n        break; // Detiene la evaluación del switch\n    case \"tarjeta\":\n        console.log(\"Acción: Redirigiendo a la pasarela bancaria segura...\");\n        break;\n    case \"paypal\":\n        console.log(\"Acción: Abriendo ventana de inicio de sesión de PayPal...\");\n        break;\n    default:\n        // El caso 'default' actúa como el 'else', se ejecuta si ningún caso coincidió\n        console.log(\"Error: Método de pago no reconocido por el sistema.\");\n        break;\n}"
+                }
+              ]
+            },
+            {
+              "id": "tema_bucles_iteraciones",
+              "titulo": "Bucles e iteraciones (for, while, do-while)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Imagine que le piden escribir un programa que imprima en pantalla los números del 1 al 100. Copiar y pegar la instrucción 'console.log' cien veces sería tedioso, ineficiente y propenso a errores. En programación, cuando necesitamos repetir una tarea o un bloque de instrucciones varias veces, utilizamos estructuras llamadas Bucles o Ciclos (en inglés, Loops). Cada repetición individual de ese bucle se conoce técnicamente como una 'iteración'."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "1. El bucle 'for' (para): Es la herramienta ideal cuando sabemos de antemano el número exacto de veces que queremos repetir una acción (por ejemplo, dar exactamente 10 pasos). Para funcionar, el 'for' necesita tres piezas de información dentro de sus paréntesis: configurar una variable contador (¿desde dónde empezamos?), definir una condición de parada (¿hasta dónde llegamos?) y un mecanismo de actualización (¿cómo avanza el contador en cada vuelta, por ejemplo, de uno en uno?)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "2. El bucle 'while' (mientras): Se utiliza cuando no sabemos exactamente cuántas vueltas va a dar el ciclo, pero sabemos que debe seguir ejecutándose MIENTRAS una condición sea verdadera. Imagine un coche: avanzará 'mientras' tenga combustible en el tanque. En cuanto el combustible se agote (la condición sea falsa), el coche se detendrá. La condición se evalúa al principio, por lo que si es falsa desde el primer momento, el código interno nunca llegará a ejecutarse."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ El peligro del Bucle Infinito: Al usar 'while', es responsabilidad absoluta del programador asegurarse de que, en algún momento de las repeticiones, la condición cambie a falsa. Si olvida modificar el valor de la variable de control dentro del bucle, la computadora se quedará atrapada repitiendo la instrucción para siempre, consumiendo toda la memoria y congelando el navegador web."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "3. El bucle 'do-while' (hacer-mientras): Es una variante directa del bucle anterior, pero con una diferencia crucial: garantiza que el código se ejecute AL MENOS UNA VEZ antes de comprobar la condición. Piense en probar un sabor de helado desconocido: primero lo prueba (hace la acción) y luego decide si sigue comiendo o no (evalúa la condición). En el 'do-while', la condición se traslada al final de la estructura."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. EJEMPLO CON BUCLE 'FOR'\n// =========================================================\nconsole.log(\"Depuración - Iniciando bucle FOR...\");\n\n// i = 1 (inicio); i <= 5 (condición); i++ (incrementar i en 1 en cada vuelta)\nfor (let i = 1; i <= 5; i++) {\n    console.log(\"Vuelta número (FOR):\", i);\n}\n\n// =========================================================\n// 2. EJEMPLO CON BUCLE 'WHILE'\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando bucle WHILE...\");\n\nlet tazasDeCafe = 3;\n\n// Se ejecuta MIENTRAS nos quede café disponible\nwhile (tazasDeCafe > 0) {\n    console.log(\"Tomando una taza de café. Quedan:\", tazasDeCafe);\n    \n    // CRUCIAL: Modificamos la variable para evitar un bucle infinito\n    tazasDeCafe--; \n}\nconsole.log(\"Condición finalizada: El café se ha agotado.\");\n\n// =========================================================\n// 3. EJEMPLO CON BUCLE 'DO-WHILE'\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando bucle DO-WHILE...\");\n\nlet bateriaCelular = 0;\n\n// Aunque la batería está en 0 (la condición es falsa desde el inicio),\n// el bloque se ejecutará una vez de manera obligatoria.\ndo {\n    console.log(\"El sistema operativo está intentando arrancar...\");\n} while (bateriaCelular > 0);\n\nconsole.log(\"Condición evaluada al final: Teléfono apagado por falta de batería.\");"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "medio": {
+      "nombre": "Conocimientos Medios",
+      "capitulos": [
+        {
+          "id": "cap-asincronia",
+          "titulo": "4. Asincronía y Closures",
+          "temas": [
+            {
+              "id": "tema-promesas",
+              "titulo": "Promesas y Async/Await",
+              "resumen": "Gestión de operaciones asíncronas de una forma más limpia.",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Las promesas representan el resultado eventual de una operación asíncrona."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "async function obtenerDatos() {\n  const res = await fetch('https://api.example.com');\n  return res.json();\n}",
+                  "lenguaje": "javascript"
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "Siempre usa bloques try/catch al manejar async/await para capturar posibles errores de red."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "avanzado": {
+      "nombre": "Conocimientos Avanzados",
+      "capitulos": [
+        {
+          "id": "cap-arquitectura",
+          "titulo": "5. Rendimiento y Motor V8",
+          "temas": [
+            {
+              "id": "tema-eventloop",
+              "titulo": "El Event Loop",
+              "resumen": "Cómo JavaScript maneja la concurrencia con un solo hilo de ejecución.",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "El bucle de eventos (Event Loop) es el mecanismo que permite a JavaScript realizar operaciones no bloqueantes."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "console.log('Inicio');\nsetTimeout(() => console.log('Callback'), 0);\nconsole.log('Fin');",
+                  "lenguaje": "javascript"
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "Las microtareas (como las promesas) tienen prioridad sobre las macrotareas (como setTimeout)."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

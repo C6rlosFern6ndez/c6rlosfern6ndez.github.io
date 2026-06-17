@@ -1,0 +1,59 @@
+Abre tu página web en el navegador.
+Abre las Herramientas de Desarrollador (Presiona F12 o clic derecho -> Inspeccionar).
+Ve a la pestaña Consola (Console), escribe el siguiente comando y pulsa Enter:
+localStorage.clear();
+
+
+Bloque Básico
+
+
+
+    Bucles e iteraciones (for, while, do-while).
+
+    Funciones básicas: declaración, parámetros y retorno.
+
+Bloque Medio
+
+    Creación y manipulación de Arrays y sus métodos esenciales (map, filter, reduce).
+
+    Objetos literales: propiedades, métodos y acceso.
+
+    Características de JavaScript moderno: Destructuring, Spread y Rest (...).
+
+    Funciones de flecha (Arrow Functions) y su comportamiento.
+
+    Programación Orientada a Objetos: Clases, constructores, instancias y uso de this.
+
+    Pilares de la POO: Encapsulamiento, Abstracción, Herencia y Polimorfismo.
+
+    Introducción al árbol DOM, selección y modificación dinámica de elementos y estilos CSS.
+
+    Gestión avanzada de eventos: Listeners, propagación y delegación.
+
+    Persistencia de datos en el navegador: LocalStorage y SessionStorage.
+
+Bloque Avanzado
+
+    El Event Loop y el funcionamiento de la asincronía en JavaScript.
+
+    Promesas y flujo asíncrono moderno con async y await.
+
+    Peticiones HTTP y consumo de APIs externas con fetch().
+
+    Gestión limpia de errores mediante bloques try, catch y finally.
+
+    Modularización de código profesional: uso de import y export de ES6.
+
+    Introducción a la arquitectura limpia y separación de responsabilidades.
+
+    El Patrón de Capas: Flujo de datos y comunicación entre módulos.
+
+    La Capa Controlador: Gestión de rutas, peticiones y respuestas.
+
+    La Capa Servicio: Centralización de la lógica de negocio.
+
+    La Capa Repositorio: Abstracción del acceso y persistencia de datos.
+
+    Patrón de Inyección de Dependencias: Beneficios y desacoplamiento de código.
+
+    Clean Code: Técnicas de depuración profesional y refactorización.

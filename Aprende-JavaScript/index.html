@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Guide - Tu Guía de JavaScript</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>JS <span>.Guide</span></h1>
+        <div class="admin-controls">
+            <button id="btn-toggle-admin" class="btn btn-secondary">Modo Admin</button>
+            <button id="btn-export-json" class="btn btn-success d-none">Exportar JSON</button>
+        </div>
+    </header>
+
+    <div class="app-container">
+        
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                </nav>
+        </aside>
+
+        <main class="content-area">
+            
+            <article id="viewer-mode" class="theme-content">
+                <h2 id="theme-title">Selecciona un tema de la guía</h2>
+                <div id="theme-body">
+                    </div>
+            </article>
+
+            <section id="admin-mode" class="theme-admin d-none">
+                <h2>Modo Editor: <span id="admin-theme-title">Título del Tema</span></h2>
+                <form id="admin-form">
+                    <div id="admin-form-fields">
+                        </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios Locales</button>
+                    </div>
+                </form>
+            </section>
+            
+        </main>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+    
+    <script>
+        // Pequeño script temporal de depuración para confirmar que el HTML cargó bien
+        console.log("Estructura del DOM cargada correctamente. Esperando compilación de SCSS y ejecución de app.js.");
+    </script>
+</body>
+</html>

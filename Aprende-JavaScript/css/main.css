@@ -1,0 +1,42 @@
+/* ==========================================================================
+   ARCHIVO CENTRAL - IMPORTACIÓN DE MÓDULOS NATIVOS Y VARIABLES
+   ========================================================================== */
+
+@import url('layout.css');
+@import url('components.css');
+@import url('admin.css');
+
+:root {
+    /* Paleta de colores y variables de diseño nativas */
+    --color-primary: #f7df1e;     /* Amarillo de JavaScript */
+    --color-dark: #1e1e1e;        /* Fondo oscuro para cabeceras */
+    --color-light: #f8f9fa;       /* Fondo claro para barras laterales */
+    --color-text: #333333;        /* Color principal de lectura */
+    --color-border: #e0e0e0;      /* Separadores */
+    --color-note: #0288d1;        /* Azul para notas */
+    --color-success: #2e7d32;     /* Verde para guardar/exportar */
+    
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-code: 'Courier New', Courier, monospace;
+    --sidebar-width: 300px;
+    --header-height: 60px;
+}
+
+/* Reset básico del documento */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background-color: #ffffff;
+    height: 100vh;
+    overflow: hidden; /* Controla el scroll de forma interna en el layout */
+}
+
+.d-none {
+    display: none !important;
+}

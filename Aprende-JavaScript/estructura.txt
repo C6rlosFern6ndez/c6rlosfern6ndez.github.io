@@ -1,0 +1,12 @@
+├── index.html          # Pagina principal y única (Single Page Application)
+├── data/
+│   └── data.json       # Tu archivo con la estructura de la guía
+├── js/
+│   ├── app.js          # Lógica principal y renderizado de la guía
+│   ├── storage.js      # Gestión de LocalStorage e importación/exportación de JSON
+│   └── admin.js        # Lógica del modo administrador y formularios
+└── scss/
+    ├── main.scss       # Archivo central que importa los módulos
+    ├── _layout.scss    # Estructura general (Sidebar + Contenido Central)
+    ├── _components.scss# Estilos de bloques (párrafos, códigos, notas)
+    └── _admin.scss     # Estilos para el formulario de edición
