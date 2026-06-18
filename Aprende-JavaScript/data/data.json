@@ -383,8 +383,98 @@
           ]
         },
         {
+          "id": "cap-poo",
+          "titulo": "8. Programación Orientada a Objetos (POO)",
+          "temas": [
+            {
+              "id": "tema_poo_clases",
+              "titulo": "Programación Orientada a Objetos: Clases, constructores, instancias y uso de this",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Hasta ahora hemos trabajado con funciones sueltas y objetos independientes. Cuando las aplicaciones crecen, necesitamos una forma más organizada y estructurada de modelar el mundo real en nuestro código. Aquí es donde entra la Programación Orientada a Objetos (POO). El pilar fundamental de la POO es la Clase, que funciona literalmente como un plano arquitectónico o un molde de fábrica para crear múltiples objetos con las mismas características."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para entender este concepto, imagine el plano para construir casas. El plano en sí no es una casa (no puedes vivir en él), pero define cuántas ventanas, puertas y habitaciones tendrá cada casa que se construya usándolo. En JavaScript, cuando usamos ese plano para fabricar un objeto real en memoria, decimos que estamos creando una 'Instancia'. Para activar este proceso de construcción, utilizamos la palabra clave 'new' junto al nombre de la clase."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dentro de una clase existen dos componentes esenciales:\n1. El Constructor: Es una función especial interna que se ejecuta automáticamente en el instante exacto en que creamos una nueva instancia. Su único objetivo es recibir los datos iniciales y configurar las propiedades del nuevo objeto.\n2. La palabra clave 'this': Dentro de una clase, 'this' hace referencia exclusiva al objeto específico que se está fabricando o ejecutando en ese momento. Permite que el constructor sepa exactamente a qué objeto le está asignando los datos."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 ¿Por qué usar Clases en lugar de Objetos Literales?: Si necesitas un solo objeto en toda tu aplicación (como la configuración global de un sistema), un objeto literal es perfecto. Pero si estás programando un videojuego y necesitas crear 100 enemigos con las mismas propiedades y acciones, escribir 100 objetos manuales duplicaría tu código. Una clase te permite instanciar los 100 enemigos de forma masiva y limpia."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. DEFINICIÓN DEL MOLDE (La Clase)\n// =========================================================\nclass Vehiculo {\n    // El constructor recibe los parámetros iniciales para personalizar cada objeto\n    constructor(marca, modelo, color) {\n        console.log(`Depuración - Ejecutando constructor para un nuevo ${marca}...`);\n        \n        // Asignamos los valores a las propiedades del objeto usando 'this'\n        this.marca = marca;\n        this.modelo = modelo;\n        this.color = color;\n        this.estaEncendido = false; // Propiedad inicial por defecto\n    }\n\n    // Método: Acción que todos los vehículos creados sabrán realizar\n    encenderMotor() {\n        this.estaEncendido = true;\n        console.log(`Depuración - [${this.marca} ${this.modelo}]: El motor ha arrancado.`);\n    }\n\n    mostrarInformacion() {\n        const estado = this.estaEncendido ? \"Encendido\" : \"Apagado\";\n        console.log(`Vehículo: ${this.marca} ${this.modelo} | Color: ${this.color} | Estado: ${estado}`);\n    }\n}\n\n// =========================================================\n// 2. CREACIÓN DE INSTANCIAS (Objetos reales basados en el molde)\n// =========================================================\nconsole.log(\"Iniciando la fabricación de vehículos...\\n\");\n\n// Creamos el primer objeto real (Instancia 1)\nconst miAuto = new Vehiculo(\"Toyota\", \"Corolla\", \"Rojo\");\n\n// Creamos un segundo objeto completamente independiente (Instancia 2)\nconst autoCliente = new Vehiculo(\"Hyundai\", \"i30\", \"Gris\");\n\n// =========================================================\n// 3. USO DE LAS INSTANCIAS Y DEPURACIÓN\n// =========================================================\nconsole.log(\"\\n--- Interactuando con las instancias ---\");\n\n// Cada objeto mantiene su propio estado de forma aislada\nmiAuto.encenderMotor();\nmiAuto.mostrarInformacion();\n\n// El segundo objeto sigue apagado porque no hemos llamado a su método\nautoCliente.mostrarInformacion();"
+                }
+              ]
+            },
+            {
+              "id": "tema_poo_pilares",
+              "titulo": "Pilares de la POO: Encapsulamiento, Abstracción, Herencia y Polimorfismo",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Dominar la sintaxis de las clases es solo el primer paso. Para diseñar software profesional, robusto y fácil de mantener, debemos aplicar los Cuatro Pilares Fundamentales de la Programación Orientada a Objetos. Estos pilares son estrategias de diseño que resuelven los problemas más comunes en el desarrollo de aplicaciones grandes: la duplicación de código, la falta de seguridad en los datos y la complejidad innecesaria."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "1. Encapsulamiento: Consiste en ocultar los datos internos de un objeto y restringir el acceso directo desde el exterior. En JavaScript moderno, esto se logra anteponiendo el símbolo almohadilla (#) al nombre de la propiedad, haciéndola privada. Para leer o modificar estos datos de forma segura, el exterior debe usar métodos públicos de control.\n2. Abstracción: Es el proceso de ocultar toda la complejidad interna de un proceso y mostrar únicamente los mecanismos esenciales. Piense en el motor de un coche: usted solo necesita el pedal del acelerador para avanzar (interfaz pública); no necesita saber exactamente cómo interactúan los pistones o la inyección de combustible (lógica oculta)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "3. Herencia: Permite crear una clase nueva basándose en una clase existente. La clase hija hereda de forma automática todas las propiedades y métodos de la clase padre utilizando la palabra clave 'extends'. Esto evita tener que reescribir código idéntico para objetos similares.\n4. Polimorfismo: Significa 'muchas formas'. Es la capacidad que tienen diferentes clases hijas de responder al mismo nombre de método, pero ejecutando una acción completamente adaptada a su propia naturaleza. Por ejemplo, tanto un coche como un avión heredan el método 'desplazarse', pero el coche rueda por el asfalto mientras el avión vuela por el cielo."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 El rol de 'super()': Cuando una clase hija hereda de una clase padre y define su propio constructor, es obligatorio ejecutar la función 'super()' en la primera línea. Esto le indica a JavaScript que ejecute primero el constructor del padre para inicializar correctamente los datos antes de que la clase hija añada sus características particulares."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// PILAR 1 Y 2: ENCAPSULAMIENTO Y ABSTRACCIÓN\n// =========================================================\nclass CuentaBancaria {\n    // Propiedad privada (#): Nadie puede modificarla directamente desde fuera\n    #saldo;\n\n    constructor(titular, saldoInicial) {\n        this.titular = titular;\n        this.#saldo = saldoInicial;\n    }\n\n    // Abstracción: El exterior solo ve el método simplificado 'depositar'\n    depositar(monto) {\n        if (monto > 0) {\n            this.#saldo += monto;\n            console.log(`Depuración - [Cuenta de ${this.titular}]: Depósito de $${monto} procesado con éxito.`);\n        } else {\n            console.log(\"⚠️ Error: El monto a depositar debe ser mayor a cero.\");\n        }\n    }\n\n    // Mecanismo seguro (Getter) para exponer el valor privado bajo control\n    obtenerSaldoActual() {\n        return this.#saldo;\n    }\n}\n\n// =========================================================\n// PILAR 3 Y 4: HERENCIA Y POLIMORFISMO\n// =========================================================\n// Clase Padre (Base)\nclass Empleado {\n    constructor(nombre, salarioBase) {\n        this.nombre = nombre;\n        this.salarioBase = salarioBase;\n    }\n\n    // Método base que será polimorfado\n    calcularPago() {\n        return this.salarioBase;\n    }\n}\n\n// Herencia: Desarrollador hereda de Empleado usando 'extends'\nclass Desarrollador extends Empleado {\n    constructor(nombre, salarioBase, bonoProyecto) {\n        // 'super' inicializa las propiedades heredadas del padre\n        super(nombre, salarioBase);\n        this.bonoProyecto = bonoProyecto;\n    }\n\n    // Polimorfismo: Sobreescribimos el método 'calcularPago' con lógica propia\n    calcularPago() {\n        console.log(`Depuración - Calculando nómina especial para Desarrollador: ${this.nombre}`);\n        return this.salarioBase + this.bonoProyecto;\n    }\n}\n\n// =========================================================\n// PRUEBAS DE EJECUCIÓN Y DEPURACIÓN\n// =========================================================\nconsole.log(\"--- Probando Encapsulamiento ---\");\nconst miCuenta = new CuentaBancaria(\"Juan Pérez\", 500);\nmiCuenta.depositar(200);\n// miCuenta.#saldo = 1000000; // ❌ ERROR: Provoca fallo sintáctico, el saldo está protegido\nconsole.log(\"Saldo final verificado:\", miCuenta.obtenerSaldoActual());\n\nconsole.log(\"\\n--- Probando Herencia y Polimorfismo ---\");\nconst empleadoComun = new Empleado(\"Ana Gómez\", 1500);\nconst desarrolladorSenior = new Desarrollador(\"Carlos Ruiz\", 2500, 600);\n\n// Ambos responden al mismo método, pero ejecutan cálculos distintos (Polimorfismo)\nconsole.log(`Pago de Ana: $${empleadoComun.calcularPago()}`);\nconsole.log(`Pago de Carlos: $${desarrolladorSenior.calcularPago()}`);"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-dom",
+          "titulo": "9. Interacción con el Navegador: El DOM",
+          "temas": [
+            {
+              "id": "tema_introduccion_dom",
+              "titulo": "Introducción al árbol DOM, selección y modificación dinámica de elementos y estilos CSS",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Cuando un navegador web carga una página HTML, lee todo el documento de texto y lo traduce internamente en una estructura de datos viva guardada en la memoria del sistema. Esta estructura se llama DOM (Document Object Model o Modelo de Objetos del Documento). El DOM organiza todo el HTML en forma de un árbol genealógico invertido, donde cada etiqueta (como un botón, un párrafo o un contenedor) se convierte en un 'Nodo' u objeto que JavaScript puede leer, mover, alterar o eliminar por completo en tiempo real."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para que JavaScript pueda alterar la interfaz visual, el proceso siempre consta de dos pasos obligatorios:\n1. Selección: Localizar el elemento exacto dentro del árbol. El estándar absoluto de la industria hoy en día es usar 'document.querySelector()' (para seleccionar el primer elemento que coincida con un selector CSS como una clase o ID) y 'document.querySelectorAll()' (para obtener una lista con todos los elementos coincidentes).\n2. Modificación: Una vez que tenemos atrapado el nodo en una variable, podemos cambiar sus propiedades. Podemos modificar su texto interno con '.textContent', alterar su estructura con '.innerHTML' o manipular sus estilos visuales accediendo a la propiedad '.style'."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ Seguridad y Rendimiento (textContent vs innerHTML): Para cambiar texto plano, use siempre '.textContent'. Evite usar '.innerHTML' para insertar textos que provengan de formularios de usuarios, ya que deja la aplicación vulnerable a ataques informáticos de inyección de código maligno (XSS) y obliga al navegador a recalcular todo el diseño visual innecesariamente."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Además de modificar estilos directamente línea por línea usando '.style.color = \"red\"', la mejor práctica en el desarrollo profesional es preparar los estilos complejos dentro de clases en tu archivo CSS externo y luego usar la propiedad '.classList' (con sus métodos .add(), .remove() o .toggle()) para encender o apagar esos diseños dinámicamente desde JavaScript."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// REPRESENTACIÓN DEL HTML REQUISITO PARA ESTE CÓDIGO:\n// <h1 id=\"titulo-principal\">Texto original</h1>\n// <button class=\"btn-accion\">Cambiar interfaz</button>\n// =========================================================\n\nconsole.log(\"Depuración - Iniciando manipulación del DOM...\");\n\n// 1. SELECCIÓN DE ELEMENTOS\n// Seleccionamos por ID utilizando el símbolo '#'\nconst titulo = document.querySelector(\"#titulo-principal\");\n\n// Seleccionamos por clase utilizando el símbolo '.'\nconst boton = document.querySelector(\".btn-accion\");\n\nconsole.log(\"Depuración - Elemento título capturado:\", titulo);\nconsole.log(\"Depuración - Elemento botón capturado:\", boton);\n\n// Comprobación de seguridad para evitar fallos si el HTML cambia\nif (titulo && boton) {\n    \n    // 2. MODIFICACIÓN DINÁMICA DE CONTENIDO\n    // Cambiamos el texto interno de forma segura\n    titulo.textContent = \"¡Interfaz Actualizada con JavaScript!\";\n    console.log(\"Depuración - Texto del título modificado correctamente.\");\n\n    // 3. MODIFICACIÓN DIRECTA DE ESTILOS CSS (Estilos Inline)\n    // Se utiliza la nomenclatura camelCase para propiedades CSS compuestas\n    titulo.style.color = \"#2ecc71\"; // Cambia el color a verde\n    titulo.style.backgroundColor = \"#f8f9fa\"; // Cambia el fondo\n    titulo.style.padding = \"15px\";\n    \n    // 4. MEJOR PRÁCTICA: MANIPULACIÓN DE CLASES (classList)\n    // En lugar de tocar estilos uno a uno, añadimos una clase CSS predefinida\n    boton.classList.add(\"btn-activo\");\n    \n    // El método toggle añade la clase si no existe, o la quita si ya existe\n    boton.classList.toggle(\"animacion-pulso\");\n    \n    console.log(\"Depuración - Clases actuales del botón:\", boton.className);\n\n} else {\n    console.log(\"⚠️ Alerta: No se encontraron los elementos en el árbol DOM actual.\");\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "id": "cap-asincronia",
-          "titulo": "8. Asincronía y Closures",
+          "titulo": "10. Asincronía y Closures",
           "temas": []
         }
       ]

@@ -9,14 +9,6 @@ Listo
 
 Bloque Medio
 
-    Funciones de flecha (Arrow Functions) y su comportamiento.
-
-    Programación Orientada a Objetos: Clases, constructores, instancias y uso de this.
-
-    Pilares de la POO: Encapsulamiento, Abstracción, Herencia y Polimorfismo.
-
-    Introducción al árbol DOM, selección y modificación dinámica de elementos y estilos CSS.
-
     Gestión avanzada de eventos: Listeners, propagación y delegación.
 
     Persistencia de datos en el navegador: LocalStorage y SessionStorage.
