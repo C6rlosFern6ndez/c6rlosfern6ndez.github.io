@@ -1,0 +1,78 @@
+/* ==========================================================================
+   VARIABLES GLOBALES Y CONFIGURACIÓN BASE (Estilo Spotify)
+   ========================================================================== */
+:root {
+    --bg-black: #000000;
+    --bg-dark-gray: #121212;
+    --bg-light-gray: #242424;
+    --text-white: #ffffff;
+    --text-muted: #b3b3b3;
+    --spotify-green: #1ed760;
+    --spotify-green-hover: #1fdf64;
+    --sidebar-width: 240px;
+    --player-height: 90px;
+}
+
+/* Reseteo básico de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    overflow: hidden; /* Evita el scroll global del navegador */
+    height: 100vh;
+}
+
+/* Forzar que todos los enlaces hereden el color del padre y pierdan el subrayado */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL (CSS Grid)
+   ========================================================================== */
+#app-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    /* Reducimos el alto del layout útil para dar un margen de respiración abajo */
+    grid-template-rows: calc(100vh - var(--player-height) - 16px) var(--player-height);
+    grid-template-areas: 
+        "sidebar main"
+        "player player";
+    height: 100vh;
+    width: 100vw;
+    gap: 8px;
+    padding: 8px 8px 16px 8px; /* Añadimos 16px de padding abajo para despegarlo del sistema */
+    background-color: var(--bg-black);
+}
+
+/* Asignación de áreas del Grid a los contenedores */
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--bg-dark-gray);
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+.main-content {
+    grid-area: main;
+    background-color: var(--bg-dark-gray);
+    border-radius: 8px;
+    overflow-y: auto; /* Permite el scroll solo en el contenido de las canciones */
+    padding: 24px;
+}
+
+.player-bar {
+    grid-area: player;
+    background-color: var(--bg-black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}

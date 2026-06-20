@@ -72,7 +72,7 @@
     transition: color 0.2s ease;
 }
 
-.sidebar-nav .nav-theme-link:hover, 
+.sidebar-nav .nav-theme-link:hover,
 .sidebar-nav .nav-theme-link.active {
     color: var(--color-dark);
     font-weight: 600;
@@ -100,22 +100,34 @@
 }
 
 .theme-content .block-codigo {
-    background-color: var(--color-dark);
-    color: #f8f8f2;
-    padding: 1.25rem;
-    border-radius: 6px;
-    margin-bottom: 1.25rem;
+    /* Fondo ligeramente más cálido/profundo que el #1e1e1e estándar */
+    background-color: #272626;
+
+    /* Texto con un gris suave (evita la vibración visual del blanco puro) */
+    color: #8adb9c;
+
+    padding: 1.5rem;
+    border-radius: 8px;
+    /* Radio ligeramente mayor para un toque moderno */
+    margin-bottom: 1.5rem;
     overflow-x: auto;
+
+    /* Añadimos un borde fino y una sombra para que el bloque 'flote' */
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .theme-content .block-codigo code {
-    font-family: var(--font-code);
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.92rem;
+    /* Ajuste sutil para mejor legibilidad */
+    line-height: 1.6;
+    color: inherit;
 }
 
 .theme-content .block-nota {
-    background-color: #e1f5fe; /* Azul claro para destacar */
+    background-color: #e1f5fe;
+    /* Azul claro para destacar */
     border-left: 4px solid var(--color-note);
     padding: 1rem 1.25rem;
     margin-bottom: 1.25rem;

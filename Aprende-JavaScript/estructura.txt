@@ -5,8 +5,13 @@
 │   ├── app.js          # Lógica principal y renderizado de la guía
 │   ├── storage.js      # Gestión de LocalStorage e importación/exportación de JSON
 │   └── admin.js        # Lógica del modo administrador y formularios
+|   ├── router.js       # Controla qué sección mostrar y qué JS cargar
+|   ├── guia.js         # Lógica exclusiva de la guía
+|   ├── ejercicios.js    # Lógica exclusiva de los ejercicios
+|   └── herramientas.js # Lógica exclusiva de las herramientas
 └── scss/
     ├── main.scss       # Archivo central que importa los módulos
     ├── _layout.scss    # Estructura general (Sidebar + Contenido Central)
     ├── _components.scss# Estilos de bloques (párrafos, códigos, notas)
     └── _admin.scss     # Estilos para el formulario de edición
+

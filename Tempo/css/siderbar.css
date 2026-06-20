@@ -1,0 +1,50 @@
+/* ==========================================================================
+   ESTILOS DE LA BARRA LATERAL (Sidebar)
+   ========================================================================== */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 12px;
+}
+
+.sidebar-logo h2 {
+    margin-bottom: 24px;
+    padding-left: 12px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sidebar-menu li a {
+    color: var(--text-muted) !important; /* Forzamos el gris tenue inicial */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Separación balanceada entre el icono y el texto */
+    padding: 4px 12px;
+    transition: color 0.2s ease;
+}
+
+/* Cambia a blanco cuando pasamos el cursor por encima */
+.sidebar-menu li a:hover {
+    color: var(--text-white) !important;
+}
+
+/* Estilo para el elemento activo (Home / Inicio activo por defecto) */
+.sidebar-menu li.active a {
+    color: var(--text-white) !important;
+}
+
+/* Separador decorativo estilo biblioteca */
+.sidebar-library {
+    margin-top: 16px;
+    border-top: 1px solid var(--bg-light-gray);
+    padding-top: 16px;
+}

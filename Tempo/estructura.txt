@@ -1,0 +1,27 @@
+spotify-clone/
+│
+├── index.html                  # Única página HTML (Single Page Application)
+├── README.md                   # Documentación del proyecto para reclutadores
+│
+├── 📁 css/                     # Estilos divididos por funcionalidad
+│   ├── main.css                # Variables globales, reset y layouts principales
+│   ├── sidebar.css             # Estilos de la barra lateral de navegación
+│   ├── player.css              # Estilos de la barra del reproductor inferior
+│   └── cards.css               # Estilos de las tarjetas de canciones/álbumes
+│
+└── 📁 src/                     # Código fuente de JavaScript (Módulos ES6)
+    ├── main.js                 # Punto de entrada (inicializa la app)
+    │
+    ├── 📁 api/
+    │   └── musicApi.js         # Peticiones fetch para obtener las canciones/datos
+    │
+    ├── 📁 state/
+    │   └── playerState.js      # Estado global (canción actual, volumen, lista de reproducción)
+    │
+    ├── 📁 core/
+    │   └── audioController.js  # Control nativo del objeto `new Audio()` de HTML5
+    │
+    └── 📁 components/          # Componentes encargados de renderizar el HTML dinámico
+        ├── sidebar.js          # Renderiza la navegación y playlists del usuario
+        ├── mainContent.js      # Renderiza la rejilla de canciones, buscador o sección actual
+        └── playerBar.js        # Renderiza los controles del reproductor inferior

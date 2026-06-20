@@ -136,120 +136,66 @@
           ]
         },
         {
-          "id": "cap-control-flujo",
-          "titulo": "3. Control de Flujo y Toma de Decisiones",
+          "id": "cap-estructuras-control",
+          "titulo": "3. Estructuras de Control y Bucles",
           "temas": [
             {
               "id": "tema_condicionales",
-              "titulo": "Estructuras de control condicional (if, else if, else, switch)",
+              "titulo": "Condicionales: if, else, switch y operador ternario",
               "contenido": [
                 {
                   "tipo": "parrafo",
-                  "texto": "Hasta este punto, nuestros programas han sido completamente lineales: la computadora ejecuta una instrucción tras otra, de arriba a abajo, en una línea recta perfecta. Sin embargo, en el mundo real las cosas no funcionan así. Para que una aplicación sea inteligente, debe ser capaz de tomar decisiones basadas en las circunstancias. Las Estructuras Condicionales son bifurcaciones en el camino que le permiten al programa ejecutar un bloque de código u otro dependiendo de si se cumple o no una condición determinada."
+                  "texto": "Un programa lineal ejecuta todas sus líneas sin excepción. Para crear aplicaciones inteligentes, necesitamos que el código tome decisiones basadas en condiciones. La estructura fundamental es el bloque 'if' (si ocurre esto) y 'else' (si no, haz esto). Cuando existen múltiples caminos posibles, utilizamos 'else if'. Para casos donde evaluamos el valor exacto de una sola variable contra muchas opciones, el bloque 'switch' resulta más limpio."
                 },
                 {
                   "tipo": "parrafo",
-                  "texto": "La estructura más famosa y utilizada es el bloque 'if' (que en español se traduce como el 'si' condicional, como cuando dices: 'si llueve, llevaré paraguas'). Su funcionamiento es simple: evalúa una comparación interna. Si el resultado es verdadero ('true'), la computadora entra a la habitación de ese código y lo ejecuta. Si es falso ('false'), ignora esa habitación por completo y continúa su camino."
-                },
-                {
-                  "tipo": "parrafo",
-                  "texto": "Para hacer decisiones más complejas, el 'if' se puede expandir utilizando 'else if' (si no se cumple lo anterior, comprueba esto otro) y finalmente 'else' (si ninguna de las condiciones anteriores fue verdadera, ejecuta esto por defecto como última opción). Imagine un semáforo: SI está en verde, pasa; SI NO, SI está en amarillo, frena; SI NO (lo que significa que está en rojo), detente."
-                },
-                {
-                  "tipo": "nota",
-                  "texto": "💡 ¿Cómo entiende esto la computadora?: Dentro de los paréntesis de un 'if', la computadora siempre buscará reducir todo a un único valor booleano: 'true' o 'false'. Por lo tanto, aquí es donde cobra total sentido el uso de los operadores de comparación (como === o >) que aprendimos en el tema anterior."
-                },
-                {
-                  "tipo": "parrafo",
-                  "texto": "Por otro lado, cuando tenemos que evaluar una sola variable que puede tomar muchos valores específicos diferentes (por ejemplo, los días de la semana del 1 al 7, o las opciones de un menú de usuario), escribir decenas de 'else if' puede volver el código caótico y difícil de leer. Para resolver esto existe la estructura 'switch' (interruptor). El 'switch' toma una variable y salta directamente al 'caso' (case) que coincida con su valor exacto. Es fundamental añadir la palabra clave 'break' al final de cada caso para indicarle a la computadora que ya encontró lo que buscaba y que debe salir del interruptor."
+                  "texto": " Además, para evaluaciones simples de una sola línea, JavaScript ofrece el 'Operador Ternario', una versión reducida de un if/else que permite asignar valores rápidamente basándose en una condición, mejorando la legibilidad del código."
                 },
                 {
                   "tipo": "codigo",
-                  "codigo": "// =========================================================\n// 1. EJEMPLO CON IF, ELSE IF, ELSE\n// =========================================================\nconst edadPersona = 16;\n\nconsole.log(\"Depuración - Iniciando evaluación de edad:\", edadPersona);\n\nif (edadPersona >= 18) {\n    // Este bloque solo se ejecuta si la comparación da 'true'\n    console.log(\"Resultado: Es mayor de edad. Acceso concedido.\");\n} else if (edadPersona >= 15) {\n    // Se evalúa solo si el primer 'if' falló y esta condición es 'true'\n    console.log(\"Resultado: Es menor de edad, pero tiene permiso juvenil.\");\n} else {\n    // Se ejecuta por defecto si absolutamente todo lo anterior dio 'false'\n    console.log(\"Resultado: Es menor de edad. Acceso denegado.\");\n}\n\n// =========================================================\n// 2. EJEMPLO CON SWITCH\n// =========================================================\nconst metodoPago = \"tarjeta\";\n\nconsole.log(\"Depuración - Evaluando método de pago seleccionado:\", metodoPago);\n\nswitch (metodoPago) {\n    case \"efectivo\":\n        console.log(\"Acción: Prepare el dinero en mano para el repartidor.\");\n        break; // Detiene la evaluación del switch\n    case \"tarjeta\":\n        console.log(\"Acción: Redirigiendo a la pasarela bancaria segura...\");\n        break;\n    case \"paypal\":\n        console.log(\"Acción: Abriendo ventana de inicio de sesión de PayPal...\");\n        break;\n    default:\n        // El caso 'default' actúa como el 'else', se ejecuta si ningún caso coincidió\n        console.log(\"Error: Método de pago no reconocido por el sistema.\");\n        break;\n}"
+                  "codigo": "// =========================================================\n// 1. ESTRUCTURAS CONDICIONALES TRADICIONALES\n// =========================================================\nconst saldoDisponible = 50;\nconst precioArticulo = 100;\n\n// Evaluación secuencial de condiciones\nif (saldoDisponible >= precioArticulo) {\n    console.log(\"Transacción aprobada: Saldo suficiente.\");\n} else if (saldoDisponible === 0) {\n    console.log(\"Transacción rechazada: La cuenta está a cero.\");\n} else {\n    console.log(`Transacción rechazada: Faltan $${precioArticulo - saldoDisponible} para la compra.`);\n}\n\n// =========================================================\n// 2. LA ESTRUCTURA SWITCH (Evaluación de casos específicos)\n// =========================================================\nconst estadoPedido = \"ENVIADO\";\n\nswitch (estadoPedido) {\n    case \"PENDIENTE\":\n        console.log(\"El pedido está en el almacén.\");\n        break; // Obligatorio para detener la evaluación si el caso coincide\n    case \"ENVIADO\":\n        console.log(\"El pedido está en camino hacia el cliente.\");\n        break;\n    case \"ENTREGADO\":\n        console.log(\"El cliente ha recibido su paquete.\");\n        break;\n    default:\n        // Se ejecuta si ninguno de los casos anteriores coincide\n        console.log(\"Estado del pedido no reconocido.\");\n}\n\n// =========================================================\n// 3. OPERADOR TERNARIO (Condicional en una línea)\n// =========================================================\nconst edadUsuario = 20;\n// Sintaxis: (Condición) ? [Valor si es true] : [Valor si es false]\nconst permisoAcceso = (edadUsuario >= 18) ? \"Acceso Concedido\" : \"Acceso Denegado\";\n\nconsole.log(\"Resultado de verificación:\", permisoAcceso);"
                 }
               ]
             },
             {
-              "id": "tema_bucles_iteraciones",
-              "titulo": "Bucles e iteraciones (for, while, do-while)",
+              "id": "tema_bucles_tradicionales",
+              "titulo": "Bucles tradicionales: for, while y do...while",
               "contenido": [
                 {
                   "tipo": "parrafo",
-                  "texto": "Imagine que le piden escribir un programa que imprima en pantalla los números del 1 al 100. Copiar y pegar la instrucción 'console.log' cien veces sería tedioso, ineficiente y propenso a errores. En programación, cuando necesitamos repetir una tarea o un bloque de instrucciones varias veces, utilizamos estructuras llamadas Bucles o Ciclos (en inglés, Loops). Cada repetición individual de ese bucle se conoce técnicamente como una 'iteración'."
+                  "texto": "La repetición de tareas es uno de los pilares de la programación. Los bucles permiten ejecutar un mismo bloque de código múltiples veces sin tener que reescribirlo. El bucle 'for' es el más utilizado cuando sabemos exactamente cuántas veces queremos repetir una acción. Consta de tres partes: inicialización de un contador, condición de continuidad y actualización del contador."
                 },
                 {
                   "tipo": "parrafo",
-                  "texto": "1. El bucle 'for' (para): Es la herramienta ideal cuando sabemos de antemano el número exacto de veces que queremos repetir una acción (por ejemplo, dar exactamente 10 pasos). Para funcionar, el 'for' necesita tres piezas de información dentro de sus paréntesis: configurar una variable contador (¿desde dónde empezamos?), definir una condición de parada (¿hasta dónde llegamos?) y un mecanismo de actualización (¿cómo avanza el contador en cada vuelta, por ejemplo, de uno en uno?)."
-                },
-                {
-                  "tipo": "parrafo",
-                  "texto": "2. El bucle 'while' (mientras): Se utiliza cuando no sabemos exactamente cuántas vueltas va a dar el ciclo, pero sabemos que debe seguir ejecutándose MIENTRAS una condición sea verdadera. Imagine un coche: avanzará 'mientras' tenga combustible en el tanque. En cuanto el combustible se agote (la condición sea falsa), el coche se detendrá. La condición se evalúa al principio, por lo que si es falsa desde el primer momento, el código interno nunca llegará a ejecutarse."
-                },
-                {
-                  "tipo": "nota",
-                  "texto": "⚠️ El peligro del Bucle Infinito: Al usar 'while', es responsabilidad absoluta del programador asegurarse de que, en algún momento de las repeticiones, la condición cambie a falsa. Si olvida modificar el valor de la variable de control dentro del bucle, la computadora se quedará atrapada repitiendo la instrucción para siempre, consumiendo toda la memoria y congelando el navegador web."
-                },
-                {
-                  "tipo": "parrafo",
-                  "texto": "3. El bucle 'do-while' (hacer-mientras): Es una variante directa del bucle anterior, pero con una diferencia crucial: garantiza que el código se ejecute AL MENOS UNA VEZ antes de comprobar la condición. Piense en probar un sabor de helado desconocido: primero lo prueba (hace la acción) y luego decide si sigue comiendo o no (evalúa la condición). En el 'do-while', la condición se traslada al final de la estructura."
+                  "texto": " Por otro lado, los bucles 'while' y 'do...while' se utilizan cuando no sabemos el número exacto de repeticiones, sino que dependemos de que una condición se mantenga verdadera. La principal diferencia es que 'while' evalúa la condición antes de ejecutar el código, mientras que 'do...while' garantiza que el código se ejecute al menos una vez antes de comprobar la condición."
                 },
                 {
                   "tipo": "codigo",
-                  "codigo": "// =========================================================\n// 1. EJEMPLO CON BUCLE 'FOR'\n// =========================================================\nconsole.log(\"Depuración - Iniciando bucle FOR...\");\n\n// i = 1 (inicio); i <= 5 (condición); i++ (incrementar i en 1 en cada vuelta)\nfor (let i = 1; i <= 5; i++) {\n    console.log(\"Vuelta número (FOR):\", i);\n}\n\n// =========================================================\n// 2. EJEMPLO CON BUCLE 'WHILE'\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando bucle WHILE...\");\n\nlet tazasDeCafe = 3;\n\n// Se ejecuta MIENTRAS nos quede café disponible\nwhile (tazasDeCafe > 0) {\n    console.log(\"Tomando una taza de café. Quedan:\", tazasDeCafe);\n    \n    // CRUCIAL: Modificamos la variable para evitar un bucle infinito\n    tazasDeCafe--; \n}\nconsole.log(\"Condición finalizada: El café se ha agotado.\");\n\n// =========================================================\n// 3. EJEMPLO CON BUCLE 'DO-WHILE'\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando bucle DO-WHILE...\");\n\nlet bateriaCelular = 0;\n\n// Aunque la batería está en 0 (la condición es falsa desde el inicio),\n// el bloque se ejecutará una vez de manera obligatoria.\ndo {\n    console.log(\"El sistema operativo está intentando arrancar...\");\n} while (bateriaCelular > 0);\n\nconsole.log(\"Condición evaluada al final: Teléfono apagado por falta de batería.\");"
+                  "codigo": "// =========================================================\n// 1. BUCLE FOR (Iteraciones predefinidas)\n// =========================================================\nconsole.log(\"--- Procesando lotes de datos con FOR ---\");\n\n// Estructura: (Inicialización; Condición de parada; Incremento)\nfor (let i = 1; i <= 3; i++) {\n    console.log(`Ejecutando proceso por lotes... Iteración número: ${i}`);\n}\n\n// =========================================================\n// 2. BUCLE WHILE (Iteraciones basadas en estado)\n// =========================================================\nconsole.log(\"\\n--- Descarga de archivo con WHILE ---\");\nlet porcentajeDescarga = 0;\n\n// El bucle continuará ejecutándose mientras la condición sea verdadera\nwhile (porcentajeDescarga < 100) {\n    porcentajeDescarga += 50; // Simulamos la descarga en bloques del 50%\n    console.log(`Estado de descarga: ${porcentajeDescarga}%`);\n}\n\n// =========================================================\n// 3. BUCLE DO...WHILE (Ejecución garantizada mínima de 1 vez)\n// =========================================================\nconsole.log(\"\\n--- Menú interactivo con DO...WHILE ---\");\nlet intentosConexion = 0;\nconst maxIntentos = 1;\n\n// Garantiza que el intento de conexión se ejecute antes de evaluar si se superó el límite\ndo {\n    intentosConexion++;\n    console.log(`Conectando con el servidor... Intento ${intentosConexion}`);\n} while (intentosConexion < maxIntentos);"
                 }
               ]
             }
           ]
         },
         {
-          "id": "cap-funciones",
-          "titulo": "4. Reutilización de Código con Funciones",
+          "id": "cap-fundamentos-funciones",
+          "titulo": "4. Fundamentos de Funciones",
           "temas": [
             {
-              "id": "tema_funciones_basicas",
-              "titulo": "Funciones básicas: declaración, parámetros y retorno",
+              "id": "tema_declaracion_funciones",
+              "titulo": "Declaración, invocación, parámetros y la palabra clave return",
               "contenido": [
                 {
                   "tipo": "parrafo",
-                  "texto": "Hasta ahora, cuando queríamos ejecutar un bloque de código, este se ejecutaba inmediatamente en cuanto la computadora llegaba a esa línea. Sin embargo, en aplicaciones reales necesitamos agrupar un conjunto de instrucciones bajo un nombre específico para poder ejecutarlas solo cuando sea necesario, y tantas veces como queramos, sin tener que volver a escribirlas todas. A estos bloques reutilizables los llamamos Funciones."
+                  "texto": "Una función es un bloque de código encapsulado y diseñado para realizar una tarea específica. Funciona como una máquina en una fábrica: usted define cómo funciona la máquina una sola vez (Declaración), y luego puede encenderla y usarla todas las veces que necesite a lo largo del programa (Invocación). Esto previene la duplicación de código y facilita el mantenimiento del software."
                 },
                 {
                   "tipo": "parrafo",
-                  "texto": "Para entender cómo opera una función, imagine una licuadora de jugos automatizada. La máquina por sí sola no hace nada hasta que usted la enciende o la 'invoca'. Esta máquina consta de tres partes fundamentales:\n1. La Declaración: Es el diseño o la construcción de la máquina. Le decimos a la computadora cómo se va a llamar nuestra función y qué pasos va a seguir cuando alguien la use.\n2. Los Parámetros (Entradas): Son los ingredientes que introducimos en la máquina (por ejemplo, naranjas y hielo). Los parámetros son variables locales que la función utilizará para operar, permitiendo que la misma máquina procese ingredientes diferentes cada vez.\n3. El Retorno (Salida): Es el producto final que la máquina expulsa una vez termina su trabajo (el vaso de jugo de naranja). En programación, usamos la palabra clave 'return' para enviar este resultado de vuelta al flujo principal del programa."
-                },
-                {
-                  "tipo": "nota",
-                  "texto": "⚠️ La regla estricta del 'return': Cuando una función ejecuta la instrucción 'return', detiene su ejecución inmediatamente y 'sale' de la habitación. Cualquier línea de código escrita dentro de la función que esté debajo de un 'return' será completamente ignorada por el sistema. Si una función no tiene la palabra 'return', realizará sus tareas internamente pero le devolverá al programa un valor de tipo 'undefined'."
-                },
-                {
-                  "tipo": "parrafo",
-                  "texto": "Una vez que la función ha sido construida (declarada), podemos 'invocarla' o llamarla en cualquier parte del código escribiendo simplemente su nombre seguido de paréntesis (). Dentro de esos paréntesis le pasaremos los valores reales que sustituirán a los parámetros iniciales, a los cuales llamamos técnicamente 'argumentos'."
+                  "texto": "Las funciones profesionales raramente operan de forma aislada; necesitan recibir datos externos para procesarlos. A estas entradas se les llama 'Parámetros' (variables que la función espera recibir) y 'Argumentos' (los valores reales que le enviamos al invocarla). Finalmente, para que el resultado de la máquina pueda ser utilizado por el resto del sistema, la función debe expulsar un valor utilizando la palabra clave 'return'. Al ejecutar 'return', la función se detiene inmediatamente y devuelve el resultado."
                 },
                 {
                   "tipo": "codigo",
-                  "codigo": "// =========================================================\n// 1. DECLARACIÓN DE LA FUNCIÓN (Se construye la máquina)\n// =========================================================\n// Esta función recibe dos parámetros de entrada: 'nombre' y 'apellido'\nfunction crearSaludoFormal(nombre, apellido) {\n    console.log(\"Depuración - Entrando a la función con:\", nombre, apellido);\n    \n    // Procesamos los datos internamente creando un mensaje personalizado\n    const saludoCompleto = \"Estimado/a \" + nombre + \" \" + apellido + \", es un placer saludarle.\";\n    \n    // Devolvemos el resultado final al exterior\n    return saludoCompleto;\n}\n\n// =========================================================\n// 2. INVOCACIÓN O LLAMADA A LA FUNCIÓN (Se usa la máquina)\n// =========================================================\nconsole.log(\"\\nDepuración - Iniciando llamadas a funciones...\");\n\n// Llamada 1: Guardamos el retorno de la función en una nueva variable\nconst saludoCliente1 = crearSaludoFormal(\"Carlos\", \"Mendoza\");\nconsole.log(\"Resultado 1:\", saludoCliente1);\n\n// Llamada 2: Podemos reutilizar la misma función cambiando los argumentos\nconst saludoCliente2 = crearSaludoFormal(\"Elena\", \"Gómez\");\nconsole.log(\"Resultado 2:\", saludoCliente2);\n\n// =========================================================\n// 3. FUNCIÓN SIN RETORNO (Solo realiza una acción interna)\n// =========================================================\nfunction mostrarAlertaConsola(mensaje) {\n    console.log(\"⚠️ ALERTA DEL SISTEMA: \" + mensaje);\n    // Al no tener 'return', si intentamos guardar el resultado de esta función,\n    // obtendremos un tipo de dato 'undefined'.\n}\n\n// Invocamos la función de alerta\nmostrarAlertaConsola(\"La sesión del usuario está a punto de expirar.\");"
-                }
-              ]
-            },
-            {
-              "id": "tema_template_literals",
-              "titulo": "Template Literals (Plantillas de cadena modernas)",
-              "contenido": [
-                {
-                  "tipo": "parrafo",
-                  "texto": "Cuando trabajamos con textos (Strings), es muy común necesitar mezclar palabras fijas con valores que están guardados dentro de nuestras variables. En el JavaScript antiguo, esto se hacía uniendo los fragmentos con el símbolo de la suma (+), un proceso llamado concatenación. Sin embargo, este método suele ser confuso, ya que es fácil olvidar un espacio en blanco o equivocarse al abrir y cerrar las comillas."
-                },
-                {
-                  "tipo": "parrafo",
-                  "texto": "Para solucionar esto, el JavaScript moderno introdujo los Template Literals (Plantillas de texto). En lugar de usar comillas simples o dobles, todo el texto se envuelve dentro de comillas invertidas (`` ` ``). La gran ventaja es que podemos escribir un mensaje de forma totalmente natural, con sus espacios y saltos de línea reales, e inyectar cualquier variable directamente en el texto usando el símbolo del dólar seguido de llaves: ${variable}. La computadora identificará este símbolo y lo sustituirá automáticamente por el valor real."
-                },
-                {
-                  "tipo": "nota",
-                  "texto": "⌨️ Consejo de teclado: La comilla invertida (`) no es un acento normal. En teclados españoles estándar, se genera presionando la tecla que está a la derecha de la letra 'P' (o la tecla del acento) seguida de un espacio, o mediante la combinación Alt Gr + la tecla del acento."
-                },
-                {
-                  "tipo": "codigo",
-                  "codigo": "// Variable con datos de prueba\nconst nombreProducto = \"Teclado Mecánico\";\nconst precio = 49.99;\n\n// 1. FORMA ANTIGUA (Concatenación tradicional con +)\nconst mensajeAntiguo = \"El artículo \" + nombreProducto + \" tiene un costo de $\" + precio + \" euros.\";\nconsole.log(\"Depuración (Antiguo):\", mensajeAntiguo);\n\n// 2. FORMA MODERNA (Template Literals con comillas invertidas)\n// Observe cómo el código es mucho más limpio, legible y natural de escribir\nconst mensajeModerno = `El artículo ${nombreProducto} tiene un costo de $${precio} euros.`;\nconsole.log(\"Depuración (Moderno):\", mensajeModerno);\n\n// Los Template Literals también respetan los saltos de línea sin usar '\\n'\nconst facturaMultiLinea = `\n--- DETALLE DE FACTURA ---\nProducto: ${nombreProducto}\nTotal: $${precio}\n--------------------------`;\nconsole.log(facturaMultiLinea);"
+                  "codigo": "// =========================================================\n// 1. DECLARACIÓN E INVOCACIÓN BÁSICA\n// =========================================================\n\n/**\n * Muestra un mensaje de bienvenida genérico en el sistema.\n * Esta es una función sin parámetros ni retorno.\n */\nfunction mostrarBienvenida() {\n    console.log(\"Sistema iniciado. Bienvenido a la consola de administración.\");\n}\n\n// Invocación (ejecución) de la función\nmostrarBienvenida();\n\n// =========================================================\n// 2. PARÁMETROS, ARGUMENTOS Y VALORES POR DEFECTO\n// =========================================================\n\n/**\n * Genera un saludo personalizado.\n * @param {string} nombreUsuario - Nombre del cliente.\n * @param {string} rol - Nivel de acceso (Por defecto es \"Invitado\").\n */\nfunction saludarUsuario(nombreUsuario, rol = \"Invitado\") {\n    console.log(`Usuario: ${nombreUsuario} | Nivel de Acceso: ${rol}`);\n}\n\n// Invocación pasando argumentos válidos\nsaludarUsuario(\"Laura\", \"Administrador\");\n\n// Invocación omitiendo el segundo argumento (utilizará el valor por defecto)\nsaludarUsuario(\"Carlos\");\n\n// =========================================================\n// 3. LA PALABRA CLAVE 'RETURN'\n// =========================================================\n\n/**\n * Calcula el impuesto sobre un monto base.\n * @param {number} base - Monto económico bruto.\n * @returns {number} Valor total calculado incluyendo impuestos.\n */\nfunction calcularTotalConImpuestos(base) {\n    const impuesto = base * 0.21;\n    const total = base + impuesto;\n    \n    // 'return' expulsa el valor final para que pueda ser almacenado o utilizado\n    return total;\n    \n    // CUALQUIER código después de 'return' es ignorado por el motor de JavaScript\n    // console.log(\"Esta línea jamás se ejecutará.\");\n}\n\n// Capturamos el valor devuelto por la función en una variable\nconst totalFactura = calcularTotalConImpuestos(200);\nconsole.log(\"\\nEl sistema ha registrado un cargo total de:\", totalFactura);"
                 }
               ]
             }
@@ -261,7 +207,7 @@
       "nombre": "Conocimientos Medios",
       "capitulos": [
         {
-          "id": "cap-Arrays",
+          "id": "cap-arrays",
           "titulo": "5: Estructuras de Datos Avanzadas: Arrays y Métodos de Iteración",
           "temas": [
             {
@@ -286,7 +232,7 @@
                 },
                 {
                   "tipo": "codigo",
-                  "codigo": "// =========================================================\n// 1. CREACIÓN Y MANIPULACIÓN BÁSICA\n// =========================================================\nconst frutas = [\"Manzana\", \"Plátano\", \"Kiwi\"];\nconsole.log(\"Depuración - Lista inicial:\", frutas);\nconsole.log(\"Depuración - Cantidad de elementos:\", frutas.length);\n\nfrutas.push(\"Naranja\"); // Añade al final\nconsole.log(\"Depuración - Lista tras el push:\", frutas);\n\n// =========================================================\n// 2. MÉTODOS ESENCIALES (El poder de la iteración moderna)\n// =========================================================\nconst preciosEuros = [10, 20, 35, 50, 80];\nconsole.log(\"\\nDepuración - Precios base (Original):\", preciosEuros);\n\n// Ej 1: .map() -> Convertir los precios a dólares (multiplicando por 1.10)\nconst preciosDolares = preciosEuros.map(precio => precio * 1.10);\nconsole.log(\"Resultado .map() - Precios en Dólares:\", preciosDolares);\n\n// Ej 2: .filter() -> Seleccionar solo los precios que sean mayores de 30 euros\nconst preciosAltos = preciosEuros.filter(precio => precio > 30);\nconsole.log(\"Resultado .filter() - Precios caros:\", preciosAltos);\n\n// Ej 3: .reduce() -> Sumar todos los precios de la lista para obtener el total\n// El '0' al final es el valor inicial en el que empieza el acumulador\nconst sumaTotal = preciosEuros.reduce((acumulador, precioActual) => {\n    console.log(`-> Procesando reduce: Acumulado=${acumulador}, ElementoActual=${precioActual}`);\n    return acumulador + precioActual;\n}, 0);\n\nconsole.log(\"Resultado .reduce() - Suma total de la factura:\", sumaTotal);\nconsole.log(\"Comprobación final: El array original sigue intacto:\", preciosEuros);"
+                  "codigo": "// =========================================================\n// 1. CREACIÓN Y MANIPULACIÓN BÁSICA\n// =========================================================\nconst frutas = [\"Manzana\", \"Plátano\", \"Kiwi\"];\nconsole.log(\"Depuración - Lista inicial:\", frutas);\nconsole.log(\"Depuración - Cantidad de elementos:\", frutas.length);\n\nfrutas.push(\"Naranja\"); // Añade al final\nconsole.log(\"Depuración - Lista tras el push:\", frutas);\n\n// =========================================================\n// 2. MÉTODOS ESENCIALES (El poder de la iteración moderna)\n// =========================================================\nconst preciosEuros = [10, 20, 35, 50, 80];\nconsole.log(\"\\nDepuración - Precios base (Original):\", preciosEuros);\n\n// Ej 1: .map() -> Convertir los precios a dólares (multiplicando por 1.10)\nconst preciosDolares = preciosEuros.map(precio => precio * 1.10);\nconsole.log(\"Resultado .map() - Precios en Dólares:\", preciosDolares);\n\n// Ej 2: .filter() -> Seleccionar solo los precios que sean mayores de 30 euros\nconst preciosAltos = preciosEuros.filter(precio => precio > 30);\nconsole.log(\"Resultado .filter() - Precios caros:\", preciosAltos);\n\n// Ej 3: .reduce() -> Sumar todos los precios de la lista para obtener el total\n// El '0' al final es el valor inicial en el que empieza el acumulador\nconst sumaTotal = preciosEuros.reduce((acumulador, precioActual) => {\n    console.log(`-> Procesando reduce: Acumulado=${acumulador}, ElementoActual=${precioActual}`);\n    return acumulador + precioActual;\n}, 0);\n\n0\nconsole.log(\"Resultado .reduce() - Suma total de la factura:\", sumaTotal);\nconsole.log(\"Comprobación final: El array original sigue intacto:\", preciosEuros);"
                 }
               ]
             }
@@ -383,8 +329,56 @@
           ]
         },
         {
+          "id": "cap-entorno-profesional",
+          "titulo": "8. Entorno Profesional: Gestión y Versiones",
+          "temas": [
+            {
+              "id": "tema_npm",
+              "titulo": "Gestor de paquetes (NPM) y package.json",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En proyectos reales, no reinventamos la rueda. Utilizamos librerías creadas por la comunidad para tareas comunes como el manejo de fechas, peticiones HTTP o seguridad. NPM (Node Package Manager) es la herramienta estándar que nos permite descargar estas librerías desde un repositorio central. El archivo 'package.json' es el manifiesto de nuestro proyecto: un archivo de configuración que registra el nombre del proyecto, las versiones y las dependencias externas que necesitamos para que nuestra aplicación funcione."
+                },
+                {
+                  "tipo": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Dependencias vs. DevDependencies: En tu 'package.json', verás esta distinción. Las 'dependencies' son necesarias para que el usuario final ejecute tu app en producción. Las 'devDependencies' son herramientas que solo tú necesitas mientras programas (como formateadores de código o testers). Separarlas reduce el tamaño final de tu aplicación."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// --- Ejemplo de un archivo package.json (Configuración) ---\n{\n  \"name\": \"mi-proyecto-backend\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"axios\": \"^1.6.0\" // Librería para peticiones HTTP\n  },\n  \"devDependencies\": {\n    \"jest\": \"^29.0.0\" // Herramienta de pruebas (solo para desarrollo)\n  }\n}\n\n// --- Comandos de terminal fundamentales ---\n// npm init -y      // Crea el package.json inicial\n// npm install axios // Descarga una librería externa\n// npm install jest --save-dev // Instala una dependencia de desarrollo"
+                }
+              ]
+            },
+            {
+              "id": "tema_git",
+              "titulo": "Introducción a Git: Control de versiones",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Git es el sistema de control de versiones más utilizado en la industria. Imagina que es una máquina del tiempo para tu código: te permite guardar 'fotos' (commits) de tu progreso en diferentes momentos. Si te equivocas o introduces un error, puedes volver atrás instantáneamente a una versión anterior donde todo funcionaba correctamente. Además, es la base para el trabajo colaborativo en equipos profesionales."
+                },
+                {
+                  "tipo": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 El ciclo de vida de un archivo en Git: El flujo profesional es: 1. Modificar archivos. 2. 'git add' para preparar los cambios (Staging area). 3. 'git commit' para guardar la foto con un mensaje descriptivo. 4. 'git push' para subir los cambios a un servidor en la nube (como GitHub o GitLab)."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// --- Comandos iniciales de Git ---\n\n// git init             // Convierte tu carpeta en un repositorio Git\n// git status           // Mira qué archivos han cambiado\n// git add .            // Prepara todos los archivos para el guardado\n// git commit -m \"feat: crear controlador de usuarios\" // Guarda el progreso\n\n// --- Regla de oro para el mensaje de commit ---\n// Debe ser imperativo y claro:\n// Mal: \"arreglos\"\n// Bien: \"fix: corregir validación de edad en SocioService\""
+                }
+              ]
+            }
+          ]
+        },
+        {
           "id": "cap-poo",
-          "titulo": "8. Programación Orientada a Objetos (POO)",
+          "titulo": "9. Programación Orientada a Objetos (POO)",
           "temas": [
             {
               "id": "tema_poo_clases",
@@ -404,7 +398,7 @@
                 },
                 {
                   "tipo": "nota",
-                  "texto": "💡 ¿Por qué usar Clases en lugar de Objetos Literales?: Si necesitas un solo objeto en toda tu aplicación (como la configuración global de un sistema), un objeto literal es perfecto. Pero si estás programando un videojuego y necesitas crear 100 enemigos con las mismas propiedades y acciones, escribir 100 objetos manuales duplicaría tu código. Una clase te permite instanciar los 100 enemigos de forma masiva y limpia."
+                  "texto": "💡 ¿Por qué usar Clases en lugar de Objetos Literales?: Si necesitas un solo objeto en toda tu aplicación (como la configuración global de un sistema), un objeto literal es perfecto. But si estás programando un videojuego y necesitas crear 100 enemigos con las mismas propiedades y acciones, escribir 100 objetos manuales duplicaría tu código. Una clase te permite instanciar los 100 enemigos de forma masiva y limpia."
                 },
                 {
                   "tipo": "codigo",
@@ -442,7 +436,7 @@
         },
         {
           "id": "cap-dom",
-          "titulo": "9. Interacción con el Navegador: El DOM",
+          "titulo": "10. Interacción con el Navegador: El DOM",
           "temas": [
             {
               "id": "tema_introduccion_dom",
@@ -469,13 +463,120 @@
                   "codigo": "// =========================================================\n// REPRESENTACIÓN DEL HTML REQUISITO PARA ESTE CÓDIGO:\n// <h1 id=\"titulo-principal\">Texto original</h1>\n// <button class=\"btn-accion\">Cambiar interfaz</button>\n// =========================================================\n\nconsole.log(\"Depuración - Iniciando manipulación del DOM...\");\n\n// 1. SELECCIÓN DE ELEMENTOS\n// Seleccionamos por ID utilizando el símbolo '#'\nconst titulo = document.querySelector(\"#titulo-principal\");\n\n// Seleccionamos por clase utilizando el símbolo '.'\nconst boton = document.querySelector(\".btn-accion\");\n\nconsole.log(\"Depuración - Elemento título capturado:\", titulo);\nconsole.log(\"Depuración - Elemento botón capturado:\", boton);\n\n// Comprobación de seguridad para evitar fallos si el HTML cambia\nif (titulo && boton) {\n    \n    // 2. MODIFICACIÓN DINÁMICA DE CONTENIDO\n    // Cambiamos el texto interno de forma segura\n    titulo.textContent = \"¡Interfaz Actualizada con JavaScript!\";\n    console.log(\"Depuración - Texto del título modificado correctamente.\");\n\n    // 3. MODIFICACIÓN DIRECTA DE ESTILOS CSS (Estilos Inline)\n    // Se utiliza la nomenclatura camelCase para propiedades CSS compuestas\n    titulo.style.color = \"#2ecc71\"; // Cambia el color a verde\n    titulo.style.backgroundColor = \"#f8f9fa\"; // Cambia el fondo\n    titulo.style.padding = \"15px\";\n    \n    // 4. MEJOR PRÁCTICA: MANIPULACIÓN DE CLASES (classList)\n    // En lugar de tocar estilos uno a uno, añadimos una clase CSS predefinida\n    boton.classList.add(\"btn-activo\");\n    \n    // El método toggle añade la clase si no existe, o la quita si ya existe\n    boton.classList.toggle(\"animacion-pulso\");\n    \n    console.log(\"Depuración - Clases actuales del botón:\", boton.className);\n\n} else {\n    console.log(\"⚠️ Alerta: No se encontraron los elementos en el árbol DOM actual.\");\n}"
                 }
               ]
+            },
+            {
+              "id": "tema_gestion_eventos_avanzada",
+              "titulo": "Gestión avanzada de eventos: Listeners, propagación y delegación",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Un evento es cualquier acción que ocurre en el navegador, ya sea provocada por el usuario (un clic, mover el ratón, pulsar una tecla) o por el propio sistema (terminar de cargar la página). Para escuchar estas acciones y reaccionar a ellas con código JavaScript, utilizamos los 'Event Listeners' (Escuchadores de eventos) mediante el método '.addEventListener()'. Este mecanismo es el estándar profesional porque nos permite añadir múltiples respuestas al mismo evento sin machacar el código existente."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Cuando ocurre un evento en un elemento que está muy adentro del HTML (por ejemplo, un botón dentro de un párrafo, dentro de un contenedor div), el evento no se queda ahí. JavaScript activa un fenómeno llamado 'Event Bubbling' (Propagación por burbujeo). El evento sube por el árbol del DOM capa por capa como una burbuja de gas en el agua, activando los escuchadores de los elementos padres. Si queremos detener este comportamiento para que el evento no siga subiendo, ejecutamos el método 'event.stopPropagation()'."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "📋 El objeto Event (e): Cada vez que se ejecuta un Event Listener, JavaScript inyecta automáticamente una función con un objeto lleno de información sobre lo que acaba de pasar. Convencionalmente se le llama 'event' o simplemente 'e'. Sus dos propiedades más importantes son: 'e.target' (el elemento exacto donde el usuario hizo clic) y 'e.currentTarget' (el elemento que tiene el escuchador de eventos ejecutándose)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "La propagación por burbujeo da origen a una de las técnicas de optimización más importantes del desarrollo web: la Delegación de Eventos. Si tiene una lista con 1000 elementos, crear 1000 escuchadores individuales consumiría la memoria del navegador y ralentizaría la aplicación. En su lugar, colocamos un ÚNICO escuchador en el elemento padre común y usamos 'event.target' para capturar y saber exactamente cuál de los elementos hijos recibió el impacto."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// REPRESENTACIÓN DEL HTML REQUISITO PARA ESTE CÓDIGO:\n// <div id=\"contenedor-padre\">\n//     <ul id=\"lista-tareas\">\n//         <li class=\"tarea\">Comprar pan <button class=\"btn-borrar\">Eliminar</button></li>\n//     </ul>\n// </div>\n// =========================================================\n\nconsole.log(\"Depuración - Iniciando el sistema de eventos avanzados...\");\n\nconst padre = document.querySelector(\"#contenedor-padre\");\nconst lista = document.querySelector(\"#lista-tareas\");\n\n// 1. DEMOSTRACIÓN DE PROPAGACIÓN (BUBBLING) Y CÓMO DETENERLA\nif (padre) {\n    padre.addEventListener(\"click\", (event) => {\n        // Este log se ejecutará por el efecto burbuja si hacemos clic en sus hijos\n        console.log(\"Depuración - [Burbujeo]: El evento llegó hasta el DIV PADRE.\");\n    });\n}\n\n// 2. TÉCNICA PROFESIONAL: DELEGACIÓN DE EVENTOS\nif (lista) {\n    // En lugar de escuchar cada botón individual, escuchamos únicamente a la lista entera\n    lista.addEventListener(\"click\", (event) => {\n        console.log(\"\\nDepuración - Clic detectado en el componente Lista.\");\n        console.log(\"Depuración - Elemento exacto que recibió el clic (target):\", event.target);\n        \n        // Comprobamos si el elemento real que fue clickeado es el botón de borrar\n        if (event.target.classList.contains(\"btn-borrar\")) {\n            console.log(\"Depuración - Filtro correcto: El usuario quiere eliminar un elemento.\");\n            \n            // Detenemos la propagación para que el DIV PADRE no reciba el impacto por accidente\n            event.stopPropagation();\n            console.log(\"Depuración - Propagación frenada con stopPropagation().\");\n\n            // Localizamos el nodo 'li' (tarea) más cercano al botón para proceder al borrado\n            const elementoTarea = event.target.closest(\".tarea\");\n            if (elementoTarea) {\n                elementoTarea.remove();\n                console.log(\"Depuración - Elemento del DOM eliminado correctamente.\");\n            }\n        }\n    });\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-storage",
+          "titulo": "11. Persistencia de Datos en el Navegador",
+          "temas": [
+            {
+              "id": "tema_persistencia_storage",
+              "titulo": "Persistencia de datos en el navegador: LocalStorage y SessionStorage",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Hasta este punto, todas las variables, arrays y objetos que creábamos vivían únicamente en la memoria RAM del navegador. Esto significa que si el usuario pulsaba el botón de actualizar (F5) o cerraba la pestaña, todos los datos acumulados se destruían al instante. Para resolver este problema y permitir que las aplicaciones recuerden configuraciones o carritos de la compra, los navegadores modernos incluyen la API de Web Storage, compuesta por LocalStorage y SessionStorage."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Ambas herramientas funcionan como una pequeña base de datos local dentro del navegador organizada en forma de parejas 'clave-valor', pero se diferencian radicalmente en su ciclo de vida:\n• LocalStorage: Guarda la información de forma indefinida. Los datos seguirán ahí aunque el usuario apague el ordenador o pase un año, hasta que el código o el propio usuario limpien el historial.\n• SessionStorage: Guarda la información únicamente mientras la pestaña del navegador permanezca abierta. Si la pestaña se cierra, los datos se eliminan automáticamente."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "⚠️ El límite de los Strings (Cadenas de texto): Web Storage solo es capaz de almacenar texto plano. Si intenta guardar un Array o un Objeto directamente, el navegador lo convertirá erróneamente en el texto '[object Object]'. Para solucionarlo, debemos transformar nuestros objetos a texto usando 'JSON.stringify()' antes de guardarlos, y volver a transformarlos en código vivo usando 'JSON.parse()' al leerlos."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para interactuar con el almacenamiento disponemos de cuatro métodos esenciales e idénticos para ambas tecnologías: '.setItem()' (guardar un dato), '.getItem()' (recuperar un dato mediante su clave), '.removeItem()' (borrar un dato específico) y '.clear()' (vaciar por completo todo el almacenamiento de nuestra web)."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. GUARDAR Y RECUPERAR DATOS SIMPLES (TEXTO)\n// =========================================================\nconsole.log(\"Depuración - Iniciando pruebas de persistencia en almacenamiento...\");\n\n// Guardamos un dato simple (Texto)\nlocalStorage.setItem(\"temaPredefinido\", \"oscuro\");\nconsole.log(\"Depuración - Configuración de tema guardada en LocalStorage.\");\n\n// Recuperamos el dato guardado\nconst temaGuardado = localStorage.getItem(\"temaPredefinido\");\nconsole.log(\"Resultado de la lectura:\", temaGuardado); // Imprime: oscuro\n\n// =========================================================\n// 2. TRABAJAR CON ESTRUCTURAS COMPLEJAS (OBJETOS / ARRAYS)\n// =========================================================\nconst sesionUsuario = {\n    id: 1045,\n    nombre: \"Elena\",\n    preferencias: { notificaciones: true }\n};\n\n// ❌ PASO INCORRECTO: Guardar el objeto directamente (Dará error de formato)\nlocalStorage.setItem(\"usuarioIncorrecto\", sesionUsuario);\nconsole.log(\"Depuración (Error común):\", localStorage.getItem(\"usuarioIncorrecto\")); // Imprime: [object Object]\n\n//  PASO CORRECTO: Convertir el objeto a una cadena de texto JSON\nconst objetoConvertido EnTexto = JSON.stringify(sesionUsuario);\nlocalStorage.setItem(\"usuarioActivo\", objetoConvertidoEnTexto);\nconsole.log(\"Depuración - Objeto serializado correctamente en LocalStorage.\");\n\n// Para usarlo de nuevo, lo leemos y lo reconstruimos a Objeto de JavaScript\nconst textoDesdeStorage = localStorage.getItem(\"usuarioActivo\");\nconst usuarioRecuperado = JSON.parse(textoDesdeStorage);\n\nconsole.log(\"Objeto restaurado listo para usar:\", usuarioRecuperado);\nconsole.log(\"Comprobación de acceso a propiedad interna:\", usuarioRecuperado.nombre); // Imprime: Elena\n\n// =========================================================\n// 3. LIMPIEZA DE DATOS\n// =========================================================\n// Eliminar un solo elemento específico\nlocalStorage.removeItem(\"usuarioIncorrecto\");\nconsole.log(\"Depuración - Registro obsoleto eliminado.\");\n\n// Borrar absolutamente todo lo guardado por esta web\n// localStorage.clear();"
+                }
+              ]
             }
           ]
         },
         {
           "id": "cap-asincronia",
-          "titulo": "10. Asincronía y Closures",
-          "temas": []
+          "titulo": "12. Asincronía y Closures",
+          "temas": [
+            {
+              "id": "tema_closures_scope",
+              "titulo": "Entendiendo los Closures y el Ámbito (Scope)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para comprender un Closure (o clausura), primero debemos recordar cómo funciona el Ámbito (Scope) en JavaScript. Cuando creamos variables dentro de una función, estas variables son locales: nacen cuando la función se ejecuta y se destruyen inmediatamente cuando la función termina. El exterior del programa no tiene forma de acceder a ellas."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Un Closure ocurre cuando una función se define dentro de otra función padre y la función hija hace uso de las variables de la función padre. Al retornar la función hija, esta 'recuerda' y mantiene vivo el acceso a las variables de su entorno original, incluso después de que la función padre haya terminado de ejecutarse por completo. Piense en el Closure como una 'mochila invisible' que la función hija lleva a la espalda con todas las variables que necesita para seguir trabajando."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 ¿Para qué sirve un Closure en el mundo real?: Se utiliza principalmente para crear 'Variables Privadas'. JavaScript tradicionalmente no tenía una forma nativa de ocultar variables (hasta la llegada de las propiedades # en clases). Los Closures permiten encapsular datos de tal forma que nadie pueda modificarlos desde fuera si no es usando la función autorizada."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. CREACIÓN DE UN CLOSURE (Fábrica de contadores)\n// =========================================================\nfunction crearContador() {\n    // Esta variable está protegida dentro del ámbito de la función padre\n    let contadorPrivado = 0;\n    \n    console.log(\"Depuración - Fábrica inicializada. Variable local fijada en 0.\");\n\n    // Retornamos la función hija. Esta función es el Closure.\n    return function() {\n        contadorPrivado++; // Incrementa la variable de la función padre\n        console.log(`Depuración [Closure] -> Accediendo a la mochila. Valor actual: ${contadorPrivado}`);\n        return contadorPrivado;\n    };\n}\n\n// =========================================================\n// 2. EJECUCIÓN Y PRUEBA DEL CIERRE DE ÁMBITO\n// =========================================================\nconsole.log(\"--- Instanciando el Closure ---\");\n\n// 'miContador' ahora contiene la función interna devuelta\nconst miContador = crearContador();\n\n// Ejecutamos la función interna múltiples veces\nmiContador(); // Imprime 1\nmiContador(); // Imprime 2\nmiContador(); // Imprime 3\n\n// Creamos un segundo contador totalmente aislado con su propia 'mochila'\nconsole.log(\"\\n--- Instanciando un segundo contador independiente ---\");\nconst otroContador = crearContador();\notroContador(); // Imprime 1 (No afecta al primer contador)\n\n// Intentar acceder a la variable directamente dará error porque está blindada\n// console.log(contadorPrivado); // ❌ ERROR: ReferenceError: contadorPrivado is not defined"
+                }
+              ]
+            },
+            {
+              "id": "tema_asincronia_moderna",
+              "titulo": "Asincronía: Promesas y Async/Await",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Por naturaleza, JavaScript ejecuta el código de forma síncrona y secuencial (línea por línea, esperando a que termine la anterior para pasar a la siguiente). Esto funciona bien para tareas matemáticas, pero se convierte en un problema grave cuando dependemos del mundo exterior, como pedir datos a un servidor en internet o leer un archivo pesado. Si JavaScript se detuviera a esperar la respuesta del servidor, toda la página web se congelaría por completo y el usuario no podría hacer clic en ningún sitio."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Para evitar bloqueos, JavaScript utiliza la Asincronía. Permite enviar las tareas lentas a un segundo plano para que el navegador se encargue de ellas, mientras el hilo principal de JavaScript continúa ejecutando el resto de las líneas del script sin detenerse. Cuando la tarea pesada termina en segundo plano, el sistema nos avisa para procesar el resultado."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "El estándar moderno para gestionar la asincronía son las Promesas. Una Promesa es un objeto que representa el resultado de una operación que aún no ha terminado, pero que promete terminar en el futuro. Una promesa puede estar en tres estados:\n• Pending (Pendiente): La tarea aún se está ejecutando.\n• Fulfilled (Resuelta / Cumplida): La tarea terminó con éxito y nos entrega los datos esperados (se captura con '.then()').\n• Rejected (Rechazada): Ocurrió un fallo en el proceso (se captura con '.catch()')."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 El truco de magia de Async/Await: Escribir código encadenando '.then()' y '.catch()' puede volverse confuso si tenemos muchas tareas seguidas. Para solucionarlo, ES8 introdujo 'async/await'. Al anteponer la palabra 'async' a una función, obtenemos el poder de usar la palabra clave 'await' en su interior. 'await' detiene temporalmente la lectura de la función asíncrona hasta que la promesa se resuelva, permitiéndonos escribir código asíncrono con la misma limpieza estética y orden visual de un código síncrono tradicional."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// 1. SIMULACIÓN DE UNA PETICIÓN ASÍNCRONA (Base con Promesas)\n// =========================================================\nconst simularServidorBaseDatos = (usuarioId) => {\n    // Retornamos una nueva promesa encargada de la tarea en segundo plano\n    return new Promise((resolve, reject) => {\n        console.log(`\\nDepuración - [Servidor]: Buscando al usuario ${usuarioId} en la base de datos...`);\n        \n        // Simulamos un retraso de red de 2 segundos mediante setTimeout\n        setTimeout(() => {\n            const exito = true; // Cambiar a false para probar el flujo de error (.catch)\n            \n            if (exito) {\n                // Si todo sale bien, resolvemos la promesa enviando un objeto con los datos\n                resolve({ id: usuarioId, nombre: \"Carlos Code\", rol: \"Developer\" });\n            } else {\n                // Si algo falla, rechazamos la promesa enviando un mensaje de error\n                reject(\"Error 500: No se pudo conectar con la base de datos.\");\n            }\n        }, 2000);\n    });\n};\n\n// =========================================================\n// 2. CONSUMO DE LA PROMESA USANDO ASYNC / AWAIT (Estándar Profesional)\n// =========================================================\nconst procesarSolicitudUsuario = async () => {\n    console.log(\"Depuración - [Cliente]: Iniciando proceso de login...\");\n    \n    // Para capturar errores en bloques async/await, es obligatorio envolver el código en un try/catch\n    try {\n        // 'await' congela temporalmente esta línea hasta que la promesa del servidor se resuelva\n        const usuarioRecuperado = await simularServidorBaseDatos(402);\n        \n        console.log(\"Depuración - [Cliente]: Datos recibidos con éxito del await.\");\n        console.log(`¡Bienvenido de nuevo, ${usuarioRecuperado.nombre}! Tu rol asignado es: ${usuarioRecuperado.rol}`);\n        \n    } catch (error) {\n        // Si la promesa es rechazada, el flujo salta directamente a este bloque\n        console.log(\"⚠️ Alerta en el bloque catch:\", error);\n    } finally {\n        console.log(\"Depuración - Proceso finalizado (Este bloque se ejecuta siempre, haya éxito o fallo).\");\n    }\n};\n\n// Ejecutamos la función asíncrona principal\nprocesarSolicitudUsuario();\nconsole.log(\"Depuración - [Hilo Principal]: Yo no espero a nadie, sigo ejecutando líneas de código en paralelo.\");"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -483,26 +584,346 @@
       "nombre": "Conocimientos Avanzados",
       "capitulos": [
         {
-          "id": "cap-arquitectura",
-          "titulo": "8. Rendimiento y Motor V8",
+          "id": "cap-13-motor-asincronia",
+          "titulo": "13. El Motor de JavaScript y Asincronía de Alto Nivel",
           "temas": [
             {
-              "id": "tema-eventloop",
-              "titulo": "El Event Loop",
-              "resumen": "Cómo JavaScript maneja la concurrencia con un solo hilo de ejecución.",
+              "id": "tema_event_loop_asincronia",
+              "titulo": "El Event Loop y el funcionamiento de la asincronía en JavaScript",
               "contenido": [
                 {
                   "tipo": "parrafo",
-                  "texto": "El bucle de eventos (Event Loop) es el mecanismo que permite a JavaScript realizar operaciones no bloqueantes."
+                  "texto": "Por diseño, JavaScript es un lenguaje monohilo (single-threaded), lo que significa que posee una única pila de ejecución (Call Stack) y solo puede procesar una tarea a la vez. Para evitar que operaciones costosas o lentas —como peticiones de red o temporizadores— bloqueen el hilo principal y congelen la interfaz de usuario, JavaScript delega estas tareas al entorno del navegador (o a Node.js). El mecanismo encargado de coordinar esta colaboración y gestionar la ejecución asíncrona es el Event Loop (Bucle de Eventos)."
                 },
                 {
-                  "tipo": "codigo",
-                  "codigo": "console.log('Inicio');\nsetTimeout(() => console.log('Callback'), 0);\nconsole.log('Fin');",
-                  "lenguaje": "javascript"
+                  "tipo": "parrafo",
+                  "texto": "La arquitectura asíncrona de alto nivel se fundamenta en cuatro componentes que operan de forma cíclica: el Call Stack (donde se ejecuta el código síncrono de inmediato), las Web APIs (el entorno externo donde el navegador procesa las tareas en segundo plano), la Microtask Queue (cola de alta prioridad reservada para las respuestas de las Promesas y async/await) y la Callback Queue o Macrotask Queue (cola de prioridad estándar para eventos del DOM, peticiones HTTP antiguas y temporizadores como setTimeout)."
                 },
                 {
                   "tipo": "nota",
-                  "texto": "Las microtareas (como las promesas) tienen prioridad sobre las macrotareas (como setTimeout)."
+                  "texto": "💡 La regla de oro del Event Loop: El bucle de eventos actúa como un vigilante constante. Su única función es comprobar si el Call Stack está completamente vacío. Solo cuando la pila de ejecución síncrona se libera, el Event Loop traslada las tareas asíncronas pendientes al Call Stack, otorgando siempre prioridad absoluta a vaciar por completo la Microtask Queue (Promesas) antes de procesar una sola Macrotarea (setTimeout)."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// DEMOSTRACIÓN DEL ORDEN DE EJECUCIÓN EN EL EVENT LOOP\n// =========================================================\n\n// 1. Código síncrono: entra directo al Call Stack y se ejecuta inmediatamente.\nconsole.log(\"Depuración [1]: Inicio del script (Código síncrono).\");\n\n// 2. Macrotarea: se delega a las Web APIs del navegador.\n// Aunque el tiempo es 0ms, su callback debe esperar obligatoriamente en la Callback Queue.\nsetTimeout(() => {\n    console.log(\"Depuración [2]: Ejecutando callback de setTimeout (Macrotarea).\");\n}, 0);\n\n// 3. Microtarea: se procesa e introduce su resolución en la Microtask Queue.\nPromise.resolve()\n    .then(() => {\n        console.log(\"Depuración [3]: Ejecutando resolución de Promesa 1 (Microtarea).\");\n    })\n    .then(() => {\n        // Las microtareas encadenadas se ejecutan de forma consecutiva antes de ceder el turno\n        console.log(\"Depuración [4]: Ejecutando segunda Promesa consecutiva (Microtarea).\");\n    });\n\n// 4. Última línea síncrona: se ejecuta antes de que el Call Stack quede vacío.\nconsole.log(\"Depuración [5]: Fin del script (Código síncrono).\");\n\n// =========================================================\n// FLUJO DE SALIDA ESPERADO EN LA CONSOLA:\n// =========================================================\n// 1º -> Depuración [1]: Inicio del script (Código síncrono).\n// 2º -> Depuración [5]: Fin del script (Código síncrono).\n// 3º -> Depuración [3]: Ejecutando resolución de Promesa 1 (Microtarea).\n// 4º -> Depuración [4]: Ejecutando segunda Promesa consecutiva (Microtarea).\n// 5º -> Depuración [2]: Ejecutando callback de setTimeout (Macrotarea)."
+                }
+              ]
+            },
+            {
+              "id": "tema_promesas_async_await",
+              "titulo": "Promesas y flujo asíncrono moderno con async y await",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "Una Promesa en JavaScript es un objeto que representa el éxito o el fracaso eventual de una operación asíncrona. En lugar de depender de múltiples callbacks anidados (lo que históricamente causaba el problema conocido como 'Callback Hell'), las promesas permiten encadenar acciones de forma lineal y legible. Una promesa pasa por tres estados mutuamente excluyentes: 'Pending' (pendiente de resolución), 'Fulfilled' (completada con éxito, lo que dispara el método .then()) y 'Rejected' (fallida debido a un error, lo que dispara el método .catch())."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Para simplificar aún más el consumo y control de las promesas, JavaScript introdujo las palabras clave 'async' y 'await'. Al marcar una función con el modificador 'async', esta pasa automáticamente a retornar una promesa. Dentro de dicha función, podemos usar el operador 'await' antepuesto a cualquier operación asíncrona; esto pausa la ejecución de la función de manera no bloqueante hasta que la promesa se resuelva, permitiendo escribir código asíncrono con una estructura secuencial idéntica a la del código síncrono."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Control de Errores Profesional: Al utilizar async/await, ya no dependemos de los métodos estructurados .catch() al final de las cadenas. En su lugar, toda la captura de excepciones se centraliza utilizando los bloques nativos 'try...catch...finally', lo cual es el estándar actual en el desarrollo de software para mantener el código limpio, mantenible y robusto durante el proceso de depuración."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// FLUJO ASÍNCRONO MODERNO CON ASYNC / AWAIT Y CONTROL DE ERRORES\n// =========================================================\n\n// Función simulada que retorna una Promesa para emular una petición de red externa\nconst obtenerDatosUsuario = (idUsuario) => {\n    return new Promise((resolve, reject) => {\n        console.log(`Depuración - [Web API]: Iniciando temporizador asíncrono para usuario ID: ${idUsuario}`);\n        \n        setTimeout(() => {\n            const exito = true; // Modificar a false para simular un fallo de red y evaluar el bloque catch\n            \n            if (exito) {\n                // La promesa se resuelve con éxito devolviendo el objeto de datos\n                resolve({ id: idUsuario, nombre: \"Carlos Gómez\", rol: \"Developer\" });\n            } else {\n                // La promesa es rechazada arrojando un error formal\n                reject(new Error(\"Error de conexión: No se pudo conectar con el servidor remoto.\"));\n            }\n        }, 1500);\n    });\n};\n\n// Función asíncrona principal encargada de orquestar el flujo de datos\nconst procesarPerfilSocio = async (id) => {\n    console.log(\"Depuración - [Función Async]: Ejecutando bloque de inicialización...\");\n    \n    try {\n        console.log(\"Depuración - [Try]: Solicitando datos al servidor. El hilo se pausará localmente sin bloquear la app.\");\n        \n        // El operador 'await' detiene la ejecución interna hasta que la promesa de obtenerDatosUsuario se resuelva\n        const usuario = await obtenerDatosUsuario(id);\n        \n        console.log(\"Depuración - [Try]: Datos recibidos de forma exitosa desde la Promesa.\");\n        console.log(\"Resultado del Perfil de Usuario:\", usuario);\n        \n    } catch (error) {\n        // Este bloque intercepta cualquier rechazo de la promesa o fallo inesperado de ejecución\n        console.log(\"⚠️ Alerta de Error en el Bloque Catch:\", error.message);\n        \n    } finally {\n        // Este bloque se ejecuta de forma obligatoria sin importar si hubo éxito o fallo en el bloque try\n        console.log(\"Depuración - [Finally]: Limpieza de recursos y cierre de conexiones finalizado con éxito.\");\n    }\n};\n\n// Ejecución del flujo general del programa\nconsole.log(\"Depuración - [Código Síncrono]: Iniciando llamada principal del script.\");\nprocesarPerfilSocio(101);\nconsole.log(\"Depuración - [Código Síncrono]: El flujo principal continúa su camino sin detenerse por la petición asíncrona.\");"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-14-http-errores",
+          "titulo": "14. Peticiones HTTP y Gestión Robusta de Errores",
+          "temas": [
+            {
+              "id": "tema_peticiones_http_fetch",
+              "titulo": "Peticiones HTTP y consumo de APIs externas con fetch()",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En el desarrollo web moderno, las aplicaciones rara vez trabajan de forma aislada; necesitan comunicarse con servidores externos para consultar, guardar o actualizar información (como obtener el clima actual, validar un pago o cargar publicaciones). Esta comunicación se realiza mediante el protocolo HTTP a través de Peticiones (Requests) y Respuestas (Responses). Para interactuar con estas APIs externas desde JavaScript, el navegador proporciona la herramienta nativa 'fetch()', la cual está basada internamente en Promesas y nos permite realizar solicitudes de red de manera limpia y eficiente."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Cuando ejecutamos una petición con 'fetch()', el proceso asíncrono se realiza en dos etapas obligatorias debido a cómo viaja la información por la red. La primera llamada a 'fetch(url)' se resuelve cuando el servidor responde con las cabeceras y el estado de la petición (por ejemplo, un estado 200 de éxito). Sin embargo, el cuerpo de los datos (el contenido real) todavía se está descargando en segundo plano, por lo que requerimos un segundo paso asíncrono llamando al método '.json()' para procesar y transformar ese flujo de texto plano en un objeto de JavaScript utilizable."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Comportamiento técnico de fetch(): A diferencia de otras librerías externas, la función nativa 'fetch()' NO se rechaza (no cae en el bloque catch) si el servidor responde con un error HTTP como un 404 (No encontrado) o un 500 (Error del servidor). Para 'fetch()', la petición se completó con éxito porque hubo comunicación con el servidor. Por lo tanto, es responsabilidad del programador evaluar la propiedad booleana 'respuesta.ok' antes de intentar procesar los datos."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// CONSUMO DE APIS EXTERNAS MEDIANTE LA API NATIVA FETCH\n// =========================================================\n\n// URL pública de pruebas que simula una API de usuarios en producción\nconst URL_API_USUARIOS = \"https://jsonplaceholder.typicode.com/users/1\";\n\nconst consultarDatosServidor = async () => {\n    console.log(\"Depuración [1]: Preparando el entorno para iniciar la petición de red...\");\n    \n    try {\n        console.log(\"Depuración [2]: Lanzando petición HTTP GET mediante fetch()...\");\n        // Paso 1: Esperamos la respuesta inicial del servidor (Cabeceras y Estado)\n        const respuesta = await fetch(URL_API_USUARIOS);\n        \n        console.log(\"Depuración [3]: Conexión establecida. Estado HTTP recibido:\", respuesta.status);\n        \n        // VALIDACIÓN CRUCIAL: Verificamos si el servidor respondió con un estado de éxito (200-299)\n        if (!respuesta.ok) {\n            // Lanzamos un error manualmente si el estado no es satisfactorio (ej. 404 o 500)\n            throw new Error(`Fallo en la comunicación. Código de estado del servidor: ${respuesta.status}`);\n        }\n        \n        console.log(\"Depuración [4]: El estado es correcto. Extrayendo el cuerpo de los datos en formato JSON...\");\n        // Paso 2: Descargamos y parseamos el contenido real del mensaje de forma asíncrona\n        const datosUsuario = await respuesta.json();\n        \n        console.log(\"Depuración [5]: Datos procesados y transformados a objeto de JavaScript con éxito.\");\n        console.log(\"Resultado final del perfil solicitado:\", datosUsuario);\n        \n    } catch (error) {\n        // Este bloque interceptará fallos reales de red (como quedarse sin internet) o errores lanzados en el 'throw'\n        console.log(\"⚠️ Alerta en el bloque catch (Error de Red o Servidor):\", error.message);\n        \n    } finally {\n        console.log(\"Depuración [6]: Operación de consulta HTTP finalizada de forma segura.\");\n    }\n};\n\n// Ejecutamos el flujo de consulta externa\nconsultarDatosServidor();"
+                }
+              ]
+            },
+            {
+              "id": "tema_gestion_errores_try_catch",
+              "titulo": "Gestión limpia de errores mediante bloques try, catch y finally",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En JavaScript, un error no controlado (excepción) interrumpe inmediatamente la ejecución de todo el programa, lo que provoca la caída de un servicio en producción o una congelación de la interfaz de usuario. Para evitar esto, se utiliza la estructura 'try...catch...finally'. Esta arquitectura de control permite definir un bloque de código protegido ('try') donde se prevé que pueda ocurrir un fallo, interceptar la excepción de forma controlada ('catch') si algo sale mal, y ejecutar código de finalización obligatorio ('finally') sin colapsar la aplicación."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Cuando el motor de JavaScript entra en el bloque 'try', ejecuta las instrucciones de forma secuencial. Si ocurre un error en cualquier línea, detiene la ejecución en ese punto exacto y salta de inmediato al bloque 'catch', proporcionando un objeto de error con los detalles del fallo. Si no ocurre ninguna excepción, el bloque 'catch' se ignora por completo. En ambos escenarios, el bloque 'finally' se ejecutará al término de la operación de forma garantizada."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 El propósito técnico de finally: El bloque 'finally' es fundamental en entornos profesionales. Se utiliza para tareas de saneamiento que deben ejecutarse obligatoriamente, como cerrar conexiones a bases de datos, liberar memoria o, en desarrollo frontend, ocultar los indicadores de carga ('spinners') de la interfaz, asegurando que el sistema no quede en un estado inconsistente."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================\n// GESTIÓN ROBUSTA Y LIMPIA DE ERRORES EN JAVASCRIPT\n// =========================================================\n\n// Función profesional encargada de procesar un archivo de configuración\nconst procesarConfiguracion = (configJson) => {\n    console.log(\"Depuración [1]: Iniciando análisis del archivo de configuración...\");\n    \n    try {\n        console.log(\"Depuración [2]: Intentando parsear la cadena JSON...\");\n        \n        // Si el JSON es inválido o está mal formado, JSON.parse() lanzará un error automáticamente\n        const configuracion = JSON.parse(configJson);\n        \n        // Validación de negocio manual\n        if (!configuracion.version) {\n            // Lanzamos un error personalizado de forma explícita si falta un campo crítico\n            throw new Error(\"El archivo de configuración no cuenta con una versión válida.\");\n        }\n        \n        console.log(\"Depuración [3]: Configuración procesada con éxito:\", configuracion);\n        return configuracion;\n        \n    } catch (error) {\n        // Este bloque intercepta cualquier error lanzado en el bloque 'try'\n        console.error(\"⚠️ Error interceptado en el bloque Catch:\");\n        console.error(`- Tipo de Error: ${error.name}`);\n        console.error(`- Mensaje detallado: ${error.message}`);\n        \n        // Retornamos un objeto por defecto (fallback) para que la aplicación continúe funcionando\n        return { version: \"1.0.0\", fallback: true };\n        \n    } finally {\n        // Este bloque se ejecuta SIEMPRE, garantizando la limpieza del entorno de ejecución\n        console.log(\"Depuración [4]: Bloque Finally ejecutado. Operación de lectura cerrada de forma segura.\");\n    }\n};\n\n// --- PRUEBA 1: Flujo con un JSON corrupto (Provoca un SyntaxError automático de JS) ---\nconsole.log(\"\\n--- Ejecutando Prueba 1 (JSON Inválido) ---\");\nconst resultadoInvalido = procesarConfiguracion(\"{ json_mal_formado \");\nconsole.log(\"Resultado Final 1:\", resultadoInvalido);\n\n// --- PRUEBA 2: Flujo con un JSON válido y correcto ---\nconsole.log(\"\\n--- Ejecutando Prueba 2 (JSON Válido) ---\");\nconst resultadoValido = procesarConfiguracion('{\"version\": \"2.4.1\", \"entorno\": \"produccion\"}');\nconsole.log(\"Resultado Final 2:\", resultadoValido);"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-15-modularizacion-diseno",
+          "titulo": "15. Modularización y Diseño de Software Profesional",
+          "temas": [
+            {
+              "id": "tema_modularizacion_es6_import_export",
+              "titulo": "Modularización de código profesional: uso de import y export de ES6",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En las aplicaciones de producción, mantener miles de líneas de código en un solo archivo resulta insostenible, caótico y propenso a conflictos de nombres. La modularización es la práctica de diseño de software que consiste en dividir nuestro programa en fragmentos pequeños, independientes y especializados llamados 'módulos' (archivos .js separados). Desde el estándar ES6 (ECMAScript 2015), JavaScript incluye soporte nativo para la modularización mediante las directivas 'export' (para exponer funciones, clases o variables al exterior) e 'import' (para traer herramientas de otros archivos)."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Existen dos mecanismos principales para exportar código: las Exportaciones Nombradas y las Exportaciones por Defecto. Las exportaciones nombradas te permiten exportar múltiples elementos de un mismo archivo envolviéndolos por su nombre exacto, obligando a quien los use a importarlos usando llaves { }. Por otro lado, la exportación por defecto ('export default') se utiliza cuando un archivo tiene una única herramienta principal (como una clase de servicio o un componente), permitiendo al archivo receptor importarlo con cualquier nombre y sin usar llaves."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Aislamiento técnico de los Módulos: Por defecto, cada archivo modular en JavaScript tiene su propio alcance (scope) aislado. Esto significa que las variables declaradas dentro de un módulo no contaminan el entorno global del navegador ni chocan con variables de otros archivos. Además, todos los módulos de ES6 ejecutan automáticamente su código bajo el 'Modo Estricto' ('use strict'), forzando mejores prácticas de desarrollo y previniendo errores silenciosos."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// ARCHIVO 1: servicios/calculadora.js (Módulo Especializadoizado)\n// =========================================================================\n\nconsole.log(\"Depuración [Módulo Calculadora]: Archivo cargado e inicializando variables aisladas...\");\n\n// Variable privada del módulo (No es accesible desde el exterior porque no tiene 'export')\nconst VALOR_MINIMO_TRANSACCION = 5;\n\n// 1. EXPORTACIÓN NOMBRADA: Útil para exportar múltiples funciones utilitarias\nexport const sumarValores = (numeroA, numeroB) => {\n    console.log(`Depuración [Calculadora - sumar]: Procesando ${numeroA} + ${numeroB}`);\n    return numeroA + numeroB;\n};\n\nexport const verificarMontoValido = (monto) => {\n    console.log(\"Depuración [Calculadora - verificar]: Validando límites de negocio...\");\n    return monto >= VALOR_MINIMO_TRANSACCION;\n};\n\n// 2. EXPORTACIÓN POR DEFECTO: Útil para la clase o herramienta principal del archivo\nclass CalculadoraServicio {\n    constructor() {\n        this.version = \"1.0.0\";\n    }\n\n    obtenerSoporte() {\n        console.log(\"Depuración [CalculadoraServicio]: Generando información de auditoría...\");\n        return `Módulo Calculadora v${this.version}`;\n    }\n}\n\nexport default CalculadoraServicio;\n\n\n// =========================================================================\n// ARCHIVO 2: app.js (Archivo Principal que consume el módulo)\n// =========================================================================\n\n// Importamos la exportación por defecto (sin llaves) y las nombradas (con llaves)\nimport MiCalculadora, { sumarValores, verificarMontoValido } from \"./servicios/calculadora.js\";\n\nconst ejecutarAplicacion = () => {\n    console.log(\"\\nDepuración [App Principal]: Iniciando flujo de operaciones modulares...\");\n    \n    const montoProducto = 45;\n    const impuestoEnvio = 12;\n    \n    // Uso de las exportaciones nombradas\n    if (verificarMontoValido(montoProducto)) {\n        const totalFactura = sumarValores(montoProducto, impuestoEnvio);\n        console.log(`Resultado de la operación modular: Total = $${totalFactura}`);\n    } else {\n        console.log(\"⚠️ Alerta: El monto no cumple con los mínimos del servicio.\");\n    }\n    \n    // Uso de la exportación por defecto instanciando el servicio\n    const servicioInstanciado = new MiCalculadora();\n    console.log(\"Información del sistema:\", servicioInstanciado.obtenerSoporte());\n};\n\n// Ejecutamos el punto de entrada de la aplicación\nejecutarAplicacion();"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-16-patron-capas",
+          "titulo": "16. Arquitectura de Software: El Patrón de Capas de Producción",
+          "temas": [
+            {
+              "id": "tema_arquitectura_limpia_responsabilidades",
+              "titulo": "Introducción a la arquitectura limpia y separación de responsabilidades",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "A medida que los sistemas crecen, depositar toda la lógica en un único archivo o mezclar las consultas a la base de datos con la gestión de respuestas web convierte al software en un monolito frágil, difícil de mantener y propenso a errores encadenados. La Arquitectura Limpia (Clean Architecture) y el principio de Separación de Responsabilidades (Separation of Concerns) proponen una estrategia de diseño donde el sistema se divide en capas independientes y especializadas. Cada capa funciona como una frontera técnica estricta que solo se encarga de una tarea concreta y se comunica de forma ordenada con la capa inmediatamente inferior."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " En el desarrollo profesional bajo este enfoque, la arquitectura se divide principalmente en tres niveles operativos: 1) El Controlador, que actúa como la puerta de entrada, intercepta las peticiones del exterior y devuelve las respuestas sin conocer cómo se procesan internamente. 2) El Servicio, que se ubica en el núcleo de la aplicación y alberga exclusivamente las reglas de negocio, validaciones y cálculos matemáticos. 3) El Repositorio, que se encarga única y exclusivamente de la persistencia de datos (hablar con bases de datos, leer archivos o almacenamiento local), abstrayendo al resto del sistema de cómo y dónde se guardan las cosas."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Regla de oro del desacoplamiento: El controlador jamás debe interactuar de forma directa con la base de datos o el repositorio ni inyectar herramientas de datos directas. Al mantener la lógica de negocio confinada estrictamente en el Servicio, logramos que el código sea limpio, profesional y preparado para el futuro; si el día de mañana cambias de base de datos o añades validaciones extra, el controlador ni se enterará del cambio."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// ARQUITECTURA LIMPIA: IMPLEMENTACIÓN DEL PATRÓN EN CAPAS (DESDE CERO)\n// =========================================================================\n\n// --- CAPA 3: REPOSITORIO (Única capa autorizada para tocar los datos) ---\nclass UsuarioRepositorio {\n    constructor() {\n        // Simulación de una base de datos interna aislada\n        this.#baseDatosUsuarios = [\n            { id: 1, nombre: \"Carlos\", rol: \"estudiante\" },\n            { id: 2, nombre: \"Ana\", rol: \"profesor\" }\n        ];\n    }\n    // Propiedad privada para asegurar el encapsulamiento absoluto\n    #baseDatosUsuarios;\n\n    buscarPorId(id) {\n        console.log(`Depuración [Repositorio]: Consultando registro en la base de datos para ID: ${id}`);\n        return this.#baseDatosUsuarios.find(u => u.id === id) || null;\n    }\n}\n\n// --- CAPA 2: SERVICIO (Contiene las reglas de negocio y lógica de la app) ---\nclass UsuarioServicio {\n    // El repositorio se inyecta por el constructor para evitar acoplamiento rígido\n    constructor(usuarioRepositorio) {\n        this.#repositorio = usuarioRepositorio;\n    }\n    #repositorio;\n\n    obtenerPerfilProcesado(id) {\n        console.log(\"Depuración [Servicio]: Iniciando procesamiento y reglas de negocio...\");\n        \n        // 1. Delegamos la obtención de datos estrictamente al repositorio\n        const usuario = this.#repositorio.buscarPorId(id);\n        \n        if (!usuario) {\n            console.log(`Depuración [Servicio]: Regla fallida -> Usuario con ID ${id} no existe.`);\n            throw new Error(\"El perfil solicitado no fue localizado en el sistema.\");\n        }\n        \n        // 2. Aplicamos una lógica de negocio (Transformar datos o calcular propiedades)\n        console.log(\"Depuración [Servicio]: Aplicando transformaciones de negocio al perfil...\");\n        return {\n            ...usuario,\n            nombreMayusculas: usuario.nombre.toUpperCase(),\n            fechaAcceso: new Date().toLocaleDateString()\n        };\n    }\n}\n\n// --- CAPA 1: CONTROLADOR (Punto de entrada, maneja peticiones y respuestas) ---\nclass UsuarioControlador {\n    // El controlador inyecta UNICAMENTE el servicio, jamás el repositorio de forma directa\n    constructor(usuarioServicio) {\n        this.#servicio = usuarioServicio;\n    }\n    #servicio;\n\n    atenderPeticionWeb(idPeticion) {\n        console.log(`\\nDepuración [Controlador]: Petición HTTP entrante recibida para ID: ${idPeticion}`);\n        \n        try {\n            // Delegamos el trabajo al servicio y capturamos el resultado limpio\n            const perfilFormateado = this.#servicio.obtenerPerfilProcesado(idPeticion);\n            \n            console.log(\"Depuración [Controlador]: Servicio completado con éxito. Generando respuesta HTTP 200.\");\n            return { status: 200, data: perfilFormateado };\n            \n        } catch (error) {\n            console.log(`Depuración [Controlador]: Error atrapado desde el Servicio -> \"${error.message}\"`);\n            console.log(\"Depuración [Controlador]: Generando respuesta HTTP 404 de error controlado.\");\n            return { status: 404, mensajeError: error.message };\n        }\n    }\n}\n\n// =========================================================================\n// ORQUESTACIÓN Y PRUEBA DEL FLUJO (Simulación del arranque de la app)\n// =========================================================================\n\n// 1. Inicializamos las instancias de abajo hacia arriba de forma limpia\nconst capaRepositorio = new UsuarioRepositorio();\nconst capaServicio = new UsuarioServicio(capaRepositorio);\nconst capaControlador = new UsuarioControlador(capaServicio);\n\n// --- PRUEBA 1: Solicitud de un usuario existente en el sistema ---\nconst respuestaAsertiva = capaControlador.atenderPeticionWeb(1);\nconsole.log(\"Resultado Final Enviado al Cliente (Caso Exito):\", respuestaAsertiva);\n\n// --- PRUEBA 2: Solicitud de un usuario inexistente (Gestión limpia de errores de negocio) ---\nconst respuestaErronea = capaControlador.atenderPeticionWeb(99);\nconsole.log(\"Resultado Final Enviado al Cliente (Caso Error):\", respuestaErronea);"
+                }
+              ]
+            },
+            {
+              "id": "tema_arquitectura_capas",
+              "titulo": "Arquitectura de Software: Controladores, Servicios y Repositorios",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "La arquitectura de capas es el estándar en el desarrollo de software profesional. Su objetivo es evitar que el código se convierta en una 'bola de barro' desordenada, separando claramente las responsabilidades en tres niveles fundamentales: el Controlador, el Servicio y el Repositorio."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Esta separación permite que cada componente tenga una única misión (Principio de Responsabilidad Única). Si necesitas cambiar cómo se guardan los datos, solo tocas el Repositorio; si cambias una regla comercial, solo tocas el Servicio. El resto de la aplicación ni se entera."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "lista",
+                  "elementos": [
+                    "Controlador (Controller): La cara pública. Recibe las peticiones HTTP, extrae los datos y los pasa al servicio. No debe contener lógica de negocio.",
+                    "Servicio (Service): El cerebro. Aquí reside la lógica de negocio, cálculos, validaciones comerciales y orquestación de llamadas a los repositorios.",
+                    "Repositorio (Repository): La mano ejecutora. Se encarga exclusivamente de la persistencia de datos (comunicación con la base de datos)."
+                  ]
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// --- Ejemplo conceptual del flujo en NestJS ---\n\n// 1. EL CONTROLADOR: Recibe la petición\n@Controller('pedidos')\nclass PedidoController {\n    constructor(private readonly pedidoService: PedidoService) {}\n\n    @Post()\n    crear(@Body() datos) {\n        return this.pedidoService.registrar(datos);\n    }\n}\n\n// 2. EL SERVICIO: Procesa la lógica de negocio\n@Injectable()\nclass PedidoService {\n    constructor(private readonly repo: PedidoRepository) {}\n\n    registrar(datos) {\n        // Reglas de negocio aquí\n        return this.repo.save(datos);\n    }\n}\n\n// 3. EL REPOSITORIO: Persiste los datos\n@Injectable()\nclass PedidoRepository {\n    save(datos) {\n        // Consulta SQL/NoSQL aquí\n        return db.insert(datos);\n    }\n}"
+                }
+              ]
+            },
+            {
+              "id": "tema_patron_capas_flujo_datos",
+              "titulo": "El Patrón de Capas: Flujo de datos y comunicación entre módulos",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "En el patrón de arquitectura en capas, la comunicación y el flujo de datos deben seguir estrictamente un sentido unidireccional y predecible. Cuando un cliente realiza una solicitud, los datos viajan hacia abajo atravesando las fronteras técnicas: el Controlador recibe los datos crudos, los envía al Servicio para validar las reglas de negocio, y el Servicio los pasa al Repositorio para su almacenamiento. Una vez completada la operación, la información regresa exactamente por el mismo camino inverso (Repositorio -> Servicio -> Controlador) hasta emitir la respuesta final."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Este flujo jerárquico asegura que las capas superiores conozcan la existencia de las capas inferiores, pero nunca al revés. Un repositorio jamás debe llamar a un servicio, y un servicio jamás debe invocar a un controlador. Al aislar la comunicación mediante parámetros de funciones y valores de retorno limpios, cada componente se transforma en un módulo intercambiable, facilitando la depuración y la implementación de pruebas unitarias automatizadas."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Importancia del Flujo Unidireccional: Romper esta jerarquía e intentar comunicar módulos de forma bidireccional provoca un error crítico de desarrollo conocido como 'Dependencia Circular'. Las dependencias circulares acoplan el código de forma tan severa que impiden que el motor de JavaScript compile los módulos por separado, destruyendo la modularidad del sistema."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// FLUJO DE DATOS Y COMUNICACIÓN UNIDIRECCIONAL EN CAPAS (SISTEMA DE PEDIDOS)\n// =========================================================================\n\n// --- CAPA DE DATOS: REPOSITORIO ---\nclass PedidoRepository {\n    constructor() {\n        this.#pedidosContenedor = [];\n    }\n    #pedidosContenedor;\n\n    // Guarda de forma definitiva el objeto del pedido formateado\n    guardarNuevoPedido(pedidoDb) {\n        console.log(\"Depuración [3 - Repositorio]: Recibiendo datos desde el Servicio para persistencia...\");\n        this.#pedidosContenedor.push(pedidoDb);\n        \n        console.log(\"Depuración [3 - Repositorio]: Guardado exitoso. Contenido actual de la BD:\", this.#pedidosContenedor);\n        return { ...pedidoDb, guardadoConfirmado: true };\n    }\n}\n\n// --- CAPA DE NEGOCIO: SERVICIO ---\nclass PedidoService {\n    // Recibe el repositorio por inversión de dependencias\n    constructor(pedidoRepo) {\n        this.#repo = pedidoRepo;\n    }\n    #repo;\n\n    // Procesa las reglas comerciales e introduce lógica adicional antes de guardar\n    crearYValidarPedido(datosBrutos) {\n        console.log(\"Depuración [2 - Servicio]: Datos recibidos del Controlador. Validando reglas comerciales...\");\n        \n        // Regla de Negocio: Validar que el monto mínimo sea superior a 0\n        if (datosBrutos.total <= 0) {\n            console.log(\"Depuración [2 - Servicio]: Regla fallida -> Monto del pedido inválido.\");\n            throw new Error(\"El total del pedido debe ser una cantidad positiva mayor a cero.\");\n        }\n\n        console.log(\"Depuración [2 - Servicio]: Reglas aprobadas. Estructurando entidad de base de datos...\");\n        const pedidoFormateado = {\n            idPedido: Math.floor(Math.random() * 10000),\n            item: datosBrutos.item,\n            total: datosBrutos.total,\n            fechaRegistro: new Date().toISOString()\n        };\n\n        // Transferencia del flujo a la capa de datos\n        const resultadoPersistencia = this.#repo.guardarNuevoPedido(pedidoFormateado);\n        \n        console.log(\"Depuración [2 - Servicio]: Datos retornados del Repositorio. Enviando respuesta al Controlador...\");\n        return resultadoPersistencia;\n    }\n}\n\n// --- CAPA DE ENTRADA: CONTROLADOR ---\nclass PedidoController {\n    // Se comunica únicamente con el Servicio correspondiente\n    constructor(pedidoServ) {\n        this.#servicio = pedidoServ;\n    }\n    #servicio;\n\n    // Gestiona el ciclo completo de la petición y respuesta de red externa\n    postCrearPedido(peticionHttp) {\n        console.log(`\\nDepuración [1 - Controlador]: Petición POST recibida para el artículo: \"${peticionHttp.body.item}\"`);\n        \n        try {\n            // Traspaso de los datos crudos del cuerpo de la petición hacia el servicio\n            const respuestaNegocio = this.#servicio.crearYValidarPedido(peticionHttp.body);\n            \n            console.log(\"Depuración [1 - Controlador]: Operación exitosa. Despachando Respuesta HTTP 201 Creación.\");\n            return { codigoEstado: 201, mensaje: \"Pedido procesado con éxito\", datos: respuestaNegocio };\n            \n        } catch (error) {\n            console.log(`Depuración [1 - Controlador]: Excepción atrapada desde capas inferiores -> \"${error.message}\"`);\n            console.log(\"Depuración [1 - Controlador]: Despachando Respuesta HTTP 400 Bad Request.\");\n            return { codigoEstado: 400, mensajeError: error.message };\n        }\n    }\n}\n\n// =========================================================================\n// INICIALIZACIÓN Y SEGUIMIENTO DEL CAMINO DE LOS DATOS\n// =========================================================================\nconst repositorioInstance = new PedidoRepository();\nconst servicioInstance = new PedidoService(repositorioInstance);\nconst controladorInstance = new PedidoController(servicioInstance);\n\n// Caso 1: Flujo exitoso de datos correctos\nconst mockPeticionCorrecta = { body: { item: \"Teclado Mecánico RGB\", total: 85.50 } };\nconst respuestaFinal1 = controladorInstance.postCrearPedido(mockPeticionCorrecta);\nconsole.log(\"Respuesta Cliente Caso Exito:\", respuestaFinal1);\n\n// Caso 2: Flujo interrumpido por validación en la capa de Servicio\nconst mockPeticionInvalida = { body: { item: \"Cupón de Descuento Erróneo\", total: -10.00 } };\nconst respuestaFinal2 = controladorInstance.postCrearPedido(mockPeticionInvalida);\nconsole.log(\"Respuesta Cliente Caso Error:\", respuestaFinal2);"
+                }
+              ]
+            },
+            {
+              "id": "tema_capa_controlador",
+              "titulo": "La Capa Controlador: Gestión de rutas, peticiones y respuestas",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "La Capa Controlador (Controller) es la frontera más externa de nuestra arquitectura y funciona como el único punto de entrada para las solicitudes del cliente. Su responsabilidad exclusiva es atender las peticiones HTTP, extraer la información necesaria (como parámetros de la URL, consultas o el cuerpo del mensaje) y delegar el procesamiento a la capa de servicios. Una vez que obtiene un resultado, el controlador se encarga de empaquetar los datos y devolver la respuesta HTTP adecuada al cliente."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Al operar en la periferia de la aplicación, el controlador actúa como un traductor entre el protocolo de comunicación (HTTP/WebSockets) y las reglas de negocio de la aplicación. Es el encargado de realizar validaciones sintácticas iniciales (por ejemplo, comprobar si el cliente envió los campos obligatorios) y de interceptar cualquier excepción que ocurra en las capas inferiores para traducirla en un código de estado HTTP estándar, como 200 (Éxito), 201 (Creado), 400 (Petición Incorrecta) o 404 (No Encontrado)."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Aislamiento del Controlador: Para mantener una arquitectura limpia y profesional, un controlador jamás debe contener lógica de negocio ni realizar consultas directas a la base de datos (evitando inyectar repositorios). Su única dependencia permitida es la Capa de Servicio. Si el protocolo de comunicación cambia en el futuro —por ejemplo, de una API REST a GraphQL o una interfaz de línea de comandos—, solo modificaremos los controladores, dejando intacta toda la lógica interna del negocio."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// IMPLEMENTACIÓN PROFESIONAL DE LA CAPA CONTROLADOR (CONTROLADOR DE PRODUCTOS)\n// =========================================================================\n\n/**\n * Simulación de la Capa de Servicio necesaria para el funcionamiento del controlador.\n * Nota: El controlador depende de esta interfaz, pero desconoce cómo procesa los datos internamente.\n */\nclass ProductoServiceMock {\n    crearProducto(datos) {\n        if (!datos.precio || datos.precio <= 0) {\n            throw new Error(\"VALIDACION_NEGOCIO: El precio debe ser un número positivo.\");\n        }\n        return { id: Math.floor(Math.random() * 500), ...datos, creadoEn: new Date() };\n    }\n}\n\n/**\n * Clase Controlador encargada estrictamente del ciclo de petición y respuesta HTTP.\n */\nclass ProductoController {\n    // Inyección de dependencias obligatoria: solo se comunica con el servicio\n    constructor(productoService) {\n        this.#servicio = productoService;\n    }\n    #servicio;\n\n    /**\n     * Gestiona la creación de un nuevo producto (Simula un endpoint POST /productos)\n     * @param {Object} req - Objeto de petición HTTP (Request)\n     * @returns {Object} Objeto de respuesta HTTP (Response) con estado y cuerpo\n     */\n    postCrearProducto(req) {\n        console.log(\"\\nDepuración [Controlador]: Petición POST recibida en la ruta '/productos'.\");\n        console.log(\"Depuración [Controlador]: Datos crudos del cuerpo (body):\", req.body);\n\n        try {\n            // 1. Validación de entrada sintáctica básica (Responsabilidad del Controlador)\n            if (!req.body || !req.body.nombre) {\n                console.log(\"Depuración [Controlador]: Error de validación de entrada - Falta el campo 'nombre'.\");\n                return {\n                    status: 400,\n                    body: { error: \"Bad Request\", mensaje: \"El campo 'nombre' es obligatorio para registrar un producto.\" }\n                };\n            }\n\n            console.log(\"Depuración [Controlador]: Validación sintáctica correcta. Traspasando flujo al Servicio...\");\n            \n            // 2. Delegación unidireccional del flujo a la capa de negocio\n            const nuevoProducto = this.#servicio.crearProducto(req.body);\n\n            // 3. Construcción de la respuesta HTTP exitosa (201 Created)\n            console.log(\"Depuración [Controlador]: Servicio ejecutado con éxito. Preparando Respuesta HTTP 201.\");\n            return {\n                status: 201,\n                body: { mensaje: \"Producto registrado con éxito\", datos: nuevoProducto }\n            };\n\n        } catch (error) {\n            // 4. Captura y traducción de excepciones a códigos de estado HTTP semánticos\n            console.log(`Depuración [Controlador]: Excepción detectada -> \"${error.message}\"`);\n\n            if (error.message.includes(\"VALIDACION_NEGOCIO\")) {\n                console.log(\"Depuración [Controlador]: Traduciendo error de negocio a HTTP 400 (Bad Request).\");\n                return {\n                    status: 400,\n                    body: { error: \"Petición Incorrecta\", mensaje: error.message.replace(\"VALIDACION_NEGOCIO: \", \"\") }\n                };\n            }\n\n            console.log(\"Depuración [Controlador]: Error desconocido. Traduciendo a HTTP 500 (Internal Server Error).\");\n            return {\n                status: 500,\n                body: { error: \"Internal Server Error\", mensaje: \"Ocurrió un error inesperado en el servidor.\" }\n                };\n        }\n    }\n}\n\n// =========================================================================\n// ORQUESTACIÓN Y PRUEBAS DEL CONTROLADOR\n// =========================================================================\nconst servicioInstance = new ProductoServiceMock();\nconst controladorInstance = new ProductoController(servicioInstance);\n\n// --- CASO 1: Petición correcta y exitosa (HTTP 201) ---\nconst mockReqExitosa = { body: { nombre: \"Monitor Gamer 4K\", precio: 450.99 } };\nconst respuesta1 = controladorInstance.postCrearProducto(mockReqExitosa);\nconsole.log(\"Respuesta enviada al cliente (Caso 1):\", respuesta1);\n\n// --- CASO 2: Error de Validación del Controlador (HTTP 400 - Falta Nombre) ---\nconst mockReqFaltaNombre = { body: { precio: 120.00 } };\nconst respuesta2 = controladorInstance.postCrearProducto(mockReqFaltaNombre);\nconsole.log(\"Respuesta enviada al cliente (Caso 2):\", respuesta2);\n\n// --- CASO 3: Error de Validación del Servicio (HTTP 400 - Precio Inválido) ---\nconst mockReqPrecioInvalido = { body: { nombre: \"Teclado Mecánico\", precio: -5 } };\nconst respuesta3 = controladorInstance.postCrearProducto(mockReqPrecioInvalido);\nconsole.log(\"Respuesta enviada al cliente (Caso 3):\", respuesta3);"
+                }
+              ]
+            },
+            {
+              "id": "tema_capa_servicio",
+              "titulo": "La Capa Servicio: Centralización de la lógica de negocio",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "La Capa Servicio (Service) constituye el verdadero cerebro y núcleo operativo de cualquier aplicación profesional. Mientras que el controlador se limita a gestionar los aspectos técnicos del protocolo de comunicación (HTTP) y el repositorio se enfoca exclusivamente en el almacenamiento físico, el servicio es el espacio reservado de forma única para implementar las reglas de negocio de la empresa, los algoritmos complejos, las clasificaciones de datos y las validaciones comerciales."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Al situarse en el nivel intermedio de la arquitectura, el servicio actúa como un orquestador independiente. Recibe los parámetros de entrada limpios desde el controlador, ejecuta los flujos lógicos necesarios para comprobar si la operación cumple con las directrices de la compañía (por ejemplo, si un usuario tiene saldo suficiente, si su edad es apta o si un correo ya está registrado) y, si todo es correcto, solicita de manera unidireccional la persistencia de la información al repositorio."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Aislamiento e Inversión de Dependencias: Para cumplir con los estándares limpios de arquitectura (como NestJS), el controlador jamás inyecta el repositorio directamente, obligando a pasar siempre por el Servicio. Esto garantiza que la base de datos quede oculta y protegida tras las reglas comerciales. Además, al no depender de frameworks web ni de conectores directos de bases de datos, los servicios se vuelven sumamente fáciles de testear mediante pruebas unitarias."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// IMPLEMENTACIÓN PROFESIONAL DE LA CAPA SERVICIO (SISTEMA DE GESTIÓN DE SOCIOS)\n// =========================================================================\n\n/**\n * Simulación de la Capa Repositorio.\n * El Servicio interactúa con esta capa para persistir o consultar datos,\n * abstrayéndose por completo del motor de base de datos utilizado (SQL/NoSQL).\n */\nclass SocioRepositoryMock {\n    buscarPorEmail(email) {\n        console.log(`Depuración [Repositorio]: Consultando en BD el registro asociado a: ${email}`);\n        if (email === \"existente@correo.com\") {\n            return { id: 10, nombre: \"Luis Pérez\", email: \"existente@correo.com\", edad: 34 };\n        }\n        return null;\n    }\n\n    guardar(entidadSocio) {\n        console.log(\"Depuración [Repositorio]: Insertando nuevo registro de socio en las tablas de persistencia...\");\n        return { id: Math.floor(Math.random() * 1000), ...entidadSocio, registradoEn: new Date() };\n    }\n}\n\n/**\n * Capa Servicio: Centraliza de forma estricta las reglas comerciales de la aplicación.\n */\nclass SocioService {\n    // El repositorio se inyecta en el constructor, impidiendo el acoplamiento rígido\n    constructor(socioRepository) {\n        this.#repository = socioRepository;\n    }\n    #repository;\n\n    /**\n     * Registra un nuevo miembro aplicando las reglas de negocio de la compañía\n     * @param {Object} datosSocio - Información cruda y validada sintácticamente por el controlador\n     * @returns {Object} Entidad final guardada e indexada\n     */\n    registrarNuevoSocio(datosSocio) {\n        console.log(\"\\nDepuración [Servicio]: Iniciando ejecución del caso de uso (Registrar Socio).\");\n        console.log(\"Depuración [Servicio]: Evaluando políticas comerciales de la empresa...\");\n\n        // 1. Regla de Negocio: Restringir cuentas con correos duplicados\n        const socioExistente = this.#repository.buscarPorEmail(datosSocio.email);\n        if (socioExistente) {\n            console.log(`Depuración [Servicio]: Regla infringida -> El correo ${datosSocio.email} ya está en uso.`);\n            throw new Error(\"NEGOCIO_ERROR: El correo electrónico ya se encuentra registrado en el sistema.\");\n        }\n\n        // 2. Regla de Negocio: Validación de edad mínima requerida por normativas legales\n        if (datosSocio.edad < 18) {\n            console.log(`Depuración [Servicio]: Regla infringida -> Edad de ${datosSocio.edad} años es insuficiente.`);\n            throw new Error(\"NEGOCIO_ERROR: El solicitante debe ser mayor de edad para adquirir la membresía.\");\n        }\n\n        // 3. Lógica de negocio avanzada: Clasificación automatizada según el monto de apertura\n        console.log(\"Depuración [Servicio]: Ejecutando algoritmo de asignación de categorías...\");\n        let categoriaMembresia = \"Estándar\";\n        if (datosSocio.montoApertura >= 500) {\n            categoriaMembresia = \"Premium\";\n            console.log(\"Depuración [Servicio]: Regla aplicada -> Otorgando estatus Premium por inversión inicial.\");\n        }\n\n        // Estructuración de la Entidad de Dominio limpia antes de guardarla\n        const entidadParaPersistir = {\n            nombre: datosSocio.nombre,\n            email: datosSocio.email,\n            edad: datosSocio.edad,\n            membresia: categoriaMembresia,\n            estado: \"Activo\"\n        };\n\n        // 4. Delegación del flujo de datos hacia la capa inferior de persistencia\n        console.log(\"Depuración [Servicio]: Todas las reglas aprobadas. Delegando almacenamiento al Repositorio...\");\n        const socioGuardado = this.#repository.guardar(entidadParaPersistir);\n\n        console.log(\"Depuración [Servicio]: Flujo de negocio finalizado con éxito. Retornando entidad al Controlador.\");\n        return socioGuardado;\n    }\n}\n\n// =========================================================================\n// SIMULACIÓN DE PRUEBAS DE LOGICA DE NEGOCIO\n// =========================================================================\nconst repositorioInstance = new SocioRepositoryMock();\nconst servicioInstance = new SocioService(repositorioInstance);\n\n// --- PRUEBA 1: Flujo comercial exitoso con asignación Premium ---\nconsole.log(\"--- CASO 1: Alta Exitosa ---\");\ntry {\n    const datosAlta1 = { nombre: \"Sofía Castro\", email: \"sofia@correo.com\", edad: 25, montoApertura: 600 };\n    const resultado1 = servicioInstance.registrarNuevoSocio(datosAlta1);\n    console.log(\"Respuesta del Servicio (Caso 1):\", resultado1);\n} catch (error) {\n    console.error(\"Fallo inesperado en Caso 1:\", error.message);\n}\n\n// --- PRUEBA 2: Rechazo automático por regla de edad ---\nconsole.log(\"\\n--- CASO 2: Rechazo por Menor de Edad ---\");\ntry {\n    const datosAlta2 = { nombre: \"Pedro Gómez\", email: \"pedro@correo.com\", edad: 16, montoApertura: 100 };\n    const resultado2 = servicioInstance.registrarNuevoSocio(datosAlta2);\n    console.log(\"Respuesta del Servicio (Caso 2):\", resultado2);\n} catch (error) {\n    console.log(\"Excepción Controlada de Negocio Atrapada (Caso 2):\", error.message);\n}\n\n// --- PRUEBA 3: Rechazo automático por conflicto de email en BD ---\nconsole.log(\"\\n--- CASO 3: Rechazo por Correo Duplicado ---\");\ntry {\n    const datosAlta3 = { nombre: \"Luis Pérez\", email: \"existente@correo.com\", edad: 34, montoApertura: 150 };\n    const resultado3 = servicioInstance.registrarNuevoSocio(datosAlta3);\n    console.log(\"Respuesta del Servicio (Caso 3):\", resultado3);\n} catch (error) {\n    console.log(\"Excepción Controlada de Negocio Atrapada (Caso 3):\", error.message);\n}"
+                }
+              ]
+            },
+            {
+              "id": "tema_capa_repositorio",
+              "titulo": "La Capa Repositorio: Abstracción del acceso y persistencia de datos",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "La Capa Repositorio (Repository) es el nivel más profundo de nuestra arquitectura y actúa como una barrera de aislamiento entre la lógica de negocio de la aplicación y el origen físico de los datos (ya sea una base de datos SQL como PostgreSQL, NoSQL como MongoDB, un archivo de texto o una API externa). Su función exclusiva es realizar las operaciones de lectura, escritura, actualización y eliminación de registros (operaciones CRUD), abstrayendo por completo al resto del sistema de los detalles técnicos de la persistencia."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Gracias al patrón Repositorio, las capas superiores (los servicios) no necesitan saber si los datos están guardados en memoria, en un servidor en la nube o en un archivo local; simplemente invocan métodos semánticos como '.buscarPorId()' o '.guardar()'. Esto proporciona un beneficio crítico en entornos de producción: si en el futuro se decide cambiar el motor de la base de datos, solo se modificará el código interno del repositorio, garantizando que la capa de servicio y el controlador permanezcan intactos y libres de modificaciones."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Principio de Responsabilidad Única en Datos: Un repositorio profesional nunca debe contener validaciones comerciales, cálculos de impuestos o toma de decisiones de negocio. Su único trabajo es ejecutar consultas de forma eficiente y mapear las respuestas crudas del motor de datos en objetos limpios de JavaScript. Siguiendo el patrón de NestJS, el repositorio es consumido únicamente por el Servicio, impidiendo terminantemente que el Controlador interactúe con él."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// IMPLEMENTACIÓN PROFESIONAL DE LA CAPA REPOSITORIO (REPOSITORIO DE USUARIOS)\n// =========================================================================\n\n/**\n * Capa Repositorio: Encapsula el acceso directo y la persistencia de los datos.\n * Sigue el patrón de producción aislando el origen de datos del resto de la app.\n */\nclass UsuarioRepository {\n    // Simulación de una tabla física de base de datos protegida de forma privada\n    #tablaUsuarios = [\n        { id: 1, email: \"alumno1@correo.com\", activo: true },\n        { id: 2, email: \"alumno2@correo.com\", activo: false }\n    ];\n\n    /**\n     * Busca un registro específico en la base de datos por su identificador único\n     * @param {number} id - Identificador del usuario\n     * @returns {Object|null} Devuelve la entidad encontrada o null si no existe\n     */\n    findById(id) {\n        console.log(`Depuración [Repositorio - findById]: Ejecutando consulta física en la BD para ID: ${id}`);\n        \n        const resultado = this.#tablaUsuarios.find(u => u.id === id);\n        \n        // Retornamos una copia profunda para evitar que se modifiquen los datos de la BD por referencia\n        return resultado ? { ...resultado } : null;\n    }\n\n    /**\n     * Inserta un nuevo registro de forma permanente en el almacenamiento\n     * @param {Object} entidadUsuario - Datos de la entidad mapeada\n     * @returns {Object} Devuelve el registro final tal como quedó guardado con su ID asignado\n     */\n    save(entidadUsuario) {\n        console.log(\"Depuración [Repositorio - save]: Abriendo conexión de escritura con el motor de datos...\");\n        \n        const nuevoId = this.#tablaUsuarios.length + 1;\n        const registroGuardado = {\n            id: nuevoId,\n            email: entidadUsuario.email,\n            activo: true,\n            creadoEl: new Date().toISOString()\n        };\n\n        // Inserción física en la estructura de persistencia\n        this.#tablaUsuarios.push(registroGuardado);\n        console.log(\"Depuración [Repositorio - save]: Operación de persistencia completada con éxito.\");\n        \n        return { ...registroGuardado };\n    }\n}\n\n// =========================================================================\n// CONTEXTO DE USO: FLUJO COMPLETO EN PRODUCCIÓN (SERVICIO -> REPOSITORIO)\n// =========================================================================\n\n/**\n * Capa de Servicio que consume el repositorio mediante Inversión de Dependencias.\n * El servicio aplica la lógica de negocio sobre los datos que le provee el repositorio.\n */\nclass UsuarioService {\n    constructor(usuarioRepo) {\n        this.#repo = usuarioRepo; // Inyección de la capa de persistencia\n    }\n    #repo;\n\n    obtenerDatosSeguros(id) {\n        console.log(`\\nDepuración [Servicio]: Procesando caso de uso para consultar ID: ${id}`);\n        \n        // Llamada limpia al repositorio: el servicio desconoce cómo busca el repositorio en la BD\n        const usuario = this.#repo.findById(id);\n        \n        if (!usuario) {\n            console.log(\"Depuración [Servicio]: Validación fallida, el repositorio retornó null.\");\n            throw new Error(\"El usuario solicitado no existe en los registros de la empresa.\");\n        }\n\n        if (!usuario.activo) {\n            console.log(\"Depuración [Servicio]: Regla de negocio infringida. Usuario inactivo.\");\n            throw new Error(\"La cuenta del usuario se encuentra suspendida temporalmente.\");\n        }\n\n        console.log(\"Depuración [Servicio]: Reglas comerciales aprobadas de forma exitosa.\");\n        return usuario;\n    }\n}\n\n// =========================================================================\n// PRUEBAS DE INTEGRACIÓN DE LA PERSISTENCIA\n// =========================================================================\nconst miRepositorio = new UsuarioRepository();\nconst miServicio = new UsuarioService(miRepositorio);\n\n// --- Caso 1: Lectura exitosa de un registro existente y activo ---\ntry {\n    const datosSocio = miServicio.obtenerDatosSeguros(1);\n    console.log(\"Resultado Enviado desde el Servicio:\", datosSocio);\n} catch (error) {\n    console.error(\"Error:\", error.message);\n}\n\n// --- Caso 2: Escritura y persistencia de un nuevo elemento ---\nconsole.log(\"\\n--- Insertando nuevo registro a través de la arquitectura ---\");\nconst nuevoUsuarioMock = { email: \"nuevo_programador@correo.com\" };\nconst registroFinalEnBd = miRepositorio.save(nuevoUsuarioMock);\nconsole.log(\"Entidad indexada en la BD:\", registroFinalEnBd);\n\n// --- Caso 3: Consulta del nuevo elemento a través del Servicio para verificar persistencia ---\ntry {\n    const consultaNuevo = miServicio.obtenerDatosSeguros(3);\n    console.log(\"Resultado de consulta del nuevo registro:\", consultaNuevo);\n} catch (error) {\n    console.error(\"Error:\", error.message);\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-17-desacoplamiento-calidad",
+          "titulo": "17. Desacoplamiento de Código, Inyección de Dependencias y Clean Code",
+          "temas": [
+            {
+              "id": "tema_inyeccion_dependencias",
+              "titulo": "Patrón de Inyección de Dependencias: Beneficios y desacoplamiento de código",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "El patrón de Inyección de Dependencias (Dependency Injection o DI) es una técnica primordial en el diseño de software profesional encargada de resolver el acoplamiento rígido entre componentes. En lugar de que una clase configure o instancie internamente de forma manual los objetos que necesita para funcionar (sus dependencias) utilizando la palabra clave 'new', estas dependencias le son suministradas o 'inyectadas' desde el exterior, habitualmente a través de su método constructor."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Al delegar la creación y el ciclo de vida de los objetos a un agente externo (como el motor de NestJS o un orquestador principal), el código logra un desacoplamiento absoluto. Las clases dejan de fabricar sus herramientas y simplemente declaran qué necesitan para trabajar, permitiendo intercambiar componentes de infraestructura con total facilidad sin alterar un solo ápice de la lógica de negocio subyacente."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 Inyección en la Arquitectura de Capas (Estilo NestJS): Este patrón es el que garantiza la viabilidad del flujo limpio de datos: Controlador -> Servicio -> Repositorio. El Controlador jamás inyecta el repositorio directamente, respetando el aislamiento de la base de datos. El Servicio recibe su repositorio correspondiente por inversión de dependencias en el constructor. De este modo, si el día de mañana se cambia la base de datos de PostgreSQL a MongoDB, solo se inyectará un repositorio diferente en el constructor del servicio, blindando la lógica comercial de cualquier impacto técnico."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// IMPLEMENTACIÓN PROFESIONAL DEL PATRÓN DE INYECCIÓN DE DEPENDENCIAS (DI)\n// =========================================================================\n\n/**\n * Capa Repositorio (Infraestructura)\n * Se encarga única y exclusivamente de la persistencia física de la información.\n */\nclass PedidoRepository {\n    guardarEnBaseDatos(entidadPedido) {\n        console.log(`Depuración [Repositorio]: Conectando a la BD para insertar el pedido #${entidadPedido.id}...`);\n        return { ...entidadPedido, guardado: true, registradoEl: new Date().toISOString() };\n    }\n}\n\n/**\n * Capa Servicio (Negocio)\n * Aplica las reglas comerciales. No instancia el repositorio internamente (evita acoplamiento).\n * Recibe la dependencia ya lista desde el exterior a través del constructor.\n */\nclass PedidoService {\n    #repository;\n\n    // El Repositorio se inyecta de forma dinámica aquí\n    constructor(pedidoRepository) {\n        console.log(\"Depuración [Servicio]: Recibiendo e inyectando la instancia del Repositorio.\");\n        this.#repository = pedidoRepository;\n    }\n\n    procesarPedido(datosCrudos) {\n        console.log(\"\\nDepuración [Servicio]: Evaluando políticas y reglas de negocio del pedido...\");\n        \n        // Algoritmo de negocio: Cálculo estricto de impuestos de la empresa\n        const totalConImpuesto = datosCrudos.precio * 1.21;\n        \n        const entidadPedido = {\n            id: Math.floor(Math.random() * 10000),\n            articulo: datosCrudos.articulo,\n            total: parseFloat(totalConImpuesto.toFixed(2))\n        };\n\n        console.log(\"Depuración [Servicio]: Reglas aprobadas. Delegando el almacenamiento al Repositorio inyectado.\");\n        return this.#repository.guardarEnBaseDatos(entidadPedido);\n    }\n}\n\n/**\n * Capa Controlador (Comunicación)\n * Gestiona la entrada HTTP. Recibe el Servicio por inyección. Jamás conoce al Repositorio.\n */\nclass PedidoController {\n    #service;\n\n    // El Servicio se inyecta de forma dinámica aquí\n    constructor(pedidoService) {\n        console.log(\"Depuración [Controlador]: Recibiendo e inyectando la instancia del Servicio.\");\n        this.#service = pedidoService;\n    }\n\n    // Simulación del punto de acceso (Endpoint) de la aplicación\n    recibirPeticionAltaPedido(requestBody) {\n        console.log(\"\\nDepuración [Controlador]: Petición HTTP POST capturada. Delegando flujo al Servicio.\");\n        \n        try {\n            const resultadoFinal = this.#service.procesarPedido(requestBody);\n            console.log(\"Depuración [Controlador]: Flujo completado con éxito. Respondiendo HTTP 201 Created.\");\n            return { statusCode: 201, body: resultadoFinal };\n        } catch (error) {\n            console.error(\"Depuración [Controlador]: Excepción atrapada en el flujo:\", error.message);\n            return { statusCode: 500, error: error.message };\n        }\n    }\n}\n\n// =========================================================================\n// ORQUESTRACIÓN DEL SISTEMA (SIMULACIÓN DEL CONTENEDOR DE INYECCIÓN)\n// =========================================================================\nconsole.log(\"--- FASE DE INICIALIZACIÓN E INYECCIÓN DE DEPENDENCIAS ---\");\n\n// 1. Se construye la infraestructura más profunda\nconst miRepositorioFisico = new PedidoRepository();\n\n// 2. Se inyecta el repositorio al instanciar el cerebro del negocio\nconst miServicioNegocio = new PedidoService(miRepositorioFisico);\n\n// 3. Se inyecta el servicio al controlador (El controlador queda totalmente desacoplado de la BD)\nconst miControladorWeb = new PedidoController(miServicioNegocio);\n\n// =========================================================================\n// PRUEBA DE EJECUCIÓN DEL FLUJO DESACOPLADO\n// =========================================================================\nconsole.log(\"\\n--- SIMULACIÓN DE TRÁFICO EN PRODUCCIÓN ---\");\n\nconst datosClienteHttp = { articulo: \"Computadora Portátil\", precio: 800 };\nconst respuestaDelServidor = miControladorWeb.recibirPeticionAltaPedido(datosClienteHttp);\n\nconsole.log(\"\\n[Resultado del Servidor enviado al Cliente]:\", respuestaDelServidor);"
+                }
+              ]
+            },
+            {
+              "id": "tema_clean_code_depuracion_refactorizacion",
+              "titulo": "Clean Code: Técnicas de depuración profesional y refactorización",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "El 'Clean Code' o Código Limpio es una filosofía de diseño de software cuyo objetivo es escribir código que sea fácil de leer, entender y mantener por cualquier miembro del equipo. En el ciclo de vida del desarrollo, el código se lee muchísimas más veces de las que se escribe. Por ello, la Refactorización es la técnica profesional de reestructurar un código existente —cambiando nombres de variables ambiguos, rompiendo funciones gigantes en fragmentos pequeños o desacoplando componentes— para mejorar su arquitectura interna sin alterar en absoluto su comportamiento externo ante el cliente."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": " Junto a la refactorización, la Depuración (Debugging) profesional es la habilidad de rastrear de forma metódica el flujo de ejecución del programa para aislar y solucionar un comportamiento anómalo. En lugar de adivinar dónde falla el sistema, un programador profesional utiliza herramientas de inspección o introduce registros de depuración estructurados ('console.log' estratégicos) en cada una de las fronteras arquitectónicas (Controlador, Servicio y Repositorio) para observar cómo se transforman los datos paso a paso."
+                },
+                {
+                  "tipo": "nota",
+                  "texto": "💡 La Regla del Boy Scout en Software: 'Deja el código siempre más limpio de como lo encontraste'. La refactorización no requiere pausar el proyecto durante semanas; se aplica de forma incremental en el día a día. Si al resolver un bug detectas una función confusa o una inyección directa mal estructurada, refactorízala en ese instante para evitar la acumulación de Deuda Técnica."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// =========================================================================\n// CÓDIGO LIMPIO Y REFACTORIZADO: SISTEMA DE RENOVACIÓN DE LICENCIAS (REFACTORIZADO)\n// =========================================================================\n\n/**\n * CAPA REPOSITORIO (Persistencia limpia)\n * Encargada únicamente de la lectura y escritura cruda en el origen de datos.\n */\nclass LicenciaRepository {\n    #tablaLicencias = [\n        { id: 101, usuario: \"Socio Pro\", activa: true, diasRestantes: 5 },\n        { id: 102, usuario: \"Socio Básico\", activa: false, diasRestantes: 0 }\n    ];\n\n    obtenerPorId(id) {\n        console.log(`[Depuración - Repositorio]: Consultando registro físico de la licencia #${id}`);\n        const licencia = this.#tablaLicencias.find(item => item.id === id);\n        return licencia ? { ...licencia } : null;\n    }\n\n    actualizarDiasValidez(id, nuevosDias) {\n        console.log(`[Depuración - Repositorio]: Actualizando base de datos. ID: ${id} -> Nuevos días: ${nuevosDias}`);\n        const licenciaOriginal = this.#tablaLicencias.find(item => item.id === id);\n        \n        if (licenciaOriginal) {\n            licenciaOriginal.diasRestantes = nuevosDias;\n            licenciaOriginal.activa = true;\n            return { ...licenciaOriginal };\n        }\n        return null;\n    }\n}\n\n/**\n * CAPA SERVICIO (Cerebro del Negocio)\n * Aplica Clean Code: nombres de funciones semánticos, funciones cortas y legibles.\n */\nclass LicenciaService {\n    #repository; // Inyección por constructor para mantener el desacoplamiento\n\n    constructor(licenciaRepo) {\n        this.#repository = licenciaRepo;\n    }\n\n    /**\n     * Caso de uso: Extiende la validez de una licencia aplicando políticas comerciales\n     */\n    extenderVencimiento(idLicencia, diasAñadir) {\n        console.log(`[Depuración - Servicio]: Iniciando lógica de negocio para extender licencia #${idLicencia}`);\n        \n        // 1. Refactorización: Validación temprana (Fail Fast) para evitar anidaciones innecesarias de 'if'\n        if (diasAñadir <= 0) {\n            console.log(\"[Depuración - Servicio]: Validación fallida -> Días inválidos sugeridos.\");\n            throw new Error(\"NEGOCIO: La cantidad de días a añadir debe ser un número entero positivo.\");\n        }\n\n        const licencia = this.#repository.obtenerPorId(idLicencia);\n        if (!licencia) {\n            console.log(`[Depuración - Servicio]: Validación fallida -> Licencia #${idLicencia} inexistente.`);\n            throw new Error(\"NEGOCIO: No se encontró ninguna licencia registrada con el identificador provisto.\");\n        }\n\n        // 2. Extracción de algoritmo: Cálculo limpio del nuevo periodo de vigencia\n        const nuevoPeriodoVencimiento = licencia.diasRestantes + diasAñadir;\n        \n        console.log(`[Depuración - Servicio]: Reglas comerciales aprobadas. Nuevo total calculado: ${nuevoPeriodoVencimiento} días.`);\n        \n        // 3. Delegación unidireccional del almacenamiento de datos\n        return this.#repository.actualizarDiasValidez(idLicencia, nuevoPeriodoVencimiento);\n    }\n}\n\n/**\n * CAPA CONTROLADOR (Punto de entrada de peticiones externas)\n * No maneja lógica de datos ni de negocio. Controla estrictamente los flujos try-catch.\n */\nclass LicenciaController {\n    #service; // Depende únicamente de la capa intermedia de servicio\n\n    constructor(licenciaService) {\n        this.#service = licenciaService;\n    }\n\n    /**\n     * Mapea y atiende la solicitud de actualización\n     */\n    putRenovarLicencia(req) {\n        const { licenciaId, dias } = req.body;\n        console.log(`\\n[Depuración - Controlador]: Petición PUT recibida para renovar Licencia #${licenciaId} (+${dias} días)`);\n\n        try {\n            // Delegación directa al servicio ejecutor\n            const licenciaActualizada = this.#service.extenderVencimiento(licenciaId, dias);\n            \n            console.log(\"[Depuración - Controlador]: Procesamiento exitoso. Despachando código HTTP 200 Ok.\");\n            return { statusCode: 200, body: { exito: true, data: licenciaActualizada } };\n            \n        } catch (error) {\n            console.log(`[Depuración - Controlador]: Excepción interceptada en la ejecución -> \"${error.message}\"`);\n            \n            // Tratamiento semántico de errores para el cliente final\n            if (error.message.startsWith(\"NEGOCIO:\")) {\n                return { \n                    statusCode: 400, \n                    body: { error: \"Petición Errónea\", detalle: error.message.replace(\"NEGOCIO: \", \"\") } \n                };\n            }\n            \n            return { \n                statusCode: 500, \n                body: { error: \"Error Interno\", detalle: \"Ocurrió un error inesperado al procesar la renovación.\" } \n            };\n        }\n    }\n}\n\n// =========================================================================\n// INICIALIZACIÓN DE LA ARQUITECTURA REFACTORIZADA Y COMPLETA\n// =========================================================================\nconst repoContext = new LicenciaRepository();\nconst serviceContext = new LicenciaService(repoContext);\nconst appController = new LicenciaController(serviceContext);\n\n// --- PRUEBA DE DEPURACIÓN 1: Flujo exitoso (Clean & Traceable) ---\nconst mockRequest1 = { body: { licenciaId: 101, dias: 30 } };\nconst respuestaHttp1 = appController.putRenovarLicencia(mockRequest1);\nconsole.log(\"RESPUESTA CLIENTE (Caso 1):\", respuestaHttp1);\n\n// --- PRUEBA DE DEPURACIÓN 2: Interrupción limpia por regla de validación del servicio ---\nconst mockRequest2 = { body: { licenciaId: 101, dias: -5 } };\nconst respuestaHttp2 = appController.putRenovarLicencia(mockRequest2);\nconsole.log(\"RESPUESTA CLIENTE (Caso 2):\", respuestaHttp2);"
+                }
+              ]
+            },
+            {
+              "id": "tema_inyeccion_dependencias",
+              "titulo": "Inyección de Dependencias y Patrones de Diseño",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": "La Inyección de Dependencias (DI) es el pegamento que permite que nuestra arquitectura de capas funcione de forma profesional. En lugar de que una clase cree sus propias dependencias (usando 'new'), estas son 'inyectadas' desde el exterior a través del constructor. Esto elimina el acoplamiento rígido y facilita el mantenimiento."
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": "Al utilizar este patrón, el Servicio no necesita saber cómo se instancia el Repositorio, ni el Controlador cómo funciona el Servicio. Cada clase recibe lo que necesita para trabajar, lo que hace que tu sistema sea mucho más fácil de probar y escalar. Es la técnica definitiva para seguir el principio de Inversión de Dependencias (la D de SOLID)."
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": "// --- Ejemplo de Inyección de Dependencias en el constructor ---\n\nclass PedidoService {\n    // El servicio recibe la dependencia (repositorio) sin crearla.\n    // Esto permite cambiar el repositorio por un \"Mock\" en pruebas.\n    constructor(private repo: PedidoRepository) {}\n\n    procesar(data) {\n        return this.repo.save(data);\n    }\n}\n\n// El contenedor de dependencias (o el orquestador) hace la conexión:\nconst miRepo = new PedidoRepository();\nconst miServicio = new PedidoService(miRepo); // Inyectamos la dependencia manualmente (o mediante un contenedor)"
                 }
               ]
             }

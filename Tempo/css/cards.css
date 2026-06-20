@@ -1,0 +1,96 @@
+/* ==========================================================================
+   ESTILOS DE LAS TARJETAS DE MÚSICA (Cards Grid)
+   ========================================================================== */
+.main-content h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+/* Rejilla adaptativa que ajusta el número de columnas según el espacio */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+/* Tarjeta individual de canción o álbum */
+.music-card {
+    background-color: #181818;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.music-card:hover {
+    background-color: #282828;
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1; /* Mantiene la imagen perfectamente cuadrada */
+    margin-bottom: 16px;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* Botón verde flotante de Play (Oculto por defecto) */
+.card-play-btn {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--spotify-green);
+    color: var(--bg-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s, transform 0.3s, background-color 0.2s;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.card-play-btn:hover {
+    background-color: var(--spotify-green-hover);
+    transform: scale(1.04) translateY(0);
+}
+
+/* Mostrar el botón flotante al hacer hover en la tarjeta */
+.music-card:hover .card-play-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a un máximo de 2 líneas de texto */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}

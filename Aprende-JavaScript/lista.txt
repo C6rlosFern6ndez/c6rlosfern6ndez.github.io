@@ -4,39 +4,11 @@ Ve a la pestaña Consola (Console), escribe el siguiente comando y pulsa Enter:
 localStorage.clear();
 
 
-Bloque Básico
-Listo
+Falta:
+Gestor de paquetes (NPM) y package.json	Capítulo 8 (Nuevo capítulo: "Entorno Profesional")
 
-Bloque Medio
+Introducción a Git: Control de versiones	Capítulo 8 (A continuación de NPM)
 
-    Gestión avanzada de eventos: Listeners, propagación y delegación.
+Arquitectura de Software: Controladores, Servicios y Repositorios	Capítulo 16 (Ya lo tienes, asegura que sea el penúltimo)
 
-    Persistencia de datos en el navegador: LocalStorage y SessionStorage.
-
-    Asincronía y Closures
-
-Bloque Avanzado
-
-    El Event Loop y el funcionamiento de la asincronía en JavaScript.
-
-    Promesas y flujo asíncrono moderno con async y await.
-
-    Peticiones HTTP y consumo de APIs externas con fetch().
-
-    Gestión limpia de errores mediante bloques try, catch y finally.
-
-    Modularización de código profesional: uso de import y export de ES6.
-
-    Introducción a la arquitectura limpia y separación de responsabilidades.
-
-    El Patrón de Capas: Flujo de datos y comunicación entre módulos.
-
-    La Capa Controlador: Gestión de rutas, peticiones y respuestas.
-
-    La Capa Servicio: Centralización de la lógica de negocio.
-
-    La Capa Repositorio: Abstracción del acceso y persistencia de datos.
-
-    Patrón de Inyección de Dependencias: Beneficios y desacoplamiento de código.
-
-    Clean Code: Técnicas de depuración profesional y refactorización.
+Inyección de Dependencias y Patrones de Diseño	Capítulo 17 (El cierre final)
