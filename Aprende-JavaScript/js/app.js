@@ -2,14 +2,13 @@
  * Controlador Principal: Coordina el ciclo de vida, la carga de datos, las vistas de la aplicación
  * y añade características avanzadas de experiencia de usuario (Buscador, Copiado y Toasts).
  */
-
 import { obtenerDatosGuia } from './storage.js';
-import { configurarAdministrador, alternarModoAdmin } from './admin.js';
 
 // Estado global unificado (Single Source of Truth) para interactuar entre módulos
 const contextoApp = {
     estadoGuia: null,
-    temaSeleccionadoId: null
+    temaSeleccionadoId: null,
+    paginaActual: '' // Almacenamos la página activa para condicionar el comportamiento
 };
 
 // Referencias a los elementos clave del DOM
@@ -24,34 +23,119 @@ const DOM = {
  */
 async function inicializarApp() {
     console.log("App: Iniciando ciclo de vida de la aplicación...");
-    contextoApp.estadoGuia = await obtenerDatosGuia();
+    
+    // Obtener el nombre del archivo actual desde la ruta del navegador
+    const rutaActual = window.location.pathname;
+    contextoApp.paginaActual = rutaActual.substring(rutaActual.lastIndexOf('/') + 1);
+    console.log(`App: Página activa detectada: "${contextoApp.paginaActual}"`);
+
+    // Solicitamos los datos pasando la página actual como filtro
+    contextoApp.estadoGuia = await obtenerDatosGuia(contextoApp.paginaActual);
     
     if (!contextoApp.estadoGuia) {
         console.error("App: Error crítico. No se pudieron recuperar los datos del Storage.");
         DOM.themeTitle.textContent = "Error crítico al cargar la guía de programación.";
         return;
     }
-    
-    // Renderizado del menú y vinculación del controlador de administrador
-    renderizarMenuLateral();
-    configurarAdministrador(contextoApp, renderizarContenidoTema, renderizarMenuLateral);
+
+    // Decidimos qué menú renderizar según la página en la que estemos
+    if (contextoApp.paginaActual.includes('herramientas.html')) {
+        renderizarMenuHerramientas();
+    } else {
+        renderizarMenuLateral();
+    }
     
     console.log("App: Inicialización completada con éxito.");
+}
+
+/**
+ * Genera dinámicamente el árbol de navegación para Herramientas (Buscador -> Tipos -> Herramientas).
+ */
+function renderizarMenuHerramientas() {
+    console.log("App: Renderizando barra de navegación de Herramientas...");
+    
+    const buscadorPrevio = document.getElementById('nav-search-input');
+    const valorBusqueda = buscadorPrevio ? buscadorPrevio.value : '';
+    
+    DOM.sidebarNav.innerHTML = '';
+
+    // Inyección del buscador estándar
+    const contenedorBuscador = document.createElement('div');
+    contenedorBuscador.style.padding = '0 0 1.5rem 0';
+    
+    const buscador = document.createElement('input');
+    buscador.id = 'nav-search-input';
+    buscador.type = 'text';
+    buscador.placeholder = '🔍 Buscar herramienta...';
+    buscador.value = valorBusqueda;
+    buscador.style.width = '100%';
+    buscador.style.padding = '0.75rem';
+    buscador.style.borderRadius = '6px';
+    buscador.style.border = '1px solid var(--color-border)';
+    buscador.style.boxSizing = 'border-box';
+    buscador.style.fontSize = '0.9rem';
+    buscador.style.backgroundColor = 'var(--color-bg)';
+    buscador.style.color = 'var(--color-dark)';
+    
+    buscador.addEventListener('input', (e) => {
+        filtrarTemasMenu(e.target.value.toLowerCase());
+    });
+    
+    contenedorBuscador.appendChild(buscador);
+    DOM.sidebarNav.appendChild(contenedorBuscador);
+
+    // Estructura esperada para tools.json: { tipos: [ { nombre: "Editores", herramientas: [...] } ] }
+    const tipos = contextoApp.estadoGuia.tipos || [];
+    
+    tipos.forEach(tipo => {
+        if (tipo.herramientas.length === 0) return;
+
+        // Título del Tipo de Herramienta (actúa como el nav-level-title)
+        const tituloTipo = document.createElement('div');
+        tituloTipo.className = 'nav-level-title';
+        tituloTipo.textContent = tipo.nombre;
+        DOM.sidebarNav.appendChild(tituloTipo);
+
+        const listaHerramientas = document.createElement('ul');
+        listaHerramientas.className = 'nav-theme-list';
+
+        tipo.herramientas.forEach(herramienta => {
+            const item = document.createElement('li');
+            const enlace = document.createElement('a');
+            enlace.className = 'nav-theme-link';
+            enlace.textContent = herramienta.titulo;
+            enlace.dataset.id = herramienta.id;
+            enlace.href = '#';
+
+            enlace.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log(`App: Click detectado en herramienta ID: ${herramienta.id}`);
+                cargarTema(herramienta.id);
+            });
+
+            item.appendChild(enlace);
+            listaHerramientas.appendChild(item);
+        });
+
+        DOM.sidebarNav.appendChild(listaHerramientas);
+    });
+
+    if (valorBusqueda) {
+        filtrarTemasMenu(valorBusqueda.toLowerCase());
+    }
 }
 
 /**
  * Genera dinámicamente el árbol de navegación (Buscador -> Niveles -> Capítulos -> Temas).
  */
 function renderizarMenuLateral() {
-    console.log("App: Renderizando barra de navegación lateral...");
+    console.log("App: Renderizando barra de navegación lateral estándar...");
     
-    // Conservar el valor del buscador si el usuario ya estaba escribiendo en él
     const buscadorPrevio = document.getElementById('nav-search-input');
     const valorBusqueda = buscadorPrevio ? buscadorPrevio.value : '';
+    
+    DOM.sidebarNav.innerHTML = '';
 
-    DOM.sidebarNav.innerHTML = ''; 
-
-    // Inyección dinámica del buscador en la parte superior del menú lateral
     const contenedorBuscador = document.createElement('div');
     contenedorBuscador.style.padding = '0 0 1.5rem 0';
     
@@ -76,8 +160,7 @@ function renderizarMenuLateral() {
     contenedorBuscador.appendChild(buscador);
     DOM.sidebarNav.appendChild(contenedorBuscador);
 
-    const niveles = contextoApp.estadoGuia.niveles;
-
+    const niveles = contextoApp.estadoGuia.niveles || {};
     for (const claveNivel in niveles) {
         const nivel = niveles[claveNivel];
         if (nivel.capitulos.length === 0) continue;
@@ -102,8 +185,10 @@ function renderizarMenuLateral() {
                 enlaceTema.className = 'nav-theme-link';
                 enlaceTema.textContent = tema.titulo;
                 enlaceTema.dataset.id = tema.id;
-                
-                enlaceTema.addEventListener('click', () => {
+                enlaceTema.href = '#';
+
+                enlaceTema.addEventListener('click', (e) => {
+                    e.preventDefault();
                     console.log(`App: Click detectado en el tema ID: ${tema.id}`);
                     cargarTema(tema.id);
                 });
@@ -116,7 +201,6 @@ function renderizarMenuLateral() {
         });
     }
 
-    // Si había un texto de búsqueda previo, reaplicamos el filtro inmediatamente
     if (valorBusqueda) {
         filtrarTemasMenu(valorBusqueda.toLowerCase());
     }
@@ -124,12 +208,11 @@ function renderizarMenuLateral() {
 
 /**
  * Filtra en tiempo real los elementos del menú lateral ocultando ramas vacías.
- * @param {string} consulta - Texto de búsqueda introducido por el usuario.
  */
 function filtrarTemasMenu(consulta) {
     console.log(`App: Filtrando menú lateral con la consulta: "${consulta}"`);
-    const listasTemas = DOM.sidebarNav.querySelectorAll('.nav-theme-list');
     
+    const listasTemas = DOM.sidebarNav.querySelectorAll('.nav-theme-list');
     listasTemas.forEach(lista => {
         let temasVisibles = 0;
         const items = lista.querySelectorAll('li');
@@ -137,18 +220,18 @@ function filtrarTemasMenu(consulta) {
         items.forEach(item => {
             const enlace = item.querySelector('.nav-theme-link');
             const coincide = enlace.textContent.toLowerCase().includes(consulta);
-            
+
             item.style.display = coincide ? '' : 'none';
             if (coincide) temasVisibles++;
         });
-        
+
         const tituloCapitulo = lista.previousElementSibling;
         if (tituloCapitulo && tituloCapitulo.tagName === 'H3') {
             tituloCapitulo.style.display = temasVisibles === 0 ? 'none' : '';
         }
         lista.style.display = temasVisibles === 0 ? 'none' : '';
     });
-    
+
     const titulosNivel = DOM.sidebarNav.querySelectorAll('.nav-level-title');
     titulosNivel.forEach(titulo => {
         let tieneContenidoVisible = false;
@@ -165,48 +248,58 @@ function filtrarTemasMenu(consulta) {
 }
 
 /**
- * Busca un tema específico por su ID y maneja las transiciones de visualización.
+ * Busca un tema o herramienta específico por su ID y maneja las transiciones de visualización.
  */
 function cargarTema(idTema) {
-    console.log(`App: Procesando solicitud de carga para el tema: ${idTema}`);
+    console.log(`App: Procesando solicitud de carga para el ID: ${idTema}`);
     contextoApp.temaSeleccionadoId = idTema;
-    
-    const panelAdmin = document.getElementById('admin-mode');
-    if (panelAdmin && !panelAdmin.classList.contains('d-none')) {
-        console.log("App: Cierre preventivo del modo administrador detectado por cambio de sección.");
-        alternarModoAdmin(contextoApp);
-    }
 
     document.querySelectorAll('.nav-theme-link').forEach(link => {
         link.classList.toggle('active', link.dataset.id === idTema);
     });
 
-    let temaEncontrado = null;
-    const niveles = contextoApp.estadoGuia.niveles;
+    let elementoEncontrado = null;
 
-    for (const clave in niveles) {
-        niveles[clave].capitulos.forEach(cap => {
-            const t = cap.temas.find(tema => tema.id === idTema);
-            if (t) temaEncontrado = t;
-        });
+    // Buscamos el elemento dependiendo del JSON que esté cargado en memoria
+    if (contextoApp.paginaActual.includes('herramientas.html')) {
+        const tipos = contextoApp.estadoGuia.tipos || [];
+        for (const tipo of tipos) {
+            const h = tipo.herramientas.find(herr => herr.id === idTema);
+            if (h) {
+                elementoEncontrado = h;
+                break;
+            }
+        }
+    } else {
+        const niveles = contextoApp.estadoGuia.niveles || {};
+        for (const clave in niveles) {
+            niveles[clave].capitulos.forEach(cap => {
+                const t = cap.temas.find(tema => tema.id === idTema);
+                if (t) elementoEncontrado = t;
+            });
+        }
     }
 
-    if (temaEncontrado) {
-        renderizarContenidoTema(temaEncontrado);
+    if (elementoEncontrado) {
+        renderizarContenidoTema(elementoEncontrado);
+    } else {
+        console.warn(`App: No se encontró ningún elemento con ID: ${idTema}`);
     }
 }
 
 /**
- * Renderiza los bloques de contenido de un tema y les añade utilidades avanzadas (Copiar).
+ * Renderiza los bloques de contenido de un tema o herramienta.
  */
 function renderizarContenidoTema(tema) {
-    console.log(`App: Dibujando bloques del tema actual en pantalla ("${tema.titulo}")`);
+    console.log(`App: Dibujando bloques del contenido actual en pantalla ("${tema.titulo}")`);
+    
     DOM.themeTitle.textContent = tema.titulo;
-    DOM.themeBody.innerHTML = ''; 
+    DOM.themeBody.innerHTML = '';
+
+    if (!tema.contenido) return;
 
     tema.contenido.forEach((bloque, indice) => {
         let elemento;
-
         console.log(`App: Procesando bloque índice [${indice}] de tipo [${bloque.tipo}]`);
 
         switch (bloque.tipo) {
@@ -214,19 +307,18 @@ function renderizarContenidoTema(tema) {
                 elemento = document.createElement('p');
                 elemento.className = 'block-parrafo';
                 elemento.textContent = bloque.texto;
-                elemento.style.whiteSpace = 'pre-line'; // Garantiza soporte nativo de saltos de línea (\n)
+                elemento.style.whiteSpace = 'pre-line';
                 break;
 
             case 'codigo':
                 elemento = document.createElement('pre');
                 elemento.className = 'block-codigo';
-                elemento.style.position = 'relative'; // Base para la correcta alineación del botón flotante
-                
+                elemento.style.position = 'relative';
+
                 const codigoInterno = document.createElement('code');
                 codigoInterno.textContent = bloque.codigo;
                 elemento.appendChild(codigoInterno);
-                
-                // Botón flotante para copiar el bloque de código al portapapeles
+
                 const btnCopiar = document.createElement('button');
                 btnCopiar.textContent = '📋 Copiar';
                 btnCopiar.style.position = 'absolute';
@@ -240,16 +332,16 @@ function renderizarContenidoTema(tema) {
                 btnCopiar.style.borderRadius = '4px';
                 btnCopiar.style.cursor = 'pointer';
                 btnCopiar.style.transition = 'all 0.2s ease';
-                
+
                 btnCopiar.addEventListener('mouseenter', () => btnCopiar.style.backgroundColor = 'rgba(255, 255, 255, 0.25)');
                 btnCopiar.addEventListener('mouseleave', () => btnCopiar.style.backgroundColor = 'rgba(255, 255, 255, 0.12)');
-                
+
                 btnCopiar.addEventListener('click', async () => {
                     try {
                         await navigator.clipboard.writeText(bloque.codigo);
                         console.log("App: Bloque de código copiado con éxito.");
                         mostrarToast("¡Código copiado al portapapeles!", "success");
-                        
+
                         btnCopiar.textContent = '✅ Copiado';
                         btnCopiar.style.borderColor = '#2e7d32';
                         setTimeout(() => {
@@ -257,19 +349,44 @@ function renderizarContenidoTema(tema) {
                             btnCopiar.style.borderColor = 'rgba(255, 255, 255, 0.25)';
                         }, 2000);
                     } catch (err) {
-                        console.error("App: Fallo al utilizar API portapapeles: ", err);
+                        console.error("App: Fallo al utilizar API portapapeles:", err);
                         mostrarToast("Error al copiar el código", "error");
                     }
                 });
-                
+
                 elemento.appendChild(btnCopiar);
                 break;
 
             case 'nota':
                 elemento = document.createElement('div');
                 elemento.className = 'block-nota';
-                // SOLUCIÓN: Eliminada la línea corrupta con el símbolo '$' que provocaba el crash del bucle
                 elemento.textContent = bloque.texto;
+                break;
+                
+            case 'lista':
+                elemento = document.createElement('ul');
+                elemento.className = 'block-lista';
+                bloque.elementos.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    elemento.appendChild(li);
+                });
+                break;
+
+            case 'enlace':
+                // NUEVO BLOQUE: Maneja links de descarga/instalación para la página de herramientas
+                elemento = document.createElement('a');
+                elemento.className = 'block-enlace-link';
+                elemento.textContent = bloque.texto || '🔗 Visitar enlace de instalación';
+                elemento.href = bloque.url;
+                elemento.target = '_blank';
+                elemento.style.display = 'inline-block';
+                elemento.style.marginTop = '1rem';
+                elemento.style.padding = '0.5rem 1rem';
+                elemento.style.backgroundColor = '#3b82f6';
+                elemento.style.color = '#ffffff';
+                elemento.style.borderRadius = '4px';
+                elemento.style.textDecoration = 'none';
                 break;
         }
 
@@ -283,8 +400,6 @@ function renderizarContenidoTema(tema) {
 
 /**
  * Reemplazo elegante de alert() usando componentes de notificación flotantes (Toasts).
- * @param {string} mensaje - Texto informativo a mostrar.
- * @param {string} tipo - Categoría visual ('success' | 'error' | 'info').
  */
 export function mostrarToast(mensaje, tipo = 'info') {
     console.log(`ToastService: Desplegando notificación [${tipo}]: "${mensaje}"`);

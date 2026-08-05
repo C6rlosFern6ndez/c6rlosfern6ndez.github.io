@@ -1,0 +1,935 @@
+{
+  "niveles": {
+    "basico": {
+      "nombre": "Conocimientos Básicos",
+      "capitulos": [
+        {
+          "id": "cap-entorno",
+          "titulo": "1. Entorno de Desarrollo",
+          "temas": [
+            {
+              "id": "tema_fundamentos_entorno",
+              "titulo": "Introducción al entorno de desarrollo y herramientas",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-introduccion",
+          "titulo": "2. Introducción y Variables",
+          "temas": [
+            {
+              "id": "tema_variables_constantes",
+              "titulo": "Variables y constantes (var, let, const)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_tipos_primitivos",
+              "titulo": "Tipos de datos primitivos (Strings, Numbers, Booleans, Null, Undefined)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_operadores",
+              "titulo": "Operadores aritméticos, lógicos y de comparación",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-estructuras-control",
+          "titulo": "3. Estructuras de Control y Bucles",
+          "temas": [
+            {
+              "id": "tema_condicionales",
+              "titulo": "Condicionales: if, else, switch y operador ternario",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_bucles_tradicionales",
+              "titulo": "Bucles tradicionales: for, while y do...while",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-fundamentos-funciones",
+          "titulo": "4. Fundamentos de Funciones",
+          "temas": [
+            {
+              "id": "tema_declaracion_funciones",
+              "titulo": "Declaración, invocación, parámetros y la palabra clave return",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "medio": {
+      "nombre": "Conocimientos Medios",
+      "capitulos": [
+        {
+          "id": "cap-arrays",
+          "titulo": "5: Estructuras de Datos Avanzadas: Arrays y Métodos de Iteración",
+          "temas": [
+            {
+              "id": "tema_arrays_esenciales",
+              "titulo": "Creación y manipulación de Arrays y sus métodos esenciales (map, filter, reduce)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-objetos",
+          "titulo": "6. Estructuras de Datos: Objetos Literales",
+          "temas": [
+            {
+              "id": "tema_objetos_literales",
+              "titulo": "Objetos literales: propiedades, métodos y acceso",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-sintaxis-moderna",
+          "titulo": "7. Sintaxis Moderna y Atajos de Código",
+          "temas": [
+            {
+              "id": "tema_js_moderno_sintaxis",
+              "titulo": "Características de JavaScript moderno: Destructuring, Spread y Rest (...)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_arrow_functions",
+              "titulo": "Funciones de flecha (Arrow Functions) y su comportamiento",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-entorno-profesional",
+          "titulo": "8. Entorno Profesional: Gestión y Versiones",
+          "temas": [
+            {
+              "id": "tema_npm",
+              "titulo": "Gestor de paquetes (NPM) y package.json",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_git",
+              "titulo": "Introducción a Git: Control de versiones",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-poo",
+          "titulo": "9. Programación Orientada a Objetos (POO)",
+          "temas": [
+            {
+              "id": "tema_poo_clases",
+              "titulo": "Programación Orientada a Objetos: Clases, constructores, instancias y uso de this",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_poo_pilares",
+              "titulo": "Pilares de la POO: Encapsulamiento, Abstracción, Herencia y Polimorfismo",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-dom",
+          "titulo": "10. Interacción con el Navegador: El DOM",
+          "temas": [
+            {
+              "id": "tema_introduccion_dom",
+              "titulo": "Introducción al árbol DOM, selección y modificación dinámica de elementos y estilos CSS",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_gestion_eventos_avanzada",
+              "titulo": "Gestión avanzada de eventos: Listeners, propagación y delegación",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-storage",
+          "titulo": "11. Persistencia de Datos en el Navegador",
+          "temas": [
+            {
+              "id": "tema_persistencia_storage",
+              "titulo": "Persistencia de datos en el navegador: LocalStorage y SessionStorage",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-asincronia",
+          "titulo": "12. Asincronía y Closures",
+          "temas": [
+            {
+              "id": "tema_closures_scope",
+              "titulo": "Entendiendo los Closures y el Ámbito (Scope)",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_asincronia_moderna",
+              "titulo": "Asincronía: Promesas y Async/Await",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "avanzado": {
+      "nombre": "Conocimientos Avanzados",
+      "capitulos": [
+        {
+          "id": "cap-13-motor-asincronia",
+          "titulo": "13. El Motor de JavaScript y Asincronía de Alto Nivel",
+          "temas": [
+            {
+              "id": "tema_event_loop_asincronia",
+              "titulo": "El Event Loop y el funcionamiento de la asincronía en JavaScript",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_promesas_async_await",
+              "titulo": "Promesas y flujo asíncrono moderno con async y await",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-14-http-errores",
+          "titulo": "14. Peticiones HTTP y Gestión Robusta de Errores",
+          "temas": [
+            {
+              "id": "tema_peticiones_http_fetch",
+              "titulo": "Peticiones HTTP y consumo de APIs externas con fetch()",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_gestion_errores_try_catch",
+              "titulo": "Gestión limpia de errores mediante bloques try, catch y finally",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-15-modularizacion-diseno",
+          "titulo": "15. Modularización y Diseño de Software Profesional",
+          "temas": [
+            {
+              "id": "tema_modularizacion_es6_import_export",
+              "titulo": "Modularización de código profesional: uso de import y export de ES6",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-16-patron-capas",
+          "titulo": "16. Arquitectura de Software: El Patrón de Capas de Producción",
+          "temas": [
+            {
+              "id": "tema_arquitectura_limpia_responsabilidades",
+              "titulo": "Introducción a la arquitectura limpia y separación de responsabilidades",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_arquitectura_capas",
+              "titulo": "Arquitectura de Software: Controladores, Servicios y Repositorios",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "lista",
+                  "elementos": [
+                    "Controlador (Controller): La cara pública. Recibe las peticiones HTTP, extrae los datos y los pasa al servicio. No debe contener lógica de negocio.",
+                    "Servicio (Service): El cerebro. Aquí reside la lógica de negocio, cálculos, validaciones comerciales y orquestación de llamadas a los repositorios.",
+                    "Repositorio (Repository): La mano ejecutora. Se encarga exclusivamente de la persistencia de datos (comunicación con la base de datos)."
+                  ]
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_patron_capas_flujo_datos",
+              "titulo": "El Patrón de Capas: Flujo de datos y comunicación entre módulos",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_capa_controlador",
+              "titulo": "La Capa Controlador: Gestión de rutas, peticiones y respuestas",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_capa_servicio",
+              "titulo": "La Capa Servicio: Centralización de la lógica de negocio",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_capa_repositorio",
+              "titulo": "La Capa Repositorio: Abstracción del acceso y persistencia de datos",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cap-17-desacoplamiento-calidad",
+          "titulo": "17. Desacoplamiento de Código, Inyección de Dependencias y Clean Code",
+          "temas": [
+            {
+              "id": "tema_inyeccion_dependencias",
+              "titulo": "Patrón de Inyección de Dependencias: Beneficios y desacoplamiento de código",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_clean_code_depuracion_refactorizacion",
+              "titulo": "Clean Code: Técnicas de depuración profesional y refactorización",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "nota",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            },
+            {
+              "id": "tema_inyeccion_dependencias",
+              "titulo": "Inyección de Dependencias y Patrones de Diseño",
+              "contenido": [
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "parrafo",
+                  "texto": ""
+                },
+                {
+                  "tipo": "codigo",
+                  "codigo": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

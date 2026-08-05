@@ -39,6 +39,29 @@
     background-color: #1b5e20;
 }
 
+/*Navegador Principal*/
+.main-nav ul {
+    display: flex;                 /* Alinea los elementos de la lista en fila */
+    gap: 1.5rem;                   /* Separación constante entre cada enlace */
+    list-style: none;              /* Elimina los puntos/viñetas por defecto de la lista */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos base para los enlaces */
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;         /* Elimina el subrayado por defecto */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;   /* Transición suave para el efecto Hover */
+}
+
+/* Efecto interactivo al pasar el cursor sobre los enlaces */
+.main-nav a:hover {
+    color: #f7df1e;                /* Cambia al color temático en hover */
+}
+
 /* Navegación lateral */
 .sidebar-nav .nav-level-title {
     font-size: 0.85rem;

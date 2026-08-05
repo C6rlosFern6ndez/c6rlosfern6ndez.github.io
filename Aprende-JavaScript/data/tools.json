@@ -1,0 +1,532 @@
+{
+    "tipos": [
+        {
+            "nombre": "Editores e IDEs",
+            "herramientas": [
+                {
+                    "id": "vscode",
+                    "titulo": "Visual Studio Code",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "El editor de código fuente más popular, ligero y extensible del mercado actual, desarrollado por Microsoft. Se ha convertido en la herramienta por excelencia para la comunidad de desarrollo web debido a su altísimo rendimiento y su capacidad de personalización total."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Su gigantesco ecosistema de extensiones y su terminal integrada lo convierten en la opción estándar de la industria para trabajar con JavaScript y TypeScript."
+                        },
+                        {
+                            "tipo": "parrafo",
+                            "texto": "🚀 Características principales:\n• IntelliSense: Autocompletado inteligente basado en tipos de variables, definiciones de funciones y módulos importados.\n• Depuración integrada: Ejecuta y depura tu código directamente desde el editor sin recurrir a herramientas externas.\n• Integración nativa con Git: Realiza commits, diffs, pull y push visualmente desde la barra lateral."
+                        },
+                        {
+                            "tipo": "lista",
+                            "elementos": [
+                                "⌨️ Atajos indispensables (Windows/Linux | macOS):",
+                                "Ctrl + P  |  Cmd + P : Buscar y abrir cualquier archivo del proyecto rápidamente.",
+                                "Ctrl + Shift + P  |  Cmd + Shift + P : Abrir la paleta de comandos globales.",
+                                "Ctrl + `  |  Cmd + ` : Abrir o cerrar la terminal integrada.",
+                                "Alt + ↑ / ↓  |  Option + ↑ / ↓ : Mover la línea de código actual hacia arriba o abajo."
+                            ]
+                        },
+                        {
+                            "tipo": "lista",
+                            "elementos": [
+                                "🧩 Extensiones críticas recomendadas para JavaScript:",
+                                "1. ESLint: Analiza tu código en tiempo real para detectar errores de sintaxis y malas prácticas.",
+                                "2. Prettier - Code formatter: Formatea automáticamente tu código al guardar para mantener un estilo limpio y consistente.",
+                                "3. Live Server: Lanza un servidor de desarrollo local con recarga en vivo para tus archivos HTML/CSS/JS.",
+                                "4. GitLens: Potencia las capacidades de Git integradas mostrando quién y cuándo modificó cada línea de código."
+                            ]
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Visual Studio Code (Sitio Oficial)",
+                            "url": "https://code.visualstudio.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "webstorm",
+                    "titulo": "WebStorm",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un Entorno de Desarrollo Integrado (IDE) comercial e inteligente desarrollado por JetBrains. Está diseñado específicamente para el ecosistema de JavaScript, TypeScript, Node.js y frameworks modernos como React, Angular y Vue. A diferencia de un editor de texto plano, ofrece un análisis profundo del código desde el primer segundo."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Aunque es una herramienta bajo licencia de pago, incluye de forma nativa características que en otros editores requieren decenas de extensiones externas, garantizando estabilidad y rendimiento óptimo en proyectos empresariales a gran escala."
+                        },
+                        {
+                            "tipo": "parrafo",
+                            "texto": "🚀 Características de nivel profesional:\n• Comprensión profunda del código: Autocompletado ultra preciso que entiende todo el proyecto, detectando errores sobre la marcha antes de compilar.\n• Refactorización avanzada y segura: Renombra variables, extrae funciones o mueve archivos en todo el proyecto de manera automática sin romper las rutas ni los imports.\n• Herramientas integradas: Cuenta con un potente depurador (debugger), cliente Git visual avanzado, terminal y suite de pruebas unitarias integradas directamente de fábrica."
+                        },
+                        {
+                            "tipo": "lista",
+                            "elementos": [
+                                "⌨️ Atajos indispensables (Windows/Linux | macOS):",
+                                "Shift + Shift  |  Shift + Shift : Buscar en todas partes (clases, archivos, configuraciones o símbolos).",
+                                "Ctrl + Alt + L  |  Cmd + Option + L : Formatear y reestructurar el archivo de código actual.",
+                                "Ctrl + Alt + Shift + T  |  Ctrl + T : Menú contextual con todas las opciones disponibles de refactorización.",
+                                "Alt + Enter  |  Option + Enter : Mostrar acciones de intención y correcciones rápidas sugeridas por el IDE."
+                            ]
+                        },
+                        {
+                            "tipo": "lista",
+                            "elementos": [
+                                "🛠️ Integraciones nativas destacadas:",
+                                "1. Control de versiones avanzado: Permite resolver conflictos complejos de ramas de manera completamente visual e intuitiva.",
+                                "2. Linters y Formateadores: Soporte nativo inmediato para ESLint, Prettier y Stylelint sin configuraciones adicionales.",
+                                "3. Local History: Guarda un registro interno detallado de todos tus cambios locales, permitiendo recuperar código borrado aunque no hayas hecho commit en Git."
+                            ]
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar WebStorm (Sitio Oficial de JetBrains)",
+                            "url": "https://www.jetbrains.com/es-es/webstorm/"
+                        }
+                    ]
+                },
+                {
+                    "id": "cursor",
+                    "titulo": "Cursor",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un editor de código de última generación construido como un fork (bifurcación) directo de Visual Studio Code. Su propósito principal es integrar Inteligencia Artificial avanzada de forma nativa en la experiencia de desarrollo, permitiendo chatear con tu base de código, generar archivos completos y editar líneas en tiempo real."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Al estar basado en VS Code, permite importar todas tus extensiones, temas y configuraciones previas con un solo clic, eliminando cualquier curva de aprendizaje inicial respecto a la interfaz."
+                        },
+                        {
+                            "tipo": "parrafo",
+                            "texto": "🚀 Características revolucionarias basadas en IA:\n• Chat contextualizado: Puedes hacer preguntas complejas sobre cómo funciona tu proyecto seleccionando archivos específicos o el código entero mediante el símbolo '@'.\n• Copiloto predictivo avanzado: Sugiere cambios multilínea e incluso predice cuál será el siguiente archivo que querrás editar basándose en tus acciones recientes.\n• Corrección de errores con un clic: Cuando la terminal integrada detecta un fallo, la IA analiza el error y propone una solución inmediata en tu código."
+                        },
+                        {
+                            "tipo": "lista",
+                            "elementos": [
+                                "⌨️ Comandos indispensables de IA (Windows/Linux | macOS):",
+                                "Ctrl + K  |  Cmd + K : Generar código nuevo o modificar el código seleccionado directamente en el archivo mediante instrucciones de lenguaje natural.",
+                                "Ctrl + L  |  Cmd + L : Abrir la barra lateral de chat de IA para consultar dudas sobre el código o planificar nuevas funcionalidades.",
+                                "Ctrl + Enter  |  Cmd + Enter : (Dentro del Chat) Incluir de forma automática toda la base de código del proyecto actual como contexto para la consulta."
+                            ]
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Cursor AI (Sitio Oficial)",
+                            "url": "https://www.cursor.com/"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Entornos de Ejecución (Runtimes)",
+            "herramientas": [
+                {
+                    "id": "nodejs",
+                    "titulo": "Node.js",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "El entorno de ejecución clásico que permite ejecutar JavaScript en el servidor utilizando el motor V8 de Google Chrome."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "node --version"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Node.js (Recomendado LTS)",
+                            "url": "https://nodejs.org/"
+                        }
+                    ]
+                },
+                {
+                    "id": "deno",
+                    "titulo": "Deno",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un runtime moderno creado por el mismo diseñador de Node.js, enfocado en la seguridad nativa y el soporte directo para TypeScript."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "deno --version"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Instalar Deno",
+                            "url": "https://deno.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "bun",
+                    "titulo": "Bun",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un runtime e instalador de paquetes ultra rápido, diseñado de forma nativa para sustituir a Node.js y acelerar los procesos de desarrollo."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "bun --version"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Instalar Bun",
+                            "url": "https://bun.sh/"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Control de Versiones",
+            "herramientas": [
+                {
+                    "id": "git",
+                    "titulo": "Git",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Sistema de control de versiones distribuido indispensable para registrar los cambios en los archivos de código fuente y colaborar en equipo."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "git --version"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Git",
+                            "url": "https://git-scm.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "github-desktop",
+                    "titulo": "GitHub Desktop",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Una interfaz gráfica e intuitiva para gestionar repositorios de GitHub sin necesidad de recurrir constantemente a la terminal de comandos."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar GitHub Desktop",
+                            "url": "https://desktop.github.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "gitkraken",
+                    "titulo": "GitKraken",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un cliente visual avanzado de Git muy popular por su potente árbol de confirmaciones interactivo y herramientas visuales para resolver conflictos de código."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar GitKraken",
+                            "url": "https://www.gitkraken.com/"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Clientes de API y Pruebas",
+            "herramientas": [
+                {
+                    "id": "postman",
+                    "titulo": "Postman",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Plataforma completa para construir, probar y diseñar APIs mediante peticiones HTTP visuales (GET, POST, PUT, DELETE)."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Postman",
+                            "url": "https://www.postman.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "insomnia",
+                    "titulo": "Insomnia",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un cliente de diseño y pruebas de API ágil, especializado en solicitudes REST, GraphQL y gRPC de forma limpia."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Insomnia",
+                            "url": "https://insomnia.rest/"
+                        }
+                    ]
+                },
+                {
+                    "id": "bruno",
+                    "titulo": "Bruno",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un cliente de API de código abierto innovador y ligero que almacena las colecciones directamente en tu proyecto usando un formato de marcado plano."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Es una excelente alternativa Git-friendly a Postman."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "📥 Descargar Bruno",
+                            "url": "https://usebruno.com/"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Complementos para editores",
+            "herramientas": [
+                {
+                    "id": "eslint",
+                    "titulo": "ESLint",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "La herramienta de análisis estático estándar para JavaScript. Revisa tu código en tiempo real para detectar errores de sintaxis, variables no utilizadas y asegurar las buenas prácticas antes de ejecutarlo."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm install eslint --save-dev"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Documentación Oficial de ESLint",
+                            "url": "https://eslint.org/"
+                        }
+                    ]
+                },
+                {
+                    "id": "prettier",
+                    "titulo": "Prettier",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un formateador de código estricto y automático. Elimina debates sobre el estilo visual (comillas simples vs dobles, espacios, punto y coma) reorganizando el código de manera consistente al guardar el archivo."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm install --save-dev --save-exact prettier"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Documentación Oficial de Prettier",
+                            "url": "https://prettier.io/"
+                        }
+                    ]
+                },
+                {
+                    "id": "gitlens",
+                    "titulo": "GitLens",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Una extensión indispensable para Visual Studio Code que potencia las capacidades de Git. Muestra directamente en cada línea de código quién la escribió, cuándo y en qué commit, facilitando el rastreo de cambios."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Es perfecta para proyectos en equipo para entender la historia detrás del código sin salir del editor."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 GitLens en el Marketplace",
+                            "url": "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"
+                        }
+                    ]
+                },
+                {
+                    "id": "live-server",
+                    "titulo": "Live Server",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un complemento que levanta un servidor de desarrollo local ágil con capacidad de recarga en vivo (Live Reload) para páginas estáticas."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Al guardar cualquier cambio en tus archivos HTML, CSS o JavaScript, el navegador se actualizará de forma automática inmediatamente."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Live Server en el Marketplace",
+                            "url": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+                        }
+                    ]
+                },
+                {
+                    "id": "error-lens",
+                    "titulo": "Error Lens",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Esta extensión mejora drásticamente la visibilidad de los errores y advertencias en tu editor, imprimiendo el mensaje del fallo directamente al final de la línea afectada, resaltándola con colores claros."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Te evita tener que pasar el cursor sobre las líneas subrayadas en rojo o mirar constantemente la pestaña de problemas."
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Error Lens en el Marketplace",
+                            "url": "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Frameworks y Librerías Front-End",
+            "herramientas": [
+                {
+                    "id": "react",
+                    "titulo": "React",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Una librería de código abierto desarrollada por Meta (Facebook) para construir interfaces de usuario interactivas basadas en componentes reutilizables."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Utiliza un enfoque declarativo y el concepto de Virtual DOM para actualizar de manera eficiente el navegador."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npx create-react-app mi-app"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Sitio Oficial de React",
+                            "url": "https://react.dev/"
+                        }
+                    ]
+                },
+                {
+                    "id": "vue",
+                    "titulo": "Vue.js",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un framework progresivo para construir interfaces de usuario. Su curva de aprendizaje es muy suave y es fácil de integrar en proyectos existentes que ya usan HTML estructurado."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm create vue@latest"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Sitio Oficial de Vue.js",
+                            "url": "https://vuejs.org/"
+                        }
+                    ]
+                },
+                {
+                    "id": "angular",
+                    "titulo": "Angular",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Una plataforma y framework de desarrollo robusto creado por Google para construir aplicaciones web SPA (Single Page Application) de nivel empresarial."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Está desarrollado 100% en TypeScript y proporciona de forma nativa enrutamiento, gestión de formularios y peticiones HTTP."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm install -g @angular/cli\nng new mi-app-angular"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Sitio Oficial de Angular",
+                            "url": "https://angular.dev/"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Gestores de Paquetes (Package Managers)",
+            "herramientas": [
+                {
+                    "id": "npm",
+                    "titulo": "NPM (Node Package Manager)",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "El gestor de paquetes predeterminado para Node.js y el registro de software más grande del mundo, donde desarrolladores de todos los continentes comparten módulos de código compartido."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm init -y\nnpm install nombre_paquete"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Registro Oficial de NPM",
+                            "url": "https://www.npmjs.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "yarn",
+                    "titulo": "Yarn",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un gestor de paquetes avanzado e independiente creado por Meta (Facebook). Nació para resolver problemas de velocidad y seguridad que presentaban las versiones antiguas de NPM."
+                        },
+                        {
+                            "tipo": "nota",
+                            "texto": "Nota: Cuenta con un excelente sistema de caché local para evitar descargar los mismos archivos repetidas veces."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm install --global yarn\nyarn add nombre_paquete"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Sitio Oficial de Yarn",
+                            "url": "https://yarnpkg.com/"
+                        }
+                    ]
+                },
+                {
+                    "id": "pnpm",
+                    "titulo": "PNPM",
+                    "contenido": [
+                        {
+                            "tipo": "parrafo",
+                            "texto": "Un gestor de paquetes moderno, extremadamente rápido y eficiente con el espacio en disco. En lugar de duplicar archivos de dependencias en cada proyecto, crea enlaces rígidos (hard links) hacia un único almacén global."
+                        },
+                        {
+                            "tipo": "codigo",
+                            "codigo": "npm install -g pnpm\npnpm add nombre_paquete"
+                        },
+                        {
+                            "tipo": "enlace",
+                            "texto": "🔗 Sitio Oficial de PNPM",
+                            "url": "https://pnpm.io/"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
