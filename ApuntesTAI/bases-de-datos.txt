@@ -1,0 +1,47 @@
+[CAPITULO] Tema 1.1: Introducción a los Sistemas de Gestión de Bases de Datos (SGBD)
+Un Sistema de Gestión de Bases de Datos (SGBD) es el software que permite almacenar, recuperar, modificar y gestionar la información contenida en una base de datos garantizando su integridad y seguridad.
+
+Propiedades ACID (Fundamentales en SGBD Relacionales):
+- Atomicidad: Una transacción se realiza completamente o no se realiza en absoluto.
+- Consistencia: La base de datos pasa de un estado válido a otro estado válido.
+- Aislamiento (Isolation): Las transacciones concurrentes no interfieren entre sí.
+- Durabilidad: Una vez completada la transacción, los cambios persisten en el sistema.
+
+[CAPITULO] Tema 1.2: Bases de Datos Relacionales (SQL)
+Las bases de datos SQL estructuran la información en tablas compuestas por filas (registros) y columnas (campos). Utilizan relaciones entre tablas mediante claves primarias (PK) y claves foráneas (FK).
+
+Principales Tipos y Motores SQL:
+1. PostgreSQL: SGBD relacional orientado a objetos, de código abierto, muy robusto y estándar.
+2. MySQL / MariaDB: Muy populares en desarrollo web por su velocidad y facilidad de despliegue.
+3. Oracle Database: Solución empresarial de alto rendimiento con gran capacidad de procesamiento transaccional.
+4. Microsoft SQL Server: Integración nativa completa con el ecosistema Microsoft (.NET, Azure).
+
+Casos de Uso Principales para SQL:
+- Aplicaciones financieras y bancarias (donde la consistencia ACID es crítica).
+- Sistemas de gestión empresarial (ERP, CRM) con modelos de datos fuertemente estructurados.
+- Comercio electrónico (inventario, pedidos y facturación con relaciones complejas).
+
+[CAPITULO] Tema 1.3: Bases de Datos No Relacionales (NoSQL)
+Las bases de datos NoSQL están diseñadas para datos no estructurados o semiestructurados, escalabilidad horizontal masiva y altas velocidades de lectura/escritura. Siguen el teorema CAP y sacrifican parte de la consistencia estricta a cambio de rendimiento y disponibilidad (modelo BASE).
+
+Tipos de Bases de Datos NoSQL y Motores Principales:
+
+1. Orientadas a Documentos:
+- Almacenan información en documentos JSON, BSON o XML.
+- Motores: MongoDB, CouchDB.
+- Casos de uso: Catálogos de productos, sistemas de gestión de contenidos (CMS), analítica web en tiempo real.
+
+2. Clave-Valor:
+- Guardan información asociada a una clave única mediante estructuras muy simples.
+- Motores: Redis, Memcached.
+- Casos de uso: Caché en memoria, gestión de sesiones de usuario, carritos de compra temporales.
+
+3. Orientadas a Columnas (Anchas):
+- Agrupan columnas de datos en lugar de filas, optimizando lecturas analíticas masivas.
+- Motores: Apache Cassandra, HBase.
+- Casos de uso: Registros de eventos (logging) a gran escala, datos de sensores (IoT), series temporales.
+
+4. Orientadas a Grafos:
+- Almacenan nodos (entidades) y aristas (relaciones entre ellos) de forma explícita.
+- Motores: Neo4j, Amazon Neptune.
+- Casos de uso: Redes sociales, motores de recomendación, detección de fraude financiero y mapas de rutas.

@@ -1,8 +1,8 @@
 {
-  "voz-espadas": {
-    "titulo": "La voz de las espadas",
-    "archivo": "la-voz-de-las-espadas.txt",
-    "chatbotId": "ID_CHATBOT_LIBRO_1"
+  "bases-datos": {
+    "titulo": "Tema 1: Bases de Datos (SQL y NoSQL)",
+    "archivo": "bases-de-datos.txt",
+    "chatbotId": "ID_CHATBOT_BD"
   },
   "antes-colguen": {
     "titulo": "Antes de que los cuelguen",
