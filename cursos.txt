@@ -1,0 +1,238 @@
+              008 - Patologías de urgencias I (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              009 - Patologías de urgencias II  (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              010 - Enfermería en la UCI (conocimientos básicos) (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              014 - Alergología para enfermería (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              019 - El auxiliar de enfermería en el servicio de urgencias (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              022 - Calidad en instituciones sanitarias (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              034 - El celador en instituciones sanitarias III : Movilización y transporte de pacientes según patologías (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              041 - Gestión al día: introducción a la gestión de la calidad (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              042 - Gestión al día: Introducción a la economía (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              043 - Gestión al día: introducción a la dirección de personas (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              046 - La memoria en las personas mayores  (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              053 - La lavandería y Plancha en Instituciones Sanitarias (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              054 - La cocina en las instituciones sanitarias (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              074 - Salud mental  (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              075 - La comunicación en la práctica sanitaria (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              099 - Atención, transporte y movilización del paciente crítico (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1000 - Anticoagulación (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              1001 - Técnicas de cultivo celular (UCAV) - Créditos: 2 ECTS - Horas:50 - OFERTA ESPECIAL
+              1002 - Análisis de orina (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1005 - Community Manager (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1006 - Inglés para la atención farmacéutica (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1018 - Fundamentos de la investigación en ciencias de la salud: El proyecto de investigación (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              1019 - Fundamentos de la investigación en ciencias de la salud: Análisis multivariante (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1020 - Fundamentos de la investigación en ciencias de la salud: Análisis de datos (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1022 - Necesidades nutricionales en situaciones de normalidad y en situaciones específicas (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1026 - Diagnóstico nutricional y métodos educativos en intervenciones nutricionales  (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1027 - Violencia de género (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1038 - La ley 39/2015 del 1 de octubre del procedimiento administrativo común y la jurisdicción contenciosa administrativa (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1045 - Ley de protección de datos (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1049 - Fundamentos de la investigación en ciencias de la salud (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1050 - Urgencias y emergencias respiratorias (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1056 - Procedimientos de enfermería en el envejecimiento (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1060 - Urgencias cardiovasculares (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1063 - Inglés nivel avanzado (C1) (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1067 - Aspectos psico-sociales en la atención primaria de enfermería. La otra cara de la salud (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1077 - Word (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1078 - Trabajo en equipo y ética profesional sanitaria (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1082 - Principios y requisitos de aseguramiento de la higiene alimentaria (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1090 - Sistemas de gestión de calidad y seguridad alimentaria (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1095 - El Régimen Jurídico del Personal de los Servicios de Salud (UCAV) - Créditos: 2 ECTS - Horas:050 - OFERTA ESPECIAL
+              1096 - La Constitución Española de 1978 (UCAV) - Créditos: 2 ECTS - Horas:50 - OFERTA ESPECIAL
+              1099 - El Estatuto de Autonomía para Andalucía (UCAV) - Créditos: 1 ECTS - Horas:25 - OFERTA ESPECIAL
+              1100 - Higiene en el medio hospitalario y prevención de la infección nosocomial (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1104 - Atención telefónica en inglés en un servicio de emergencias 112 (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1105 - Expresiones y vocabulario en inglés para el entorno sanitario (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              1120 - Inglés para auxiliares de enfermería (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1123 - Lengua extranjera profesional para la gestión administrativa en la relación con el cliente (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1125 - Atención telefónica en inglés (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1130 - Procedimientos en la toma de muestras biológicas y administración de medicamentos para técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1134 - Cuidados al paciente en las necesidades de movilización y en la prevención de úlceras por presión (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1138 - Gestión y documentación sanitarias para el técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1139 - Atención del celador al paciente con alteraciones en la movilización (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1140 - Documentación sanitaria, niveles asistenciales y gestión de la calidad en las instituciones sanitarias para celadores (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1141 - Coachin nutricional (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1143 - El auxiliar de enfermería en quirófano (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1147 - Atención al paciente en teleterapia y braquiterapia para el personal en radioterapia y dosimetría (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1148 - Atención al paciente en quimioterapia como tratamiento coadyuvante en radioterapia para el Téc. Sup. en Radioterapia y Dosimetría (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1149 - Iniciación a excel 2019 (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1152 - Outlook (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1154 - Medidas de protección radiológica en instalaciones de radioterapia para el técnico superior en radioterapia y dosimetría (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1155 - Actualización de los cuidados de enfermería a las personas ostomizadas (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1158 - Actualización en el manejo y prevención de la infección por coronavirus SARS-CoV-2 (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1163 - Inglés nivel básico I (A1)  (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1164 - Atención al paciente en instalaciones de radiodiagnóstico para el técnico superior en imagen para el diagnóstico y medicina nuclear (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1165 - La estructura general de la unidad del paciente y los sistemas de almacenaje en las instituciones sanitarias (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1167 - Atención al paciente en tratamientos de teleterapia y braquiterapia para auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1168 - Atención al paciente en tratamientos de teleterapia y braquiterapia para enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1169 - Inmunología aplicada I: sistema inmune y función reguladora (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1172 - Atención al paciente en tratamiento de quimioterapia para enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1173 - Atención al paciente en tratamiento de quimioterapia para auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1176 - Actualización en técnicas de prevención de riesgos radiológicos y biológicos para el técnico superior en imagen para el diagnóstico y medicina nuclear (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1180 - Inmunología aplicada II: técnicas y procedimientos de evaluación (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1181 - Últimos avances de la radiología convencional en el campo de la medicina forense para el técnico superior en imagen para el diagnóstico y medicina nuclear (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1182 - Trastornos de malabsorción intestinal (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1184 - El papel del celador en las urgencias y emergencias (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1185 - El técnico superior en radioterapia y dosimetría frente al COVID-19 (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1190 - Planes de igualdad: concepto e implantación (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1192 - Microbiota humana. Probióticos, prebióticos y aplicaciones (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1193 - Hoja de cálculo libre Office (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1194 - Actualización en alimentación y nutrición (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1198 - Detección, identificación, tratamientos y protección frente a la COVID-19 (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1200 - Actulización en inmunoterapia para personal farmacéutico (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1202 - Gestión de la incapacidad temporal (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1204 - Actualización en terapias inmunomoduladoras para el personal hospitalario (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1206 - Aprovisionamiento de materias primas en cocina (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1207 - Preelaboración y conservación culinarias (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1209 - Realización de elaboraciones culinarias básicas de múltiples aplicaciones (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              121 - Útiles de cocina (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1210 - Últimos avances en el estudio de la mama, pruebas radiológicas y abordaje terapéutico (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1212 - Aplicación de normas y condiciones higiénico-sanitarias en restauración (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1213 - Estrategias nutricionales en deportes de resistencia (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1214 - Actualización de los cuidados del técnico en cuidados auxiliares de enfermería en el proceso de embarazo (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1215 - Actualización en cuidados auxiliares de enfermería en la donación de sangre y usos de hemoderivados (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1216 - Metodología y gestión de los cuidados pediátricos para el técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1217 - Seguridad y atención psicosocial en el paciente pediátrico hospitalizado para técnicos en cuidados auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1218 - Intervención psicosocial en la infancia y actuación ante la sexualidad y las drogadicciones en la adolescencia para técnicos en cuidados auxiliares de enfermería (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1219 - Principales trastornos inmunes que afectan a la sociedad actual (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1220 - Negociación y gestión del conflicto (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1223 - Mecanismos inmunológicos y características clínicas del rechazo a trasplantes (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1224 - Elaboración de platos combinados y aperitivos (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1225 - Lengua de signos española (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1226 - Actualización de conocimientos sobre la higiene hospitalaria e infecciones nosocomiales (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1227 - Cuidados bio-piscosociales pediátricos para el técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1228 - Actualización en cuidados auxiliares de enfermería para el proceso del parto (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1233 - Admisión, información y documentación clínica (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1234 - Derechos y deberes de la ciudadanía ante la e-administración (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1236 - Nutrición en la tercera edad (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1237 - Gestión de documentación administrativa (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1238 - Gestión del estrés laboral en las administraciones públicas (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              124 - El celador en el servicio de urgencias (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1240 - La cocina hospitalaria (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1243 - Ciberacoso y seguridad en la red (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1244 - Marco normativo en las cocinas hospitalarias (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1245 - Acoso laboral, acoso sexual y acoso por razón de sexo: prevención detección e intervención (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1246 - Control y acondicionamiento de materias primas y productos preparados (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1247 - Riesgos específicos de la actividad en cocina y su prevención (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1248 - Dietética en centros hospitalarios, emplatado y servicios de comidas en planta (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1249 - Limpieza y desinfección en la cocina hospitalaria (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              1251 - Marco institucional y características de la Unión Europea (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1252 - Word 2013: manejo y utilidades (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1253 - Acoso laboral y otros riesgos psicosociales en el ámbito del trabajo (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1255 - Vegetarianismo en el ámbito hospitalario (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1257 - Planes de emergencias y evacuación en centros hospitalarios (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1259 - La competencia de sanidad en España: evolución y reparto competencial (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1261 - Aspectos pedagógicos y motivacionales de la tutorización en ciencias de la salud (UCAV) - Créditos: 2 ECTS - Horas:050 - OFERTA ESPECIAL
+              1267 - Acoso laboral en las administraciones públicas (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1269 - Nociones básicas de informática (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1270 - Iniciación a Windows 8 (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1271 - Excel 2013: manejo y utilidades (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1272 - Correo electrónico: manejo y utilidades (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1274 - La protonterapia: los tratamientos del futuro ya son una realidad (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1275 - Actualización en antibioterapia antibacteriana clínica (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1276 - Competencias para la gestión pública actual I (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1277 - Soft skills: Conocimiento, entrenamiento y mejora de las competencias blandas (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1280 - Estrategias de educación sanitaria para el técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1281 - Fundamentos actuales en promoción de la salud para el técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1282 - Prevención de los principales problemas de salud para el técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1283 - Dirección y gestión de centros sanitarios públicos (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1285 - Gestión de la calidad y los residuos en las cocinas hospitalarias (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1286 - Detección y prevención del suicidio (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1287 - La contaminación alimentaria (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1289 - Introducción al área quirúrgica para técnicos en cuidados auxiliares de enfermería (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              129 - Soporte vital básico y primeros auxilios en las urgencias y emergencias (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1290 - Introducción al liderazgo en las administraciones públicas (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1297 - Gestión del rendimiento en las administraciones públicas (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              130 - Actividades del técnico en cuidados auxiliares de enfermería en las técnicas diagnóstico-terapeúticas en los servicios de urgencias hospitalarias (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1303 - Nutrición en la adolescencia (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1307 - Protocolo de posiciones anatómicas y att paciente en exploraciones/intervenciones quirúrgicas: guía TCAEs fases preoperatoria, intraoperatoria y postoperatoria (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1308 - La calidad en el Sistema Nacional de Salud y la percepción ciudadana sobre sus servicios (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              1309 - Contabilidad en la administración pública: Cuadro de cuentas, definiciones y relaciones contables (UCAV) - Créditos: 10 ECTS - Horas:250 - OFERTA ESPECIAL
+              131 - Actualización de conocimientos en técnicas y control hemodinámico para enfermería (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1310 - Contabilidad en la administración pública: Marco conceptual, valoración y cuentas anuales (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1311 - Contabilidad en el Servicio de Salud del Principado de Asturias (SESPA) (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1312 - Primeros auxilios para primeros intervinientes (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1313 - Nutrición en la infancia y prevención de la obesidad infantil (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              1315 - Actualización en cuidados de enfermería en urgencias obstétricas para técnico en cuidados auxiliares de enfermería (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1320 - Ética pública y valor social (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1321 - Nutrición en la mujer gestante (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1322 - Prevención y control de infecciones y enfermerdades transmisibles en entorno quirúrgico para TCAE (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1324 - El celador en quirófano (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1329 - Control de alérgenos (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              133 - Nuevos enfoques terapéuticos en enfermería de los trastornos alimentarios (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1332 - Inteligencia Artificial en Medicina: Explorando la intersección de la ciencia y la tecnología. (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1334 - Evolución de la Gestión de Recursos Humanos en las Administraciones Públicas: Del procedimiento a las personas. (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1335 - Gestión estratégica de la innovación en el sector sanitario (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1341 - Avances en el diagnóstico en cardiología (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              1348 - Proceso de atención de enfermería (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              135 - Lenguaje saludable (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1356 - El celador en la unidad de cuidados intensivos (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1367 - Lengua de Signos Española NIVEL 2 (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1368 - Actuación del celador en las salas de autopsia y mortuorios (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              138 - El sistema de salud y el personal de limpieza (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1386 - Gestión Administrativa en el sector público y privado (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              1387 - Administración y gestión en enfermería I (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              1388 - Celador sanitario I: Intervención en la atención al usuario y seguridad en el desplazamiento del paciente (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              1390 - Celador sanitario II: Apoyo a la actividad asistencial y logística sanitaria  (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              145 - Actualización de conocimientos en patología hemostática y trastornos de coagulación, por el técnico superior en laboratorio de diagnóstico clínico  (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              1467 - Estudio, evaluación y prevención de los riesgos biológicos en el ámbito sanitario  (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              147 - Planificación y acción preventiva en el laboratorio  (UCAV) - Créditos: 2 ECTS - Horas:050 - OFERTA ESPECIAL
+              1514 - Competencias del celador en la central de esterilización: Prevención de riesgos y gestión de material estéril (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1515 - Estatuto Marco 55/2003: Lo esencial para profesionales de la salud (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              1518 - Celador en el servicio de farmacia hospitalaria: Funcionamientos, procedimientos y seguridad (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              156 - Terapéutica enfermera de las lesiones cutáneas secundarias  (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              162 - Gestión para enfermería: Sistemas de calidad para la práctica asistencial (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              163 - El servicio de lavandería y lencería en centros sanitarios (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              164 - El servicio de comidas en centros sanitarios y sociosanitarios (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              168 - Desarrollo de las técnicas de separación cromatográficas y electroforéticas (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              174 - Limpieza en centros sanitarios (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              175 - Manual de manipulador de alimentos (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              176 - Cuidados de enfermería geriátrica: Ofertando calidad de vida en la vejez    (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              183 - Gestión de cuidados pediátricos. Claves para una mejor calidad de salud poblacional (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              187 - Enfermería comunitaria. Metodología para el desarrollo de programas de salud (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              188 - Cuidados de enfermería pediátrica: Un valor seguro hacia la salud del futuro (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              189 - Riesgo de infección: Noc Absoluto. Paciente sin infecciones durante su estancia        (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              195 - Laboratorio de Urgencias (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              196 - DESA I - Desfibrilación externa semiautomática (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              204 - El envejecimiento patológico: Diagnóstico y terapéutica enfermera (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              212 - Técnicas instrumentales en urgencias y emergencias (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              2332 - Discriminación, racismo y xenofobia (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              2333 - Sensibilización medioambiental (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              2342 - Igualdad de oportunidades entre hombres y mujeres (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              238 - El auxiliar de enfermería ante situaciones de urgencias pediátricas (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              2385 - Habilidades sociales (UCAV) - Créditos: 3 ECTS - Horas:075 - OFERTA ESPECIAL
+              293 - Gestión de residuos sanitarios (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              294 - Conceptos básicos sobre seguridad y salud en el trabajo (UCAV) - Créditos: 3 ECTS - Horas:75 - OFERTA ESPECIAL
+              302a - Prevención de riesgos laborales en centros hospitalarios I (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              302b - Prevención de riesgos laborales en centros hospitalarios II (UCAV) - Créditos: 7 ECTS - Horas:175 - OFERTA ESPECIAL
+              331 - Gestión y mejora en los procesos administrativos (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              346 - Prevención de riesgos laborales (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              347 - Prevención de riesgos laborales para personal no sanitario (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              374 - Adicciones (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              800 - Operaciones básicas en el laboratorio de farmacia (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              812 - Farmacología básica para técnicos de farmacia (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              849 - Plantas medicinales (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              874 - Funciones del celador en su puesto de trabajo I (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              875 - Funciones del celador en su puesto de trabajo II (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              893 - Diagnóstico y terapéutica de enfermería, en la atención a los procesos fisiopatológicos agudos y crónicos de la edad infanto  juvenil (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              908 - El auxiliar de enfermería en la Unidad de Cuidados Intensivos (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              910 - Cuidados al paciente con alteraciones del patrón de alimentación para el técnico en cuidados auxiliares de enfermería. (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              929 - Metodología del cuidado enfermero aplicado a la enfermería geriátrica (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              940 - Prevención de la infección nosocomial durante la estancia hospitalaria del paciente (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              945 - Fundamentos de la investigación en ciencias de la salud: Instrumentos de medición en ciencias de la salud (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              953 - Urgencias y emergencias del aparato digestivo (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              955 - Gerontología y salud en la tercera edad: Neuropsicología (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              956 - Gerontología y salud en la tercera edad: Psicología clínica (UCAV) - Créditos: 8 ECTS - Horas:200 - OFERTA ESPECIAL
+              958 - Gerontología y salud en la tercera edad: Gestión y administración gerontológica (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              959 - Gerontología y salud en la tercera edad: Marco legal de protección social del adulto mayor (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              960 - Urgencias nefrourológicas (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              961 - Gerontología y salud en la tercera edad: Estudio de la calidad de vida en la tercera edad (UCAV) - Créditos: 5 ECTS - Horas:125 - OFERTA ESPECIAL
+              976 - Inglés para médicos (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              979 - Inglés para enfermería (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              983 - Inglés nivel intermedio I (B1)  (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              986 - Inglés nivel básico II (A2)  (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPECIAL
+              988 - Trastornos asociados a la menopausia (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              990 - Alimentos. Calidad, Transformación, conservación y técnicas de elaboración (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              991 - RCP básica y DEA para sanitarios y primeros intervinientes (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              995 - Avances en comunicación terapéutica en los cuidados auxiliares de enfermería (UCAV) - Créditos: 4 ECTS - Horas:100 - OFERTA ESPECIAL
+              999 - Inglés nivel intermedio II (B2) (UCAV) - Créditos: 6 ECTS - Horas:150 - OFERTA ESPE

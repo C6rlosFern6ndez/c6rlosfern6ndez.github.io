@@ -1,0 +1,17 @@
+{
+  "voz-espadas": {
+    "titulo": "La voz de las espadas",
+    "archivo": "la-voz-de-las-espadas.txt",
+    "chatbotId": "ID_CHATBOT_LIBRO_1"
+  },
+  "antes-colguen": {
+    "titulo": "Antes de que los cuelguen",
+    "archivo": "antes-de-que-los-cuelguen.txt",
+    "chatbotId": "ID_CHATBOT_LIBRO_2"
+  },
+  "ultimo-argumento": {
+    "titulo": "El último argumento de los reyes",
+    "archivo": "el-ultimo-argumento-de-los-reyes.txt",
+    "chatbotId": "ID_CHATBOT_LIBRO_3"
+  }
+}

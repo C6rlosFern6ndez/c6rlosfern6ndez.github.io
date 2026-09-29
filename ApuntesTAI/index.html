@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de la Primera Ley - Joe Abercrombie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Biblioteca Abercrombie</h1>
+        <select id="book-selector">
+            <option value="">-- Selecciona un libro --</option>
+            <option value="voz-espadas">La Voz de las Espadas (Libro 1)</option>
+            <option value="antes-colguen">Antes de que los Cuelguen (Libro 2)</option>
+            <option value="ultimo-argumento">El Último Argumento de los Reyes (Libro 3)</option>
+        </select>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>Índice</h2>
+            <ul id="chapters-list">
+                <li class="placeholder-text">Selecciona un libro para ver sus capítulos</li>
+            </ul>
+        </aside>
+
+        <main class="reader-area">
+            <h2 id="chapter-title">Bienvenido</h2>
+            <div id="chapter-content">
+                <p>Por favor, selecciona un libro del menú superior para comenzar la lectura.</p>
+            </div>
+        </main>
+    </div>
+
+    <div id="chatbot-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

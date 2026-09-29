@@ -1,0 +1,104 @@
+/* Estilos globales y reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f0;
+    color: #2b2b2a;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Cabecera del lector */
+.main-header {
+    background-color: #3e3a36;
+    color: #f5f5f0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #8c1d1d;
+}
+
+#book-selector {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Layout en dos columnas */
+.app-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Barra lateral del índice */
+.sidebar {
+    width: 280px;
+    background-color: #e6e6dc;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #59534c;
+    border-bottom: 2px solid #8c1d1d;
+    padding-bottom: 5px;
+}
+
+#chapters-list {
+    list-style: none;
+}
+
+#chapters-list li {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #fdfdfb;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#chapters-list li:hover {
+    background-color: #8c1d1d;
+    color: white;
+}
+
+.placeholder-text {
+    background-color: transparent !important;
+    cursor: default !important;
+    color: #777;
+    font-style: italic;
+}
+
+/* Área de lectura central */
+.reader-area {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background-color: #fdfdfb;
+    line-height: 1.8;
+}
+
+#chapter-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #3e3a36;
+}
+
+#chapter-content p {
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+    text-align: justify;
+}
