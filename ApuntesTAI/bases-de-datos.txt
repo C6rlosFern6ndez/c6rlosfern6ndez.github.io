@@ -1,47 +1,259 @@
-[CAPITULO] Tema 1.1: Introducción a los Sistemas de Gestión de Bases de Datos (SGBD)
-Un Sistema de Gestión de Bases de Datos (SGBD) es el software que permite almacenar, recuperar, modificar y gestionar la información contenida en una base de datos garantizando su integridad y seguridad.
+[CAPITULO] Capítulo 1: Fundamentos y Conceptos Clave de SGBD
+Un Sistema de Gestión de Bases de Datos (SGBD) es la herramienta software que gestiona el almacenamiento, acceso, seguridad e integridad de los datos.
 
-Propiedades ACID (Fundamentales en SGBD Relacionales):
-- Atomicidad: Una transacción se realiza completamente o no se realiza en absoluto.
-- Consistencia: La base de datos pasa de un estado válido a otro estado válido.
-- Aislamiento (Isolation): Las transacciones concurrentes no interfieren entre sí.
-- Durabilidad: Una vez completada la transacción, los cambios persisten en el sistema.
+Arquitectura ANSI/SPARC (Tres niveles de abstracción):
+- Nivel Físico: Describe cómo se almacenan físicamente los datos en el disco (ficheros, bloques, índices).
+- Nivel Conceptual: Define la estructura lógica global de la base de datos (tablas, relaciones, restricciones).
+- Nivel Externo (Vistas): Describe las diferentes visiones personalizadas para cada usuario o aplicación.
 
-[CAPITULO] Tema 1.2: Bases de Datos Relacionales (SQL)
-Las bases de datos SQL estructuran la información en tablas compuestas por filas (registros) y columnas (campos). Utilizan relaciones entre tablas mediante claves primarias (PK) y claves foráneas (FK).
+Modelos de Datos Principales:
+- Relacional: Datos organizados en tablas interrelacionadas mediante claves (SQL).
+- Orientado a Documentos (NoSQL): Datos estructurados en objetos flexibles tipo JSON/BSON (MongoDB).
+- Clave-Valor (NoSQL): Almacenamiento rápido mapeando una clave única a un valor (Redis).
 
-Principales Tipos y Motores SQL:
-1. PostgreSQL: SGBD relacional orientado a objetos, de código abierto, muy robusto y estándar.
-2. MySQL / MariaDB: Muy populares en desarrollo web por su velocidad y facilidad de despliegue.
-3. Oracle Database: Solución empresarial de alto rendimiento con gran capacidad de procesamiento transaccional.
-4. Microsoft SQL Server: Integración nativa completa con el ecosistema Microsoft (.NET, Azure).
+Garantías de Almacenamiento:
+- Propiedades ACID (SQL): Atomicidad, Consistencia, Aislamiento (Isolation) y Durabilidad.
+- Teorema CAP / Modelo BASE (NoSQL): Disponibilidad (Availability) y Escalabilidad Horizontal frente a Consistencia Estricta.
 
-Casos de Uso Principales para SQL:
-- Aplicaciones financieras y bancarias (donde la consistencia ACID es crítica).
-- Sistemas de gestión empresarial (ERP, CRM) con modelos de datos fuertemente estructurados.
-- Comercio electrónico (inventario, pedidos y facturación con relaciones complejas).
+[CAPITULO] Capítulo 2: Modelo Relacional, Normalización y Modelado NoSQL
+El modelo relacional garantiza la integridad de los datos estructurando el modelo mediante tablas, atributos y claves.
 
-[CAPITULO] Tema 1.3: Bases de Datos No Relacionales (NoSQL)
-Las bases de datos NoSQL están diseñadas para datos no estructurados o semiestructurados, escalabilidad horizontal masiva y altas velocidades de lectura/escritura. Siguen el teorema CAP y sacrifican parte de la consistencia estricta a cambio de rendimiento y disponibilidad (modelo BASE).
+Elementos del Modelo Relacional:
+- Clave Primaria (PK): Atributo único que identifica de forma unívoca cada fila (ej. id_autor).
+- Clave Foránea (FK): Atributo en una tabla que hace referencia a la PK de otra tabla (ej. id_autor en la tabla libros).
 
-Tipos de Bases de Datos NoSQL y Motores Principales:
+Reglas de Normalización (1FN, 2FN, 3FN):
+- 1FN (Atomicidad): No se permiten atributos multivaluados o compuestas en una sola celda.
+- 2FN (Dependencia Completa): Cumple 1FN y todos los atributos no clave dependen totalmente de la clave primaria.
+- 3FN (Sin Transitividad): Cumple 2FN y no existen dependencias transitivas entre atributos no clave.
 
-1. Orientadas a Documentos:
-- Almacenan información en documentos JSON, BSON o XML.
-- Motores: MongoDB, CouchDB.
-- Casos de uso: Catálogos de productos, sistemas de gestión de contenidos (CMS), analítica web en tiempo real.
+Modelado Relacional (SQL) de la Base de Datos 'Biblioteca':
 
-2. Clave-Valor:
-- Guardan información asociada a una clave única mediante estructuras muy simples.
-- Motores: Redis, Memcached.
-- Casos de uso: Caché en memoria, gestión de sesiones de usuario, carritos de compra temporales.
+[CODIGO]
+-- Crear la base de datos Biblioteca
+CREATE DATABASE IF NOT EXISTS biblioteca;
+USE biblioteca;
 
-3. Orientadas a Columnas (Anchas):
-- Agrupan columnas de datos en lugar de filas, optimizando lecturas analíticas masivas.
-- Motores: Apache Cassandra, HBase.
-- Casos de uso: Registros de eventos (logging) a gran escala, datos de sensores (IoT), series temporales.
+-- Tabla Autores
+CREATE TABLE autores (
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50)
+);
 
-4. Orientadas a Grafos:
-- Almacenan nodos (entidades) y aristas (relaciones entre ellos) de forma explícita.
-- Motores: Neo4j, Amazon Neptune.
-- Casos de uso: Redes sociales, motores de recomendación, detección de fraude financiero y mapas de rutas.
+-- Tabla Libros
+CREATE TABLE libros (
+    id_libro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    anio_publicacion INT,
+    id_autor INT,
+    FOREIGN KEY (id_autor) REFERENCES autores(id_autor) ON DELETE SET NULL
+);
+
+-- Tabla Préstamos
+CREATE TABLE prestamos (
+    id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
+    id_libro INT NOT NULL,
+    usuario VARCHAR(100) NOT NULL,
+    fecha_prestamo DATE DEFAULT CURRENT_DATE,
+    fecha_devolucion DATE,
+    FOREIGN KEY (id_libro) REFERENCES libros(id_libro) ON DELETE CASCADE
+);
+[/CODIGO]
+
+Modelado equivalente en NoSQL (MongoDB - Enfoque incrustado/referenciado):
+
+[CODIGO]
+// Colección: libros (Incrustando datos del autor o referenciando por ObjectId)
+db.libros.insertMany([
+  {
+    _id: ObjectId("60c72b2f9b1d8b0015f8a101"),
+    titulo: "Cien años de soledad",
+    anio_publicacion: 1967,
+    autor: {
+      nombre: "Gabriel García Márquez",
+      nacionalidad: "Colombiana"
+    }
+  },
+  {
+    _id: ObjectId("60c72b2f9b1d8b0015f8a102"),
+    titulo: "Ficciones",
+    anio_publicacion: 1944,
+    autor: {
+      nombre: "Jorge Luis Borges",
+      nacionalidad: "Argentina"
+    }
+  }
+]);
+
+// Colección: prestamos
+db.prestamos.insertOne({
+  libro_id: ObjectId("60c72b2f9b1d8b0015f8a101"),
+  usuario: "Carlos Fernández",
+  fecha_prestamo: ISODate("2026-09-01"),
+  fecha_devolucion: null
+});
+[/CODIGO]
+
+[CAPITULO] Capítulo 3: SQL Práctico — Definición (DDL) y Control (DCL/TCL)
+El lenguaje SQL se divide en subconjuntos de comandos según el objetivo de la operación sobre la base de datos.
+
+Subconjuntos principales:
+- DDL (Data Definition Language): Define y modifica la estructura del esquema (CREATE, ALTER, DROP).
+- TCL (Transaction Control Language): Gestiona transacciones de datos (COMMIT, ROLLBACK, SAVEPOINT).
+- DCL (Data Control Language): Administra permisos de seguridad (GRANT, REVOKE).
+
+Ejemplos de Definición y Control en SQL:
+
+[CODIGO]
+-- 1. Añadir una nueva columna a la tabla libros (DDL)
+ALTER TABLE libros ADD COLUMN genero VARCHAR(50);
+
+-- 2. Crear un índice para acelerar búsquedas por título (DDL)
+CREATE INDEX idx_libro_titulo ON libros(titulo);
+
+-- 3. Crear una transacción segura para registrar un préstamo (TCL)
+START TRANSACTION;
+
+INSERT INTO prestamos (id_libro, usuario, fecha_prestamo) 
+VALUES (1, 'Ana Gómez', CURRENT_DATE);
+
+-- Confirmar cambios de forma permanente
+COMMIT;
+
+-- En caso de error, deshacer operación
+-- ROLLBACK;
+
+-- 4. Conceder permisos de lectura a un usuario de la oposición (DCL)
+GRANT SELECT ON biblioteca.libros TO 'opositor_tai'@'localhost';
+[/CODIGO]
+
+[CAPITULO] Capítulo 4: SQL Práctico — Consultas DML por Dificultad
+A continuación se detallan ejemplos prácticos sobre la base de datos 'biblioteca' organizada en 3 niveles de complejidad.
+
+Nivel Básico (Selección y Filtros Simples):
+
+[CODIGO]
+-- Obtenemos todos los libros publicados después del año 1950 ordenados por año
+SELECT id_libro, titulo, anio_publicacion 
+FROM libros 
+WHERE anio_publicacion > 1950 
+ORDER BY anio_publicacion DESC;
+
+-- Buscar autores de nacionalidad 'Española' o 'Colombiana'
+SELECT * FROM autores 
+WHERE nacionalidad IN ('Española', 'Colombiana');
+[/CODIGO]
+
+Nivel Intermedio (Agrupamientos y Joins):
+
+[CODIGO]
+-- Obtener los libros prestados junto con el nombre del usuario y la fecha del préstamo
+SELECT p.id_prestamo, l.titulo, p.usuario, p.fecha_prestamo 
+FROM prestamos p
+INNER JOIN libros l ON p.id_libro = l.id_libro;
+
+-- Contar cuántos libros ha escrito cada autor
+SELECT a.nombre, COUNT(l.id_libro) AS total_libros
+FROM autores a
+LEFT JOIN libros l ON a.id_autor = l.id_autor
+GROUP BY a.id_autor, a.nombre
+HAVING COUNT(l.id_libro) > 0;
+[/CODIGO]
+
+Nivel Avanzado (Subconsultas y Funciones de Ventana):
+
+[CODIGO]
+-- Encontrar autores que no tienen ningún libro registrado (Subconsulta con NOT EXISTS)
+SELECT a.nombre 
+FROM autores a
+WHERE NOT EXISTS (
+    SELECT 1 FROM libros l WHERE l.id_autor = a.id_autor
+);
+
+-- Numerar los libros de cada autor según su año de publicación (Window Function)
+SELECT titulo, id_autor, anio_publicacion,
+       ROW_NUMBER() OVER (PARTITION BY id_autor ORDER BY anio_publicacion ASC) AS orden_autor
+FROM libros;
+[/CODIGO]
+
+[CAPITULO] Capítulo 5: Ecosistema NoSQL y Comparativa con SQL
+Las bases de datos NoSQL ofrecen esquemas dinámicos para entornos que requieren escalar horizontalmente o procesar datos no estructurados.
+
+Comparativa directa SQL vs NoSQL:
+- Estructura: Tablas con filas/columnas rígidas (SQL) vs Documentos JSON/Clave-Valor flexibles (NoSQL).
+- Escalabilidad: Escalabilidad Vertical aumentando hardware (SQL) vs Escalabilidad Horizontal añadiendo nodos (NoSQL).
+- Consistencia: Garantías ACID (SQL) vs Modelo BASE y Consistencia Eventual (NoSQL).
+
+Categorías de NoSQL y Casos de Uso:
+- Documentales (MongoDB): Contenidos, catálogos, datos complejos integrados.
+- Clave-Valor (Redis): Caché de alta velocidad y carritos de compra.
+- Columnas Anchas (Cassandra): Análisis masivo de registros de eventos (Logs, IoT).
+- Grafos (Neo4j): Redes de contactos y motores de recomendación.
+
+[CAPITULO] Capítulo 6: Consultas NoSQL Prácticas — MongoDB por Dificultad
+Ejemplos equivalentes a las operaciones sobre 'biblioteca' trasladadas al motor NoSQL MongoDB.
+
+Nivel Básico (CRUD y Filtros de Búsqueda):
+
+[CODIGO]
+// Buscar libros cuyo año de publicación sea posterior a 1950
+db.libros.find(
+  { anio_publicacion: { $gt: 1950 } },
+  { titulo: 1, anio_publicacion: 1, _id: 0 }
+).sort({ anio_publicacion: -1 });
+
+// Insertar un nuevo préstamo
+db.prestamos.insertOne({
+  libro_id: ObjectId("60c72b2f9b1d8b0015f8a101"),
+  usuario: "Maria Lopez",
+  fecha_prestamo: new Date()
+});
+[/CODIGO]
+
+Nivel Intermedio (Actualizaciones complejas y Proyecciones):
+
+[CODIGO]
+// Registrar la fecha de devolución para los préstamos de un usuario
+db.prestamos.updateMany(
+  { usuario: "Maria Lopez", fecha_devolucion: null },
+  { $set: { fecha_devolucion: new Date() } }
+);
+
+// Buscar libros de un autor específico accediendo a un objeto incrustado
+db.libros.find({ "autor.nacionalidad": "Colombiana" });
+[/CODIGO]
+
+Nivel Avanzado (Pipeline de Agregación y $lookup):
+
+[CODIGO]
+// Cruzar préstamos con la colección de libros (Equivalente al INNER JOIN en SQL)
+db.prestamos.aggregate([
+  {
+    $lookup: {
+      from: "libros",
+      localField: "libro_id",
+      foreignField: "_id",
+      as: "detalle_libro"
+    }
+  },
+  { \(unwind: "\)detalle_libro" },
+  {
+    $project: {
+      usuario: 1,
+      fecha_prestamo: 1,
+      "detalle_libro.titulo": 1
+    }
+  }
+]);
+
+// Contar cuántos libros hay por cada nacionalidad de autor
+db.libros.aggregate([
+  {
+    $group: {
+      _id: "$autor.nacionalidad",
+      total_libros: { $sum: 1 }
+    }
+  }
+]);
+[/CODIGO]

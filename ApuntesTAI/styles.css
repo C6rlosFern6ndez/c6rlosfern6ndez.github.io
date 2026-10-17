@@ -14,7 +14,7 @@ body {
     height: 100vh;
 }
 
-/* Cabecera del lector */
+/* Cabecera principal del lector */
 .main-header {
     background-color: #3e3a36;
     color: #f5f5f0;
@@ -31,18 +31,20 @@ body {
     border-radius: 4px;
     border: none;
     cursor: pointer;
+    background-color: #ffffff;
+    color: #333333;
 }
 
-/* Layout en dos columnas */
+/* Disposición principal en dos columnas */
 .app-container {
     display: flex;
     flex: 1;
     overflow: hidden;
 }
 
-/* Barra lateral del índice */
+/* Barra lateral para el índice de capítulos */
 .sidebar {
-    width: 280px;
+    width: 300px;
     background-color: #e6e6dc;
     border-right: 1px solid #ccc;
     padding: 20px;
@@ -63,11 +65,12 @@ body {
 
 #chapters-list li {
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     background-color: #fdfdfb;
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
+    font-size: 0.95rem;
 }
 
 #chapters-list li:hover {
@@ -82,7 +85,7 @@ body {
     font-style: italic;
 }
 
-/* Área de lectura central */
+/* Área central de lectura */
 .reader-area {
     flex: 1;
     padding: 40px;
@@ -95,15 +98,84 @@ body {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #3e3a36;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }
 
 #chapter-content p {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-bottom: 15px;
     text-align: justify;
+    color: #2b2b2a;
 }
 
-/* Contenedor y formateo de imágenes en los temas */
+/* Formato para subtítulos y listas en apuntes */
+#chapter-content h3 {
+    font-size: 1.3rem;
+    color: #8c1d1d;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 4px;
+}
+
+#chapter-content ul, 
+#chapter-content ol {
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+#chapter-content li {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+/* Contenedor y formato para bloques de código */
+.codigo-contenedor {
+    position: relative;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 6px;
+    margin: 20px 0;
+    padding: 18px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    overflow-x: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.codigo-contenedor pre {
+    margin: 0;
+}
+
+.codigo-contenedor code {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Botón flotante para copiar código */
+.btn-copiar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #8c1d1d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-copiar:hover {
+    background-color: #b32424;
+}
+
+/* Soporte para imágenes dentro de los temas */
 .img-container {
     text-align: center;
     margin: 25px 0;
@@ -114,5 +186,5 @@ body {
     height: auto;
     border: 1px solid #dee2e6;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

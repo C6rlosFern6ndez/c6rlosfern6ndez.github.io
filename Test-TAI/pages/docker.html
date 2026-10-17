@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Exam - TechExam Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Hoja de Estilos Compartida Externa -->
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 selection:bg-blue-600 selection:text-white">
+
+  <!-- Header Section -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="../index.html" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center mr-1" title="Volver al Portal">
+          <i class="fa-solid fa-house text-sm"></i>
+        </a>
+        <div class="bg-blue-600 text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <i class="fa-brands fa-docker text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-wide text-white flex items-center gap-2">
+            Test de Docker <span class="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full font-mono">80 Q / 5.0 Pts</span>
+          </h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Evaluación de conocimientos sobre contenedores</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">
+          <i class="fa-regular fa-clock text-blue-400"></i>
+          <span id="timer-display">00:00:00</span>
+        </div>
+        <button id="reset-btn" onclick="confirmReset()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span class="hidden sm:inline">Reiniciar</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-slate-800 h-1.5 relative overflow-hidden">
+      <div id="progress-bar" class="bg-gradient-to-r from-blue-600 to-cyan-400 h-full w-0 transition-all duration-300 ease-out"></div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+    <!-- Active Exam Container -->
+    <div id="exam-container" class="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1">
+      
+      <!-- Left Column: Question Screen -->
+      <div class="lg:col-span-3 flex flex-col justify-between bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-xl relative min-h-[500px]">
+        <div>
+          <!-- Question Metadata Header -->
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-800">
+            <span class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-blue-950 text-blue-400 border border-blue-800/50" id="question-badge">
+              Pregunta 1 de 80
+            </span>
+            <span class="text-xs text-slate-400 flex items-center gap-1 font-mono">
+              <i class="fa-solid fa-award text-amber-400"></i>
+              Valor: <span class="text-slate-200 font-bold">0.0625 pts (3 fallos restan 1 acierto)</span>
+            </span>
+          </div>
+
+          <!-- Question Text -->
+          <h2 id="question-text" class="text-lg sm:text-xl font-semibold text-slate-100 leading-relaxed mb-6">
+            Cargando pregunta...
+          </h2>
+
+          <!-- Answer Options -->
+          <div id="options-container" class="space-y-3">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Question Navigation Bar -->
+        <div class="pt-8 mt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+          <button id="prev-btn" onclick="navigateQuestion(-1)" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm transition flex items-center gap-2 border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-arrow-left"></i> Anterior
+          </button>
+
+          <div class="text-xs text-slate-400 font-mono hidden sm:block">
+            Respondidas: <span id="answered-count-text" class="text-blue-400 font-bold">0</span> / 80
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="next-btn" onclick="navigateQuestion(1)" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm shadow-lg shadow-blue-600/25 transition flex items-center gap-2">
+              Siguiente <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button id="finish-btn" onclick="confirmFinishExam()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-lg shadow-emerald-600/25 transition flex items-center gap-2">
+              <i class="fa-solid fa-flag-checkered"></i> Finalizar Test
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Question Grid Navigation Navigator -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between h-fit lg:h-auto">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+              <i class="fa-solid fa-grip text-blue-400"></i> Matriz de Navegación
+            </h3>
+            <span class="text-xs text-slate-400 font-mono" id="completion-percentage">0%</span>
+          </div>
+
+          <!-- Legend -->
+          <div class="grid grid-cols-3 gap-2 text-[11px] mb-4 p-2.5 bg-slate-950/60 rounded-xl border border-slate-800">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-800 border border-slate-600"></span>
+              <span class="text-slate-400">Pendiente</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+              <span class="text-slate-400">Respondida</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full border-2 border-cyan-400 bg-slate-800"></span>
+              <span class="text-slate-400">Activa</span>
+            </div>
+          </div>
+
+          <!-- Grid Matrix (80 Boxes) -->
+          <div id="question-grid" class="grid grid-cols-8 gap-1.5 matrix-scroll-container pr-1">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-800">
+          <button onclick="confirmFinishExam()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-check-double"></i> Evaluar Respuestas
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Results Section (Hidden by Default) -->
+    <div id="results-container" class="hidden flex-col space-y-8 animate-fade-in">
+      
+      <!-- Summary Dashboard Box -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          
+          <!-- Score Circle / Badge -->
+          <div class="flex flex-col items-center text-center lg:border-r lg:border-slate-800 lg:pr-12 w-full lg:w-auto">
+            <span class="text-xs uppercase font-mono tracking-widest text-slate-400 mb-2">Nota Final Obtenida</span>
+            <div class="relative flex items-center justify-center my-2">
+              <div id="score-ring" class="w-36 h-36 rounded-full border-8 border-blue-600/30 flex items-center justify-center bg-slate-950/50 shadow-inner">
+                <span id="score-display" class="text-4xl font-black font-mono text-white">0.00</span>
+              </div>
+            </div>
+            <span id="score-max" class="text-xs text-slate-400 mt-1 font-mono">de un total de 5.00 Puntos</span>
+            <div id="grade-badge" class="mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono">
+              -
+            </div>
+          </div>
+
+          <!-- Quick Stats Breakdown Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full flex-1">
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-check text-lg"></i>
+              </div>
+              <span id="correct-count" class="text-2xl font-bold font-mono text-emerald-400">0</span>
+              <span class="text-xs text-slate-400">Acertadas</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+              </div>
+              <span id="incorrect-count" class="text-2xl font-bold font-mono text-rose-400">0</span>
+              <span class="text-xs text-slate-400">Falladas (Penalizan)</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-minus text-lg"></i>
+              </div>
+              <span id="unanswered-count" class="text-2xl font-bold font-mono text-amber-400">0</span>
+              <span class="text-xs text-slate-400">Sin Responder</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-percent text-lg"></i>
+              </div>
+              <span id="accuracy-percentage" class="text-2xl font-bold font-mono text-blue-400">0%</span>
+              <span class="text-xs text-slate-400">Efectividad</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col gap-3 w-full lg:w-auto">
+            <button onclick="restartExam()" class="w-full py-3 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rotate-right"></i> Repetir Examen
+            </button>
+            <a href="../index.html" class="w-full py-3 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-house"></i> Volver al Menú
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Question-by-Question Review List -->
+      <div id="breakdown-section" class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass-chart text-blue-400"></i> Desglose Detallado de Respuestas
+          </h3>
+          <div class="flex items-center gap-2">
+            <button onclick="filterReview('all')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 border border-slate-700">Todas</button>
+            <button onclick="filterReview('correct')" class="px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs font-mono">Aciertos</button>
+            <button onclick="filterReview('incorrect')" class="px-3 py-1.5 rounded-lg bg-rose-950 text-rose-400 border border-rose-800 text-xs font-mono">Fallos</button>
+          </div>
+        </div>
+
+        <div id="review-list" class="space-y-4">
+          <!-- Generado dinámicamente mediante JS -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal Component for Confirmation -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center gap-3 text-amber-400">
+        <div class="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center">
+          <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+        </div>
+        <h3 id="modal-title" class="text-lg font-bold text-white">¿Finalizar Examen?</h3>
+      </div>
+      <p id="modal-description" class="text-sm text-slate-300 leading-relaxed">
+        Aún tienes preguntas sin responder. Si finalizas ahora, computarán como no contestadas (0 puntos).
+      </p>
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium border border-slate-700">
+          Cancelar
+        </button>
+        <button id="modal-confirm-btn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium shadow-md">
+          Sí, Finalizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    const questionsBank = [
+      { id: 1, question: "¿Qué comando de Docker se utiliza para listar únicamente los contenedores que están actualmente en ejecución?", options: ["docker container ls -a", "docker ps", "docker process list", "docker run --status"], correct: 1, explanation: "'docker ps' (o 'docker container ls') lista únicamente los contenedores en ejecución." },
+      { id: 2, question: "En un Dockerfile, ¿cuál es la diferencia principal entre las instrucciones CMD y ENTRYPOINT?", options: ["CMD no admite argumentos; ENTRYPOINT sí.", "ENTRYPOINT establece el ejecutable principal por defecto y CMD los argumentos modificables.", "ENTRYPOINT se ejecuta durante la construcción; CMD al iniciar.", "No hay diferencia."], correct: 1, explanation: "ENTRYPOINT define el ejecutable principal y CMD provee parámetros predeterminados sobrescribibles." },
+      { id: 3, question: "¿Qué instrucción de Dockerfile copia archivos y además soporta URLs remotas y descomprimir .tar automáticamente?", options: ["COPY", "ADD", "FETCH", "IMPORT"], correct: 1, explanation: "ADD admite descarga de URLs y descompresión automática de archivos .tar." },
+      { id: 4, question: "¿Cuál es el controlador de red (network driver) por defecto al crear un contenedor individual en Linux?", options: ["host", "overlay", "bridge", "macvlan"], correct: 2, explanation: "El driver 'bridge' es la red por defecto en Linux." },
+      { id: 5, question: "¿Cómo se elimina completamente un volumen en Docker que no esté asignado a ningún contenedor?", options: ["docker volume clear", "docker volume rm <nombre>", "docker volume purge", "docker storage destroy"], correct: 1, explanation: "'docker volume rm <nombre>' elimina un volumen específico." },
+      { id: 6, question: "¿Qué comando permite inspeccionar los logs generados por un contenedor llamado 'web-server'?", options: ["docker inspect web-server --logs", "docker logs web-server", "docker read-logs web-server", "docker container output web-server"], correct: 1, explanation: "'docker logs' muestra la salida estándar y errores del contenedor." },
+      { id: 7, question: "En Docker Compose, ¿cuál es la clave para mapear puertos entre el host y el contenedor?", options: ["expose", "ports", "connections", "network_ports"], correct: 1, explanation: "'ports' mapea puertos con la sintaxis HOST:CONTAINER." },
+      { id: 8, question: "¿Qué técnica reduce el tamaño de imágenes usando múltiples instrucciones FROM en un único Dockerfile?", options: ["Layer Compression", "Multi-stage Builds", "Docker Slimming", "Stage Reduction"], correct: 1, explanation: "Multi-stage builds permite copiar solo los artefactos necesarios a la imagen final." },
+      { id: 9, question: "¿Qué comando borra contenedores detenidos, redes no usadas y caché de construcción?", options: ["docker system prune", "docker system clean", "docker system reset", "docker system vacuum"], correct: 0, explanation: "'docker system prune' libera espacio eliminando recursos huérfanos." },
+      { id: 10, question: "¿Cuál es la función del archivo '.dockerignore'?", options: ["Evitar ejecutar comandos.", "Excluir archivos del contexto enviado al daemon.", "Listar imágenes prohibidas.", "Cerrar puertos."], correct: 1, explanation: "Excluye archivos/carpetas del contexto enviado al cliente de Docker." },
+      { id: 11, question: "¿Qué comando inicia los servicios definidos en un 'docker-compose.yml' en segundo plano?", options: ["docker-compose start -d", "docker compose up -d", "docker compose run -d", "docker-compose launch --background"], correct: 1, explanation: "'docker compose up -d' arranca los servicios en modo detached." },
+      { id: 12, question: "¿Qué bandera asigna variables de entorno al ejecutar 'docker run'?", options: ["-v", "-e", "-p", "-d"], correct: 1, explanation: "'-e' o '--env' establece variables de entorno." },
+      { id: 13, question: "¿Diferencia principal entre Bind Mount y Docker Volume?", options: ["Los Bind Mounts son solo para Windows.", "Los Volumes son gestionados por Docker en su directorio propio; los Bind Mounts pueden estar en cualquier ruta del host.", "Los Bind Mounts son persistentes pero los Volumes no.", "Son idénticos."], correct: 1, explanation: "Los volúmenes están gestionados por Docker dentro de /var/lib/docker/volumes/." },
+      { id: 14, question: "¿Qué comando permite abrir una consola interactiva dentro de un contenedor en ejecución llamado 'my-app'?", options: ["docker exec -it my-app /bin/bash", "docker attach -t my-app bash", "docker run -i my-app /bin/bash", "docker enter my-app /bin/bash"], correct: 0, explanation: "'docker exec -it <contenedor> <comando>' ejecuta un proceso dentro del contenedor." },
+      { id: 15, question: "¿Puerto sin cifrar por defecto del Docker Daemon REST API?", options: ["2375", "2376", "8080", "5000"], correct: 0, explanation: "2375 es el puerto sin cifrar; 2376 usa TLS." },
+      { id: 16, question: "¿Qué instrucción establece el directorio de trabajo en un Dockerfile?", options: ["WORKDIR", "FOLDER", "SETDIR", "CD"], correct: 0, explanation: "WORKDIR define la ruta de trabajo predeterminada." },
+      { id: 17, question: "¿Componente de Docker que gestiona objetos como imágenes y contenedores?", options: ["Docker Client", "Docker Daemon (dockerd)", "Docker Compose Engine", "Containerd Shim"], correct: 1, explanation: "'dockerd' gestiona objetos y atiende solicitudes API." },
+      { id: 18, question: "En 'docker run', ¿qué realiza '--restart unless-stopped'?", options: ["Reinicia solo si falla.", "Reinicia siempre salvo que el usuario lo haya detenido explícitamente.", "Reinicia el host.", "Reconstruye la imagen."], correct: 1, explanation: "Garantiza que el contenedor se reanude siempre salvo parada explícita." },
+      { id: 19, question: "¿Qué comando descarga una imagen sin ejecutar un contenedor?", options: ["docker fetch", "docker download", "docker pull", "docker clone"], correct: 2, explanation: "'docker pull' descarga imágenes desde el registro." },
+      { id: 20, question: "En Swarm, ¿cuál es el rol del nodo que mantiene el estado del clúster?", options: ["Worker node", "Manager node", "Leader Agent", "Master Gateway"], correct: 1, explanation: "Manager nodes administran las tareas y orquestan el clúster." },
+      { id: 21, question: "¿Qué red permite comunicación entre contenedores en distintos nodos Swarm?", options: ["bridge", "host", "overlay", "macvlan"], correct: 2, explanation: "El driver 'overlay' distribuye la red entre múltiples hosts Swarm." },
+      { id: 22, question: "¿Comando para guardar una imagen en archivo TAR?", options: ["docker export", "docker save", "docker compress", "docker store"], correct: 1, explanation: "'docker save' empaqueta la imagen en un tar." },
+      { id: 23, question: "¿Comando para restaurar una imagen guardada con 'docker save'?", options: ["docker import", "docker load", "docker restore", "docker unpack"], correct: 1, explanation: "'docker load' carga una imagen empaquetada en tar." },
+      { id: 24, question: "¿Parámetro para limitar el uso máximo de memoria RAM a 512MB?", options: ["--memory=512m", "--ram=512mb", "--max-mem 512", "-m 512"], correct: 0, explanation: "'--memory=512m' o '-m 512m' restringe el consumo de RAM." },
+      { id: 25, question: "¿Instrucción en Dockerfile para definir el usuario que ejecutará comandos?", options: ["USER", "ROLE", "ACCOUNT", "RUNAS"], correct: 0, explanation: "USER indica el UID/usuario de ejecución." },
+      { id: 26, question: "¿Qué es 'containerd'?", options: ["Una herramienta CLI.", "Un runtime de contenedor de alto nivel que gestiona el ciclo de vida completo.", "Un plugin de balanceo.", "El sistema de archivos."], correct: 1, explanation: "Runtime estandarizado encargado de transferir imágenes y ejecutar contenedores." },
+      { id: 27, question: "¿Comando para ver métricas en tiempo real de CPU/Memoria?", options: ["docker top", "docker stats", "docker monitor", "docker system metrics"], correct: 1, explanation: "'docker stats' proporciona métricas en tiempo real." },
+      { id: 28, question: "¿Cuál NO es un estado válido del ciclo de vida de un contenedor?", options: ["created", "running", "paused", "compiled"], correct: 3, explanation: "'compiled' no es un estado de contenedor." },
+      { id: 29, question: "En un Dockerfile, ¿qué efecto tiene 'EXPOSE 80'?", options: ["Mapea el puerto automáticamente.", "Abre el firewall.", "Documenta que escucha en ese puerto.", "Habilita SSL."], correct: 2, explanation: "EXPOSE funciona como documentación, no publica el puerto por sí solo." },
+      { id: 30, question: "¿Qué tecnología del kernel de Linux limita recursos como CPU y RAM?", options: ["Namespaces", "Control Groups (cgroups)", "Seccomp", "AppArmor"], correct: 1, explanation: "Los cgroups limitan y aíslan el uso de recursos físicos." },
+      { id: 31, question: "¿Qué tecnología del kernel proporciona el aislamiento de visión (PID, redes)?", options: ["Namespaces", "cgroups", "Capabilities", "SELinux"], correct: 0, explanation: "Los Namespaces aíslan la vista del sistema para cada contenedor." },
+      { id: 32, question: "¿Comando para etiquetar una imagen existente con un nuevo tag?", options: ["docker label", "docker tag", "docker rename", "docker mark"], correct: 1, explanation: "'docker tag' asigna un alias o versión a la imagen." },
+      { id: 33, question: "Sintaxis para mapear el puerto 8080 del host con el 80 del contenedor:", options: ["-p 80:8080", "-p 8080:80", "--ports 8080->80", "-link 8080:80"], correct: 1, explanation: "La sintaxis es '-p puerto_host:puerto_contenedor'." },
+      { id: 34, question: "¿Qué ocurre al ejecutar 'docker run --rm nginx'?", options: ["Se elimina la imagen.", "El contenedor se elimina automáticamente al detenerse.", "Ejecuta tests.", "Borra volúmenes."], correct: 1, explanation: "'--rm' elimina el contenedor al finalizar." },
+      { id: 35, question: "En Compose, ¿para qué sirve 'depends_on'?", options: ["Controla el orden de inicio de los servicios.", "Verifica si existen imágenes.", "Limita memoria.", "Conecta redes."], correct: 0, explanation: "Establece dependencias y orden de arranque." },
+      { id: 36, question: "¿Formato de archivo usado por Docker Compose por defecto?", options: ["JSON", "XML", "YAML", "TOML"], correct: 2, explanation: "Docker Compose utiliza archivos en formato YAML." },
+      { id: 37, question: "¿Comando para enviar señal SIGKILL inmediata a un contenedor?", options: ["docker stop", "docker pause", "docker kill", "docker terminate"], correct: 2, explanation: "'docker kill' envía SIGKILL para detenerlo de inmediato." },
+      { id: 38, question: "¿Comando para ver detalles internos en JSON de un contenedor?", options: ["docker detail", "docker inspect", "docker info", "docker query"], correct: 1, explanation: "'docker inspect' muestra la configuración completa en JSON." },
+      { id: 39, question: "Instrucción de Dockerfile para pasar variables en tiempo de 'docker build':", options: ["ENV", "ARG", "VAR", "PARAM"], correct: 1, explanation: "ARG define argumentos de construcción." },
+      { id: 40, question: "¿Comando para inicializar un clúster Swarm local?", options: ["docker cluster create", "docker swarm init", "docker swarm join-manager", "docker node init"], correct: 1, explanation: "'docker swarm init' activa el modo Swarm." },
+      { id: 41, question: "En red 'host' (--network host), ¿cómo es el aislamiento de red?", options: ["IP propia aislada.", "Sin aislamiento de red, comparte la pila de red con el host.", "Usa interfaz Bridge.", "Sockets UNIX únicamente."], correct: 1, explanation: "Comparte la interfaz y puertos directamente con el host." },
+      { id: 42, question: "¿Comando para crear un volumen nombrado en Docker?", options: ["docker volume create <nombre>", "docker volume new <nombre>", "docker storage add <nombre>", "docker create volume <nombre>"], correct: 0, explanation: "'docker volume create' genera un nuevo volumen." },
+      { id: 43, question: "¿Instrucción en Dockerfile para comprobar la salud del contenedor?", options: ["CHECKHEALTH", "HEALTHCHECK", "PING", "PROBE"], correct: 1, explanation: "HEALTHCHECK define la prueba de estado del contenedor." },
+      { id: 44, question: "¿Efecto de la instrucción 'STOPSIGNAL'?", options: ["Define la señal enviada para detener el contenedor.", "Para la construcción si hay error.", "Cierra puertos.", "Pausa el contenedor."], correct: 0, explanation: "Define la señal de parada del sistema (ej. SIGTERM)." },
+      { id: 45, question: "¿Comando para borrar imágenes sin contenedor asociado?", options: ["docker image purge", "docker image prune -a", "docker image clean", "docker rmi --all"], correct: 1, explanation: "'docker image prune -a' elimina imágenes no utilizadas." },
+      { id: 46, question: "En Compose, ¿comando para ver logs combinados de los servicios?", options: ["docker compose read-logs", "docker compose logs", "docker compose view", "docker compose trace"], correct: 1, explanation: "'docker compose logs' muestra la salida agregada." },
+      { id: 47, question: "¿Dónde se guardan las credenciales tras hacer 'docker login'?", options: ["/etc/docker/credentials.json", "~/.docker/config.json", "/var/lib/docker/auth.yml", "/root/.docker/login"], correct: 1, explanation: "Se guardan en '~/.docker/config.json'." },
+      { id: 48, question: "¿Storage driver Copy-on-Write estándar por defecto en Linux?", options: ["overlay2", "aufs", "devicemapper", "btrfs"], correct: 0, explanation: "'overlay2' es el driver recomendado por defecto." },
+      { id: 49, question: "Flag para ejecutar contenedor en segundo plano (detached mode):", options: ["-b", "-d", "-bg", "--detach-mode"], correct: 1, explanation: "'-d' ejecuta el contenedor en segundo plano." },
+      { id: 50, question: "¿Comando para crear una imagen a partir de un contenedor modificado?", options: ["docker commit", "docker snapshot", "docker build-from", "docker save --as"], correct: 0, explanation: "'docker commit' guarda los cambios en una nueva imagen." },
+      { id: 51, question: "Flag en 'docker build' para no usar la memoria caché:", options: ["--no-cache", "--force-build", "--ignore-cache", "--clean-layers"], correct: 0, explanation: "'--no-cache' obliga a reconstruir todas las capas." },
+      { id: 52, question: "En Swarm, ¿abstracción que define el estado deseado de contenedores?", options: ["Pod", "Service", "Stack", "Deployment"], correct: 1, explanation: "Un 'Service' especifica la imagen, réplicas y estado deseado." },
+      { id: 53, question: "Comando en Swarm para desplegar una aplicación desde archivo Compose:", options: ["docker compose deploy", "docker stack deploy", "docker swarm apply", "docker service compose"], correct: 1, explanation: "'docker stack deploy' despliega stacks en Swarm." },
+      { id: 54, question: "¿Propósito principal de un Dockerfile?", options: ["Reglas de red.", "Script con instrucciones para construir una imagen.", "Configurar usuarios host.", "Monitorear RAM."], correct: 1, explanation: "Documento de texto que contiene las instrucciones de construcción." },
+      { id: 55, question: "Comando para eliminar explícitamente una imagen local llamada 'app:v1':", options: ["docker delete image app:v1", "docker rmi app:v1", "docker remove app:v1", "docker image clear app:v1"], correct: 1, explanation: "'docker rmi' elimina imágenes locales." },
+      { id: 56, question: "Parámetro de 'docker run' para asignar un nombre al contenedor:", options: ["--title", "--name", "-n", "--id"], correct: 1, explanation: "'--name' asigna un identificador nombrado personalizado." },
+      { id: 57, question: "Comando para listar las redes creadas en Docker:", options: ["docker network ls", "docker network list", "docker net show", "docker networks"], correct: 0, explanation: "'docker network ls' muestra la lista de redes." },
+      { id: 58, question: "En Dockerfile, ¿para qué sirve 'ONBUILD'?", options: ["Compila en segundo plano.", "Registra un disparador para cuando la imagen sirva como base de otra.", "Verifica recursos.", "Fuerza reboots."], correct: 1, explanation: "Añade instrucciones que se ejecutan cuando la imagen es base de otra." },
+      { id: 59, question: "Comando para copiar archivos entre el host y un contenedor:", options: ["docker copy", "docker cp", "docker transfer", "docker sync"], correct: 1, explanation: "'docker cp' copia archivos en ambas direcciones." },
+      { id: 60, question: "¿Qué significa '0.0.0.0:80:80/tcp'?", options: ["Escucha en todas las IPs del host y redirige al puerto 80 TCP del contenedor.", "Solo escucha en localhost.", "Deniega tráfico.", "IP estática."], correct: 0, explanation: "Indica vinculación en todas las interfaces públicas/privadas del host." },
+      { id: 61, question: "Archivo de configuración global del motor Docker Daemon en Linux:", options: ["docker.conf", "daemon.json", "engine.yml", "docker.config"], correct: 1, explanation: "'/etc/docker/daemon.json' configura el daemon." },
+      { id: 62, question: "Comando para congelar/suspender temporalmente un contenedor:", options: ["docker freeze", "docker pause", "docker suspend", "docker sleep"], correct: 1, explanation: "'docker pause' congela la ejecución de los procesos con cgroups." },
+      { id: 63, question: "Comando para reanudar un contenedor pausado:", options: ["docker unfreeze", "docker unpause", "docker resume", "docker start"], correct: 1, explanation: "'docker unpause' reanuda los procesos congelados." },
+      { id: 64, question: "Flag en 'docker run' para abrir terminal interactiva (TTY + STDIN):", options: ["-it", "-cmd", "-shell", "-term"], correct: 0, explanation: "La combinación '-it' permite interacción mediante consola." },
+      { id: 65, question: "En Compose, comando para detener y eliminar contenedores y redes:", options: ["docker compose stop", "docker compose down", "docker compose destroy", "docker compose remove"], correct: 1, explanation: "'docker compose down' elimina los recursos creados." },
+      { id: 66, question: "Propósito principal de Docker Content Trust (DCT):", options: ["Encriptar discos.", "Garantizar la autenticidad e integridad mediante firmas digitales.", "Descargas privadas gratis.", "Testing de red."], correct: 1, explanation: "DCT permite verificar firmas digitales en las imágenes." },
+      { id: 67, question: "En Swarm, ¿qué es un 'Secret'?", options: ["Código oculto.", "Objeto para almacenar datos confidenciales de forma cifrada.", "Clave de licencia.", "Archivo .gitignore."], correct: 1, explanation: "Gestiona de forma segura claves, passwords y certificados." },
+      { id: 68, question: "Comando para ver las capas que componen una imagen:", options: ["docker history", "docker layers", "docker log-image", "docker trace-image"], correct: 0, explanation: "'docker history' muestra las capas e instrucciones de la imagen." },
+      { id: 69, question: "¿Qué es Docker Hub?", options: ["Un IDE.", "Registro basado en la nube para alojar y compartir imágenes.", "Un kernel.", "Un panel web."], correct: 1, explanation: "Es el registro público oficial de imágenes de contenedor." },
+      { id: 70, question: "Comando CLI para autenticarse contra un registro de imágenes:", options: ["docker auth", "docker login", "docker connect", "docker register"], correct: 1, explanation: "'docker login' permite autenticarse en Docker Hub o registros privados." },
+      { id: 71, question: "Forma ejecutable (Exec array format) recomendada para ENTRYPOINT:", options: ["ENTRYPOINT node app.js", "ENTRYPOINT [\"node\", \"app.js\"]", "ENTRYPOINT {exec: \"node\"}", "ENTRYPOINT <node app.js>"], correct: 1, explanation: "La sintaxis Exec [\"executable\", \"param\"] evita invocar la shell." },
+      { id: 72, question: "Flag en 'docker run' para definir el hostname del contenedor:", options: ["--name", "-h / --hostname", "--domain", "--network-name"], correct: 1, explanation: "'-h' o '--hostname' define el nombre de host de red interno." },
+      { id: 73, question: "Función de los montajes de tipo 'tmpfs':", options: ["Guardar en SSD.", "Almacenar datos únicamente en la memoria RAM del host.", "Backups cada hora.", "Montajes NFS."], correct: 1, explanation: "Reside únicamente en la memoria RAM del host." },
+      { id: 74, question: "En Swarm, comando para escalar el servicio 'web' a 5 réplicas:", options: ["docker service scale web=5", "docker swarm scale web --replicas 5", "docker service update web --instances 5", "docker container scale web 5"], correct: 0, explanation: "'docker service scale <servicio>=<réplicas>' ajusta las instancias." },
+      { id: 75, question: "Motor de construcción de nueva generación integrado en Docker:", options: ["BuildKit", "Docker Compiler v2", "Kaniko Engine", "Containerd Build"], correct: 0, explanation: "BuildKit optimiza la velocidad y la caché de construcción." },
+      { id: 76, question: "Efecto de 'docker run -d --read-only ubuntu':", options: ["Solo muestra logs.", "El sistema de archivos raíz se monta en modo lectura exclusivamente.", "Solo usuarios de lectura entran.", "Parada automática."], correct: 1, explanation: "'--read-only' impide escrituras en el contenedor." },
+      { id: 77, question: "¿Propósito de los plugins de red CNI / Drivers de Docker?", options: ["Interfaz para integrar controladores de red de terceros (Calico, Flannel).", "Aumentar velocidad CPU.", "Traducir llamadas HTTP.", "Licencias."], correct: 0, explanation: "Extiende las capacidades con soluciones de red avanzadas." },
+      { id: 78, question: "Comando para ver los procesos en ejecución dentro de un contenedor:", options: ["docker top my-app", "docker processes my-app", "docker ps my-app", "docker status my-app"], correct: 0, explanation: "'docker top' lista los procesos activos en el contenedor." },
+      { id: 79, question: "Instrucción de Dockerfile para declarar un punto de montaje persistente:", options: ["VOLUME", "MOUNT", "PERSIST", "DRIVE"], correct: 0, explanation: "VOLUME crea un punto de montaje para persistencia." },
+      { id: 80, question: "¿Cuál es la nota máxima calculada en este examen?", options: ["10.0 Puntos", "100.0 Puntos", "5.0 Puntos", "20.0 Puntos"], correct: 2, explanation: "La prueba está calculada sobre un máximo de 5.00 Puntos sobre 80 preguntas." }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userAnswers = new Array(questionsBank.length).fill(null);
+    let timerSeconds = 0;
+    let timerInterval = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTimer();
+      renderMatrixGrid();
+      loadQuestion(0);
+      updateProgressUI();
+    });
+
+    function initTimer() {
+      clearInterval(timerInterval);
+      timerSeconds = 0;
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        const hrs = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timer-display').innerText = `${hrs}:${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function renderMatrixGrid() {
+      const gridContainer = document.getElementById('question-grid');
+      gridContainer.innerHTML = '';
+
+      questionsBank.forEach((_, index) => {
+        const btn = document.createElement('button');
+        btn.id = `matrix-btn-${index}`;
+        btn.innerText = index + 1;
+        btn.onclick = () => jumpToQuestion(index);
+        btn.className = getMatrixClass(index);
+        gridContainer.appendChild(btn);
+      });
+    }
+
+    function getMatrixClass(index) {
+      const baseClass = "h-8 w-8 text-xs font-mono font-medium rounded-lg flex items-center justify-center transition-all duration-150 border ";
+      if (index === currentQuestionIndex) {
+        return baseClass + "border-cyan-400 bg-slate-800 text-cyan-300 font-bold ring-2 ring-cyan-400/30 scale-105 z-10";
+      } else if (userAnswers[index] !== null) {
+        return baseClass + "bg-blue-600 border-blue-500 text-white shadow-sm shadow-blue-500/30";
+      } else {
+        return baseClass + "bg-slate-800/80 border-slate-700/80 text-slate-400 hover:bg-slate-700 hover:text-white";
+      }
+    }
+
+    function updateMatrixUI() {
+      questionsBank.forEach((_, idx) => {
+        const btn = document.getElementById(`matrix-btn-${idx}`);
+        if (btn) btn.className = getMatrixClass(idx);
+      });
+    }
+
+    function loadQuestion(index) {
+      currentQuestionIndex = index;
+      const q = questionsBank[index];
+
+      document.getElementById('question-badge').innerText = `Pregunta ${index + 1} de ${questionsBank.length}`;
+      document.getElementById('question-text').innerText = `${index + 1}. ${q.question}`;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((optText, optIdx) => {
+        const optionWrapper = document.createElement('div');
+        optionWrapper.className = "relative";
+        const isChecked = userAnswers[index] === optIdx;
+
+        optionWrapper.innerHTML = `
+          <input type="radio" id="opt-${optIdx}" name="option" value="${optIdx}" ${isChecked ? 'checked' : ''} class="peer hidden custom-radio" onchange="selectOption(${optIdx})">
+          <label for="opt-${optIdx}" class="flex items-start gap-3 p-4 rounded-xl bg-slate-950/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-800/50 cursor-pointer transition-all duration-150 peer-checked:border-blue-500 peer-checked:bg-blue-950/30">
+            <span class="w-6 h-6 rounded-full border border-slate-700 font-mono text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5 peer-checked:border-blue-500 peer-checked:bg-blue-600 text-slate-400 peer-checked:text-white">
+              ${String.fromCharCode(65 + optIdx)}
+            </span>
+            <span class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">${optText}</span>
+          </label>
+        `;
+        optionsContainer.appendChild(optionWrapper);
+      });
+
+      document.getElementById('prev-btn').disabled = index === 0;
+      const nextBtn = document.getElementById('next-btn');
+      if (index === questionsBank.length - 1) {
+        nextBtn.classList.add('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+      }
+
+      updateMatrixUI();
+      updateProgressUI();
+    }
+
+    function selectOption(optionIndex) {
+      userAnswers[currentQuestionIndex] = optionIndex;
+      updateMatrixUI();
+      updateProgressUI();
+    }
+
+    function navigateQuestion(step) {
+      const newIndex = currentQuestionIndex + step;
+      if (newIndex >= 0 && newIndex < questionsBank.length) {
+        loadQuestion(newIndex);
+      }
+    }
+
+    function jumpToQuestion(index) {
+      loadQuestion(index);
+    }
+
+    function updateProgressUI() {
+      const answeredCount = userAnswers.filter(ans => ans !== null).length;
+      const percentage = Math.round((answeredCount / questionsBank.length) * 100);
+
+      document.getElementById('progress-bar').style.width = `${percentage}%`;
+      document.getElementById('completion-percentage').innerText = `${percentage}%`;
+      document.getElementById('answered-count-text').innerText = answeredCount;
+    }
+
+    function confirmFinishExam() {
+      const unanswered = userAnswers.filter(ans => ans === null).length;
+      const modal = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const desc = document.getElementById('modal-description');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      if (unanswered > 0) {
+        title.innerText = "¡Atención! Quedan preguntas sin responder";
+        desc.innerText = `Aún tienes ${unanswered} pregunta(s) sin contestar. ¿Estás seguro de que deseas evaluar y finalizar el examen ahora?`;
+      } else {
+        title.innerText = "¿Deseas finalizar la evaluación?";
+        desc.innerText = "Has completado todas las 80 preguntas. Al confirmar, obtendrás tu nota final corregida sobre 5.00 puntos.";
+      }
+
+      confirmBtn.onclick = () => {
+        closeModal();
+        calculateAndDisplayResults();
+      };
+
+      modal.classList.remove('hidden');
+    }
+
+    function confirmReset() {
+      const modal = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const desc = document.getElementById('modal-description');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      title.innerText = "¿Reiniciar el examen completo?";
+      desc.innerText = "Se borrarán todas tus respuestas guardadas y el temporizador volverá a cero.";
+      
+      confirmBtn.onclick = () => {
+        closeModal();
+        restartExam();
+      };
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.add('hidden');
+    }
+
+    // FUNCIÓN DE CÁLCULO CON PENALIZACIÓN Y NOTA NEGATIVA PERMITIDA
+    function calculateAndDisplayResults() {
+      clearInterval(timerInterval);
+
+      let correct = 0;
+      let incorrect = 0;
+      let unanswered = 0;
+
+      questionsBank.forEach((q, idx) => {
+        const ans = userAnswers[idx];
+        if (ans === null) {
+          unanswered++;
+        } else if (ans === q.correct) {
+          correct++;
+        } else {
+          incorrect++;
+        }
+      });
+
+      // Valor de cada pregunta correcta (5.0 / 80 = 0.0625 puntos)
+      const pointsPerCorrect = 5.0 / questionsBank.length;
+      // Cada fallo resta 1/3 del valor de una correcta
+      const pointsPerIncorrect = pointsPerCorrect / 3;
+
+      // Nota final permitiendo valores negativos si los fallos superan a los aciertos
+      const finalScore = (correct * pointsPerCorrect) - (incorrect * pointsPerIncorrect);
+      
+      const accuracy = Math.round((correct / questionsBank.length) * 100);
+
+      document.getElementById('exam-container').classList.add('hidden');
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.classList.remove('hidden');
+      resultsContainer.classList.add('flex');
+
+      document.getElementById('score-display').innerText = finalScore.toFixed(2);
+      document.getElementById('correct-count').innerText = correct;
+      document.getElementById('incorrect-count').innerText = incorrect;
+      document.getElementById('unanswered-count').innerText = unanswered;
+      document.getElementById('accuracy-percentage').innerText = `${accuracy}%`;
+
+      const gradeBadge = document.getElementById('grade-badge');
+      const scoreRing = document.getElementById('score-ring');
+
+      if (finalScore >= 4.0) {
+        gradeBadge.innerText = "SOBRESALIENTE / APTO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-emerald-950 text-emerald-400 border border-emerald-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-emerald-500 flex items-center justify-center bg-slate-950/50 shadow-emerald-900/30 shadow-2xl";
+      } else if (finalScore >= 2.5) {
+        gradeBadge.innerText = "APROBADO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-blue-950 text-blue-400 border border-blue-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-blue-500 flex items-center justify-center bg-slate-950/50 shadow-blue-900/30 shadow-2xl";
+      } else {
+        gradeBadge.innerText = "NO APTO / SUSPENSO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-rose-950 text-rose-400 border border-rose-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-rose-500 flex items-center justify-center bg-slate-950/50 shadow-rose-900/30 shadow-2xl";
+      }
+
+      renderReviewList('all');
+    }
+
+    function renderReviewList(filter) {
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+
+      questionsBank.forEach((q, idx) => {
+        const userAns = userAnswers[idx];
+        const isCorrect = userAns === q.correct;
+        const isUnanswered = userAns === null;
+
+        if (filter === 'correct' && !isCorrect) return;
+        if (filter === 'incorrect' && (isCorrect || isUnanswered)) return;
+
+        const card = document.createElement('div');
+        let borderBgStyle = "";
+        let statusBadge = "";
+
+        if (isUnanswered) {
+          borderBgStyle = "border-amber-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-amber-950 text-amber-400 border border-amber-800 flex items-center gap-1"><i class="fa-solid fa-minus"></i> Sin Responder</span>`;
+        } else if (isCorrect) {
+          borderBgStyle = "border-emerald-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center gap-1"><i class="fa-solid fa-check"></i> Acertada</span>`;
+        } else {
+          borderBgStyle = "border-rose-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-rose-950 text-rose-400 border border-rose-800 flex items-center gap-1"><i class="fa-solid fa-xmark"></i> Fallada</span>`;
+        }
+
+        card.className = `p-5 sm:p-6 rounded-2xl border ${borderBgStyle} shadow-lg transition-all`;
+
+        let optionsHTML = '';
+        q.options.forEach((opt, oIdx) => {
+          let optStyle = "bg-slate-950/40 border-slate-800 text-slate-300";
+          let icon = `<span class="w-5 h-5 rounded-full border border-slate-700 font-mono text-[10px] flex items-center justify-center shrink-0">${String.fromCharCode(65 + oIdx)}</span>`;
+
+          if (oIdx === q.correct) {
+            optStyle = "bg-emerald-950/40 border-emerald-600 text-emerald-200 font-medium";
+            icon = `<span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-mono text-[10px] flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-[10px]"></i></span>`;
+          } else if (oIdx === userAns && !isCorrect) {
+            optStyle = "bg-rose-950/40 border-rose-600 text-rose-200 font-medium";
+            icon = `<span class="w-5 h-5 rounded-full bg-rose-600 text-white font-mono text-[10px] flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-[10px]"></i></span>`;
+          }
+
+          optionsHTML += `
+            <div class="flex items-center gap-3 p-3 rounded-xl border text-sm ${optStyle}">
+              ${icon}
+              <span class="leading-relaxed">${opt}</span>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-4 pb-3 mb-4 border-b border-slate-800">
+            <span class="text-xs font-mono font-bold text-slate-400">Pregunta ${idx + 1} de 80</span>
+            ${statusBadge}
+          </div>
+          <h4 class="text-base font-semibold text-white mb-4 leading-relaxed">${q.question}</h4>
+          <div class="space-y-2 mb-4">
+            ${optionsHTML}
+          </div>
+          <div class="p-3.5 rounded-xl bg-blue-950/30 border border-blue-900/40 text-xs text-blue-200 flex items-start gap-2.5">
+            <i class="fa-solid fa-circle-info text-blue-400 mt-0.5 text-sm"></i>
+            <div>
+              <span class="font-bold text-blue-300">Explicación técnica:</span> ${q.explanation}
+            </div>
+          </div>
+        `;
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    function filterReview(filter) {
+      renderReviewList(filter);
+    }
+
+    function restartExam() {
+      userAnswers = new Array(questionsBank.length).fill(null);
+      currentQuestionIndex = 0;
+
+      document.getElementById('results-container').classList.add('hidden');
+      document.getElementById('results-container').classList.remove('flex');
+      document.getElementById('exam-container').classList.remove('hidden');
+
+      initTimer();
+      renderMatrixGrid();
+      loadQuestion(0);
+      updateProgressUI();
+    }
+  </script>
+</body>
+</html>

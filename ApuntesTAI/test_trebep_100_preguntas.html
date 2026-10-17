@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador Test TREBEP - 100 Preguntas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-100">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-slate-900 leading-none">Test Oposiciones TREBEP</h1>
+          <p class="text-xs text-slate-500 font-medium mt-0.5">Estatuto Básico del Empleado Público</p>
+        </div>
+      </div>
+      
+      <div id="header-status" class="hidden flex items-center space-x-2">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200" id="badge-question-count">
+          0/0
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <div id="screen-menu" class="max-w-xl mx-auto w-full bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 sm:p-8 transition-all">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center p-3 bg-indigo-50 text-indigo-600 rounded-2xl mb-3 shadow-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900">Configura tu Examen</h2>
+        <p class="text-sm text-slate-500 mt-2 max-w-sm mx-auto">Selecciona la extensión del simulacro. Las preguntas se extraerán del mazo oficial de 100 cartas TREBEP.</p>
+      </div>
+
+      <div class="space-y-4 mb-8">
+        <label class="block text-xs font-semibold tracking-wider text-slate-400 uppercase mb-2">Cantidad de preguntas</label>
+        
+        <div class="grid grid-cols-3 gap-3">
+          <button type="button" onclick="selectQuestionAmount(10)" id="btn-mode-10" class="mode-select-btn flex flex-col items-center justify-center p-4 rounded-xl border-2 border-indigo-600 bg-indigo-50/50 text-indigo-900 transition-all focus:outline-none">
+            <span class="text-2xl font-extrabold text-indigo-600">10</span>
+            <span class="text-xs font-semibold text-slate-600 mt-1">Express</span>
+          </button>
+          
+          <button type="button" onclick="selectQuestionAmount(20)" id="btn-mode-20" class="mode-select-btn flex flex-col items-center justify-center p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 bg-white text-slate-700 transition-all focus:outline-none">
+            <span class="text-2xl font-extrabold text-slate-800">20</span>
+            <span class="text-xs font-semibold text-slate-500 mt-1">Estándar</span>
+          </button>
+          
+          <button type="button" onclick="selectQuestionAmount(100)" id="btn-mode-100" class="mode-select-btn flex flex-col items-center justify-center p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 bg-white text-slate-700 transition-all focus:outline-none">
+            <span class="text-2xl font-extrabold text-slate-800">100</span>
+            <span class="text-xs font-semibold text-slate-500 mt-1">Mazo Completo</span>
+          </button>
+        </div>
+
+        <div class="mt-6 bg-slate-50 rounded-xl p-4 border border-slate-200/60 text-xs text-slate-600 space-y-2">
+          <div class="font-semibold text-slate-700 flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Criterios de corrección oficiales:
+          </div>
+          <div class="flex items-center justify-between text-xs pt-1">
+            <span class="flex items-center text-emerald-700 font-medium">✓ Acierto: +1,00 pto</span>
+            <span class="flex items-center text-rose-600 font-medium">✗ Error: -0,33 ptos</span>
+            <span class="flex items-center text-slate-500 font-medium">○ En blanco: 0 ptos</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="startExam()" class="w-full py-3.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2">
+        <span>Comenzar Simulación</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="screen-exam" class="hidden w-full max-w-4xl mx-auto flex flex-col gap-6">
+      
+      <!-- Barra superior de control y navegación rápida -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Pregunta</span>
+            <span id="current-q-index-pill" class="text-lg font-bold text-slate-900">1</span>
+            <span class="text-sm text-slate-400">/ <span id="total-q-count">0</span></span>
+          </div>
+
+          <div class="flex items-center space-x-3 text-xs font-semibold">
+            <span class="flex items-center gap-1.5 text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg">
+              <span id="stat-answered" class="font-bold">0</span> contestadas
+            </span>
+            <span class="flex items-center gap-1.5 text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg">
+              <span id="stat-pending" class="font-bold">0</span> pendientes
+            </span>
+          </div>
+
+          <button onclick="confirmFinishExam()" class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Finalizar Examen
+          </button>
+        </div>
+
+        <!-- Panel de cuadrícula de navegación rápida -->
+        <div class="pt-3">
+          <p class="text-[11px] font-medium text-slate-400 mb-2">Mosaico de navegación directa:</p>
+          <div id="questions-grid" class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto custom-scrollbar p-1">
+            <!-- Píldoras numéricas generadas dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta principal de la pregunta activa -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200/70 p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span id="question-tag" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 tracking-wider">
+              TRE-001
+            </span>
+            <button onclick="clearCurrentAnswer()" class="text-xs text-slate-400 hover:text-slate-600 hover:underline">
+              Dejar en blanco
+            </button>
+          </div>
+
+          <h3 id="question-text" class="text-lg sm:text-xl font-bold text-slate-800 leading-snug mb-6">
+            Pregunta...
+          </h3>
+
+          <!-- Opciones A, B, C, D -->
+          <div id="options-container" class="space-y-3">
+            <!-- Botones de opciones creados por JS -->
+          </div>
+        </div>
+
+        <!-- Controles de navegación inferior (Atrás / Siguiente) -->
+        <div class="flex items-center justify-between gap-4 mt-8 pt-6 border-t border-slate-100">
+          <button id="btn-prev" onclick="goToPrevQuestion()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold text-sm transition flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Anterior
+          </button>
+
+          <span class="text-xs text-slate-400 hidden sm:inline-block">Puedes navegar y cambiar tus respuestas en cualquier momento</span>
+
+          <button id="btn-next" onclick="goToNextQuestion()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition flex items-center gap-2">
+            Siguiente
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-results" class="hidden w-full max-w-4xl mx-auto space-y-6">
+      
+      <!-- Resumen general -->
+      <div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 sm:p-8">
+        <div class="text-center max-w-md mx-auto mb-8">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 mb-2">Examen Calificado</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Resultado Final</h2>
+          <p class="text-sm text-slate-500 mt-1">Cálculo aplicando penalización de -0,33 por respuesta errónea</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+            <span class="text-xs uppercase font-bold text-slate-400">Puntuación Neta</span>
+            <div id="score-net" class="text-2xl sm:text-3xl font-extrabold text-indigo-600 mt-1">0.00</div>
+            <div id="score-max" class="text-xs text-slate-400 mt-0.5">sobre 0 pts</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-emerald-50/60 border border-emerald-100">
+            <span class="text-xs uppercase font-bold text-emerald-600">Aciertos (+1)</span>
+            <div id="score-correct" class="text-2xl sm:text-3xl font-extrabold text-emerald-600 mt-1">0</div>
+            <div id="score-correct-pct" class="text-xs text-emerald-500 mt-0.5">0%</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-rose-50/60 border border-rose-100">
+            <span class="text-xs uppercase font-bold text-rose-600">Fallos (-0.33)</span>
+            <div id="score-wrong" class="text-2xl sm:text-3xl font-extrabold text-rose-600 mt-1">0</div>
+            <div id="score-wrong-deduction" class="text-xs text-rose-500 mt-0.5">-0.00 pts</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+            <span class="text-xs uppercase font-bold text-slate-400">En Blanco (0)</span>
+            <div id="score-blank" class="text-2xl sm:text-3xl font-extrabold text-slate-600 mt-1">0</div>
+            <div class="text-xs text-slate-400 mt-0.5">Sin penalización</div>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <button onclick="restartSameTest()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition shadow-md shadow-indigo-600/20">
+            Reintentar este test
+          </button>
+          <button onclick="goToMenu()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm transition">
+            Volver al Menú Principal
+          </button>
+        </div>
+      </div>
+
+      <!-- Desglose y revisión detallada -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 sm:p-8">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
+          <h3 class="text-lg font-bold text-slate-900">Revisión Detallada de Preguntas</h3>
+          <div class="flex gap-2 text-xs">
+            <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-700 font-semibold">Correcta</span>
+            <span class="px-2 py-1 rounded bg-rose-100 text-rose-700 font-semibold">Fallada</span>
+            <span class="px-2 py-1 rounded bg-slate-100 text-slate-600 font-semibold">En blanco</span>
+          </div>
+        </div>
+
+        <div id="review-list" class="space-y-6">
+          <!-- Lista generada con cada pregunta y su solución -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal de confirmación para finalizar -->
+  <div id="finish-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+      <h3 class="text-lg font-bold text-slate-900 mb-2">¿Finalizar el examen?</h3>
+      <p id="finish-modal-text" class="text-sm text-slate-500 mb-6">
+        Aún tienes preguntas sin responder. Las preguntas en blanco no restarán puntos.
+      </p>
+      <div class="flex gap-3 justify-end">
+        <button onclick="closeFinishModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-semibold text-sm transition">
+          Continuar examen
+        </button>
+        <button onclick="finalizeExamNow()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition shadow-sm">
+          Confirmar y Calificar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-auto py-6 text-center text-xs text-slate-400">
+    Simulador de examen basado en el Texto Refundido del Estatuto Básico del Empleado Público (TREBEP)
+  </footer>
+
+  <script>
+    // Base de datos completa con las 100 preguntas del documento oficial TRIVIALTREBEP
+    const QUESTION_BANK = [
+      {
+        id: "TRE-001",
+        q: "¿Cuáles son los tres principios fundamentales para el acceso al empleo público según el TREBEP?",
+        options: {
+          A: "Igualdad, mérito y capacidad",
+          B: "Igualdad, publicidad y antigüedad",
+          C: "Mérito, experiencia y formación",
+          D: "Capacidad, eficacia y especialización"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-002",
+        q: "¿Qué busca garantizar el principio de igualdad?",
+        options: {
+          A: "Que todos compitan bajo las mismas reglas",
+          B: "Que todos tengan la misma titulación",
+          C: "Que todos tengan la misma experiencia",
+          D: "Que todos obtengan plaza"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-003",
+        q: "¿Qué se valora mediante el principio de mérito?",
+        options: {
+          A: "Edad y nacionalidad",
+          B: "Trayectoria, formación y experiencia",
+          C: "Destino solicitado",
+          D: "Situación familiar"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-004",
+        q: "¿Qué evalúa el principio de capacidad?",
+        options: {
+          A: "La antigüedad",
+          B: "La aptitud para desempeñar el puesto",
+          C: "El salario esperado",
+          D: "La experiencia únicamente"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-005",
+        q: "¿Cuál es la edad mínima general para acceder al empleo público?",
+        options: {
+          A: "14 años",
+          B: "15 años",
+          C: "16 años",
+          D: "18 años"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-006",
+        q: "¿Cuál es el límite máximo general de edad para participar en un proceso selectivo?",
+        options: {
+          A: "65 años",
+          B: "67 años",
+          C: "70 años",
+          D: "No exceder la edad máxima de jubilación forzosa"
+        },
+        answer: "D"
+      },
+      {
+        id: "TRE-007",
+        q: "¿Qué es la capacidad funcional como requisito de acceso?",
+        options: {
+          A: "Tener experiencia previa",
+          B: "Tener nacionalidad española",
+          C: "Poseer aptitud física y psíquica suficiente",
+          D: "Haber trabajado en la Administración"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-008",
+        q: "¿Puede una persona con discapacidad acceder al empleo público?",
+        options: {
+          A: "Nunca",
+          B: "Solo mediante concurso",
+          C: "Sí, si posee la capacidad funcional necesaria",
+          D: "Solo con autorización especial"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-009",
+        q: "¿Qué requisito de habilitación se exige para ser nombrado funcionario?",
+        options: {
+          A: "No haber sido separado mediante expediente disciplinario",
+          B: "Tener experiencia mínima",
+          C: "Haber trabajado en el sector público",
+          D: "Estar colegiado"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-010",
+        q: "¿Por qué se exige una titulación específica para determinados puestos?",
+        options: {
+          A: "Para limitar candidatos",
+          B: "Para garantizar formación técnica adecuada",
+          C: "Para aumentar la competencia",
+          D: "Para favorecer promociones internas"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-011",
+        q: "¿Qué colectivos tienen prohibido formar parte de los órganos de selección?",
+        options: {
+          A: "Funcionarios de carrera",
+          B: "Técnicos especialistas",
+          C: "Políticos, interinos y eventuales",
+          D: "Personal laboral fijo"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-012",
+        q: "¿Cuál es el objetivo de prohibir a políticos en los tribunales de selección?",
+        options: {
+          A: "Reducir costes",
+          B: "Garantizar imparcialidad e independencia",
+          C: "Simplificar oposiciones",
+          D: "Evitar reclamaciones"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-013",
+        q: "¿En qué consiste el sistema selectivo de oposición?",
+        options: {
+          A: "Solo valoración de méritos",
+          B: "Solo entrevistas",
+          C: "Exclusivamente pruebas o exámenes",
+          D: "Sorteo entre aspirantes"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-014",
+        q: "¿Qué caracteriza al concurso-oposición?",
+        options: {
+          A: "Solo méritos",
+          B: "Exámenes y valoración de méritos",
+          C: "Entrevista y test psicológico",
+          D: "Designación directa"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-015",
+        q: "¿Cuándo puede utilizarse el sistema de concurso?",
+        options: {
+          A: "Siempre",
+          B: "Solo para interinos",
+          C: "De forma excepcional",
+          D: "Solo en promoción interna"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-016",
+        q: "¿Qué porcentaje de plazas debe reservarse para personas con discapacidad en la OEP?",
+        options: {
+          A: "5 %",
+          B: "6 %",
+          C: "7 %",
+          D: "10 %"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-017",
+        q: "Dentro del cupo de discapacidad, ¿qué porcentaje se reserva a discapacidad intelectual?",
+        options: {
+          A: "1 %",
+          B: "2 %",
+          C: "3 %",
+          D: "5 %"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-018",
+        q: "¿Qué implica la paridad en los órganos de selección?",
+        options: {
+          A: "Mismo número exacto",
+          B: "Ningún sexo superior al 60 % ni inferior al 40 %",
+          C: "50 % obligatorio",
+          D: "Mayoría femenina"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-019",
+        q: "¿Cuál es el primer paso tras superar el proceso selectivo?",
+        options: {
+          A: "Toma de posesión",
+          B: "Nombramiento",
+          C: "Juramento",
+          D: "Concurso de traslados"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-020",
+        q: "¿Qué acto formal sigue al nombramiento?",
+        options: {
+          A: "Solicitud de destino",
+          B: "Acatamiento de la Constitución y el ordenamiento jurídico",
+          C: "Curso selectivo",
+          D: "Firma de horario"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-021",
+        q: "¿Cuál es el último paso para adquirir la condición de funcionario de carrera?",
+        options: {
+          A: "Aprobar",
+          B: "Nombramiento",
+          C: "Toma de posesión",
+          D: "OEP"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-022",
+        q: "¿Qué es la Oferta de Empleo Público (OEP)?",
+        options: {
+          A: "Registro de funcionarios",
+          B: "Instrumento que publica necesidades de personal",
+          C: "Escala salarial",
+          D: "Concurso anual"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-023",
+        q: "¿Qué es un funcionario de carrera según el TREBEP?",
+        options: {
+          A: "Empleado temporal",
+          B: "Puesto eventual",
+          C: "Quien supera el proceso selectivo y mantiene relación permanente",
+          D: "Todo trabajador público"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-024",
+        q: "¿Qué es un órgano de selección?",
+        options: {
+          A: "Ministerio convocante",
+          B: "Tribunal o comisión que evalúa aspirantes",
+          C: "Sindicato mayoritario",
+          D: "Oficina de personal"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-025",
+        q: "¿Cuál es el orden correcto para adquirir plenamente la condición de funcionario de carrera?",
+        options: {
+          A: "Aprobar → Toma de posesión → Nombramiento",
+          B: "Aprobar → Nombramiento → Acatamiento → Toma de posesión",
+          C: "Nombramiento → Aprobar → Toma de posesión",
+          D: "OEP → Oposición → Nombramiento"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-026",
+        q: "¿Qué diferencia los derechos individuales de los derechos colectivos?",
+        options: {
+          A: "Los individuales se ejercen personalmente y los colectivos junto a otros empleados",
+          B: "Los individuales son obligatorios y los colectivos opcionales",
+          C: "Los individuales son económicos y los colectivos administrativos",
+          D: "No existe diferencia"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-027",
+        q: "¿Qué significa el derecho a la inamovilidad del funcionario de carrera?",
+        options: {
+          A: "Que no puede cambiar de puesto",
+          B: "Que no puede ser trasladado de ciudad",
+          C: "Que no puede perder arbitrariamente su condición de funcionario",
+          D: "Que nunca puede ser sancionado"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-028",
+        q: "¿En qué consiste el derecho al desempeño efectivo del puesto?",
+        options: {
+          A: "En elegir destino",
+          B: "En realizar las funciones propias de la plaza obtenida",
+          C: "En obtener promoción automática",
+          D: "En decidir el horario"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-029",
+        q: "¿Tiene el funcionario derecho a la formación continua?",
+        options: {
+          A: "No",
+          B: "Solo durante el periodo de prácticas",
+          C: "Sí, la Administración debe facilitarla",
+          D: "Solo mediante cursos privados"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-030",
+        q: "¿Qué garantiza la protección jurídica al empleado público?",
+        options: {
+          A: "Defensa económica",
+          B: "Apoyo legal cuando actúa correctamente en sus funciones",
+          C: "Asistencia sindical obligatoria",
+          D: "Traslado preferente"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-031",
+        q: "¿Qué implica el derecho a la desconexión digital?",
+        options: {
+          A: "Trabajar menos horas",
+          B: "No atender comunicaciones laborales fuera de la jornada",
+          C: "Teletrabajar obligatoriamente",
+          D: "Desconectar Internet"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-032",
+        q: "La libre asociación profesional es un derecho...",
+        options: {
+          A: "Colectivo",
+          B: "Sindical",
+          C: "Individual",
+          D: "Temporal"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-033",
+        q: "¿Cuántos derechos colectivos reconoce expresamente el TREBEP?",
+        options: {
+          A: "3",
+          B: "4",
+          C: "5",
+          D: "6"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-034",
+        q: "¿Cuál de los siguientes es un derecho colectivo?",
+        options: {
+          A: "Inamovilidad",
+          B: "Conciliación",
+          C: "Formación continua",
+          D: "Libertad sindical"
+        },
+        answer: "D"
+      },
+      {
+        id: "TRE-035",
+        q: "¿Cuál de los siguientes NO es un derecho colectivo?",
+        options: {
+          A: "Huelga",
+          B: "Reunión",
+          C: "Libertad sindical",
+          D: "Inamovilidad"
+        },
+        answer: "D"
+      },
+      {
+        id: "TRE-036",
+        q: "¿Qué permite el derecho a la negociación colectiva?",
+        options: {
+          A: "Cambiar de puesto libremente",
+          B: "Participar en la determinación de las condiciones de trabajo",
+          C: "Elegir salario",
+          D: "Solicitar excedencia automática"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-037",
+        q: "¿En qué consiste el derecho a la huelga?",
+        options: {
+          A: "Suspensión colectiva del trabajo para defender intereses laborales",
+          B: "Cambio automático de puesto",
+          C: "Solicitud de vacaciones extraordinarias",
+          D: "Reunión sindical"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-038",
+        q: "¿Qué derechos se agrupan bajo el concepto de conciliación?",
+        options: {
+          A: "Vida laboral y vacaciones",
+          B: "Vida personal, familiar y laboral",
+          C: "Vida sindical y laboral",
+          D: "Vida económica y laboral"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-039",
+        q: "¿Qué garantiza la seguridad y salud laboral?",
+        options: {
+          A: "La protección de la integridad física y mental",
+          B: "Un complemento salarial",
+          C: "Jornada reducida",
+          D: "Promoción interna"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-040",
+        q: "¿Qué se entiende por derecho a la jubilación?",
+        options: {
+          A: "Excedencia voluntaria",
+          B: "Acceso al cese de actividad con la pensión legal correspondiente",
+          C: "Permiso no retribuido",
+          D: "Cambio a personal laboral"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-041",
+        q: "¿Qué significan las retribuciones e indemnizaciones?",
+        options: {
+          A: "Sueldo y compensaciones por gastos de servicio",
+          B: "Solo sueldo",
+          C: "Solo dietas",
+          D: "Premios por antigüedad"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-042",
+        q: "¿Qué es un conflicto colectivo?",
+        options: {
+          A: "Problema entre dos funcionarios",
+          B: "Disputa laboral que afecta a un grupo de trabajadores",
+          C: "Recurso administrativo",
+          D: "Expediente disciplinario"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-043",
+        q: "¿Qué protege el derecho a la intimidad del empleado público?",
+        options: {
+          A: "Solo la imagen pública",
+          B: "Solo la orientación sexual",
+          C: "La vida privada, imagen y orientación sexual",
+          D: "Solo los datos bancarios"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-044",
+        q: "¿La libertad sindical es un derecho individual o colectivo?",
+        options: {
+          A: "Individual",
+          B: "Colectivo",
+          C: "Temporal",
+          D: "Excepcional"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-045",
+        q: "¿El derecho de reunión es un derecho...?",
+        options: {
+          A: "Individual",
+          B: "Colectivo",
+          C: "Personal",
+          D: "Económico"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-046",
+        q: "¿Qué principio evita favorecer a familiares en procesos selectivos?",
+        options: {
+          A: "Publicidad",
+          B: "Capacidad",
+          C: "Igualdad",
+          D: "Eficacia"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-047",
+        q: "¿La libertad de expresión es un derecho...?",
+        options: {
+          A: "Colectivo",
+          B: "Individual",
+          C: "Sindical",
+          D: "Temporal"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-048",
+        q: "¿Puede un funcionario ignorar correos laborales fuera de jornada por la desconexión digital?",
+        options: {
+          A: "No",
+          B: "Solo los fines de semana",
+          C: "Sí",
+          D: "Solo en vacaciones"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-049",
+        q: "¿Qué diferencia una asociación profesional de un sindicato?",
+        options: {
+          A: "Ninguna",
+          B: "La asociación es individual y el sindicato se vincula a la libertad sindical colectiva",
+          C: "El sindicato es individual",
+          D: "La asociación es obligatoria"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-050",
+        q: "QUESITO: ¿Cuáles son los cinco derechos colectivos reconocidos en el TREBEP?",
+        options: {
+          A: "Huelga, negociación, promoción, reunión y formación",
+          B: "Libertad sindical, negociación colectiva, huelga, conflicto colectivo y reunión",
+          C: "Libertad sindical, conciliación, reunión, promoción y huelga",
+          D: "Huelga, conflicto colectivo, formación, negociación y reunión"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-051",
+        q: "¿Cuáles son los dos objetivos principales de regular la jornada de trabajo?",
+        options: {
+          A: "Aumentar salarios y productividad",
+          B: "Funcionamiento de los servicios públicos y conciliación",
+          C: "Reducir plantilla y costes",
+          D: "Facilitar promociones"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-052",
+        q: "¿Qué dos tipos de jornada reconoce el artículo 47 del TREBEP?",
+        options: {
+          A: "Flexible y rígida",
+          B: "Ordinaria y extraordinaria",
+          C: "General y especial",
+          D: "Diurna y nocturna"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-053",
+        q: "¿En qué modalidades pueden prestarse las jornadas de trabajo?",
+        options: {
+          A: "Presencial o remota",
+          B: "Completa o parcial",
+          C: "Fija o flexible",
+          D: "Ordinaria o intensiva"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-054",
+        q: "¿Cuántas horas semanales componen la jornada ordinaria?",
+        options: {
+          A: "35",
+          B: "37,5",
+          C: "40",
+          D: "42"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-055",
+        q: "¿Cuál es el cómputo anual de la jornada ordinaria?",
+        options: {
+          A: "1.500 horas",
+          B: "1.600 horas",
+          C: "1.642 horas",
+          D: "1.700 horas"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-056",
+        q: "¿Qué es la parte fija de la jornada?",
+        options: {
+          A: "Horario obligatorio de presencia",
+          B: "Horario libre",
+          C: "Descanso obligatorio",
+          D: "Jornada de verano"
+        },
+        answer: "A"
+      },
+      {
+        id: "TRE-057",
+        q: "¿Qué es la parte flexible de la jornada?",
+        options: {
+          A: "Descanso retribuido",
+          B: "Horario nocturno",
+          C: "Tiempo para completar la jornada con cierta libertad",
+          D: "Horario sindical"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-058",
+        q: "¿De cuánto tiempo es el descanso obligatorio durante la jornada?",
+        options: {
+          A: "15 minutos",
+          B: "20 minutos",
+          C: "30 minutos",
+          D: "45 minutos"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-059",
+        q: "¿El descanso computa como tiempo de trabajo efectivo?",
+        options: {
+          A: "No",
+          B: "Solo en verano",
+          C: "Sí",
+          D: "Solo para funcionarios de carrera"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-060",
+        q: "¿En qué franja se recomienda el descanso en jornada de mañana?",
+        options: {
+          A: "08:00-10:00",
+          B: "09:00-11:00",
+          C: "10:00-12:30",
+          D: "12:00-14:00"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-061",
+        q: "¿En qué franja se recomienda el descanso en jornada de tarde?",
+        options: {
+          A: "14:00-16:00",
+          B: "15:00-17:00",
+          C: "16:30-19:00",
+          D: "18:00-20:00"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-062",
+        q: "¿Cuántas horas semanales tiene la jornada de especial dedicación?",
+        options: {
+          A: "37,5",
+          B: "38",
+          C: "40",
+          D: "42"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-063",
+        q: "¿Qué compensación conlleva la jornada de especial dedicación?",
+        options: {
+          A: "Más vacaciones",
+          B: "Compensación económica",
+          C: "Teletrabajo automático",
+          D: "Preferencia en concursos"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-064",
+        q: "¿Cuál es el horario de la jornada reducida por interés particular?",
+        options: {
+          A: "08:00 a 13:00",
+          B: "09:00 a 14:00",
+          C: "10:00 a 15:00",
+          D: "09:00 a 15:00"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-065",
+        q: "¿Cuántas horas semanales se trabajan en la jornada reducida por interés particular?",
+        options: {
+          A: "20",
+          B: "25",
+          C: "30",
+          D: "35"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-066",
+        q: "¿Qué porcentaje de retribuciones se percibe en la jornada reducida?",
+        options: {
+          A: "50 %",
+          B: "60 %",
+          C: "75 %",
+          D: "100 %"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-067",
+        q: "¿Es compatible la especial dedicación con la reducción por interés particular?",
+        options: {
+          A: "Sí",
+          B: "Solo algunos meses",
+          C: "No",
+          D: "Solo previa autorización"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-068",
+        q: "¿Cuál es el periodo general de la jornada intensiva de verano?",
+        options: {
+          A: "1 junio a 30 septiembre",
+          B: "15 junio a 15 septiembre",
+          C: "16 junio a 15 septiembre",
+          D: "1 julio a 31 agosto"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-069",
+        q: "¿Desde cuándo puede ampliarse la jornada de verano por conciliación?",
+        options: {
+          A: "1 mayo",
+          B: "1 junio",
+          C: "16 junio",
+          D: "1 julio"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-070",
+        q: "¿Hasta qué fecha puede ampliarse la jornada de verano por conciliación?",
+        options: {
+          A: "15 septiembre",
+          B: "20 septiembre",
+          C: "30 septiembre",
+          D: "31 octubre"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-071",
+        q: "¿Qué requisito familiar permite ampliar la jornada intensiva?",
+        options: {
+          A: "Hijo menor de 18 años",
+          B: "Hijo menor de 16 años",
+          C: "Menor de 12 años a cargo",
+          D: "Familiar conviviente"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-072",
+        q: "¿Qué grado mínimo de discapacidad permite ampliar la jornada intensiva?",
+        options: {
+          A: "25 %",
+          B: "30 %",
+          C: "33 %",
+          D: "40 %"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-073",
+        q: "¿Qué significa que una jornada sea ininterrumpida?",
+        options: {
+          A: "Que no tiene días festivos",
+          B: "Que se realiza de forma seguida sin pausas largas",
+          C: "Que dura más de ocho horas",
+          D: "Que es telemática"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-074",
+        q: "¿Qué es la jornada intensiva?",
+        options: {
+          A: "Horario nocturno",
+          B: "Horario concentrado habitual en verano",
+          C: "Jornada reducida",
+          D: "Jornada flexible"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-075",
+        q: "QUESITO: ¿Cuántas horas más trabaja quien tiene especial dedicación respecto a la jornada ordinaria?",
+        options: {
+          A: "1 hora",
+          B: "2 horas",
+          C: "2,5 horas",
+          D: "5 horas"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-076",
+        q: "¿Cómo define el TREBEP el teletrabajo?",
+        options: {
+          A: "Trabajo desde casa exclusivamente",
+          B: "Prestación de servicios a distancia mediante TIC",
+          C: "Trabajo sin supervisión",
+          D: "Trabajo a tiempo parcial"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-077",
+        q: "¿Qué significa que el teletrabajo sea voluntario?",
+        options: {
+          A: "Que la Administración puede imponerlo",
+          B: "Que debe solicitarlo el funcionario",
+          C: "Que se asigna por sorteo",
+          D: "Que es obligatorio en verano"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-078",
+        q: "¿Qué significa que el teletrabajo sea reversible?",
+        options: {
+          A: "Que nunca puede finalizarse",
+          B: "Que puede abandonarse y volver a la modalidad presencial",
+          C: "Que se convierte en presencial automáticamente",
+          D: "Que depende del sindicato"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-079",
+        q: "¿Se pierden derechos por teletrabajar?",
+        options: {
+          A: "Sí, algunos",
+          B: "Solo los colectivos",
+          C: "No, se mantienen todos",
+          D: "Solo los individuales"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-080",
+        q: "¿Requiere autorización administrativa el teletrabajo?",
+        options: {
+          A: "No",
+          B: "Solo para personal laboral",
+          C: "Sí",
+          D: "Solo si es permanente"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-081",
+        q: "¿Cuál es el objetivo de las TIC en el teletrabajo?",
+        options: {
+          A: "Reducir salarios",
+          B: "Permitir trabajar sin estar físicamente en la oficina",
+          C: "Sustituir funcionarios",
+          D: "Limitar horarios"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-082",
+        q: "¿Se puede teletrabajar el 100% del tiempo de forma permanente según la filosofía del TREBEP?",
+        options: {
+          A: "Sí",
+          B: "No, se busca combinar presencialidad y distancia",
+          C: "Solo los directivos",
+          D: "Solo en verano"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-083",
+        q: "¿La reversibilidad del teletrabajo afecta únicamente al empleado?",
+        options: {
+          A: "Sí",
+          B: "No, afecta tanto al empleado como a la Administración",
+          C: "Solo al jefe de unidad",
+          D: "Solo al personal laboral"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-084",
+        q: "Trampa de examen: ¿Es obligatorio disfrutar el descanso entre las 10:00 y las 12:30?",
+        options: {
+          A: "Sí",
+          B: "Solo en invierno",
+          C: "No, es una recomendación",
+          D: "Solo para funcionarios de carrera"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-085",
+        q: "Trampa de examen: ¿La pausa del café cuenta como tiempo de trabajo?",
+        options: {
+          A: "Nunca",
+          B: "Solo en verano",
+          C: "Sí",
+          D: "Solo con autorización"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-086",
+        q: "Trampa de examen: ¿La libertad sindical es un derecho individual?",
+        options: {
+          A: "Sí",
+          B: "No, es colectivo",
+          C: "Solo para delegados sindicales",
+          D: "Solo para funcionarios"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-087",
+        q: "Trampa de examen: ¿Puede un político formar parte de un tribunal de oposición?",
+        options: {
+          A: "Sí",
+          B: "Solo como presidente",
+          C: "No",
+          D: "Solo si es funcionario"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-088",
+        q: "Trampa de examen: ¿Es el teletrabajo un derecho automático?",
+        options: {
+          A: "Sí",
+          B: "Solo para personal laboral",
+          C: "No, requiere solicitud y autorización",
+          D: "Solo durante el verano"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-089",
+        q: "Trampa de examen: ¿Cuántas horas más trabaja quien tiene especial dedicación?",
+        options: {
+          A: "1",
+          B: "2",
+          C: "2,5",
+          D: "5"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-090",
+        q: "Trampa de examen: ¿Se adquiere la condición de funcionario únicamente aprobando el proceso selectivo?",
+        options: {
+          A: "Sí",
+          B: "No",
+          C: "Solo en la AGE",
+          D: "Solo en promoción interna"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-091",
+        q: "Trampa de examen: ¿La jornada reducida por interés particular permite trabajar 30 horas semanales?",
+        options: {
+          A: "Sí",
+          B: "Solo en verano",
+          C: "No, son 25 horas",
+          D: "Depende del destino"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-092",
+        q: "Trampa de examen: ¿Cuándo comienza la jornada intensiva general de verano?",
+        options: {
+          A: "1 de junio",
+          B: "10 de junio",
+          C: "16 de junio",
+          D: "1 de julio"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-093",
+        q: "Trampa de examen: ¿La inhabilitación impide únicamente ser funcionario de carrera?",
+        options: {
+          A: "Sí",
+          B: "Solo en la AGE",
+          C: "No",
+          D: "Solo para puestos directivos"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-094",
+        q: "Trampa de examen: ¿Puede un interino formar parte de un órgano de selección?",
+        options: {
+          A: "Sí",
+          B: "Solo como vocal",
+          C: "No",
+          D: "Solo en ayuntamientos"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-095",
+        q: "Trampa de examen: ¿La libertad de expresión es un derecho colectivo?",
+        options: {
+          A: "Sí",
+          B: "Solo para sindicatos",
+          C: "No",
+          D: "Solo para funcionarios de carrera"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-096",
+        q: "Trampa de examen: ¿Puede un eventual formar parte de un tribunal?",
+        options: {
+          A: "Sí",
+          B: "Solo si tiene titulación superior",
+          C: "No",
+          D: "Solo de forma excepcional"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-097",
+        q: "Trampa de examen: ¿La reserva del 7% se refiere a cada convocatoria individual?",
+        options: {
+          A: "Sí",
+          B: "No, se refiere a las plazas ofertadas en la OEP",
+          C: "Solo en la AGE",
+          D: "Solo para funcionarios"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-098",
+        q: "Trampa de examen: ¿La jornada reducida puede solicitarse en horario de tarde?",
+        options: {
+          A: "Sí",
+          B: "Solo con autorización",
+          C: "No",
+          D: "Solo en verano"
+        },
+        answer: "C"
+      },
+      {
+        id: "TRE-099",
+        q: "Trampa de examen: ¿El derecho a huelga es individual?",
+        options: {
+          A: "Sí",
+          B: "No, es colectivo",
+          C: "Solo para sindicatos",
+          D: "Solo para funcionarios"
+        },
+        answer: "B"
+      },
+      {
+        id: "TRE-100",
+        q: "QUESITO FINAL: ¿Cuál de las siguientes afirmaciones es totalmente correcta según el TREBEP?",
+        options: {
+          A: "El teletrabajo es obligatorio y reversible.",
+          B: "La libertad sindical es un derecho individual.",
+          C: "El descanso de 30 minutos computa como tiempo de trabajo efectivo.",
+          D: "Un interino puede formar parte de un órgano de selección."
+        },
+        answer: "C"
+      }
+    ];
+
+    let selectedAmount = 10;
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = {}; // { questionIndex: 'A' | 'B' | 'C' | 'D' }
+
+    function selectQuestionAmount(amount) {
+      selectedAmount = amount;
+      [10, 20, 100].forEach(num => {
+        const btn = document.getElementById(`btn-mode-${num}`);
+        if (num === amount) {
+          btn.className = "mode-select-btn flex flex-col items-center justify-center p-4 rounded-xl border-2 border-indigo-600 bg-indigo-50/50 text-indigo-900 transition-all focus:outline-none";
+          btn.querySelector('span:first-child').className = "text-2xl font-extrabold text-indigo-600";
+        } else {
+          btn.className = "mode-select-btn flex flex-col items-center justify-center p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 bg-white text-slate-700 transition-all focus:outline-none";
+          btn.querySelector('span:first-child').className = "text-2xl font-extrabold text-slate-800";
+        }
+      });
+    }
+
+    function startExam() {
+      // Si son todas (100) usamos el mazo completo ordenado o barajado
+      if (selectedAmount >= QUESTION_BANK.length) {
+        currentQuestions = [...QUESTION_BANK];
+      } else {
+        // Seleccionamos N preguntas aleatorias sin repetición
+        const shuffled = [...QUESTION_BANK].sort(() => 0.5 - Math.random());
+        currentQuestions = shuffled.slice(0, selectedAmount);
+      }
+
+      currentIndex = 0;
+      userAnswers = {};
+
+      // Cambiar de pantalla
+      document.getElementById('screen-menu').classList.add('hidden');
+      document.getElementById('screen-results').classList.add('hidden');
+      document.getElementById('screen-exam').classList.remove('hidden');
+      document.getElementById('header-status').classList.remove('hidden');
+
+      document.getElementById('total-q-count').innerText = currentQuestions.length;
+
+      buildQuestionGrid();
+      renderCurrentQuestion();
+      updateExamCounters();
+    }
+
+    function buildQuestionGrid() {
+      const grid = document.getElementById('questions-grid');
+      grid.innerHTML = '';
+      currentQuestions.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `grid-pill-${idx}`;
+        btn.className = `w-7 h-7 text-xs font-semibold rounded-lg flex items-center justify-center transition border ${
+          idx === currentIndex 
+            ? 'border-indigo-600 text-indigo-700 bg-indigo-50 ring-2 ring-indigo-200' 
+            : 'border-slate-200 text-slate-600 bg-slate-50 hover:bg-slate-100'
+        }`;
+        btn.innerText = idx + 1;
+        btn.onclick = () => jumpToQuestion(idx);
+        grid.appendChild(btn);
+      });
+    }
+
+    function updateGridPills() {
+      currentQuestions.forEach((_, idx) => {
+        const pill = document.getElementById(`grid-pill-${idx}`);
+        if (!pill) return;
+
+        const isAnswered = userAnswers[idx] !== undefined;
+        const isCurrent = idx === currentIndex;
+
+        if (isCurrent) {
+          pill.className = `w-7 h-7 text-xs font-bold rounded-lg flex items-center justify-center transition border-2 border-indigo-600 ${
+            isAnswered ? 'bg-indigo-600 text-white shadow-sm' : 'bg-indigo-50 text-indigo-700'
+          }`;
+        } else if (isAnswered) {
+          pill.className = 'w-7 h-7 text-xs font-semibold rounded-lg flex items-center justify-center transition border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100';
+        } else {
+          pill.className = 'w-7 h-7 text-xs font-semibold rounded-lg flex items-center justify-center transition border border-slate-200 text-slate-500 bg-white hover:bg-slate-100';
+        }
+      });
+    }
+
+    function renderCurrentQuestion() {
+      const qData = currentQuestions[currentIndex];
+      
+      document.getElementById('current-q-index-pill').innerText = currentIndex + 1;
+      document.getElementById('question-tag').innerText = qData.id;
+      document.getElementById('question-text').innerText = qData.q;
+
+      // Botón anterior y siguiente
+      document.getElementById('btn-prev').disabled = currentIndex === 0;
+      document.getElementById('btn-prev').classList.toggle('opacity-40', currentIndex === 0);
+      document.getElementById('btn-prev').classList.toggle('cursor-not-allowed', currentIndex === 0);
+
+      const isLast = currentIndex === currentQuestions.length - 1;
+      const nextBtn = document.getElementById('btn-next');
+      if (isLast) {
+        nextBtn.innerHTML = `Terminar <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+      } else {
+        nextBtn.innerHTML = `Siguiente <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>`;
+      }
+
+      // Contenedor de opciones
+      const container = document.getElementById('options-container');
+      container.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      letters.forEach(letter => {
+        const optionText = qData.options[letter];
+        const isSelected = userAnswers[currentIndex] === letter;
+
+        const optBtn = document.createElement('button');
+        optBtn.type = 'button';
+        optBtn.onclick = () => selectOption(letter);
+
+        const baseClasses = "w-full text-left p-4 rounded-xl border transition-all flex items-start space-x-3.5 group";
+        const selectedClasses = "border-indigo-600 bg-indigo-50/60 ring-1 ring-indigo-500 shadow-sm";
+        const normalClasses = "border-slate-200 hover:border-slate-300 hover:bg-slate-50/70 bg-white";
+
+        optBtn.className = `${baseClasses} ${isSelected ? selectedClasses : normalClasses}`;
+
+        optBtn.innerHTML = `
+          <span class="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-colors ${
+            isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-slate-200'
+          }">
+            ${letter}
+          </span>
+          <span class="text-sm sm:text-base font-medium leading-relaxed ${isSelected ? 'text-indigo-950 font-semibold' : 'text-slate-700'}">
+            ${optionText}
+          </span>
+        `;
+
+        container.appendChild(optBtn);
+      });
+
+      updateGridPills();
+      updateExamCounters();
+    }
+
+    function selectOption(letter) {
+      // Si ya está seleccionada la misma opción, permitir desmarcarla (dejarla en blanco)
+      if (userAnswers[currentIndex] === letter) {
+        delete userAnswers[currentIndex];
+      } else {
+        userAnswers[currentIndex] = letter;
+      }
+      renderCurrentQuestion();
+    }
+
+    function clearCurrentAnswer() {
+      if (userAnswers[currentIndex] !== undefined) {
+        delete userAnswers[currentIndex];
+        renderCurrentQuestion();
+      }
+    }
+
+    function goToNextQuestion() {
+      if (currentIndex < currentQuestions.length - 1) {
+        currentIndex++;
+        renderCurrentQuestion();
+      } else {
+        confirmFinishExam();
+      }
+    }
+
+    function goToPrevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      if (idx >= 0 && idx < currentQuestions.length) {
+        currentIndex = idx;
+        renderCurrentQuestion();
+      }
+    }
+
+    function updateExamCounters() {
+      const answeredCount = Object.keys(userAnswers).length;
+      const total = currentQuestions.length;
+      const pendingCount = total - answeredCount;
+
+      document.getElementById('stat-answered').innerText = answeredCount;
+      document.getElementById('stat-pending').innerText = pendingCount;
+      document.getElementById('badge-question-count').innerText = `${answeredCount}/${total}`;
+    }
+
+    function confirmFinishExam() {
+      const total = currentQuestions.length;
+      const answeredCount = Object.keys(userAnswers).length;
+      const blankCount = total - answeredCount;
+
+      const modalText = document.getElementById('finish-modal-text');
+      if (blankCount > 0) {
+        modalText.innerHTML = `Tienes <strong>${blankCount}</strong> pregunta(s) sin responder de ${total}.<br>Las preguntas en blanco no restarán puntos (+0). ¿Deseas calificar ahora?`;
+      } else {
+        modalText.innerHTML = `Has respondido las <strong>${total}</strong> preguntas. ¿Deseas dar por concluido el examen y ver tu puntuación?`;
+      }
+
+      document.getElementById('finish-modal').classList.remove('hidden');
+    }
+
+    function closeFinishModal() {
+      document.getElementById('finish-modal').classList.add('hidden');
+    }
+
+    function finalizeExamNow() {
+      closeFinishModal();
+
+      let correct = 0;
+      let wrong = 0;
+      let blank = 0;
+
+      currentQuestions.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        if (!userChoice) {
+          blank++;
+        } else if (userChoice === q.answer) {
+          correct++;
+        } else {
+          wrong++;
+        }
+      });
+
+      // Cálculo de nota: Acierto (+1), Fallo (-0.33)
+      const penalty = wrong * 0.33;
+      let rawScore = (correct * 1) - penalty;
+      if (rawScore < 0) rawScore = 0; // Puntuación mínima acotada a 0
+
+      const total = currentQuestions.length;
+      const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      // Pintar resultados
+      document.getElementById('score-net').innerText = rawScore.toFixed(2);
+      document.getElementById('score-max').innerText = `sobre ${total} pts`;
+      document.getElementById('score-correct').innerText = correct;
+      document.getElementById('score-correct-pct').innerText = `${percentage}% acierto`;
+      document.getElementById('score-wrong').innerText = wrong;
+      document.getElementById('score-wrong-deduction').innerText = `-${penalty.toFixed(2)} pts`;
+      document.getElementById('score-blank').innerText = blank;
+
+      renderDetailedReview();
+
+      // Transición a la pantalla de resultados
+      document.getElementById('screen-exam').classList.add('hidden');
+      document.getElementById('screen-results').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderDetailedReview() {
+      const reviewList = document.getElementById('review-list');
+      reviewList.innerHTML = '';
+
+      currentQuestions.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isBlank = !userChoice;
+        const isCorrect = userChoice === q.answer;
+
+        const card = document.createElement('div');
+        let statusBadge = '';
+        let borderClass = 'border-slate-200';
+
+        if (isBlank) {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">No contestada (0 pts)</span>';
+          borderClass = 'border-slate-200';
+        } else if (isCorrect) {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Correcta (+1 pto)</span>';
+          borderClass = 'border-emerald-200';
+        } else {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800">Fallada (-0,33 ptos)</span>';
+          borderClass = 'border-rose-200';
+        }
+
+        let optionsMarkup = '';
+        ['A', 'B', 'C', 'D'].forEach(letter => {
+          const isCorrectOpt = q.answer === letter;
+          const isSelectedByUser = userChoice === letter;
+
+          let optStyle = 'border-slate-100 bg-slate-50/50 text-slate-600';
+          let indicator = '';
+
+          if (isCorrectOpt) {
+            optStyle = 'border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-300';
+            indicator = '<span class="text-xs text-emerald-700 font-bold ml-auto flex items-center gap-1">✓ Correcta</span>';
+          } else if (isSelectedByUser && !isCorrectOpt) {
+            optStyle = 'border-rose-300 bg-rose-50 text-rose-900 font-medium ring-1 ring-rose-300';
+            indicator = '<span class="text-xs text-rose-600 font-bold ml-auto flex items-center gap-1">✗ Tu elección</span>';
+          }
+
+          optionsMarkup += `
+            <div class="p-3 rounded-xl border text-xs sm:text-sm flex items-center space-x-2.5 ${optStyle}">
+              <span class="w-6 h-6 rounded-md flex items-center justify-center font-bold text-xs bg-white/80 border border-slate-200/60 shadow-2xs">
+                ${letter}
+              </span>
+              <span class="flex-1">${q.options[letter]}</span>
+              ${indicator}
+            </div>
+          `;
+        });
+
+        card.className = `p-5 rounded-2xl border ${borderClass} bg-white shadow-2xs space-y-3`;
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-md">
+              #${idx + 1} • ${q.id}
+            </span>
+            ${statusBadge}
+          </div>
+          <h4 class="text-sm sm:text-base font-bold text-slate-800 leading-snug">
+            ${q.q}
+          </h4>
+          <div class="space-y-2 pt-1">
+            ${optionsMarkup}
+          </div>
+        `;
+
+        reviewList.appendChild(card);
+      });
+    }
+
+    function restartSameTest() {
+      currentIndex = 0;
+      userAnswers = {};
+      document.getElementById('screen-results').classList.add('hidden');
+      document.getElementById('screen-exam').classList.remove('hidden');
+      buildQuestionGrid();
+      renderCurrentQuestion();
+      updateExamCounters();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToMenu() {
+      document.getElementById('screen-results').classList.add('hidden');
+      document.getElementById('screen-exam').classList.add('hidden');
+      document.getElementById('header-status').classList.add('hidden');
+      document.getElementById('screen-menu').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

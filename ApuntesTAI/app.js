@@ -1,91 +1,109 @@
 /**
- * LÓGICA DE CONTROL OPTIMIZADA
- * Carga metadatos de configuración y parsea libros desde archivos de texto plano.
+ * LÓGICA DE CONTROL OPTIMIZADA - APUNTES TAIS
+ * Carga metadatos de configuración y parsea ficheros de texto plano.
  */
 
 // Estado global de la aplicación
-let bibliotecaConfig = null;
+var bibliotecaConfig = null;
 
 // Referencias a elementos del DOM
-const bookSelector = document.getElementById('book-selector');
-const chaptersList = document.getElementById('chapters-list');
-const chapterTitle = document.getElementById('chapter-title');
-const chapterContent = document.getElementById('chapter-content');
-const chatbotContainer = document.getElementById('chatbot-container');
+var bookSelector = document.getElementById("book-selector");
+var chaptersList = document.getElementById("chapters-list");
+var chapterTitle = document.getElementById("chapter-title");
+var chapterContent = document.getElementById("chapter-content");
+var chatbotContainer = document.getElementById("chatbot-container");
 
 // 1. Carga inicial del archivo de configuración (metadatos)
-console.log("Iniciando aplicación: Cargando configuración de libros...");
-fetch('books.json')
-    .then(response => {
-        if (!response.ok) throw new Error(`Error al cargar configuración: ${response.status}`);
+console.log("[Init] Cargando configuración de temas desde 'books.json'...");
+fetch("books.json")
+    .then(function(response) {
+        if (!response.ok) {
+            console.error("[Init Error] Estado HTTP no válido: " + response.status);
+            throw new Error("Error al cargar configuración: " + response.status);
+        }
         return response.json();
     })
-    .then(data => {
+    .then(function(data) {
         bibliotecaConfig = data;
-        console.log("Éxito: Configuración cargada.", bibliotecaConfig);
+        console.log("[Init Éxito] Configuración cargada correctamente:", bibliotecaConfig);
         initEvents();
+        
+        // AUTO-CARGA INICIAL: Si ya hay un valor seleccionado en el desplegable, cargarlo automáticamente
+        if (bookSelector.value && bibliotecaConfig[bookSelector.value]) {
+            console.log("[Init Auto-load] Cargando tema seleccionado por defecto -> " + bookSelector.value);
+            descargarYParsearLibro(bookSelector.value);
+        }
     })
-    .catch(error => console.error("Fallo crítico en la inicialización:", error));
+    .catch(function(error) {
+        console.error("[Init Fallo Crítico] No se pudo inicializar la aplicación:", error);
+    });
 
 // 2. Inicialización de escuchadores de eventos
 function initEvents() {
-    bookSelector.addEventListener('change', (e) => {
-        const bookKey = e.target.value;
-        console.log(`Evento: Selección de libro -> ${bookKey}`);
+    console.log("[Eventos] Registrando escuchadores del DOM...");
+    bookSelector.addEventListener("change", function(e) {
+        var bookKey = e.target.value;
+        console.log("[Evento Change] Selección de tema detectada -> Clave: " + bookKey);
         
         if (bookKey && bibliotecaConfig[bookKey]) {
             descargarYParsearLibro(bookKey);
         } else {
+            console.warn("[Evento Change] Clave no válida o no encontrada en la configuración.");
             resetPantalla();
         }
     });
 }
 
-// 3. Descarga el archivo .txt del libro y lo estructura en memoria de forma dinámica
+// 3. Descarga el archivo .txt del tema y lo estructura en memoria
 function descargarYParsearLibro(key) {
-    const libroInfo = bibliotecaConfig[key];
-    console.log(`Petición: Descargando texto plano desde -> ${libroInfo.archivo}`);
+    var libroInfo = bibliotecaConfig[key];
+    console.log("[Descarga] Iniciando petición Fetch hacia -> " + libroInfo.archivo);
 
     fetch(libroInfo.archivo)
-        .then(response => {
-            if (!response.ok) throw new Error(`No se encontró el archivo de texto: ${libroInfo.archivo}`);
-            return response.text(); // Leemos el archivo como texto plano, no como JSON
+        .then(function(response) {
+            if (!response.ok) {
+                console.error("[Descarga Error] No se encontró el fichero: " + libroInfo.archivo + " (HTTP " + response.status + ")");
+                throw new Error("No se encontró el archivo de texto: " + libroInfo.archivo);
+            }
+            return response.text();
         })
-        .then(textoCompleto => {
-            console.log(`Éxito: Archivo descargado. Tamaño: ${textoCompleto.length} caracteres. Iniciando parseo...`);
+        .then(function(textoCompleto) {
+            console.log("[Descarga Éxito] Tamaño recibido: " + textoCompleto.length + " caracteres. Iniciando parseo...");
             
-            // Parsear el texto plano buscando la etiqueta [CAPITULO]
-            const capitulosParseados = parsearTextoALibro(textoCompleto);
+            var capitulosParseados = parsearTextoALibro(textoCompleto);
             
             if (capitulosParseados.length === 0) {
+                console.error("[Parseo Error] El archivo no contiene la etiqueta delimitadora [CAPITULO]");
                 throw new Error("El archivo de texto no contiene ninguna etiqueta [CAPITULO] válida.");
             }
 
-            // Renderizar la interfaz con los datos ya estructurados
             renderizarIndice(capitulosParseados, libroInfo);
         })
-        .catch(error => {
-            console.error(`Error procesando el libro [${libroInfo.titulo}]:`, error);
-            alert("No se pudo cargar el cuerpo del libro. Revisa la consola.");
+        .catch(function(error) {
+            console.error("[Procesamiento Error] Fallo al procesar tema:", error);
+            alert("No se pudo cargar el cuerpo del tema. Revisa la consola para más detalles.");
         });
 }
 
 /**
- * 4. PARSEADOR DE TEXTO (Motor del cambio)
- * Toma el bloque de texto gigante y lo divide en un array de objetos de capítulos.
+ * 4. PARSEADOR DE TEXTO
+ * Divide el bloque de texto en un array de objetos según el delimitador [CAPITULO].
  */
 function parsearTextoALibro(texto) {
-    const bloques = texto.split('[CAPITULO]');
-    const capitulos = [];
+    console.log("[Parseo] Dividiendo texto en bloques...");
+    var bloques = texto.split("[CAPITULO]");
+    var capitulos = [];
 
-    bloques.forEach(bloque => {
-        const bloqueLimpio = bloque.trim();
-        if (!bloqueLimpio) return; // Ignorar bloques vacíos (como el espacio antes del primer [CAPITULO])
+    bloques.forEach(function(bloque, index) {
+        var bloqueLimpio = bloque.trim();
+        if (!bloqueLimpio) {
+            console.log("[Parseo] Omitiendo bloque vacío en índice " + index);
+            return;
+        }
 
-        // Separamos la primera línea (que será el título) del resto del texto (el contenido)
-        const lineas = bloqueLimpio.split('\n');
-        const tituloCapitulo = lineas[0].trim();
-        const contenidoCapitulo = lineas.slice(1).join('\n').trim();
+        var lineas = bloqueLimpio.split("\n");
+        var tituloCapitulo = lineas[0].trim();
+        var contenidoCapitulo = lineas.slice(1).join("\n").trim();
 
         capitulos.push({
             titulo: tituloCapitulo,
@@ -93,64 +111,169 @@ function parsearTextoALibro(texto) {
         });
     });
 
-    console.log(`Parseo finalizado: Se detectaron ${capitulos.length} capítulos.`);
+    console.log("[Parseo Éxito] Se extrajeron " + capitulos.length + " capítulos/secciones.");
     return capitulos;
 }
 
 // 5. Renderiza el índice de capítulos en la barra lateral
 function renderizarIndice(capitulos, libroInfo) {
-    chaptersList.innerHTML = '';
+    console.log("[UI] Generando elementos para el índice lateral...");
+    limpiarElementoDOM(chaptersList);
     
-    capitulos.forEach((capitulo) => {
-        const li = document.createElement('li');
+    capitulos.forEach(function(capitulo, index) {
+        var li = document.createElement("li");
         li.textContent = capitulo.titulo;
-        li.addEventListener('click', () => mostrarCapitulo(capitulo));
+        li.addEventListener("click", function() {
+            console.log("[UI Interaction] Clic en tema del índice -> Índice: " + index);
+            mostrarCapitulo(capitulo);
+        });
         chaptersList.appendChild(li);
     });
 
-    // Cargar por defecto el primer capítulo
+    console.log("[UI] Cargando automáticamente el primer capítulo...");
     mostrarCapitulo(capitulos[0]);
 
-    // Actualizar el widget de Inteligencia Artificial
     actualizarChatbot(libroInfo.chatbotId, libroInfo.titulo);
 }
 
-// 6. Muestra el texto del capítulo seleccionado en el área de lectura
-function mostrarCapitulo(capitulo) {
-    console.log(`Lector: Cambiando al capítulo -> ${capitulo.titulo}`);
-    chapterTitle.textContent = capitulo.titulo;
-    
-    // Reemplazamos los saltos de línea (\n) por etiquetas <p> para mantener los párrafos en HTML
-    const parrafosHtml = capitulo.contenido
-        .split('\n\n')
-        .map(parrafo => `<p>${parrafo.trim()}</p>`)
-        .join('');
 
-    chapterContent.innerHTML = parrafosHtml;
+/**
+ * 6. FORMATADOR Y VISUALIZADOR DE CONTENIDO
+ * Convierte el texto en nodos DOM con soporte para código, listas y párrafos.
+ */
+function mostrarCapitulo(capitulo) {
+    console.log("[Lector] Renderizando capítulo actual: " + capitulo.titulo);
+    chapterTitle.textContent = capitulo.titulo;
+    limpiarElementoDOM(chapterContent);
+    
+    var bloques = capitulo.contenido.split("\n\n");
+
+    bloques.forEach(function(bloque, idx) {
+        var bloqueLimpio = bloque.trim();
+
+        // Caso 0: Bloques de código formateados [CODIGO] ... [/CODIGO]
+        if (bloqueLimpio.indexOf("[CODIGO]") === 0 && bloqueLimpio.indexOf("[/CODIGO]") !== -1) {
+            console.log("[Lector/Formatter] Bloque " + idx + ": Caja de código detectada.");
+            var codigoTexto = bloqueLimpio.replace("[CODIGO]", "").replace("[/CODIGO]", "").trim();
+
+            var contenedorCodigo = document.createElement("div");
+            contenedorCodigo.className = "codigo-contenedor";
+
+            var btnCopiar = document.createElement("button");
+            btnCopiar.className = "btn-copiar";
+            btnCopiar.textContent = "Copiar";
+            btnCopiar.addEventListener("click", function() {
+                navigator.clipboard.writeText(codigoTexto).then(function() {
+                    btnCopiar.textContent = "¡Copiado!";
+                    setTimeout(function() { btnCopiar.textContent = "Copiar"; }, 2000);
+                });
+            });
+
+            var pre = document.createElement("pre");
+            var code = document.createElement("code");
+            code.textContent = codigoTexto;
+            pre.appendChild(code);
+
+            contenedorCodigo.appendChild(btnCopiar);
+            contenedorCodigo.appendChild(pre);
+            chapterContent.appendChild(contenedorCodigo);
+            return;
+        }
+
+        var lineas = bloqueLimpio.split("\n");
+
+        // Caso 1: Lista desordenada (líneas que empiezan con guion)
+        if (lineas.every(function(l) { return l.trim().indexOf("-") === 0; })) {
+            console.log("[Lector/Formatter] Bloque " + idx + ": Lista desordenada.");
+            var ul = document.createElement("ul");
+            lineas.forEach(function(linea) {
+                var li = document.createElement("li");
+                li.textContent = linea.trim().substring(1).trim();
+                ul.appendChild(li);
+            });
+            chapterContent.appendChild(ul);
+            return;
+        }
+
+        // Caso 2: Lista ordenada (líneas que empiezan con número y punto ej. 1.)
+        if (lineas.every(function(l) { return /^\d+\./.test(l.trim()); })) {
+            console.log("[Lector/Formatter] Bloque " + idx + ": Lista ordenada.");
+            var ol = document.createElement("ol");
+            lineas.forEach(function(linea) {
+                var li = document.createElement("li");
+                li.textContent = linea.trim().replace(/^\d+\./, "").trim();
+                ol.appendChild(li);
+            });
+            chapterContent.appendChild(ol);
+            return;
+        }
+
+        // Caso 3: Subtítulo (línea única terminada en dos puntos)
+        if (lineas.length === 1 && lineas[0].endsWith(":")) {
+            console.log("[Lector/Formatter] Bloque " + idx + ": Subtítulo -> " + lineas[0]);
+            var h3 = document.createElement("h3");
+            h3.textContent = lineas[0];
+            chapterContent.appendChild(h3);
+            return;
+        }
+
+        // Caso 4: Párrafo estándar con saltos de línea simples
+        var p = document.createElement("p");
+        lineas.forEach(function(linea, lineIdx) {
+            p.appendChild(document.createTextNode(linea));
+            if (lineIdx < lineas.length - 1) {
+                p.appendChild(document.createElement("br"));
+            }
+        });
+        chapterContent.appendChild(p);
+    });
+
+    console.log("[Lector Éxito] Contenido renderizado correctamente en el DOM.");
 }
 
-// 7. Simulación de inyección del Chatbot de IA
+// 7. Configuración e inyección del Chatbot de IA
 function actualizarChatbot(chatbotId, tituloLibro) {
-    console.log(`IA: Configurando bot para [${tituloLibro}] con ID: ${chatbotId}`);
-    chatbotContainer.innerHTML = '';
+    console.log("[IA Integración] Cargando script del chatbot para " + tituloLibro + " (ID: " + chatbotId + ")...");
+    limpiarElementoDOM(chatbotContainer);
 
-    const scriptIA = document.createElement('script');
+    var scriptIA = document.createElement("script");
     scriptIA.src = "https://cdn.plataformachatbot.com/widget.js";
-    scriptIA.setAttribute('data-chat-id', chatbotId);
+    scriptIA.setAttribute("data-chat-id", chatbotId);
     scriptIA.defer = true;
 
-    scriptIA.onerror = () => {
-        console.warn(`Simulación: Script de IA preparado para el ID de ${tituloLibro}.`);
+    scriptIA.onload = function() {
+        console.log("[IA Integración] Script de IA cargado con éxito.");
+    };
+    scriptIA.onerror = function() {
+        console.warn("[IA Integración Warning] No se pudo conectar con el chatbot ID: " + chatbotId);
     };
 
     chatbotContainer.appendChild(scriptIA);
 }
 
-// 8. Resetea la interfaz
+// 8. Resetea la interfaz a su estado inicial
 function resetPantalla() {
-    console.log("Limpiando lector...");
-    chaptersList.innerHTML = '<li class="placeholder-text">Selecciona un libro para ver sus capítulos</li>';
+    console.log("[UI] Restableciendo estado inicial de la pantalla...");
+    
+    limpiarElementoDOM(chaptersList);
+    var liPlaceholder = document.createElement("li");
+    liPlaceholder.className = "placeholder-text";
+    liPlaceholder.textContent = "Selecciona un tema para ver sus capítulos";
+    chaptersList.appendChild(liPlaceholder);
+
     chapterTitle.textContent = "Bienvenido";
-    chapterContent.innerHTML = '<p>Por favor, selecciona un libro del menú superior para comenzar la lectura.</p>';
-    chatbotContainer.innerHTML = '';
+    
+    limpiarElementoDOM(chapterContent);
+    var pBienvenida = document.createElement("p");
+    pBienvenida.textContent = "Por favor, selecciona un tema del menú superior para comenzar la lectura.";
+    chapterContent.appendChild(pBienvenida);
+
+    limpiarElementoDOM(chatbotContainer);
+}
+
+// Función auxiliar reutilizable para vaciar nodos DOM
+function limpiarElementoDOM(elemento) {
+    while (elemento.firstChild) {
+        elemento.removeChild(elemento.firstChild);
+    }
 }

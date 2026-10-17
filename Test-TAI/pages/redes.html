@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes y Protocolos Exam - TechExam Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Hoja de Estilos Compartida Externa -->
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 selection:bg-cyan-600 selection:text-white">
+
+  <!-- Header Section -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="../index.html" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center mr-1" title="Volver al Portal">
+          <i class="fa-solid fa-house text-sm"></i>
+        </a>
+        <div class="bg-cyan-600 text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
+          <i class="fa-solid fa-network-wired text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-wide text-white flex items-center gap-2">
+            Test de Redes y Protocolos <span class="text-xs bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full font-mono">80 Q / 5.0 Pts</span>
+          </h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Evaluación de comunicaciones y arquitectura de red</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">
+          <i class="fa-regular fa-clock text-cyan-400"></i>
+          <span id="timer-display">00:00:00</span>
+        </div>
+        <button id="reset-btn" onclick="confirmReset()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span class="hidden sm:inline">Reiniciar</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-slate-800 h-1.5 relative overflow-hidden">
+      <div id="progress-bar" class="bg-gradient-to-r from-cyan-600 to-blue-400 h-full w-0 transition-all duration-300 ease-out"></div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+    <!-- Active Exam Container -->
+    <div id="exam-container" class="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1">
+      
+      <!-- Left Column: Question Screen -->
+      <div class="lg:col-span-3 flex flex-col justify-between bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-xl relative min-h-[500px]">
+        <div>
+          <!-- Question Metadata Header -->
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-800">
+            <span class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/50" id="question-badge">
+              Pregunta 1 de 80
+            </span>
+            <span class="text-xs text-slate-400 flex items-center gap-1 font-mono">
+              <i class="fa-solid fa-award text-amber-400"></i>
+              Valor: <span class="text-slate-200 font-bold">0.0625 pts (3 fallos restan 1 acierto)</span>
+            </span>
+          </div>
+
+          <!-- Question Text -->
+          <h2 id="question-text" class="text-lg sm:text-xl font-semibold text-slate-100 leading-relaxed mb-6">
+            Cargando pregunta...
+          </h2>
+
+          <!-- Answer Options -->
+          <div id="options-container" class="space-y-3">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Question Navigation Bar -->
+        <div class="pt-8 mt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+          <button id="prev-btn" onclick="navigateQuestion(-1)" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm transition flex items-center gap-2 border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-arrow-left"></i> Anterior
+          </button>
+
+          <div class="text-xs text-slate-400 font-mono hidden sm:block">
+            Respondidas: <span id="answered-count-text" class="text-cyan-400 font-bold">0</span> / 80
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="next-btn" onclick="navigateQuestion(1)" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-medium text-sm shadow-lg shadow-cyan-600/25 transition flex items-center gap-2">
+              Siguiente <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button id="finish-btn" onclick="confirmFinishExam()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-lg shadow-emerald-600/25 transition flex items-center gap-2">
+              <i class="fa-solid fa-flag-checkered"></i> Finalizar Test
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Question Grid Navigation Navigator -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between h-fit lg:h-auto">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+              <i class="fa-solid fa-grip text-cyan-400"></i> Matriz de Navegación
+            </h3>
+            <span class="text-xs text-slate-400 font-mono" id="completion-percentage">0%</span>
+          </div>
+
+          <!-- Legend -->
+          <div class="grid grid-cols-3 gap-2 text-[11px] mb-4 p-2.5 bg-slate-950/60 rounded-xl border border-slate-800">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-800 border border-slate-600"></span>
+              <span class="text-slate-400">Pendiente</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-600"></span>
+              <span class="text-slate-400">Respondida</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full border-2 border-blue-400 bg-slate-800"></span>
+              <span class="text-slate-400">Activa</span>
+            </div>
+          </div>
+
+          <!-- Grid Matrix (80 Boxes) -->
+          <div id="question-grid" class="grid grid-cols-8 gap-1.5 matrix-scroll-container pr-1">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-800">
+          <button onclick="confirmFinishExam()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-check-double"></i> Evaluar Respuestas
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Results Section (Hidden by Default) -->
+    <div id="results-container" class="hidden flex-col space-y-8 animate-fade-in">
+      
+      <!-- Summary Dashboard Box -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          
+          <!-- Score Circle / Badge -->
+          <div class="flex flex-col items-center text-center lg:border-r lg:border-slate-800 lg:pr-12 w-full lg:w-auto">
+            <span class="text-xs uppercase font-mono tracking-widest text-slate-400 mb-2">Nota Final Obtenida</span>
+            <div class="relative flex items-center justify-center my-2">
+              <div id="score-ring" class="w-36 h-36 rounded-full border-8 border-cyan-600/30 flex items-center justify-center bg-slate-950/50 shadow-inner">
+                <span id="score-display" class="text-4xl font-black font-mono text-white">0.00</span>
+              </div>
+            </div>
+            <span id="score-max" class="text-xs text-slate-400 mt-1 font-mono">de un total de 5.00 Puntos</span>
+            <div id="grade-badge" class="mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono">
+              -
+            </div>
+          </div>
+
+          <!-- Quick Stats Breakdown Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full flex-1">
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-check text-lg"></i>
+              </div>
+              <span id="correct-count" class="text-2xl font-bold font-mono text-emerald-400">0</span>
+              <span class="text-xs text-slate-400">Acertadas</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+              </div>
+              <span id="incorrect-count" class="text-2xl font-bold font-mono text-rose-400">0</span>
+              <span class="text-xs text-slate-400">Falladas (Penalizan)</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-minus text-lg"></i>
+              </div>
+              <span id="unanswered-count" class="text-2xl font-bold font-mono text-amber-400">0</span>
+              <span class="text-xs text-slate-400">Sin Responder</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-percent text-lg"></i>
+              </div>
+              <span id="accuracy-percentage" class="text-2xl font-bold font-mono text-cyan-400">0%</span>
+              <span class="text-xs text-slate-400">Efectividad</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col gap-3 w-full lg:w-auto">
+            <button onclick="restartExam()" class="w-full py-3 px-6 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-sm transition shadow-lg shadow-cyan-600/30 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rotate-right"></i> Repetir Examen
+            </button>
+            <a href="../index.html" class="w-full py-3 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-house"></i> Volver al Menú
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Question-by-Question Review List -->
+      <div id="breakdown-section" class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass-chart text-cyan-400"></i> Desglose Detallado de Respuestas
+          </h3>
+          <div class="flex items-center gap-2">
+            <button onclick="filterReview('all')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 border border-slate-700">Todas</button>
+            <button onclick="filterReview('correct')" class="px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs font-mono">Aciertos</button>
+            <button onclick="filterReview('incorrect')" class="px-3 py-1.5 rounded-lg bg-rose-950 text-rose-400 border border-rose-800 text-xs font-mono">Fallos</button>
+          </div>
+        </div>
+
+        <div id="review-list" class="space-y-4">
+          <!-- Generado dinámicamente -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal Component for Confirmation -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center gap-3 text-amber-400">
+        <div class="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center">
+          <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+        </div>
+        <h3 id="modal-title" class="text-lg font-bold text-white">¿Finalizar Examen?</h3>
+      </div>
+      <p id="modal-description" class="text-sm text-slate-300 leading-relaxed">
+        Aún tienes preguntas sin responder. Si finalizas ahora, computarán como no contestadas (0 puntos).
+      </p>
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium border border-slate-700">
+          Cancelar
+        </button>
+        <button id="modal-confirm-btn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium shadow-md">
+          Sí, Finalizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    const questionsBank = [
+      { id: 1, question: "¿En qué capa del modelo OSI opera el protocolo IP (Internet Protocol)?", options: ["Capa de Enlace de Datos", "Capa de Red", "Capa de Transporte", "Capa de Aplicación"], correct: 1, explanation: "El protocolo IP opera en la Capa 3 (Red) del modelo OSI, encargándose del enrutamiento de paquetes." },
+      { id: 2, question: "¿Cuál es la función principal del protocolo DNS (Domain Name System)?", options: ["Asignar direcciones IP dinámicamente a los clientes.", "Traducir nombres de dominio legibles a direcciones IP.", "Cifrar las comunicaciones web mediante certificados.", "Enrutar paquetes entre distintas redes autónomas."], correct: 1, explanation: "DNS traduce nombres de dominio (ej. www.ejemplo.com) a direcciones IP numéricas." },
+      { id: 3, question: "¿Qué puerto por defecto utiliza el protocolo seguro HTTPS?", options: ["Puerto 80", "Puerto 443", "Puerto 22", "Puerto 53"], correct: 1, explanation: "HTTPS opera por defecto en el puerto TCP 443 (HTTP plano usa el puerto 80)." },
+      { id: 4, question: "¿Cuántos bits componen una dirección IPv4 estándar?", options: ["32 bits", "64 bits", "128 bits", "256 bits"], correct: 0, explanation: "IPv4 utiliza direcciones de 32 bits, divididas en 4 octetos." },
+      { id: 5, question: "¿Cuál de las siguientes direcciones IP pertenece a un rango privado (RFC 1918)?", options: ["8.8.8.8", "192.168.1.50", "172.32.0.1", "11.0.0.1"], correct: 1, explanation: "El rango 192.168.0.0/16 pertenece a las redes privadas IPv4." },
+      { id: 6, question: "¿Qué protocolo de la capa de transporte garantiza la entrega ordenada y fiable de los datos mediante establecimiento de conexión (handshake)?", options: ["UDP", "ICMP", "TCP", "ARP"], correct: 2, explanation: "TCP (Transmission Control Protocol) es orientado a conexión y ofrece fiabilidad y control de flujo." },
+      { id: 7, question: "¿Qué protocolo se utiliza para la resolución de direcciones IP a direcciones físicas MAC en una red local?", options: ["DHCP", "ARP", "RARP", "DNS"], correct: 1, explanation: "ARP (Address Resolution Protocol) asocia una dirección IP con su dirección MAC física correspondiente." },
+      { id: 8, question: "¿Cuál es el tamaño total en bits de una dirección IPv6?", options: ["32 bits", "64 bits", "128 bits", "256 bits"], correct: 2, explanation: "IPv6 utiliza direcciones de 128 bits representadas en formato hexadecimal." },
+      { id: 9, question: "¿Qué máscara de subred en notación decimal corresponde a un prefijo CIDR /24?", options: ["255.255.255.0", "255.255.0.0", "255.255.255.128", "255.255.255.255"], correct: 0, explanation: "Un prefijo /24 indica 24 bits de red, equivalente a la máscara 255.255.255.0." },
+      { id: 10, question: "¿Qué puerto por defecto utiliza el servicio SSH (Secure Shell)?", options: ["21", "23", "22", "3389"], correct: 2, explanation: "SSH utiliza el puerto 22 para conexiones remotas cifradas." },
+      { id: 11, question: "¿En qué capa del modelo OSI opera un switch de capa 2 tradicional?", options: ["Capa 1 (Física)", "Capa 2 (Enlace de datos)", "Capa 3 (Red)", "Capa 4 (Transporte)"], correct: 1, explanation: "Un switch de capa 2 toma decisiones de reenvío basándose en las direcciones MAC de la capa de enlace." },
+      { id: 12, question: "¿Cuál es la función principal del protocolo DHCP?", options: ["Resolver nombres de host.", "Asignar dinámicamente configuraciones IP a los dispositivos de la red.", "Proteger la red frente a ataques DDoS.", "Sincronizar la hora exacta entre servidores."], correct: 1, explanation: "DHCP (Dynamic Host Configuration Protocol) entrega IPs, máscaras y puertas de enlace automáticamente." },
+      { id: 13, question: "¿Qué protocolo de red utiliza el comando 'ping' para comprobar la accesibilidad de un host?", options: ["TCP", "UDP", "ICMP", "IGMP"], correct: 2, explanation: "ICMP (Internet Control Message Protocol) maneja mensajes de control y diagnóstico como los ecos (ping)." },
+      { id: 14, question: "¿Qué dispositivo de red opera principalmente en la capa 3 y conecta diferentes redes enrutando paquetes?", options: ["Hub", "Switch no administrable", "Router (Enrutador)", "Repetidor"], correct: 2, explanation: "Los routers operan en la capa de red (Capa 3) para interconectar distintas subredes." },
+      { id: 15, question: "¿Cuál es el puerto por defecto utilizado por el servicio DNS?", options: ["Puerto 53 (TCP/UDP)", "Puerto 80 (TCP)", "Puerto 67 (UDP)", "Puerto 123 (UDP)"], correct: 0, explanation: "DNS opera estándarmente en el puerto 53 tanto para consultas UDP como transferencias TCP." },
+      { id: 16, question: "¿Qué tipo de dirección IPv6 se utiliza para comunicación dentro de un mismo enlace local (no enrutable)?", options: ["Global Unicast", "Unique Local", "Link-Local (fe80::/10)", "Multicast"], correct: 2, explanation: "Las direcciones Link-Local (prefijo fe80::/10) son obligatorias y se usan solo en el enlace local." },
+      { id: 17, question: "¿Qué protocolo de la capa de transporte es sin conexión y no garantiza la entrega ni el orden de los paquetes?", options: ["TCP", "UDP", "SCTP", "SPX"], correct: 1, explanation: "UDP (User Datagram Protocol) prioriza la velocidad sobre la fiabilidad, sin establecer conexión previa." },
+      { id: 18, question: "¿Cuál de las siguientes máscaras deja disponibles 4 bits para hosts en IPv4?", options: ["255.255.255.240 (/28)", "255.255.255.192 (/26)", "255.255.255.0 (/24)", "255.255.255.224 (/27)"], correct: 0, explanation: "Una máscara /28 deja 32 - 28 = 4 bits para hosts (16 direcciones totales, 14 utilizables)." },
+      { id: 19, question: "¿Qué protocolo de correo electrónico se utiliza comúnmente para descargar mensajes dejando una copia en el servidor o eliminándola?", options: ["SMTP", "POP3 / IMAP", "FTP", "SNMP"], correct: 1, explanation: "POP3 e IMAP son los protocolos estándar de recepción y lectura de correo electrónico." },
+      { id: 20, question: "¿Qué número de capas tiene el modelo OSI?", options: ["4 capas", "5 capas", "7 capas", "9 capas"], correct: 2, explanation: "El modelo de referencia OSI consta de 7 capas bien diferenciadas." },
+      { id: 21, question: "¿Cuál es el propósito del campo TTL (Time to Live) en la cabecera IP?", options: ["Medir el retardo de la red.", "Evitar bucles de enrutamiento infinitos decrementando el valor en cada salto.", "Establecer la prioridad de calidad de servicio (QoS).", "Indicar el tamaño máximo del segmento."], correct: 1, explanation: "TTL evita que un paquete circule indefinidamente decrementándose en cada router hasta llegar a cero." },
+      { id: 22, question: "¿Qué puerto utiliza el protocolo FTP para el canal de control?", options: ["Puerto 20", "Puerto 21", "Puerto 69", "Puerto 443"], correct: 1, explanation: "FTP utiliza el puerto 21 para control/comandos y el puerto 20 para la transferencia de datos." },
+      { id: 23, question: "¿Qué clase de dirección IPv4 correspondía originalmente al rango 192.0.0.0 hasta 223.255.255.255?", options: ["Clase A", "Clase B", "Clase C", "Clase D"], correct: 2, explanation: "Las redes de Clase C abarcaban desde 192.0.0.0 hasta 223.255.255.255 con máscara por defecto /24." },
+      { id: 24, question: "¿Qué protocolo se utiliza para la gestión y monitorización de dispositivos en una red IP (como routers y switches)?", options: ["SNMP", "SMTP", "HTTP", "Telnet"], correct: 0, explanation: "SNMP (Simple Network Management Protocol) permite recopilar información y configurar dispositivos de red." },
+      { id: 25, question: "¿Qué describe la arquitectura de red TCP/IP en comparación con OSI?", options: ["Tiene 7 capas estrictas.", "Tiene 4 o 5 capas y se centra en protocolos prácticos de internet.", "Es obsoleta frente a OSI.", "Solo soporta redes locales inalámbricas."], correct: 1, explanation: "El modelo TCP/IP agrupa funciones en 4 o 5 capas orientadas a la implementación real de Internet." },
+      { id: 26, question: "¿Cuál es la función principal de una puerta de enlace predeterminada (Default Gateway)?", options: ["Traducir nombres de dominio.", "Permitir que los dispositivos de una subred se comuniquen con redes externas o Internet.", "Asignar direcciones MAC.", "Filtrar tráfico malicioso mediante antivirus."], correct: 1, explanation: "La puerta de enlace es la IP del router local que redirige el tráfico dirigido a otras redes." },
+      { id: 27, question: "¿Qué protocolo de enrutamiento dinámico utiliza el algoritmo de vector de distancia y cuenta saltos (máximo 15)?", options: ["OSPF", "BGP", "RIP", "IS-IS"], correct: 2, explanation: "RIP (Routing Information Protocol) se basa en métricas de conteo de saltos." },
+      { id: 28, question: "¿Qué protocolo de enrutamiento dinámico utiliza el algoritmo de estado de enlace (Dijkstra) y OSPF areas?", options: ["RIPv1", "OSPF", "BGP", "EGP"], correct: 1, explanation: "OSPF (Open Shortest Path First) calcula las rutas óptimas mediante el estado de enlace." },
+      { id: 29, question: "¿Qué puerto por defecto utiliza el protocolo NTP (Network Time Protocol) para sincronización horaria?", options: ["Puerto 123 (UDP)", "Puerto 80 (TCP)", "Puerto 53 (UDP)", "Puerto 443 (TCP)"], correct: 0, explanation: "NTP opera habitualmente sobre el puerto UDP 123." },
+      { id: 30, question: "¿Qué dirección IPv4 se utiliza como dirección de difusión (broadcast) limitada en una red local genérica?", options: ["0.0.0.0", "127.0.0.1", "255.255.255.255", "192.168.1.254"], correct: 2, explanation: "255.255.255.255 es la dirección de broadcast limitada para la red local actual." },
+      { id: 31, question: "¿Qué es una VLAN (Virtual Local Area Network)?", options: ["Una red física separada por cables de fibra óptica.", "Una partición lógica de una red física de capa 2 para aislar dominios de broadcast.", "Un túnel cifrado VPN en internet.", "Un protocolo de enrutamiento exterior."], correct: 1, explanation: "Las VLANs permiten segmentar lógicamente un switch físico en múltiples redes virtuales." },
+      { id: 32, question: "¿Qué estándar IEEE define las redes inalambricas Wi-Fi?", options: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.1Q", "IEEE 802.15.1"], correct: 1, explanation: "IEEE 802.11 es el conjunto de estándares que rigen las redes inalambricas WLAN (Wi-Fi)." },
+      { id: 33, question: "¿Qué estándar IEEE define Ethernet en redes de área local por cable?", options: ["IEEE 802.3", "IEEE 802.11", "IEEE 802.1X", "IEEE 802.3ad"], correct: 0, explanation: "IEEE 802.3 especifica la tecnología de redes cableadas Ethernet." },
+      { id: 34, question: "¿Qué es el protocolo NAT (Network Address Translation)?", options: ["Un método para cifrar paquetes IP.", "Un mecanismo para traducir direcciones IP privadas a una o varias IP públicas.", "Un protocolo de transferencia de ficheros.", "Un sistema de nombres jerárquico."], correct: 1, explanation: "NAT permite compartir una única dirección IP pública entre múltiples equipos con IPs privadas." },
+      { id: 35, question: "¿Qué puerto utiliza el protocolo Telnet para acceso remoto en texto plano?", options: ["21", "22", "23", "80"], correct: 2, explanation: "Telnet opera en el puerto 23 sin cifrado, por lo que está obsoleto frente a SSH." },
+      { id: 36, question: "¿Qué capa del modelo OSI se encarga del cifrado, compresión y formato de los datos (ej. TLS, JPEG, ASCII)?", options: ["Capa de Transporte", "Capa de Sesión", "Capa de Presentación", "Capa de Aplicación"], correct: 2, explanation: "La Capa 6 (Presentación) traduce, comprime y cifra la sintaxis de la información." },
+      { id: 37, question: "¿Qué función cumple un repetidor o hub en una red?", options: ["Enrutar paquetes IP.", "Amplificar y regenerar señales físicas sin filtrar tráfico ni inspeccionar tramas.", "Gestionar políticas de seguridad y firewall.", "Asignar direcciones IP."], correct: 1, explanation: "Los hubs y repetidores operan en Capa 1 repitiendo ciegamente la señal eléctrica/óptica." },
+      { id: 38, question: "¿Qué es una dirección IP Loopback (bucle local) en IPv4?", options: ["192.168.1.1", "10.0.0.1", "127.0.0.1", "255.255.255.0"], correct: 2, explanation: "127.0.0.1 es la dirección estándar de bucle local para pruebas internas en la propia máquina." },
+      { id: 39, question: "¿Qué protocolo de nivel de enlace se utiliza en redes WAN punto a punto para autenticación y encapsulado?", options: ["PPP (Point-to-Point Protocol)", "ARP", "Ethernet", "CSMA/CD"], correct: 0, explanation: "PPP es ampliamente utilizado en conexiones serie y de acceso remoto para encapsular datagramas." },
+      { id: 40, question: "¿Cuál es el puerto por defecto de protocolo SMTP para envío de correo electrónico?", options: ["25", "110", "143", "993"], correct: 0, explanation: "SMTP opera por defecto en el puerto 25 (y 587 para envíos de clientes con autenticación)." },
+      { id: 41, question: "¿Qué es una dirección MAC (Media Access Control)?", options: ["Una dirección lógica temporal asignada por DHCP.", "Una dirección física única de 48 bits grabada en la tarjeta de red.", "Una ruta estática de enrutamiento.", "Un nombre de dominio jerárquico."], correct: 1, explanation: "La dirección MAC es un identificador físico único asignado por el fabricante a la interfaz de red." },
+      { id: 42, question: "¿Qué mecanismo evita colisiones en redes Ethernet tradicionales basadas en bus o hubs (CSMA/CD)?", options: ["Detección de colisiones y retransmisión tras un tiempo aleatorio de espera.", "Asignación estática de turnos de palabra.", "Cifrado simétrico de tramas.", "Uso exclusivo de fibra óptica."], correct: 0, explanation: "CSMA/CD escucha el medio y, si detecta colisión, detiene la transmisión y reintenta tras un backoff aleatorio." },
+      { id: 43, question: "¿Qué protocolo se utiliza para la resolución inversa de direcciones (obtener IP a partir de MAC)?", options: ["ARP", "RARP / BOOTP", "DNS", "ICMP"], correct: 1, explanation: "RARP (Reverse ARP) permitía a equipos sin disco conocer su IP a partir de su MAC (antecesor de DHCP)." },
+      { id: 44, question: "¿Qué es el ancho de banda en una red de comunicaciones?", options: ["La velocidad a la que viaja la luz por el cable.", "La cantidad máxima de datos que se pueden transmitir a través de un enlace en un tiempo dado (bps).", "El retardo total de ida y vuelta (RTT).", "El número de routers intermedios."], correct: 1, explanation: "El ancho de banda mide la capacidad máxima de transferencia de un canal, expresada habitualmente en bits por segundo." },
+      { id: 45, question: "¿Qué puerto por defecto utiliza el protocolo RDP (Remote Desktop Protocol) de Windows?", options: ["3389", "22", "8080", "445"], correct: 0, explanation: "RDP opera por defecto en el puerto TCP/UDP 3389." },
+      { id: 46, question: "¿Qué caracteriza a un protocolo orientado a conexión frente a uno sin conexión?", options: ["No requiere verificación de errores.", "Establece un canal lógico de comunicación antes de transferir datos y garantiza su entrega.", "Es más rápido pero pierde paquetes.", "Solo funciona en redes inalámbricas."], correct: 1, explanation: "Los protocolos orientados a conexión (como TCP) establecen parámetros iniciales antes de enviar el flujo de datos." },
+      { id: 47, question: "¿Qué es el protocolo BGP (Border Gateway Protocol)?", options: ["Un protocolo de enrutamiento interno (IGP) para redes domésticas.", "El protocolo de enrutamiento exterior (EGP) estándar que gobierna el intercambio de rutas entre sistemas autónomos en Internet.", "Un protocolo de seguridad para cifrar webs.", "Un gestor de direcciones IP locales."], correct: 1, explanation: "BGP es el protocolo de encaminamiento que interconecta los diferentes Sistemas Autónomos (AS) de Internet." },
+      { id: 48, question: "¿Qué diferencia existe entre Hub y Switch?", options: ["El hub reenvía a todos los puertos (crea un único dominio de colisión); el switch reenvía inteligentemente al puerto destino.", "El switch es de capa 1 y el hub de capa 3.", "No hay ninguna diferencia técnica.", "El switch solo funciona con fibra óptica."], correct: 0, explanation: "El switch conmuta tramas de manera selectiva a través de tablas MAC, segmentando dominios de colisión." },
+      { id: 49, question: "¿Qué es un ataque de denegación de servicio (DoS / DDoS)?", options: ["Robar contraseñas mediante ingeniería social.", "Saturar los recursos o el ancho de banda de un sistema para que deje de estar accesible a los usuarios legítimos.", "Interceptar tráfico web sin permiso.", "Modificar las tablas de enrutamiento estático."], correct: 1, explanation: "Un ataque DoS/DDoS busca agotar los recursos de red o servidores mediante peticiones masivas." },
+      { id: 50, question: "¿Qué define la métrica en los protocolos de enrutamiento?", options: ["El coste o preferencia asignada a una ruta para determinar cuál es la mejor opción.", "La cantidad de corriente eléctrica del cable.", "El número de versión del sistema operativo del router.", "La velocidad del procesador."], correct: 0, explanation: "La métrica es el valor numérico utilizado por los routers para seleccionar la mejor ruta hacia un destino." },
+      { id: 51, question: "¿Qué puerto por defecto utiliza el protocolo de transferencia segura SFTP / SSH?", options: ["Puerto 21", "Puerto 22", "Puerto 69", "Puerto 443"], correct: 1, explanation: "SFTP se ejecuta sobre un canal seguro SSH, utilizando por tanto el puerto 22." },
+      { id: 52, question: "¿Qué es el protocolo ICMPv6 en el contexto de IPv6?", options: ["Una versión obsoleta de ICMP.", "Un protocolo esencial en IPv6 que gestiona mensajes de error, descubrimiento de vecinos (NDP) y configuración sin estado (SLAAC).", "Un sistema de correo cifrado.", "Un protocolo de capa de transporte."], correct: 1, explanation: "ICMPv6 es vital en IPv6, encargándose de funciones que en IPv4 realizaban ARP o DHCP." },
+      { id: 53, question: "¿Qué significa el acrónimo CIDR en direccionamiento IP?", options: ["Classless Inter-Domain Routing", "Control Internal Data Rate", "Common Internet Domain Resolution", "Core IP Data Range"], correct: 0, explanation: "CIDR introdujo el enrutamiento y asignación sin clases mediante prefijos de subred flexibles." },
+      { id: 54, question: "¿Qué es una DMZ (Zona Desmilitarizada) en seguridad de redes?", options: ["Una red completamente abierta sin ningún tipo de protección.", "Una subred aislada que se encuentra entre la red interna privada y la red externa (Internet), albergando servicios públicos.", "Un servidor físico desconectado de internet.", "Una red militar cifrada."], correct: 1, explanation: "La DMZ expone de forma controlada servicios públicos (web, correo) protegiendo la red interna." },
+      { id: 55, question: "¿Qué función cumple el protocolo IGMP (Internet Group Management Protocol)?", options: ["Gestionar la pertenencia a grupos de multidifusión (multicast) en redes IPv4.", "Asignar IPs automáticas.", "Proteger contra virus.", "Medir la latencia."], correct: 0, explanation: "IGMP permite a los hosts informar a los routers locales sobre su interés en unirse a grupos multicast." },
+      { id: 56, question: "¿Cuál es el propósito del protocolo SNMP trap?", options: ["Enviar alertas o notificaciones proactivas desde un agente gestionado hacia un servidor de monitorización.", "Bloquear paquetes maliciosos.", "Establecer una sesión de chat.", "Descargar ficheros grandes."], correct: 0, explanation: "Las traps de SNMP permiten a los dispositivos reportar eventos o alarmas de forma asíncrona." },
+      { id: 57, question: "¿Qué puerto por defecto utiliza el protocolo TFTP (Trivial File Transfer Protocol)?", options: ["Puerto 21", "Puerto 69 (UDP)", "Puerto 80", "Puerto 443"], correct: 1, explanation: "TFTP utiliza UDP en el puerto 69 para transferencias sencillas y ligeras sin autenticación." },
+      { id: 58, question: "¿Qué es la atenuación en un medio de transmisión físico?", options: ["El aumento de la velocidad de la señal.", "La pérdida de intensidad o potencia de la señal a medida que viaja a través del medio de transmisión.", "La interferencia electromagnética externa.", "El retardo de propagación."], correct: 1, explanation: "La atenuación es la degradación de la amplitud de la señal debido a la distancia y resistencia del medio." },
+      { id: 59, question: "¿Qué puerto por defecto utiliza el servicio IMAP seguro (IMAPS)?", options: ["143", "993", "110", "995"], correct: 1, explanation: "IMAP seguro (IMAPS) opera habitualmente en el puerto TCP 993." },
+      { id: 60, question: "¿Qué es una trama (frame) en redes de comunicaciones?", options: ["Un bloque de datos de la capa de transporte.", "La unidad de datos en la Capa 2 (Enlace de datos) que incluye cabeceras MAC y FCS.", "Una dirección IP de origen.", "Una señal analógica de radio."], correct: 1, explanation: "La trama es la PDU de la capa de enlace de datos." },
+      { id: 61, question: "¿Qué diferencia principal hay entre IPv4 e IPv6 respecto a la seguridad?", options: ["IPv6 incluye IPsec de forma nativa e integrada en su diseño estándar.", "IPv4 es totalmente seguro y IPv6 no.", "IPv6 no permite cifrado.", "No existen diferencias de seguridad."], correct: 0, explanation: "IPsec fue diseñado e integrado nativamente en IPv6 para garantizar autenticación y cifrado a nivel de red." },
+      { id: 62, question: "¿Qué es el protocolo LACP (Link Aggregation Control Protocol - IEEE 802.3ad)?", options: ["Un protocolo para agrupar múltiples enlaces físicos en uno solo para aumentar ancho de banda y redundancia.", "Un protocolo de enrutamiento dinámico.", "Un sistema de nombres de dominio.", "Un filtro de firewall."], correct: 0, explanation: "LACP permite combinar varios puertos físicos de switch en un enlace lógico agregado." },
+      { id: 63, question: "¿Qué es un ataque de suplantación de identidad IP (IP Spoofing)?", options: ["Crear direcciones MAC falsas.", "Enviar paquetes IP con una dirección de origen falsa para ocultar la identidad del atacante o simular otro host.", "Robar certificados SSL.", "Saturar el servidor DNS."], correct: 1, explanation: "El IP Spoofing altera la dirección de origen en las cabeceras IP para falsear el remitente." },
+      { id: 64, question: "¿Qué es el protocolo STP (Spanning Tree Protocol - IEEE 802.1D)?", options: ["Un protocolo para evitar bucles de capa 2 en redes con conmutadores redundantes.", "Un protocolo para plantar árboles de fibra óptica.", "Un sistema de enrutamiento WAN.", "Un gestor de contraseñas."], correct: 0, explanation: "STP bloquea lógicamente puertos redundantes para prevenir bucles catastróficos en switches de capa 2." },
+      { id: 65, question: "¿Qué puerto por defecto utiliza el protocolo LDAP (Lightweight Directory Access Protocol)?", options: ["389", "636", "445", "135"], correct: 0, explanation: "LDAP opera por defecto en el puerto 389 (y 636 para LDAPS cifrado)." },
+      { id: 66, question: "¿Cuál es el propósito del código de redundancia cíclica (CRC) en las tramas de enlace?", options: ["Cifrar los datos.", "Detectar errores de transmisión ocurridos en el medio físico.", "Comprimir la información.", "Asignar prioridades de tráfico."], correct: 1, explanation: "El CRC permite al receptor comprobar si la trama sufrió alteraciones durante el tránsito." },
+      { id: 67, question: "¿Qué es una VPN (Virtual Private Network)?", options: ["Una red física exclusiva para empresas de telecomunicaciones.", "Una tecnología que extiende una red privada de forma segura sobre una red pública como Internet mediante túneles cifrados.", "Un protocolo de correo electrónico.", "Un tipo de cable de red blindado."], correct: 1, explanation: "Las VPNs crean túneles virtuales cifrados garantizando privacidad sobre redes no confiables." },
+      { id: 68, question: "¿Qué define la latencia en una red?", options: ["El tiempo total que tardan los datos en viajar desde el origen hasta el destino.", "La cantidad de megabytes descargados por segundo.", "El número de errores de CRC.", "La potencia de la señal Wi-Fi."], correct: 0, explanation: "La latencia mide el retraso temporal en la transmisión de paquetes de red." },
+      { id: 69, question: "¿Qué es el protocolo OSPF y qué tipo de algoritmo utiliza?", options: ["Vector de distancia basado en RIP.", "Estado de enlace basado en el algoritmo de Dijkstra.", "Ruta de vector de ruta basado en BGP.", "Control de flujo síncrono."], correct: 1, explanation: "OSPF calcula las rutas más cortas basándose en el estado de los enlaces mediante Dijkstra." },
+      { id: 70, question: "¿Qué puerto utiliza el protocolo Kerberos para autenticación en redes?", options: ["88", "53", "389", "443"], correct: 0, explanation: "Kerberos utiliza el puerto TCP/UDP 88 para sus servicios de autenticación de tickets." },
+      { id: 71, question: "¿Qué es un Sistema Autónomo (Autonomous System - AS) en Internet?", options: ["Un ordenador portátil sin cables.", "Una red o grupo de redes bajo una única administración técnica que comparte políticas de enrutamiento coherentes.", "Un router inalámbrico doméstico.", "Un servidor DNS raíz."], correct: 1, explanation: "Un AS agrupa redes gestionadas por una misma organización o ISP bajo políticas de encaminamiento comunes." },
+      { id: 72, question: "¿Qué es el protocolo SNMP y en qué capa del modelo OSI suele clasificarse su uso aplicativo?", options: ["Capa de Aplicación (Capa 7)", "Capa de Enlace", "Capa Física", "Capa de Red"], correct: 0, explanation: "SNMP es un protocolo de gestión que opera en la capa de aplicación." },
+      { id: 73, question: "¿Qué función cumple el protocolo ARP Gratuito (Gratuitous ARP)?", options: ["Enviar una petición ARP sin que nadie la solicite para anunciar la IP y MAC propia (detectar conflictos o actualizar tablas).", "Borrar la memoria caché ARP.", "Cifrar la red local.", "Asignar IPs estáticas."], correct: 0, explanation: "El ARP gratuito sirve para notificar cambios de dirección o detectar si otra máquina usa la misma IP." },
+      { id: 74, question: "¿Qué puerto utiliza el protocolo SMB (Server Message Block) para compartir archivos en Windows?", options: ["445", "80", "21", "25"], correct: 0, explanation: "SMB opera habitualmente sobre el puerto TCP 445 para compartir recursos de red." },
+      { id: 75, question: "¿Qué es el ruido térmico o interferencia en los medios físicos de red?", options: ["Un tipo de protocolo de enrutamiento.", "Perturbaciones electromagnéticas aleatorias que degradan la integridad de la señal analógica o digital.", "Una técnica de compresión.", "La velocidad del router."], correct: 1, explanation: "El ruido es una señal no deseada añadida al canal que puede corromper los datos transmitidos." },
+      { id: 76, question: "¿Qué es el protocolo IPsec (Internet Protocol Security)?", options: ["Un conjunto de protocolos para asegurar las comunicaciones IP mediante autenticación y cifrado.", "Un protocolo de transferencia de páginas web.", "Un servidor de correo seguro.", "Un sistema de nombres locales."], correct: 0, explanation: "IPsec opera en la capa de red proporcionando seguridad robusta a nivel de datagrama." },
+      { id: 77, question: "¿Qué diferencia hay entre una dirección IPv4 pública y una privada?", options: ["Las privadas son enrutables en todo Internet; las públicas no.", "Las privadas se usan en redes locales y no son enrutables directamente en Internet; las públicas son únicas globalmente en Internet.", "No hay ninguna diferencia.", "Las públicas son solo para fibra óptica."], correct: 1, explanation: "Las IPs privadas se reutilizan en intranets locales y requieren NAT para salir a Internet donde las públicas son únicas." },
+      { id: 78, question: "¿Qué es un ataque de intermediario (Man-in-the-Middle - MitM)?", options: ["Interceptor silencioso de comunicaciones entre dos partes que pueden creer que se comunican directamente entre sí.", "Un virus que borra archivos del disco.", "Una saturación del servidor web.", "Un fallo de alimentación eléctrica."], correct: 0, explanation: "Un ataque MitM intercepta el canal de comunicación para espiar o modificar la información." },
+      { id: 79, question: "¿Qué es el protocolo SLAAC (Stateless Address Autoconfiguration) en IPv6?", options: ["Un sistema para asignar direcciones IP mediante un servidor central obligatorio.", "Un mecanismo que permite a un nodo autoconfigurar su propia dirección IPv6 global sin necesidad de DHCPv6.", "Un protocolo de enrutamiento dinámico.", "Un sistema de cifrado de red."], correct: 1, explanation: "SLAAC permite a los hosts IPv6 generar su propia dirección IP combinando prefijos del router y su MAC/EUI-64." },
+      { id: 80, question: "¿Cuál es la puntuación máxima total de este examen de Redes y Protocolos?", options: ["10.0 Puntos", "5.0 Puntos", "100 Puntos", "1.0 Punto"], correct: 1, explanation: "El examen está valorado sobre un máximo de 5.00 Puntos distribuidos entre las 80 preguntas." }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userAnswers = new Array(questionsBank.length).fill(null);
+    let timerSeconds = 0;
+    let timerInterval = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTimer();
+      renderMatrixGrid();
+      loadQuestion(0);
+      updateProgressUI();
+    });
+
+    function initTimer() {
+      clearInterval(timerInterval);
+      timerSeconds = 0;
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        const hrs = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timer-display').innerText = `${hrs}:${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function renderMatrixGrid() {
+      const gridContainer = document.getElementById('question-grid');
+      gridContainer.innerHTML = '';
+
+      questionsBank.forEach((_, index) => {
+        const btn = document.createElement('button');
+        btn.id = `matrix-btn-${index}`;
+        btn.innerText = index + 1;
+        btn.onclick = () => jumpToQuestion(index);
+        btn.className = getMatrixClass(index);
+        gridContainer.appendChild(btn);
+      });
+    }
+
+    function getMatrixClass(index) {
+      const baseClass = "h-8 w-8 text-xs font-mono font-medium rounded-lg flex items-center justify-center transition-all duration-150 border ";
+      if (index === currentQuestionIndex) {
+        return baseClass + "border-blue-400 bg-slate-800 text-blue-300 font-bold ring-2 ring-blue-400/30 scale-105 z-10";
+      } else if (userAnswers[index] !== null) {
+        return baseClass + "bg-cyan-600 border-cyan-500 text-white shadow-sm shadow-cyan-500/30";
+      } else {
+        return baseClass + "bg-slate-800/80 border-slate-700/80 text-slate-400 hover:bg-slate-700 hover:text-white";
+      }
+    }
+
+    function updateMatrixUI() {
+      questionsBank.forEach((_, idx) => {
+        const btn = document.getElementById(`matrix-btn-${idx}`);
+        if (btn) btn.className = getMatrixClass(idx);
+      });
+    }
+
+    function loadQuestion(index) {
+      currentQuestionIndex = index;
+      const q = questionsBank[index];
+
+      document.getElementById('question-badge').innerText = `Pregunta ${index + 1} de ${questionsBank.length}`;
+      document.getElementById('question-text').innerText = `${index + 1}. ${q.question}`;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((optText, optIdx) => {
+        const optionWrapper = document.createElement('div');
+        optionWrapper.className = "relative";
+        const isChecked = userAnswers[index] === optIdx;
+
+        optionWrapper.innerHTML = `
+          <input type="radio" id="opt-${optIdx}" name="option" value="${optIdx}" ${isChecked ? 'checked' : ''} class="peer hidden custom-radio" onchange="selectOption(${optIdx})">
+          <label for="opt-${optIdx}" class="flex items-start gap-3 p-4 rounded-xl bg-slate-950/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-800/50 cursor-pointer transition-all duration-150 peer-checked:border-cyan-500 peer-checked:bg-cyan-950/30">
+            <span class="w-6 h-6 rounded-full border border-slate-700 font-mono text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5 peer-checked:border-cyan-500 peer-checked:bg-cyan-600 text-slate-400 peer-checked:text-white">
+              ${String.fromCharCode(65 + optIdx)}
+            </span>
+            <span class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">${optText}</span>
+          </label>
+        `;
+        optionsContainer.appendChild(optionWrapper);
+      });
+
+      document.getElementById('prev-btn').disabled = index === 0;
+      const nextBtn = document.getElementById('next-btn');
+      if (index === questionsBank.length - 1) {
+        nextBtn.classList.add('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+      }
+
+      updateMatrixUI();
+      updateProgressUI();
+    }
+
+    function selectOption(optionIndex) {
+      userAnswers[currentQuestionIndex] = optionIndex;
+      updateMatrixUI();
+      updateProgressUI();
+    }
+
+    function navigateQuestion(step) {
+      const newIndex = currentQuestionIndex + step;
+      if (newIndex >= 0 && newIndex < questionsBank.length) {
+        loadQuestion(newIndex);
+      }
+    }
+
+    function jumpToQuestion(index) {
+      loadQuestion(index);
+    }
+
+    function updateProgressUI() {
+      const answeredCount = userAnswers.filter(ans => ans !== null).length;
+      const percentage = Math.round((answeredCount / questionsBank.length) * 100);
+
+      document.getElementById('progress-bar').style.width = `${percentage}%`;
+      document.getElementById('completion-percentage').innerText = `${percentage}%`;
+      document.getElementById('answered-count-text').innerText = answeredCount;
+    }
+
+    function confirmFinishExam() {
+      const unanswered = userAnswers.filter(ans => ans === null).length;
+      const modal = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const desc = document.getElementById('modal-description');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      if (unanswered > 0) {
+        title.innerText = "¡Atención! Quedan preguntas sin responder";
+        desc.innerText = `Aún tienes ${unanswered} pregunta(s) sin contestar. ¿Estás seguro de que deseas evaluar y finalizar el examen ahora?`;
+      } else {
+        title.innerText = "¿Deseas finalizar la evaluación?";
+        desc.innerText = "Has completado todas las 80 preguntas. Al confirmar, obtendrás tu nota final corregida sobre 5.00 puntos.";
+      }
+
+      confirmBtn.onclick = () => {
+        closeModal();
+        calculateAndDisplayResults();
+      };
+
+      modal.classList.remove('hidden');
+    }
+
+    function confirmReset() {
+      const modal = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const desc = document.getElementById('modal-description');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      title.innerText = "¿Reiniciar el examen completo?";
+      desc.innerText = "Se borrarán todas tus respuestas guardadas y el temporizador volverá a cero.";
+      
+      confirmBtn.onclick = () => {
+        closeModal();
+        restartExam();
+      };
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.add('hidden');
+    }
+
+    // FUNCIÓN DE CÁLCULO CON PENALIZACIÓN Y NOTA NEGATIVA PERMITIDA
+    function calculateAndDisplayResults() {
+      clearInterval(timerInterval);
+
+      let correct = 0;
+      let incorrect = 0;
+      let unanswered = 0;
+
+      questionsBank.forEach((q, idx) => {
+        const ans = userAnswers[idx];
+        if (ans === null) {
+          unanswered++;
+        } else if (ans === q.correct) {
+          correct++;
+        } else {
+          incorrect++;
+        }
+      });
+
+      // Valor de cada pregunta correcta (5.0 / 80 = 0.0625 puntos)
+      const pointsPerCorrect = 5.0 / questionsBank.length;
+      // Cada fallo resta 1/3 del valor de una correcta
+      const pointsPerIncorrect = pointsPerCorrect / 3;
+
+      // Nota final permitiendo valores negativos si los fallos superan a los aciertos
+      const finalScore = (correct * pointsPerCorrect) - (incorrect * pointsPerIncorrect);
+      
+      const accuracy = Math.round((correct / questionsBank.length) * 100);
+
+      document.getElementById('exam-container').classList.add('hidden');
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.classList.remove('hidden');
+      resultsContainer.classList.add('flex');
+
+      document.getElementById('score-display').innerText = finalScore.toFixed(2);
+      document.getElementById('correct-count').innerText = correct;
+      document.getElementById('incorrect-count').innerText = incorrect;
+      document.getElementById('unanswered-count').innerText = unanswered;
+      document.getElementById('accuracy-percentage').innerText = `${accuracy}%`;
+
+      const gradeBadge = document.getElementById('grade-badge');
+      const scoreRing = document.getElementById('score-ring');
+
+      if (finalScore >= 4.0) {
+        gradeBadge.innerText = "SOBRESALIENTE / APTO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-emerald-950 text-emerald-400 border border-emerald-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-emerald-500 flex items-center justify-center bg-slate-950/50 shadow-emerald-900/30 shadow-2xl";
+      } else if (finalScore >= 2.5) {
+        gradeBadge.innerText = "APROBADO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-cyan-950 text-cyan-400 border border-cyan-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-cyan-500 flex items-center justify-center bg-slate-950/50 shadow-cyan-900/30 shadow-2xl";
+      } else {
+        gradeBadge.innerText = "NO APTO / SUSPENSO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-rose-950 text-rose-400 border border-rose-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-rose-500 flex items-center justify-center bg-slate-950/50 shadow-rose-900/30 shadow-2xl";
+      }
+
+      renderReviewList('all');
+    }
+
+    function renderReviewList(filter) {
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+
+      questionsBank.forEach((q, idx) => {
+        const userAns = userAnswers[idx];
+        const isCorrect = userAns === q.correct;
+        const isUnanswered = userAns === null;
+
+        if (filter === 'correct' && !isCorrect) return;
+        if (filter === 'incorrect' && (isCorrect || isUnanswered)) return;
+
+        const card = document.createElement('div');
+        let borderBgStyle = "";
+        let statusBadge = "";
+
+        if (isUnanswered) {
+          borderBgStyle = "border-amber-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-amber-950 text-amber-400 border border-amber-800 flex items-center gap-1"><i class="fa-solid fa-minus"></i> Sin Responder</span>`;
+        } else if (isCorrect) {
+          borderBgStyle = "border-emerald-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center gap-1"><i class="fa-solid fa-check"></i> Acertada</span>`;
+        } else {
+          borderBgStyle = "border-rose-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-rose-950 text-rose-400 border border-rose-800 flex items-center gap-1"><i class="fa-solid fa-xmark"></i> Fallada</span>`;
+        }
+
+        card.className = `p-5 sm:p-6 rounded-2xl border ${borderBgStyle} shadow-lg transition-all`;
+
+        let optionsHTML = '';
+        q.options.forEach((opt, oIdx) => {
+          let optStyle = "bg-slate-950/40 border-slate-800 text-slate-300";
+          let icon = `<span class="w-5 h-5 rounded-full border border-slate-700 font-mono text-[10px] flex items-center justify-center shrink-0">${String.fromCharCode(65 + oIdx)}</span>`;
+
+          if (oIdx === q.correct) {
+            optStyle = "bg-emerald-950/40 border-emerald-600 text-emerald-200 font-medium";
+            icon = `<span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-mono text-[10px] flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-[10px]"></i></span>`;
+          } else if (oIdx === userAns && !isCorrect) {
+            optStyle = "bg-rose-950/40 border-rose-600 text-rose-200 font-medium";
+            icon = `<span class="w-5 h-5 rounded-full bg-rose-600 text-white font-mono text-[10px] flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-[10px]"></i></span>`;
+          }
+
+          optionsHTML += `
+            <div class="flex items-center gap-3 p-3 rounded-xl border text-sm ${optStyle}">
+              ${icon}
+              <span class="leading-relaxed">${opt}</span>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-4 pb-3 mb-4 border-b border-slate-800">
+            <span class="text-xs font-mono font-bold text-slate-400">Pregunta ${idx + 1} de 80</span>
+            ${statusBadge}
+          </div>
+          <h4 class="text-base font-semibold text-white mb-4 leading-relaxed">${q.question}</h4>
+          <div class="space-y-2 mb-4">
+            ${optionsHTML}
+          </div>
+          <div class="p-3.5 rounded-xl bg-cyan-950/30 border border-cyan-900/40 text-xs text-cyan-200 flex items-start gap-2.5">
+            <i class="fa-solid fa-circle-info text-cyan-400 mt-0.5 text-sm"></i>
+            <div>
+              <span class="font-bold text-cyan-300">Explicación técnica:</span> ${q.explanation}
+            </div>
+          </div>
+        `;
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    function filterReview(filter) {
+      renderReviewList(filter);
+    }
+
+    function restartExam() {
+      userAnswers = new Array(questionsBank.length).fill(null);
+      currentQuestionIndex = 0;
+
+      document.getElementById('results-container').classList.add('hidden');
+      document.getElementById('results-container').classList.remove('flex');
+      document.getElementById('exam-container').classList.remove('hidden');
+
+      initTimer();
+      renderMatrixGrid();
+      loadQuestion(0);
+      updateProgressUI();
+    }
+  </script>
+</body>
+</html>

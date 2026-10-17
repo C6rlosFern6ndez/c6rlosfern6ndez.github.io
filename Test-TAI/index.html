@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Exámenes y Tests - Academia Tech</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Hoja de Estilos Independiente -->
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 selection:bg-blue-600 selection:text-white">
+
+  <!-- Header Section -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="bg-gradient-to-tr from-blue-600 to-cyan-500 text-white p-2.5 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <i class="fa-solid fa-graduation-cap text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-wide text-white flex items-center gap-2">
+            TechExam Portal <span class="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full font-mono">v2.0</span>
+          </h1>
+          <p class="text-xs text-slate-400">Plataforma interactiva de entrenamiento y evaluación técnica</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:flex text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 font-mono items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Servidor Activo
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full text-center">
+    <div class="max-w-3xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-800/60 text-blue-400 text-xs font-mono mb-2">
+        <i class="fa-solid fa-layer-group"></i> Módulos de Preparación
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Selecciona un Test de Evaluación
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        Pon a prueba tus conocimientos con exámenes de opción múltiple estructurados de forma realista, corregidos al instante sobre un valor máximo de 5.0 puntos.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid Centrado de Tarjetas de Test -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+
+      <!-- Tarjeta 1: Docker (Activa) -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl card-hover-transition flex flex-col justify-between relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl group-hover:bg-blue-600/20 transition-all"></div>
+        
+        <div>
+          <!-- Header de Tarjeta -->
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-2xl shadow-inner">
+              <i class="fa-brands fa-docker"></i>
+            </div>
+            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800">
+              Disponible
+            </span>
+          </div>
+
+          <!-- Título y Descripción -->
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+            Docker & Contenedores
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Evaluación técnica completa sobre arquitectura de Docker, Dockerfile, Docker Compose, redes, volúmenes y Swarm.
+          </p>
+        </div>
+
+        <div>
+          <!-- Metadatos / Badges -->
+          <div class="grid grid-cols-3 gap-2 py-3 px-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 mb-6">
+            <div class="flex flex-col items-center">
+              <span class="text-slate-500 text-[10px]">PREGUNTAS</span>
+              <span class="font-bold text-white">80 Q</span>
+            </div>
+            <div class="flex flex-col items-center border-x border-slate-800">
+              <span class="text-slate-500 text-[10px]">VALOR</span>
+              <span class="font-bold text-amber-400">5.0 Pts</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-slate-500 text-[10px]">NIVEL</span>
+              <span class="font-bold text-blue-400">Medio/Av</span>
+            </div>
+          </div>
+
+          <!-- Botón de Inicio -->
+          <a href="pages/docker.html" class="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2 group-hover:shadow-blue-600/40">
+            <span>Iniciar Examen</span>
+            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2: Redes y Comunicaciones -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl card-hover-transition flex flex-col justify-between relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-600/10 rounded-full blur-2xl group-hover:bg-cyan-600/20 transition-all"></div>
+        
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-2xl shadow-inner">
+              <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800">
+              Disponible
+            </span>
+          </div>
+
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            Redes & Protocolos
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Modelo OSI/TCP-IP, direccionamiento IPv4/IPv6, subredes, DNS, DHCP, enrutamiento y puertos de red comunes.
+          </p>
+        </div>
+
+        <div>
+          <div class="grid grid-cols-3 gap-2 py-3 px-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 mb-6">
+            <div class="flex flex-col items-center">
+              <span class="text-slate-500 text-[10px]">PREGUNTAS</span>
+              <span class="font-bold text-white">80 Q</span>
+            </div>
+            <div class="flex flex-col items-center border-x border-slate-800">
+              <span class="text-slate-500 text-[10px]">VALOR</span>
+              <span class="font-bold text-amber-400">5.0 Pts</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-slate-500 text-[10px]">NIVEL</span>
+              <span class="font-bold text-cyan-400">Intermedio</span>
+            </div>
+          </div>
+
+          <a href="pages/docker.html" class="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2 group-hover:shadow-blue-600/40">
+            <span>Iniciar Examen</span>
+            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3: Linux & SysAdmin -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl card-hover-transition flex flex-col justify-between relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-600/10 rounded-full blur-2xl group-hover:bg-amber-600/20 transition-all"></div>
+        
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-600/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-2xl shadow-inner">
+              <i class="fa-brands fa-linux"></i>
+            </div>
+            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-blue-950 text-blue-400 border border-blue-800">
+              Próximamente
+            </span>
+          </div>
+
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+            Sistemas Linux
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Administración de sistemas, comandos Bash, permisos UNIX, gestión de procesos, systemd y gestión de discos.
+          </p>
+        </div>
+
+        <div>
+          <div class="grid grid-cols-3 gap-2 py-3 px-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 mb-6">
+            <div class="flex flex-col items-center">
+              <span class="text-slate-500 text-[10px]">PREGUNTAS</span>
+              <span class="font-bold text-white">80 Q</span>
+            </div>
+            <div class="flex flex-col items-center border-x border-slate-800">
+              <span class="text-slate-500 text-[10px]">VALOR</span>
+              <span class="font-bold text-amber-400">5.0 Pts</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-slate-500 text-[10px]">NIVEL</span>
+              <span class="font-bold text-amber-400">Avanzado</span>
+            </div>
+          </div>
+
+          <a href="pages/linux.html" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition flex items-center justify-center gap-2 border border-slate-700">
+            <span>Ver Detalles</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4">
+      <p>© 2026 TechExam Portal. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
