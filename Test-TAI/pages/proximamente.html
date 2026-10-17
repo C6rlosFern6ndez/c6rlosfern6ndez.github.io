@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Próximamente - TechExam Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Hoja de Estilos Compartida Externa -->
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 selection:bg-blue-600 selection:text-white justify-between">
+
+  <!-- Header Section -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="../index.html" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center mr-1" title="Volver al Portal">
+          <i class="fa-solid fa-house text-sm"></i>
+        </a>
+        <div class="bg-blue-600 text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <i class="fa-solid fa-graduation-cap text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-wide text-white flex items-center gap-2">
+            TechExam Portal <span class="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full font-mono">v2.0</span>
+          </h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Plataforma de evaluación técnica</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content - Centered Empty State -->
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-16 flex flex-col items-center justify-center text-center">
+    <div class="relative mb-6">
+      <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-2xl"></div>
+      <div class="relative w-24 h-24 rounded-3xl bg-slate-900 border border-slate-800 text-blue-400 flex items-center justify-center text-4xl shadow-2xl">
+        <i class="fa-solid fa-person-digging animate-pulse"></i>
+      </div>
+    </div>
+
+    <span class="px-3 py-1 rounded-full bg-amber-950/80 text-amber-400 border border-amber-800 text-xs font-mono mb-4">
+      Módulo en Desarrollo
+    </span>
+
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+      Este test estará disponible próximamente
+    </h2>
+
+    <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 max-w-lg">
+      Estamos redactando y maquetando las 80 preguntas técnicas con sus respectivas explicaciones y penalizaciones. Vuelve pronto para poner a prueba tus conocimientos.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+      <a href="../index.html" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-arrow-left text-xs"></i> Volver al Menú Principal
+      </a>
+      <a href="docker.html" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+        <i class="fa-brands fa-docker text-blue-400"></i> Probar Test de Docker
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4">
+      <p>© 2026 TechExam Portal. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
