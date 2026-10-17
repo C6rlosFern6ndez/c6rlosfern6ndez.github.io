@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Linux Exam - TechExam Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Hoja de Estilos Compartida Externa -->
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 selection:bg-amber-600 selection:text-white">
+
+  <!-- Header Section -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="../index.html" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center mr-1" title="Volver al Portal">
+          <i class="fa-solid fa-house text-sm"></i>
+        </a>
+        <div class="bg-amber-600 text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20">
+          <i class="fa-brands fa-linux text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-wide text-white flex items-center gap-2">
+            Test de Sistemas Linux <span class="text-xs bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded-full font-mono">80 Q / 5.0 Pts</span>
+          </h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Evaluación de administración, Bash, permisos y systemd</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">
+          <i class="fa-regular fa-clock text-amber-400"></i>
+          <span id="timer-display">00:00:00</span>
+        </div>
+        <button id="reset-btn" onclick="confirmReset()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span class="hidden sm:inline">Reiniciar</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-slate-800 h-1.5 relative overflow-hidden">
+      <div id="progress-bar" class="bg-gradient-to-r from-amber-600 to-yellow-400 h-full w-0 transition-all duration-300 ease-out"></div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+    <!-- Active Exam Container -->
+    <div id="exam-container" class="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1">
+      
+      <!-- Left Column: Question Screen -->
+      <div class="lg:col-span-3 flex flex-col justify-between bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-xl relative min-h-[500px]">
+        <div>
+          <!-- Question Metadata Header -->
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-800">
+            <span class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-800/50" id="question-badge">
+              Pregunta 1 de 80
+            </span>
+            <span class="text-xs text-slate-400 flex items-center gap-1 font-mono">
+              <i class="fa-solid fa-award text-amber-400"></i>
+              Valor: <span class="text-slate-200 font-bold">0.0625 pts (3 fallos restan 1 acierto)</span>
+            </span>
+          </div>
+
+          <!-- Question Text -->
+          <h2 id="question-text" class="text-lg sm:text-xl font-semibold text-slate-100 leading-relaxed mb-6">
+            Cargando pregunta...
+          </h2>
+
+          <!-- Answer Options -->
+          <div id="options-container" class="space-y-3">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Question Navigation Bar -->
+        <div class="pt-8 mt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+          <button id="prev-btn" onclick="navigateQuestion(-1)" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm transition flex items-center gap-2 border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-arrow-left"></i> Anterior
+          </button>
+
+          <div class="text-xs text-slate-400 font-mono hidden sm:block">
+            Respondidas: <span id="answered-count-text" class="text-amber-400 font-bold">0</span> / 80
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="next-btn" onclick="navigateQuestion(1)" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-medium text-sm shadow-lg shadow-amber-600/25 transition flex items-center gap-2">
+              Siguiente <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button id="finish-btn" onclick="confirmFinishExam()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-lg shadow-emerald-600/25 transition flex items-center gap-2">
+              <i class="fa-solid fa-flag-checkered"></i> Finalizar Test
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Question Grid Navigation Navigator -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between h-fit lg:h-auto">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+              <i class="fa-solid fa-grip text-amber-400"></i> Matriz de Navegación
+            </h3>
+            <span class="text-xs text-slate-400 font-mono" id="completion-percentage">0%</span>
+          </div>
+
+          <!-- Legend -->
+          <div class="grid grid-cols-3 gap-2 text-[11px] mb-4 p-2.5 bg-slate-950/60 rounded-xl border border-slate-800">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-800 border border-slate-600"></span>
+              <span class="text-slate-400">Pendiente</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
+              <span class="text-slate-400">Respondida</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full border-2 border-yellow-400 bg-slate-800"></span>
+              <span class="text-slate-400">Activa</span>
+            </div>
+          </div>
+
+          <!-- Grid Matrix (80 Boxes) -->
+          <div id="question-grid" class="grid grid-cols-8 gap-1.5 matrix-scroll-container pr-1">
+            <!-- Generado dinámicamente -->
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-800">
+          <button onclick="confirmFinishExam()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-check-double"></i> Evaluar Respuestas
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Results Section (Hidden by Default) -->
+    <div id="results-container" class="hidden flex-col space-y-8 animate-fade-in">
+      
+      <!-- Summary Dashboard Box -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          
+          <!-- Score Circle / Badge -->
+          <div class="flex flex-col items-center text-center lg:border-r lg:border-slate-800 lg:pr-12 w-full lg:w-auto">
+            <span class="text-xs uppercase font-mono tracking-widest text-slate-400 mb-2">Nota Final Obtenida</span>
+            <div class="relative flex items-center justify-center my-2">
+              <div id="score-ring" class="w-36 h-36 rounded-full border-8 border-amber-600/30 flex items-center justify-center bg-slate-950/50 shadow-inner">
+                <span id="score-display" class="text-4xl font-black font-mono text-white">0.00</span>
+              </div>
+            </div>
+            <span id="score-max" class="text-xs text-slate-400 mt-1 font-mono">de un total de 5.00 Puntos</span>
+            <div id="grade-badge" class="mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono">
+              -
+            </div>
+          </div>
+
+          <!-- Quick Stats Breakdown Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full flex-1">
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-check text-lg"></i>
+              </div>
+              <span id="correct-count" class="text-2xl font-bold font-mono text-emerald-400">0</span>
+              <span class="text-xs text-slate-400">Acertadas</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+              </div>
+              <span id="incorrect-count" class="text-2xl font-bold font-mono text-rose-400">0</span>
+              <span class="text-xs text-slate-400">Falladas (Penalizan)</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-minus text-lg"></i>
+              </div>
+              <span id="unanswered-count" class="text-2xl font-bold font-mono text-amber-400">0</span>
+              <span class="text-xs text-slate-400">Sin Responder</span>
+            </div>
+
+            <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-2">
+                <i class="fa-solid fa-percent text-lg"></i>
+              </div>
+              <span id="accuracy-percentage" class="text-2xl font-bold font-mono text-amber-400">0%</span>
+              <span class="text-xs text-slate-400">Efectividad</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col gap-3 w-full lg:w-auto">
+            <button onclick="restartExam()" class="w-full py-3 px-6 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm transition shadow-lg shadow-amber-600/30 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rotate-right"></i> Repetir Examen
+            </button>
+            <a href="../index.html" class="w-full py-3 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition border border-slate-700 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-house"></i> Volver al Menú
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Question-by-Question Review List -->
+      <div id="breakdown-section" class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass-chart text-amber-400"></i> Desglose Detallado de Respuestas
+          </h3>
+          <div class="flex items-center gap-2">
+            <button onclick="filterReview('all')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 border border-slate-700">Todas</button>
+            <button onclick="filterReview('correct')" class="px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs font-mono">Aciertos</button>
+            <button onclick="filterReview('incorrect')" class="px-3 py-1.5 rounded-lg bg-rose-950 text-rose-400 border border-rose-800 text-xs font-mono">Fallos</button>
+          </div>
+        </div>
+
+        <div id="review-list" class="space-y-4">
+          <!-- Generado dinámicamente -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal Component for Confirmation -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center gap-3 text-amber-400">
+        <div class="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center">
+          <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+        </div>
+        <h3 id="modal-title" class="text-lg font-bold text-white">¿Finalizar Examen?</h3>
+      </div>
+      <p id="modal-description" class="text-sm text-slate-300 leading-relaxed">
+        Aún tienes preguntas sin responder. Si finalizas ahora, computarán como no contestadas (0 puntos).
+      </p>
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium border border-slate-700">
+          Cancelar
+        </button>
+        <button id="modal-confirm-btn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium shadow-md">
+          Sí, Finalizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    const questionsBank = [
+      { id: 1, question: "¿Qué comando de Linux se utiliza para mostrar el contenido de un archivo de texto en la salida estándar de forma secuencial?", options: ["cat", "grep", "chmod", "ps"], correct: 0, explanation: "'cat' (concatenate) muestra el contenido completo de ficheros de texto en la consola." },
+      { id: 2, question: "¿Cuál es el directorio raíz absoluto en la jerarquía de archivos de un sistema GNU/Linux?", options: ["/root", "/home", "/", "/etc"], correct: 2, explanation: "La barra diagonal '/' representa el directorio raíz (root directory) que contiene todo el árbol de directorios." },
+      { id: 3, question: "¿Qué comando permite buscar patrones o expresiones regulares dentro de archivos de texto?", options: ["find", "grep", "awk", "sed"], correct: 1, explanation: "'grep' busca líneas que coincidan con un patrón o expresión regular específica." },
+      { id: 4, question: "En los permisos UNIX tradicionales, ¿qué valor numérico (octal) representa los permisos de lectura (r) y ejecución (x) sin escritura?", options: ["5", "6", "7", "4"], correct: 0, explanation: "Lectura (4) + Ejecución (1) suman 5 en notación octal." },
+      { id: 5, question: "¿Qué comando de administración de procesos muestra una lista dinámica en tiempo real de los procesos activos del sistema?", options: ["ps", "top", "kill", "bg"], correct: 1, explanation: "'top' (o 'htop') muestra un panel dinámico y actualizado en tiempo real del uso de CPU y procesos." },
+      { id: 6, question: "¿Qué archivo de configuración en /etc contiene la información de las cuentas de usuario locales (nombre, UID, directorio home, shell)?", options: ["/etc/shadow", "/etc/group", "/etc/passwd", "/etc/sudoers"], correct: 2, explanation: "'/etc/passwd' almacena los atributos públicos de las cuentas de usuario del sistema." },
+      { id: 7, question: "¿Qué utilidad o gestor de servicios moderno se encarga del arranque del sistema y la gestión de demonios en la mayoría de distros Linux actuales?", options: ["SysVinit", "Upstart", "systemd", "Supervisord"], correct: 2, explanation: "systemd es el sistema de inicio (init system) y gestor de servicios estándar actual." },
+      { id: 8, question: "¿Qué comando se utiliza para cambiar los permisos de acceso de un archivo o directorio?", options: ["chown", "chgrp", "chmod", "umask"], correct: 2, explanation: "'chmod' (change mode) modifica los permisos de lectura, escritura y ejecución de un objeto." },
+      { id: 9, question: "¿Qué comando muestra el espacio libre y ocupado en disco de los sistemas de ficheros montados?", options: ["free", "df", "du", "lsblk"], correct: 1, explanation: "'df' (disk free) reporta el uso de espacio en disco de los diferentes sistemas de archivos." },
+      { id: 10, question: "¿Qué señal envía por defecto el comando 'kill' si no se especifica ninguna opción numérica?", options: ["SIGKILL (9)", "SIGTERM (15)", "SIGHUP (1)", "SIGSTOP (19)"], correct: 1, explanation: "kill envía por defecto la señal SIGTERM (15), solicitando una terminación ordenada y limpia." },
+      { id: 11, question: "¿Qué comando de Bash permite cambiar el propietario de un archivo?", options: ["chmod", "chown", "passwd", "attrib"], correct: 1, explanation: "'chown' (change owner) modifica el usuario propietario y/o grupo de un archivo o directorio." },
+      { id: 12, question: "¿Qué archivo en /etc almacena las contraseñas cifradas de los usuarios y las políticas de caducidad?", options: ["/etc/passwd", "/etc/shadow", "/etc/security", "/etc/login.defs"], correct: 1, explanation: "'/etc/shadow' contiene las contraseñas cifradas de forma segura y solo es accesible por el usuario root." },
+      { id: 13, question: "¿Qué comando se usa para listar los dispositivos de bloque conectados y sus particiones (como discos duros y NVMe)?", options: ["fdisk -l", "lsblk", "mount", "df -h"], correct: 1, explanation: "'lsblk' lista los dispositivos de bloque en un formato de árbol claro y estructurado." },
+      { id: 14, question: "¿Qué instrucción systemd permite iniciar un servicio llamado 'nginx' de forma inmediata?", options: ["systemctl start nginx", "systemd-init nginx", "service nginx run", "systemctl enable nginx"], correct: 0, explanation: "'systemctl start <servicio>' inicia la unidad de servicio seleccionada de forma inmediata." },
+      { id: 15, question: "¿Qué comando permite buscar archivos y directorios en el sistema basándose en nombres, tamaños o fechas?", options: ["grep", "find", "locate", "search"], correct: 1, explanation: "'find' realiza búsquedas avanzadas en tiempo real por el árbol de directorios." },
+      { id: 16, question: "¿Qué operador de redirección en Bash sobrescribe el archivo de salida con el resultado del comando?", options: [">", ">>", "<", "|"], correct: 0, explanation: "El operador '>' redirige y sobrescribe la salida estándar; '>>' añade al final (append)." },
+      { id: 17, question: "¿Qué utilidad mide el espacio ocupado específicamente por un archivo o directorio de forma recursiva?", options: ["df", "free", "du", "top"], correct: 2, explanation: "'du' (disk usage) estima el uso de espacio en disco de ficheros y subdirectorios." },
+      { id: 18, question: "¿Qué comando muestra el uso actual de la memoria RAM y de intercambio (swap)?", options: ["df", "free", "vmstat", "top"], correct: 1, explanation: "'free' muestra estadísticas resumidas de la memoria física y swap disponible." },
+      { id: 19, question: "¿Cuál es el propósito del archivo '/etc/fstab'?", options: ["Configurar las interfaces de red.", "Definir los puntos de montaje estáticos de los sistemas de ficheros al arrancar el sistema.", "Almacenar los logs del kernel.", "Gestionar las variables de entorno globales."], correct: 1, explanation: "'/etc/fstab' contiene la tabla estática de particiones y unidades que deben montarse automáticamente." },
+      { id: 20, question: "¿Qué comando se usa para ver las últimas líneas de un archivo de registro (log) de forma continua en tiempo real?", options: ["head", "tail -f", "cat", "less"], correct: 1, explanation: "'tail -f' mantiene abierto el archivo y muestra nuevas líneas conforme se escriben." },
+      { id: 21, question: "¿Qué comando permite cambiar al usuario root o ejecutar comandos con privilegios elevados?", options: ["sudo / su", "login", "passwd", "chmod"], correct: 0, explanation: "'sudo' o 'su' (switch user) permiten adquirir privilegios de superusuario." },
+      { id: 22, question: "¿Qué significa que un archivo tenga el bit SUID (SetUID) activado?", options: ["Que se ejecuta con los privilegios del propietario del archivo y no del usuario que lo invoca.", "Que solo puede borrarlo root.", "Que está cifrado.", "Que es un enlace simbólico."], correct: 0, explanation: "SUID permite que un binario ejecutable corra temporalmente bajo el UID de su creador/propietario." },
+      { id: 23, question: "¿Qué comando se utiliza para crear un nuevo grupo de usuarios en el sistema?", options: ["useradd", "groupadd", "newgroup", "addgrp"], correct: 1, explanation: "'groupadd' añade un nuevo grupo al sistema operativo." },
+      { id: 24, question: "¿Qué comando systemd asegura que un servicio se ejecute automáticamente cada vez que arranca el sistema?", options: ["systemctl start <servificio>", "systemctl enable <servicio>", "systemctl active <servicio>", "systemctl boot <servicio>"], correct: 1, explanation: "'systemctl enable' crea los enlaces simbólicos necesarios para iniciar el servicio en el arranque." },
+      { id: 25, question: "¿Qué variable de entorno de Bash almacena la ruta de directorios donde el shell busca ejecutables?", options: ["$HOME", "$PATH", "$USER", "$SHELL"], correct: 1, explanation: "La variable PATH define las rutas de directorios analizadas al buscar comandos ejecutables." },
+      { id: 26, question: "¿Qué comando permite comprimir archivos usando el formato gzip?", options: ["tar", "gzip", "zip", "rar"], correct: 1, explanation: "'gzip' comprime archivos individuales reduciendo su tamaño." },
+      { id: 27, question: "¿Qué comando se emplea para empaquetar múltiples archivos en un único archivo .tar y opcionalmente comprimirlos?", options: ["compress", "tar", "pack", "bundle"], correct: 1, explanation: "'tar' (Tape Archive) agrupa ficheros y directorios en un archivo empaquetado." },
+      { id: 28, question: "¿Cuál es la función del comando 'uname -r'?", options: ["Mostrar la versión del kernel de Linux en ejecución.", "Mostrar el uso de memoria.", "Reiniciar el equipo.", "Listar los usuarios conectados."], correct: 0, explanation: "'uname -r' informa específicamente sobre la versión del núcleo (kernel) activo." },
+      { id: 29, question: "¿Qué comando muestra los usuarios que han iniciado sesión actualmente en el sistema?", options: ["who", "id", "groups", "finger"], correct: 0, explanation: "'who' lista los usuarios con sesiones activas en el sistema." },
+      { id: 30, question: "¿Qué comando se utiliza para consultar los registros (logs) centralizados gestionados por systemd-journald?", options: ["tail /var/log/messages", "journalctl", "syslog-cat", "logread"], correct: 1, explanation: "'journalctl' es la herramienta estándar para consultar y filtrar los logs del journal de systemd." },
+      { id: 31, question: "¿Qué comando de red moderno en Linux sustituye al clásico 'ifconfig' para configurar interfaces?", options: ["ip", "netstat", "route", "ping"], correct: 0, explanation: "El comando 'ip' (del paquete iproute2) es el estándar moderno para la gestión de redes en Linux." },
+      { id: 32, question: "¿Qué comando muestra las conexiones de red activas, puertos abiertos y tablas de enrutamiento (o su equivalente moderno ss)?", options: ["ps", "netstat / ss", "route", "traceroute"], correct: 1, explanation: "'ss' y el clásico 'netstat' analizan sockets de red y conexiones activas." },
+      { id: 33, question: "¿Qué significa el permiso especial Sticky Bit (t) cuando se aplica a un directorio compartido como '/tmp'?", options: ["Que cualquiera puede borrar cualquier archivo.", "Que solo el propietario del archivo, el propietario del directorio o root pueden eliminar o renombrar un archivo dentro de él.", "Que el directorio es de solo lectura.", "Que comprime los archivos automáticamente."], correct: 1, explanation: "El Sticky Bit previene que usuarios borren ficheros ajenos dentro de directorios públicos como /tmp." },
+      { id: 34, question: "¿Qué comando se usa para actualizar la tabla de particiones del kernel sin necesidad de reiniciar tras modificar un disco?", options: ["reboot", "partprobe / partx", "fdisk -u", "mkfs"], correct: 1, explanation: "'partprobe' o 'partx' informan al kernel de Linux sobre los cambios en las tablas de partición." },
+      { id: 35, question: "¿Qué comando crea un sistema de archivos (formatea) de tipo ext4 en una partición como '/dev/sdb1'?", options: ["fdisk /dev/sdb1", "mkfs.ext4 /dev/sdb1", "format /dev/sdb1", "tune2fs /dev/sdb1"], correct: 1, explanation: "'mkfs.ext4' construye un sistema de archivos ext4 en la partición especificada." },
+      { id: 36, question: "¿Qué comando permite montar un sistema de archivos en un directorio del árbol de directorios?", options: ["mount", "attach", "link", "fstab"], correct: 0, explanation: "'mount' adjunta un sistema de archivos en una ruta del árbol de directorios." },
+      { id: 37, question: "¿Qué comando desmonta un sistema de archivos previamente montado?", options: ["unmount", "umount", "disconnect", "remount"], correct: 1, explanation: "'umount' libera el sistema de archivos del punto de montaje asignado." },
+      { id: 38, question: "¿Qué herramienta interactiva se utiliza tradicionalmente para particionar discos con esquema MBR o GPT?", options: ["fdisk / gdisk", "nano", "top", "chmod"], correct: 0, explanation: "'fdisk' y 'gdisk' gestionan particiones de disco MBR y GPT respectivamente." },
+      { id: 39, question: "¿Qué comando de texto interactivo permite editar archivos de configuración de forma sencilla en consola (diferente a vi/vim)?", options: ["nano", "cat", "grep", "echo"], correct: 0, explanation: "'nano' es un editor de texto de terminal intuitivo y fácil de usar para administradores." },
+      { id: 40, question: "¿Qué operador de tubería (pipeline) en Bash conecta la salida estándar de un comando con la entrada estándar del siguiente?", options: [">", "<", "|", "&"], correct: 2, explanation: "El caracter de tubería '|' encadena comandos pasando datos directamente de uno a otro." },
+      { id: 41, question: "¿Qué comando muestra el identificador de usuario (UID), ID de grupo (GID) y grupos suplementarios del usuario actual?", options: ["whoami", "id", "groups", "finger"], correct: 1, explanation: "'id' muestra los UID, GID y todos los grupos a los que pertenece el usuario." },
+      { id: 42, question: "¿Qué comando se usa para buscar la ruta absoluta de un archivo ejecutable dentro de las rutas del PATH?", options: ["find", "which / type", "locate", "whereis"], correct: 1, explanation: "'which' y 'type' localizan el binario ejecutable correspondiente en el PATH del sistema." },
+      { id: 43, question: "¿Qué tecla o combinación interrumpe y detiene un proceso en primer plano en la terminal (enviando SIGINT)?", options: ["Ctrl + C", "Ctrl + Z", "Ctrl + D", "Ctrl + S"], correct: 0, explanation: "Ctrl + C envía la señal SIGINT para cancelar abruptamente la tarea en ejecución." },
+      { id: 44, question: "¿Qué combinación de teclas suspende/envía un proceso al fondo en estado detenido (enviando SIGTSTP)?", options: ["Ctrl + C", "Ctrl + Z", "Ctrl + D", "Ctrl + A"], correct: 1, explanation: "Ctrl + Z suspende el proceso actual y lo envía al fondo." },
+      { id: 45, question: "¿Qué comando lista los trabajos (jobs) suspendidos o en segundo plano en la sesión actual de shell?", options: ["ps", "jobs", "bg", "tasks"], correct: 1, explanation: "'jobs' muestra los procesos ejecutándose o detenidos en segundo plano dentro de la shell." },
+      { id: 46, question: "¿Qué comando reanuda la ejecución de un trabajo suspendido colocándolo en segundo plano?", options: ["fg", "bg", "resume", "start"], correct: 1, explanation: "'bg' (background) reanuda un trabajo suspendido para que continúe ejecutándose en segundo plano." },
+      { id: 47, question: "¿Qué comando trae un proceso en segundo plano al primer plano?", options: ["fg", "bring", "front", "top"], correct: 0, explanation: "'fg' (foreground) devuelve el trabajo especificado a la consola interactiva principal." },
+      { id: 48, question: "¿Cuál es la función del comando 'passwd'?", options: ["Cambiar la contraseña del usuario.", "Generar claves SSH.", "Verificar permisos.", "Modificar grupos."], correct: 0, explanation: "'passwd' permite actualizar la contraseña de autenticación del usuario." },
+      { id: 49, question: "¿Qué archivo contiene las directivas que determinan qué usuarios pueden ejecutar comandos mediante 'sudo'?", options: ["/etc/passwd", "/etc/sudoers", "/etc/shadow", "/etc/group"], correct: 1, explanation: "'/etc/sudoers' define los privilegios y permisos de ejecución mediante el comando sudo." },
+      { id: 50, question: "¿Qué comando permite crear enlaces simbólicos (soft links)?", options: ["ln -s", "link", "cp -s", "alias"], correct: 0, explanation: "'ln -s' crea un enlace simbólico que apunta a la ruta de un archivo o directorio." },
+      { id: 51, question: "¿Qué diferencia existe entre un enlace simbólico y un enlace duro (hard link)?", options: ["El enlace duro apunta al mismo inodo y no puede cruzar sistemas de archivos; el enlace simbólico apunta a la ruta.", "Los enlaces duros solo son para directorios.", "No hay diferencias.", "Los enlaces simbólicos no ocupan espacio pero los duros sí."], correct: 0, explanation: "Los enlaces duros comparten el mismo inodo en el disco; los simbólicos son referencias a rutas de ficheros." },
+      { id: 52, question: "¿Qué comando se usa para añadir una regla de intercambio (swap) en el sistema?", options: ["mkswap y swapon", "swapinit", "mount swap", "fdisk swap"], correct: 0, explanation: "'mkswap' inicializa el espacio de intercambio y 'swapon' lo activa en el sistema." },
+      { id: 53, question: "¿Qué comando muestra el tiempo transcurrido desde el último reinicio del sistema y la carga media (load average)?", options: ["uptime", "time", "status", "who"], correct: 0, explanation: "'uptime' muestra el tiempo activo del sistema y las cargas medias de CPU a 1, 5 y 15 minutos." },
+      { id: 54, question: "¿Qué utilidad systemd permite comprobar el estado detallado de un servicio?", options: ["systemctl status <servicio>", "systemd-check", "service query", "systemctl info"], correct: 0, explanation: "'systemctl status' muestra información completa sobre el estado, PID y logs recientes de la unidad." },
+      { id: 55, question: "¿Qué comando de Bash permite filtrar columnas específicas de un archivo delimitado (como CSV)?", options: ["cut / awk", "grep", "sed", "sort"], correct: 0, explanation: "'cut' y 'awk' son herramientas excelentes para extraer columnas o campos delimitados." },
+      { id: 56, question: "¿Qué comando se usa para ordenar líneas de texto en un archivo?", options: ["order", "sort", "arrange", "uniq"], correct: 1, explanation: "'sort' ordena las líneas de archivos de texto alfabética o numéricamente." },
+      { id: 57, question: "¿Qué comando elimina líneas duplicadas consecutivas en un flujo de texto?", options: ["duplicate", "uniq", "clean", "filter"], correct: 1, explanation: "'uniq' filtra o reporta líneas repetidas consecutivas en flujos de texto." },
+      { id: 58, question: "¿Qué comando de redirección y paginación permite leer archivos grandes pantalla por pantalla hacia adelante?", options: ["more / less", "cat", "tail", "grep"], correct: 0, explanation: "'less' (y el antiguo 'more') permite la lectura paginada hacia adelante y atrás de archivos largos." },
+      { id: 59, question: "¿Qué comando permite mostrar las primeras líneas de un archivo (por defecto 10)?", options: ["top", "head", "first", "start"], correct: 1, explanation: "'head' muestra las líneas iniciales de un documento de texto." },
+      { id: 60, question: "¿Qué comando permite mostrar las últimas líneas de un archivo (por defecto 10)?", options: ["tail", "bottom", "end", "last"], correct: 0, explanation: "'tail' imprime las líneas finales de un archivo." },
+      { id: 61, question: "¿Qué significa el permiso especial SGID (SetGID) en un directorio?", options: ["Que los nuevos archivos creados dentro hereden automáticamente el grupo del directorio padre.", "Que los archivos se cifran.", "Que se borran al cerrar sesión.", "Que solo root puede leerlos."], correct: 0, explanation: "SGID en directorios asegura que los ficheros hijos hereden el grupo del directorio contenedor." },
+      { id: 62, question: "¿Qué comando se utiliza para cambiar la máscara de creación de permisos por defecto para nuevos archivos?", options: ["chmod", "umask", "chown", "perms"], correct: 1, explanation: "'umask' define la máscara de bits que se restringen al crear nuevos ficheros o carpetas." },
+      { id: 63, question: "¿Qué comando comprueba la integridad y repara sistemas de archivos ext4 en Linux?", options: ["fsck", "fixfs", "chkdisk", "repair4"], correct: 0, explanation: "'fsck' (file system check) verifica y repara inconsistencias en sistemas de ficheros." },
+      { id: 64, question: "¿Qué comando muestra información detallada sobre las CPUs del sistema (núcleos, arquitectura, hilos)?", options: ["lscpu", "cpuinfo", "top", "procstat"], correct: 0, explanation: "'lscpu' recopila y muestra la arquitectura de la CPU de forma legible." },
+      { id: 65, question: "¿Qué directorio especial de Linux contiene información virtual del kernel y procesos mapeados en memoria?", options: ["/proc", "/sys", "/dev", "/var"], correct: 0, explanation: "'/proc' es un pseudo-sistema de archivos que expone el estado del kernel y los procesos en ejecución." },
+      { id: 66, question: "¿Qué directorio contiene los archivos de dispositivos especiales de hardware?", options: ["/dev", "/etc", "/lib", "/bin"], correct: 0, explanation: "'/dev' (devices) alberga los nodos de interfaz para acceder al hardware del sistema." },
+      { id: 67, question: "¿Qué comando se usa para enviar una señal específica o terminar un proceso indicando su PID?", options: ["kill / pkill", "stop", "halt", "terminate"], correct: 0, explanation: "'kill' y 'pkill' envían señales a procesos mediante su PID o nombre." },
+      { id: 68, question: "¿Qué comando permite buscar procesos por su nombre exacto y enviarles señales de forma directa?", options: ["killall / pkill", "psgrep", "findpid", "topkill"], correct: 0, explanation: "'killall' y 'pkill' permiten finalizar o señalizar procesos indicando directamente su nombre." },
+      { id: 69, question: "¿Qué utilidad systemd permite recargar el demonio init tras modificar archivos de unidades de servicio?", options: ["systemctl daemon-reload", "systemctl reload-all", "systemd-config update", "service restart"], correct: 0, explanation: "'systemctl daemon-reload' fuerza a systemd a releer los ficheros de configuración modificados." },
+      { id: 70, question: "¿Qué comando systemd se usa para apagar el sistema de forma inmediata y segura?", options: ["systemctl poweroff", "systemctl halt", "shutdown now", "Ambas A y C son correctas"], correct: 3, explanation: "Tanto 'systemctl poweroff' como 'shutdown now' realizan un apagado ordenado del sistema." },
+      { id: 71, question: "¿Qué comando systemd reinicia el sistema operativo de forma controlada?", options: ["systemctl reboot", "restart", "systemctl reload", "reboot.sh"], correct: 0, explanation: "'systemctl reboot' ejecuta un reinicio seguro del equipo." },
+      { id: 72, question: "¿Qué herramienta gráfica o interactiva de terminal en formato TUI permite administrar procesos avanzada y cómodamente (alternativa colorida a top)?", options: ["htop", "nano", "tmux", "screen"], correct: 0, explanation: "'htop' ofrece una interfaz visual interactiva basada en texto para la gestión de procesos." },
+      { id: 73, question: "¿Qué comando Bash cuenta el número de líneas, palabras y bytes de un archivo?", options: ["wc (word count)", "count", "stats", "lines"], correct: 0, explanation: "'wc' (word count) reporta el recuento de líneas, palabras y caracteres/bytes." },
+      { id: 74, question: "¿Qué comando permite traducir o sustituir caracteres específicos en un flujo de texto?", options: ["tr", "sed", "awk", "sub"], correct: 0, explanation: "'tr' (translate) traduce o elimina caracteres específicos de la entrada estándar." },
+      { id: 75, question: "¿Qué herramienta o comando permite ejecutar comandos de manera persistente en segundo plano dentro de sesiones multiplexadas de terminal?", options: ["tmux / screen", "bg", "nohup", "Ambas A y C son correctas"], correct: 3, explanation: "Tanto 'tmux'/'screen' como 'nohup' permiten mantener procesos activos al cerrar la sesión de shell." },
+      { id: 76, question: "¿Qué archivo almacena los nombres de servidores DNS (nameservers) que utiliza el sistema para resolver resoluciones?", options: ["/etc/resolv.conf", "/etc/hosts", "/etc/networks", "/etc/dns.conf"], correct: 0, explanation: "'/etc/resolv.conf' configura las direcciones IP de los servidores de nombres DNS consultados." },
+      { id: 77, question: "¿Qué archivo local permite asociar direcciones IP con nombres de host de forma estática antes de consultar al DNS?", options: ["/etc/hosts", "/etc/resolv.conf", "/etc/hostname", "/etc/networks"], correct: 0, explanation: "'/etc/hosts' resuelve nombres de forma local estática antes de recurrir a servidores externos." },
+      { id: 78, question: "¿Qué comando muestra la fecha y hora actual del sistema?", options: ["date", "time", "clock", "calendar"], correct: 0, explanation: "'date' muestra o configura la fecha y hora del sistema operativo." },
+      { id: 79, question: "¿Qué comando crea un archivo vacío o actualiza la fecha de modificación de un archivo existente?", options: ["touch", "new", "create", "make"], correct: 0, explanation: "'touch' crea ficheros vacíos o actualiza sus marcas temporales de acceso y modificación." },
+      { id: 80, question: "¿Cuál es la puntuación máxima de este examen oficial de Sistemas Linux?", options: ["10.0 Puntos", "5.0 Puntos", "100 Puntos", "1.0 Punto"], correct: 1, explanation: "La prueba está calculada sobre un máximo de 5.00 Puntos distribuidos entre las 80 preguntas." }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userAnswers = new Array(questionsBank.length).fill(null);
+    let timerSeconds = 0;
+    let timerInterval = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTimer();
+      renderMatrixGrid();
+      loadQuestion(0);
+      updateProgressUI();
+    });
+
+    function initTimer() {
+      clearInterval(timerInterval);
+      timerSeconds = 0;
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        const hrs = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timer-display').innerText = `${hrs}:${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function renderMatrixGrid() {
+      const gridContainer = document.getElementById('question-grid');
+      gridContainer.innerHTML = '';
+
+      questionsBank.forEach((_, index) => {
+        const btn = document.createElement('button');
+        btn.id = `matrix-btn-${index}`;
+        btn.innerText = index + 1;
+        btn.onclick = () => jumpToQuestion(index);
+        btn.className = getMatrixClass(index);
+        gridContainer.appendChild(btn);
+      });
+    }
+
+    function getMatrixClass(index) {
+      const baseClass = "h-8 w-8 text-xs font-mono font-medium rounded-lg flex items-center justify-center transition-all duration-150 border ";
+      if (index === currentQuestionIndex) {
+        return baseClass + "border-yellow-400 bg-slate-800 text-yellow-300 font-bold ring-2 ring-yellow-400/30 scale-105 z-10";
+      } else if (userAnswers[index] !== null) {
+        return baseClass + "bg-amber-600 border-amber-500 text-white shadow-sm shadow-amber-500/30";
+      } else {
+        return baseClass + "bg-slate-800/80 border-slate-700/80 text-slate-400 hover:bg-slate-700 hover:text-white";
+      }
+    }
+
+    function updateMatrixUI() {
+      questionsBank.forEach((_, idx) => {
+        const btn = document.getElementById(`matrix-btn-${idx}`);
+        if (btn) btn.className = getMatrixClass(idx);
+      });
+    }
+
+    function loadQuestion(index) {
+      currentQuestionIndex = index;
+      const q = questionsBank[index];
+
+      document.getElementById('question-badge').innerText = `Pregunta ${index + 1} de ${questionsBank.length}`;
+      document.getElementById('question-text').innerText = `${index + 1}. ${q.question}`;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((optText, optIdx) => {
+        const optionWrapper = document.createElement('div');
+        optionWrapper.className = "relative";
+        const isChecked = userAnswers[index] === optIdx;
+
+        optionWrapper.innerHTML = `
+          <input type="radio" id="opt-${optIdx}" name="option" value="${optIdx}" ${isChecked ? 'checked' : ''} class="peer hidden custom-radio" onchange="selectOption(${optIdx})">
+          <label for="opt-${optIdx}" class="flex items-start gap-3 p-4 rounded-xl bg-slate-950/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-800/50 cursor-pointer transition-all duration-150 peer-checked:border-amber-500 peer-checked:bg-amber-950/30">
+            <span class="w-6 h-6 rounded-full border border-slate-700 font-mono text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5 peer-checked:border-amber-500 peer-checked:bg-amber-600 text-slate-400 peer-checked:text-white">
+              ${String.fromCharCode(65 + optIdx)}
+            </span>
+            <span class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">${optText}</span>
+          </label>
+        `;
+        optionsContainer.appendChild(optionWrapper);
+      });
+
+      document.getElementById('prev-btn').disabled = index === 0;
+      const nextBtn = document.getElementById('next-btn');
+      if (index === questionsBank.length - 1) {
+        nextBtn.classList.add('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+      }
+
+      updateMatrixUI();
+      updateProgressUI();
+    }
+
+    function selectOption(optionIndex) {
+      userAnswers[currentQuestionIndex] = optionIndex;
+      updateMatrixUI();
+      updateProgressUI();
+    }
+
+    function navigateQuestion(step) {
+      const newIndex = currentQuestionIndex + step;
+      if (newIndex >= 0 && newIndex < questionsBank.length) {
+        loadQuestion(newIndex);
+      }
+    }
+
+    function jumpToQuestion(index) {
+      loadQuestion(index);
+    }
+
+    function updateProgressUI() {
+      const answeredCount = userAnswers.filter(ans => ans !== null).length;
+      const percentage = Math.round((answeredCount / questionsBank.length) * 100);
+
+      document.getElementById('progress-bar').style.width = `${percentage}%`;
+      document.getElementById('completion-percentage').innerText = `${percentage}%`;
+      document.getElementById('answered-count-text').innerText = answeredCount;
+    }
+
+    function confirmFinishExam() {
+      const unanswered = userAnswers.filter(ans => ans === null).length;
+      const modal = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const desc = document.getElementById('modal-description');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      if (unanswered > 0) {
+        title.innerText = "¡Atención! Quedan preguntas sin responder";
+        desc.innerText = `Aún tienes ${unanswered} pregunta(s) sin contestar. ¿Estás seguro de que deseas evaluar y finalizar el examen ahora?`;
+      } else {
+        title.innerText = "¿Deseas finalizar la evaluación?";
+        desc.innerText = "Has completado todas las 80 preguntas. Al confirmar, obtendrás tu nota final corregida sobre 5.00 puntos.";
+      }
+
+      confirmBtn.onclick = () => {
+        closeModal();
+        calculateAndDisplayResults();
+      };
+
+      modal.classList.remove('hidden');
+    }
+
+    function confirmReset() {
+      const modal = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const desc = document.getElementById('modal-description');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+
+      title.innerText = "¿Reiniciar el examen completo?";
+      desc.innerText = "Se borrarán todas tus respuestas guardadas y el temporizador volverá a cero.";
+      
+      confirmBtn.onclick = () => {
+        closeModal();
+        restartExam();
+      };
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.add('hidden');
+    }
+
+    // FUNCIÓN DE CÁLCULO CON PENALIZACIÓN Y NOTA NEGATIVA PERMITIDA
+    function calculateAndDisplayResults() {
+      clearInterval(timerInterval);
+
+      let correct = 0;
+      let incorrect = 0;
+      let unanswered = 0;
+
+      questionsBank.forEach((q, idx) => {
+        const ans = userAnswers[idx];
+        if (ans === null) {
+          unanswered++;
+        } else if (ans === q.correct) {
+          correct++;
+        } else {
+          incorrect++;
+        }
+      });
+
+      // Valor de cada pregunta correcta (5.0 / 80 = 0.0625 puntos)
+      const pointsPerCorrect = 5.0 / questionsBank.length;
+      // Cada fallo resta 1/3 del valor de una correcta
+      const pointsPerIncorrect = pointsPerCorrect / 3;
+
+      // Nota final permitiendo valores negativos si los fallos superan a los aciertos
+      const finalScore = (correct * pointsPerCorrect) - (incorrect * pointsPerIncorrect);
+      
+      const accuracy = Math.round((correct / questionsBank.length) * 100);
+
+      document.getElementById('exam-container').classList.add('hidden');
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.classList.remove('hidden');
+      resultsContainer.classList.add('flex');
+
+      document.getElementById('score-display').innerText = finalScore.toFixed(2);
+      document.getElementById('correct-count').innerText = correct;
+      document.getElementById('incorrect-count').innerText = incorrect;
+      document.getElementById('unanswered-count').innerText = unanswered;
+      document.getElementById('accuracy-percentage').innerText = `${accuracy}%`;
+
+      const gradeBadge = document.getElementById('grade-badge');
+      const scoreRing = document.getElementById('score-ring');
+
+      if (finalScore >= 4.0) {
+        gradeBadge.innerText = "SOBRESALIENTE / APTO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-emerald-950 text-emerald-400 border border-emerald-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-emerald-500 flex items-center justify-center bg-slate-950/50 shadow-emerald-900/30 shadow-2xl";
+      } else if (finalScore >= 2.5) {
+        gradeBadge.innerText = "APROBADO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-amber-950 text-amber-400 border border-amber-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-amber-500 flex items-center justify-center bg-slate-950/50 shadow-amber-900/30 shadow-2xl";
+      } else {
+        gradeBadge.innerText = "NO APTO / SUSPENSO";
+        gradeBadge.className = "mt-3 px-3 py-1 rounded-full text-xs font-bold font-mono bg-rose-950 text-rose-400 border border-rose-800";
+        scoreRing.className = "w-36 h-36 rounded-full border-8 border-rose-500 flex items-center justify-center bg-slate-950/50 shadow-rose-900/30 shadow-2xl";
+      }
+
+      renderReviewList('all');
+    }
+
+    function renderReviewList(filter) {
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+
+      questionsBank.forEach((q, idx) => {
+        const userAns = userAnswers[idx];
+        const isCorrect = userAns === q.correct;
+        const isUnanswered = userAns === null;
+
+        if (filter === 'correct' && !isCorrect) return;
+        if (filter === 'incorrect' && (isCorrect || isUnanswered)) return;
+
+        const card = document.createElement('div');
+        let borderBgStyle = "";
+        let statusBadge = "";
+
+        if (isUnanswered) {
+          borderBgStyle = "border-amber-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-amber-950 text-amber-400 border border-amber-800 flex items-center gap-1"><i class="fa-solid fa-minus"></i> Sin Responder</span>`;
+        } else if (isCorrect) {
+          borderBgStyle = "border-emerald-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center gap-1"><i class="fa-solid fa-check"></i> Acertada</span>`;
+        } else {
+          borderBgStyle = "border-rose-900/50 bg-slate-900/80";
+          statusBadge = `<span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-rose-950 text-rose-400 border border-rose-800 flex items-center gap-1"><i class="fa-solid fa-xmark"></i> Fallada</span>`;
+        }
+
+        card.className = `p-5 sm:p-6 rounded-2xl border ${borderBgStyle} shadow-lg transition-all`;
+
+        let optionsHTML = '';
+        q.options.forEach((opt, oIdx) => {
+          let optStyle = "bg-slate-950/40 border-slate-800 text-slate-300";
+          let icon = `<span class="w-5 h-5 rounded-full border border-slate-700 font-mono text-[10px] flex items-center justify-center shrink-0">${String.fromCharCode(65 + oIdx)}</span>`;
+
+          if (oIdx === q.correct) {
+            optStyle = "bg-emerald-950/40 border-emerald-600 text-emerald-200 font-medium";
+            icon = `<span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-mono text-[10px] flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-[10px]"></i></span>`;
+          } else if (oIdx === userAns && !isCorrect) {
+            optStyle = "bg-rose-950/40 border-rose-600 text-rose-200 font-medium";
+            icon = `<span class="w-5 h-5 rounded-full bg-rose-600 text-white font-mono text-[10px] flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-[10px]"></i></span>`;
+          }
+
+          optionsHTML += `
+            <div class="flex items-center gap-3 p-3 rounded-xl border text-sm ${optStyle}">
+              ${icon}
+              <span class="leading-relaxed">${opt}</span>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-4 pb-3 mb-4 border-b border-slate-800">
+            <span class="text-xs font-mono font-bold text-slate-400">Pregunta ${idx + 1} de 80</span>
+            ${statusBadge}
+          </div>
+          <h4 class="text-base font-semibold text-white mb-4 leading-relaxed">${q.question}</h4>
+          <div class="space-y-2 mb-4">
+            ${optionsHTML}
+          </div>
+          <div class="p-3.5 rounded-xl bg-amber-950/30 border border-amber-900/40 text-xs text-amber-200 flex items-start gap-2.5">
+            <i class="fa-solid fa-circle-info text-amber-400 mt-0.5 text-sm"></i>
+            <div>
+              <span class="font-bold text-amber-300">Explicación técnica:</span> ${q.explanation}
+            </div>
+          </div>
+        `;
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    function filterReview(filter) {
+      renderReviewList(filter);
+    }
+
+    function restartExam() {
+      userAnswers = new Array(questionsBank.length).fill(null);
+      currentQuestionIndex = 0;
+
+      document.getElementById('results-container').classList.add('hidden');
+      document.getElementById('results-container').classList.remove('flex');
+      document.getElementById('exam-container').classList.remove('hidden');
+
+      initTimer();
+      renderMatrixGrid();
+      loadQuestion(0);
+      updateProgressUI();
+    }
+  </script>
+</body>
+</html>
